@@ -17,112 +17,113 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Default data used as a fallback because no specific data source was detected:
-const data = [
-  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-];
-
-// Helper code extracted from original (review and adapt if necessary):
-const dataXO = [
-  {
-    x: 0,
-    y: 0.241,
-    type: 'x',
-  },
-  {
-    x: 1,
-    y: 0.367,
-    type: 'x',
-  },
-  {
-    x: 2,
-    y: 0.036,
-    type: 'x',
-  },
-  {
-    x: 3,
-    y: 0.112,
-    type: 'o',
-  },
-  {
-    x: 4,
-    y: 0.382,
-    type: 'x',
-  },
-  {
-    x: 5,
-    y: 0.594,
-    type: 'o',
-  },
-  {
-    x: 6,
-    y: 0.516,
-    type: 'o',
-  },
-  {
-    x: 7,
-    y: 0.634,
-    type: 'x',
-  },
-  {
-    x: 8,
-    y: 0.612,
-    type: 'x',
-  },
-  {
-    x: 9,
-    y: 0.271,
-    type: 'o',
-  },
-  {
-    x: 10,
-    y: 0.241,
-    type: 'o',
-  },
-  {
-    x: 11,
-    y: 0.955,
-    type: 'o',
-  },
-  {
-    x: 12,
-    y: 0.336,
-    type: 'x',
-  },
-  {
-    x: 13,
-    y: 0.307,
-    type: 'x',
-  },
-  {
-    x: 14,
-    y: 0.747,
-    type: 'x',
-  },
-];
-
-const x =
-  'https://gw.alipayobjects.com/zos/antfincdn/xYAYJ3T969/94c968a3f33eac63c63b87b2f0f6cd97e2db624c65646d6839a5eb4d9c1b5543e922befd040cc5d55deaaa1c7e57c0075a186aa25874490616f2652d11f08592.svg';
-
 export default function G2ChartComponent_general_image_icon() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Default data used as a fallback because no specific data source was detected:
+  const data = [
+    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+  ];
+  
+  // Helper code extracted from original (review and adapt if necessary):
+  const dataXO = [
+    {
+      x: 0,
+      y: 0.241,
+      type: 'x',
+    },
+    {
+      x: 1,
+      y: 0.367,
+      type: 'x',
+    },
+    {
+      x: 2,
+      y: 0.036,
+      type: 'x',
+    },
+    {
+      x: 3,
+      y: 0.112,
+      type: 'o',
+    },
+    {
+      x: 4,
+      y: 0.382,
+      type: 'x',
+    },
+    {
+      x: 5,
+      y: 0.594,
+      type: 'o',
+    },
+    {
+      x: 6,
+      y: 0.516,
+      type: 'o',
+    },
+    {
+      x: 7,
+      y: 0.634,
+      type: 'x',
+    },
+    {
+      x: 8,
+      y: 0.612,
+      type: 'x',
+    },
+    {
+      x: 9,
+      y: 0.271,
+      type: 'o',
+    },
+    {
+      x: 10,
+      y: 0.241,
+      type: 'o',
+    },
+    {
+      x: 11,
+      y: 0.955,
+      type: 'o',
+    },
+    {
+      x: 12,
+      y: 0.336,
+      type: 'x',
+    },
+    {
+      x: 13,
+      y: 0.307,
+      type: 'x',
+    },
+    {
+      x: 14,
+      y: 0.747,
+      type: 'x',
+    },
+  ];
+  
+  const x =
+    'https://gw.alipayobjects.com/zos/antfincdn/xYAYJ3T969/94c968a3f33eac63c63b87b2f0f6cd97e2db624c65646d6839a5eb4d9c1b5543e922befd040cc5d55deaaa1c7e57c0075a186aa25874490616f2652d11f08592.svg';
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

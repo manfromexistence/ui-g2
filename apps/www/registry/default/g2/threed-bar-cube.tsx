@@ -22,57 +22,58 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Default data used as a fallback because no specific data source was detected:
-const data = [
-  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-];
-
-// Helper code extracted from original (review and adapt if necessary):
-const renderer = new WebGLRenderer();
-renderer.registerPlugin(new ThreeDPlugin());
-renderer.registerPlugin(new ControlPlugin());
-
-// Customize our own Chart with threedlib.
-
-// Trailing helpers extracted from original:
-  const { canvas } = g2ChartInstance.current.getContext();
-  const camera = canvas.getCamera();
-  // Use perspective projection mode.
-  camera.setPerspective(0.1, 5000, 45, 640 / 480);
-  camera.rotate(-40, 30, 0);
-  camera.dolly(70);
-  camera.setType(CameraType.ORBITING);
-
-  // Add a directional light into scene.
-  const light = new DirectionalLight({
-    style: {
-      intensity: 2.5,
-      fill: 'white',
-      direction: [-1, 0, 1],
-    },
-  });
-  canvas.appendChild(light);
-});
-
 export default function G2ChartComponent_threed_bar_cube() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Default data used as a fallback because no specific data source was detected:
+  const data = [
+    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+  ];
+  
+  // Helper code extracted from original (review and adapt if necessary):
+  const renderer = new WebGLRenderer();
+  renderer.registerPlugin(new ThreeDPlugin());
+  renderer.registerPlugin(new ControlPlugin());
+  
+  // Customize our own Chart with threedlib.
+  
+  // Trailing helpers extracted from original:
+    const { canvas } = g2ChartInstance.current.getContext();
+    const camera = canvas.getCamera();
+    // Use perspective projection mode.
+    camera.setPerspective(0.1, 5000, 45, 640 / 480);
+    camera.rotate(-40, 30, 0);
+    camera.dolly(70);
+    camera.setType(CameraType.ORBITING);
+  
+    // Add a directional light into scene.
+    const light = new DirectionalLight({
+      style: {
+        intensity: 2.5,
+        fill: 'white',
+        direction: [-1, 0, 1],
+      },
+    });
+    canvas.appendChild(light);
+  });
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

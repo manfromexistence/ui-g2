@@ -66,10 +66,11 @@ import {
 
 const FALLBACK_COLORS_JSON = '${FALLBACK_COLORS_JSON}';
 
-// Helper functions and data defined in the G2 original example:
-${finalHelpers}
-
 export default function G2ChartComponent_${chartIdBase.replace(/-/g, '_')}() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+${finalHelpers.split('\n').map(line => '  ' + line).join('\n')}
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

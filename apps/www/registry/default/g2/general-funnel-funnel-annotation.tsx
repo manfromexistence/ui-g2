@@ -17,20 +17,21 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Helper code extracted from original (review and adapt if necessary):
-const r = (start, end) => `${(((start - end) / start) * 100).toFixed(2)} %`;
-
-const data = [
-  { text: 'A', value: 12000 },
-  { text: 'B', value: 9800 },
-  { text: 'C', value: 6789 },
-  { text: 'D', value: 4569 },
-];
-
-const encodeX = 'text';
-
 export default function G2ChartComponent_general_funnel_funnel_annotation() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Helper code extracted from original (review and adapt if necessary):
+  const r = (start, end) => `${(((start - end) / start) * 100).toFixed(2)} %`;
+  
+  const data = [
+    { text: 'A', value: 12000 },
+    { text: 'B', value: 9800 },
+    { text: 'C', value: 6789 },
+    { text: 'D', value: 4569 },
+  ];
+  
+  const encodeX = 'text';
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

@@ -17,46 +17,47 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Default data used as a fallback because no specific data source was detected:
-const data = [
-  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-];
-
-// Helper code extracted from original (review and adapt if necessary):
-function syncTicksOfDomainsFromZero(scales) {
-  scales.forEach((scale) => scale.update({ nice: true }));
-  const normalize = (d) => d / Math.pow(10, Math.ceil(Math.log(d) / Math.LN10));
-  const maxes = scales.map((scale) => scale.getOptions().domain[1]);
-  const normalized = maxes.map(normalize);
-  const normalizedMax = Math.max(...normalized);
-  for (let i = 0; i < scales.length; i++) {
-    const scale = scales[i];
-    const domain = scale.getOptions().domain;
-    const t = maxes[i] / normalized[i];
-    const newDomainMax = normalizedMax * t;
-    scale.update({ domain: [domain[0], newDomainMax] });
-  }
-}
-
 export default function G2ChartComponent_general_dual_multi_line_sync() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Default data used as a fallback because no specific data source was detected:
+  const data = [
+    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+  ];
+  
+  // Helper code extracted from original (review and adapt if necessary):
+  function syncTicksOfDomainsFromZero(scales) {
+    scales.forEach((scale) => scale.update({ nice: true }));
+    const normalize = (d) => d / Math.pow(10, Math.ceil(Math.log(d) / Math.LN10));
+    const maxes = scales.map((scale) => scale.getOptions().domain[1]);
+    const normalized = maxes.map(normalize);
+    const normalizedMax = Math.max(...normalized);
+    for (let i = 0; i < scales.length; i++) {
+      const scale = scales[i];
+      const domain = scale.getOptions().domain;
+      const t = maxes[i] / normalized[i];
+      const newDomainMax = normalizedMax * t;
+      scale.update({ domain: [domain[0], newDomainMax] });
+    }
+  }
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

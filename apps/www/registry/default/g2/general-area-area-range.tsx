@@ -17,43 +17,44 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Helper code extracted from original (review and adapt if necessary):
-const data = [
-  { time: 1246406400000, temperature: [14.3, 27.7] },
-  { time: 1246492800000, temperature: [14.5, 27.8] },
-  { time: 1246579200000, temperature: [15.5, 29.6] },
-  { time: 1246665600000, temperature: [16.7, 30.7] },
-  { time: 1246752000000, temperature: [16.5, 25.0] },
-  { time: 1246838400000, temperature: [17.8, 25.7] },
-  { time: 1246924800000, temperature: [13.5, 24.8] },
-  { time: 1247011200000, temperature: [10.5, 21.4] },
-  { time: 1247097600000, temperature: [9.2, 23.8] },
-  { time: 1247184000000, temperature: [11.6, 21.8] },
-  { time: 1247270400000, temperature: [10.7, 23.7] },
-  { time: 1247356800000, temperature: [11.0, 23.3] },
-  { time: 1247443200000, temperature: [11.6, 23.7] },
-  { time: 1247529600000, temperature: [11.8, 20.7] },
-  { time: 1247616000000, temperature: [12.6, 22.4] },
-  { time: 1247702400000, temperature: [13.6, 19.6] },
-  { time: 1247788800000, temperature: [11.4, 22.6] },
-  { time: 1247875200000, temperature: [13.2, 25.0] },
-  { time: 1247961600000, temperature: [14.2, 21.6] },
-  { time: 1248048000000, temperature: [13.1, 17.1] },
-  { time: 1248134400000, temperature: [12.2, 15.5] },
-  { time: 1248220800000, temperature: [12.0, 20.8] },
-  { time: 1248307200000, temperature: [12.0, 17.1] },
-  { time: 1248393600000, temperature: [12.7, 18.3] },
-  { time: 1248480000000, temperature: [12.4, 19.4] },
-  { time: 1248566400000, temperature: [12.6, 19.9] },
-  { time: 1248652800000, temperature: [11.9, 20.2] },
-  { time: 1248739200000, temperature: [11.0, 19.3] },
-  { time: 1248825600000, temperature: [10.8, 17.8] },
-  { time: 1248912000000, temperature: [11.8, 18.5] },
-  { time: 1248998400000, temperature: [10.8, 16.1] },
-];
-
 export default function G2ChartComponent_general_area_area_range() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Helper code extracted from original (review and adapt if necessary):
+  const data = [
+    { time: 1246406400000, temperature: [14.3, 27.7] },
+    { time: 1246492800000, temperature: [14.5, 27.8] },
+    { time: 1246579200000, temperature: [15.5, 29.6] },
+    { time: 1246665600000, temperature: [16.7, 30.7] },
+    { time: 1246752000000, temperature: [16.5, 25.0] },
+    { time: 1246838400000, temperature: [17.8, 25.7] },
+    { time: 1246924800000, temperature: [13.5, 24.8] },
+    { time: 1247011200000, temperature: [10.5, 21.4] },
+    { time: 1247097600000, temperature: [9.2, 23.8] },
+    { time: 1247184000000, temperature: [11.6, 21.8] },
+    { time: 1247270400000, temperature: [10.7, 23.7] },
+    { time: 1247356800000, temperature: [11.0, 23.3] },
+    { time: 1247443200000, temperature: [11.6, 23.7] },
+    { time: 1247529600000, temperature: [11.8, 20.7] },
+    { time: 1247616000000, temperature: [12.6, 22.4] },
+    { time: 1247702400000, temperature: [13.6, 19.6] },
+    { time: 1247788800000, temperature: [11.4, 22.6] },
+    { time: 1247875200000, temperature: [13.2, 25.0] },
+    { time: 1247961600000, temperature: [14.2, 21.6] },
+    { time: 1248048000000, temperature: [13.1, 17.1] },
+    { time: 1248134400000, temperature: [12.2, 15.5] },
+    { time: 1248220800000, temperature: [12.0, 20.8] },
+    { time: 1248307200000, temperature: [12.0, 17.1] },
+    { time: 1248393600000, temperature: [12.7, 18.3] },
+    { time: 1248480000000, temperature: [12.4, 19.4] },
+    { time: 1248566400000, temperature: [12.6, 19.9] },
+    { time: 1248652800000, temperature: [11.9, 20.2] },
+    { time: 1248739200000, temperature: [11.0, 19.3] },
+    { time: 1248825600000, temperature: [10.8, 17.8] },
+    { time: 1248912000000, temperature: [11.8, 18.5] },
+    { time: 1248998400000, temperature: [10.8, 16.1] },
+  ];
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

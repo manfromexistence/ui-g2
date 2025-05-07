@@ -17,57 +17,58 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Default data used as a fallback because no specific data source was detected:
-const data = [
-  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-];
-
-// Trailing helpers extracted from original:
-
-// Process data.
-function linkData(data) {
-  return data.reduce((r, d, idx) => {
-    if (idx > 0) {
-      return r.concat({
-        x1: data[idx - 1].x,
-        x2: d.x,
-        value: d.isTotal ? d.end : d.start,
-      });
-    }
-    return r;
-  }, []);
-}
-
-function connectorData(data) {
-  return [
-    {
-      x1: data[0].x,
-      y1: data[0].end,
-      x2: data[data.length - 1].x,
-      y2: data[data.length - 1].end,
-    },
-  ];
-}
-
 export default function G2ChartComponent_annotation_connector_interval_connector() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Default data used as a fallback because no specific data source was detected:
+  const data = [
+    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+  ];
+  
+  // Trailing helpers extracted from original:
+  
+  // Process data.
+  function linkData(data) {
+    return data.reduce((r, d, idx) => {
+      if (idx > 0) {
+        return r.concat({
+          x1: data[idx - 1].x,
+          x2: d.x,
+          value: d.isTotal ? d.end : d.start,
+        });
+      }
+      return r;
+    }, []);
+  }
+  
+  function connectorData(data) {
+    return [
+      {
+        x1: data[0].x,
+        y1: data[0].end,
+        x2: data[data.length - 1].x,
+        y2: data[data.length - 1].end,
+      },
+    ];
+  }
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

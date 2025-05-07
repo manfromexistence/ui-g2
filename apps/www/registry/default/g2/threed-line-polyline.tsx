@@ -22,23 +22,24 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Helper code extracted from original (review and adapt if necessary):
-const renderer = new WebGLRenderer();
-renderer.registerPlugin(new ThreeDPlugin());
-renderer.registerPlugin(new ControlPlugin());
-
-// Customize our own Chart with threedlib.
-
-// Trailing helpers extracted from original:
-  const { canvas } = g2ChartInstance.current.getContext();
-  const camera = canvas.getCamera();
-  // Use perspective projection mode.
-  camera.setPerspective(0.1, 5000, 45, 640 / 480);
-  camera.setType(CameraType.ORBITING);
-});
-
 export default function G2ChartComponent_threed_line_polyline() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Helper code extracted from original (review and adapt if necessary):
+  const renderer = new WebGLRenderer();
+  renderer.registerPlugin(new ThreeDPlugin());
+  renderer.registerPlugin(new ControlPlugin());
+  
+  // Customize our own Chart with threedlib.
+  
+  // Trailing helpers extracted from original:
+    const { canvas } = g2ChartInstance.current.getContext();
+    const camera = canvas.getCamera();
+    // Use perspective projection mode.
+    camera.setPerspective(0.1, 5000, 45, 640 / 480);
+    camera.setType(CameraType.ORBITING);
+  });
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

@@ -17,32 +17,33 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Helper code extracted from original (review and adapt if necessary):
-const data = [
-  { item: 'Design', type: 'a', score: 70 },
-  { item: 'Design', type: 'b', score: 30 },
-  { item: 'Development', type: 'a', score: 60 },
-  { item: 'Development', type: 'b', score: 70 },
-  { item: 'Marketing', type: 'a', score: 50 },
-  { item: 'Marketing', type: 'b', score: 60 },
-  { item: 'Users', type: 'a', score: 40 },
-  { item: 'Users', type: 'b', score: 50 },
-  { item: 'Test', type: 'a', score: 60 },
-  { item: 'Test', type: 'b', score: 70 },
-  { item: 'Language', type: 'a', score: 70 },
-  { item: 'Language', type: 'b', score: 50 },
-  { item: 'Technology', type: 'a', score: 50 },
-  { item: 'Technology', type: 'b', score: 40 },
-  { item: 'Support', type: 'a', score: 30 },
-  { item: 'Support', type: 'b', score: 40 },
-  { item: 'Sales', type: 'a', score: 60 },
-  { item: 'Sales', type: 'b', score: 40 },
-  { item: 'UX', type: 'a', score: 50 },
-  { item: 'UX', type: 'b', score: 60 },
-];
-
 export default function G2ChartComponent_component_tooltip_tooltip_marker() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Helper code extracted from original (review and adapt if necessary):
+  const data = [
+    { item: 'Design', type: 'a', score: 70 },
+    { item: 'Design', type: 'b', score: 30 },
+    { item: 'Development', type: 'a', score: 60 },
+    { item: 'Development', type: 'b', score: 70 },
+    { item: 'Marketing', type: 'a', score: 50 },
+    { item: 'Marketing', type: 'b', score: 60 },
+    { item: 'Users', type: 'a', score: 40 },
+    { item: 'Users', type: 'b', score: 50 },
+    { item: 'Test', type: 'a', score: 60 },
+    { item: 'Test', type: 'b', score: 70 },
+    { item: 'Language', type: 'a', score: 70 },
+    { item: 'Language', type: 'b', score: 50 },
+    { item: 'Technology', type: 'a', score: 50 },
+    { item: 'Technology', type: 'b', score: 40 },
+    { item: 'Support', type: 'a', score: 30 },
+    { item: 'Support', type: 'b', score: 40 },
+    { item: 'Sales', type: 'a', score: 60 },
+    { item: 'Sales', type: 'b', score: 40 },
+    { item: 'UX', type: 'a', score: 50 },
+    { item: 'UX', type: 'b', score: 60 },
+  ];
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

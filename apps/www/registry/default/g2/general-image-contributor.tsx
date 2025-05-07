@@ -17,44 +17,45 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Default data used as a fallback because no specific data source was detected:
-const data = [
-  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-];
-
-// Helper code extracted from original (review and adapt if necessary):
-const Avatars = [
-  'https://gw.alipayobjects.com/zos/antfincdn/z8eXl6l9GM/aiyin.jpg',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*cu6GQ7yNpJIAAAAAAAAAAABkARQnAQ',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*IFYESbDDqI0AAAAAAAAAAABkARQnAQ',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*z6bUQ7bvuAYAAAAAAAAAAABkARQnAQ',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*zIFOTbhtCoMAAAAAAAAAAABkARQnAQ',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*z9SnQpiMnIgAAAAAAAAAAABkARQnAQ',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*aGTWQKFIx2cAAAAAAAAAAABkARQnAQ',
-  'https://gw.alipayobjects.com/zos/antfincdn/n%26uTxqsNHe/IMG_3154.JPG',
-  'http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/antfincdn/sX13FkC4%26C/erling.jpg',
-  'https://gw.alipayobjects.com/zos/antfincdn/4VUXCQEiBd/c4f901c7-f591-4616-8dfc-83aecf839cd8.png',
-  'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*5kqTS
-
 export default function G2ChartComponent_general_image_contributor() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Default data used as a fallback because no specific data source was detected:
+  const data = [
+    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+  ];
+  
+  // Helper code extracted from original (review and adapt if necessary):
+  const Avatars = [
+    'https://gw.alipayobjects.com/zos/antfincdn/z8eXl6l9GM/aiyin.jpg',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*cu6GQ7yNpJIAAAAAAAAAAABkARQnAQ',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*IFYESbDDqI0AAAAAAAAAAABkARQnAQ',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*z6bUQ7bvuAYAAAAAAAAAAABkARQnAQ',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*zIFOTbhtCoMAAAAAAAAAAABkARQnAQ',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*z9SnQpiMnIgAAAAAAAAAAABkARQnAQ',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*aGTWQKFIx2cAAAAAAAAAAABkARQnAQ',
+    'https://gw.alipayobjects.com/zos/antfincdn/n%26uTxqsNHe/IMG_3154.JPG',
+    'http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/antfincdn/sX13FkC4%26C/erling.jpg',
+    'https://gw.alipayobjects.com/zos/antfincdn/4VUXCQEiBd/c4f901c7-f591-4616-8dfc-83aecf839cd8.png',
+    'https://gw.alipayobjects.com/mdn/rms_23b644/afts/img/A*5kqTS
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

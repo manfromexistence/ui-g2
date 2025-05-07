@@ -17,41 +17,42 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Trailing helpers extracted from original:
-}
-
-function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
-  let div;
-
-  const render = (data, [x, y]) => {
-    if (div) remove();
-    div = document.createElement('div');
-    div.innerHTML = `
-    Select a node:
-    <ul>${data.map((d) => `<li>x:${d.weight},y:${d.height}</li>`).join('')}</ul>
-    `;
-    div.style.position = 'absolute';
-    div.style.background = '#eee';
-    div.style.padding = '0.5em';
-    div.style.left = x + offsetX + 'px';
-    div.style.top = y + offsetY + 'px';
-    div.onclick = () => {
-      remove();
-      onRemove();
-    };
-    container.append(div);
-  };
-
-  const remove = () => {
-    if (div) div.remove();
-    div = null;
-  };
-
-  return [render, remove];
-}
-
 export default function G2ChartComponent_interaction_brush_brush() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Trailing helpers extracted from original:
+  }
+  
+  function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
+    let div;
+  
+    const render = (data, [x, y]) => {
+      if (div) remove();
+      div = document.createElement('div');
+      div.innerHTML = `
+      Select a node:
+      <ul>${data.map((d) => `<li>x:${d.weight},y:${d.height}</li>`).join('')}</ul>
+      `;
+      div.style.position = 'absolute';
+      div.style.background = '#eee';
+      div.style.padding = '0.5em';
+      div.style.left = x + offsetX + 'px';
+      div.style.top = y + offsetY + 'px';
+      div.onclick = () => {
+        remove();
+        onRemove();
+      };
+      container.append(div);
+    };
+  
+    const remove = () => {
+      if (div) div.remove();
+      div = null;
+    };
+  
+    return [render, remove];
+  }
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

@@ -17,40 +17,41 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Trailing helpers extracted from original:
-
-function worldMap(node, projection, color, opacity = 0.7) {
-  const geoView = node.geoView().coordinate({
-    type: projection,
-    size: 'fitWidth',
-  });
-
-  geoView
-    .geoPath()
-    .data({
-      type: 'fetch',
-      value: 'https://assets.antv.antgroup.com/g2/countries-50m.json',
-      transform: [{ type: 'feature', name: 'land' }],
-    })
-    .style('fill', color)
-    .style('opacity', opacity);
-
-  geoView
-    .geoPath()
-    .data({ type: 'graticule10' })
-    .style('stroke', color)
-    .style('strokeOpacity', 0.3)
-    .style('fill', 'none');
-
-  geoView
-    .geoPath()
-    .data({ type: 'sphere' })
-    .style('stroke', color)
-    .style('fill', 'none');
-}
-
 export default function G2ChartComponent_geo_geo_projection_comparison() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Trailing helpers extracted from original:
+  
+  function worldMap(node, projection, color, opacity = 0.7) {
+    const geoView = node.geoView().coordinate({
+      type: projection,
+      size: 'fitWidth',
+    });
+  
+    geoView
+      .geoPath()
+      .data({
+        type: 'fetch',
+        value: 'https://assets.antv.antgroup.com/g2/countries-50m.json',
+        transform: [{ type: 'feature', name: 'land' }],
+      })
+      .style('fill', color)
+      .style('opacity', opacity);
+  
+    geoView
+      .geoPath()
+      .data({ type: 'graticule10' })
+      .style('stroke', color)
+      .style('strokeOpacity', 0.3)
+      .style('fill', 'none');
+  
+    geoView
+      .geoPath()
+      .data({ type: 'sphere' })
+      .style('stroke', color)
+      .style('fill', 'none');
+  }
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

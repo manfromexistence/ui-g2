@@ -17,87 +17,12 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Helper code extracted from original (review and adapt if necessary):
-const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
-
-// Definition for insertionSort based on G2 examples
-// It generates frames for visualizing the sorting process.
-// Each frame is an array of objects { value: number, swap: string }.
-// 'swap' indicates the state: 'default', 'highlight', 'swapping', 'sorted'.
-function insertionSort(arr: number[]) {
-  // Initialize array items with a 'state' property for visualization
-  const étapes = arr.map((value, id) => ({ value, id, state: 'default' }));
-  const frames: Array<Array<{ value: number; swap: string }>> = [];
-
-  // Helper to capture the current state of the array as a frame
-  function pushFrame(currentArray: typeof étapes) {
-    frames.push(currentArray.map(item => ({ value: item.value, swap: item.state })));
-  }
-
-  pushFrame(étapes); // Initial frame
-
-  for (let i = 1; i < étapes.length; i++) {
-    let j = i;
-
-    // Highlight the current element being inserted and the one it's compared against
-    étapes[j].state = 'highlight';
-    if (j > 0) étapes[j - 1].state = 'highlight';
-    pushFrame(étapes);
-
-    while (j > 0 && étapes[j].value < étapes[j - 1].value) {
-      // Mark elements for swapping
-      étapes[j].state = 'swapping';
-      étapes[j - 1].state = 'swapping';
-      pushFrame(étapes);
-
-      // Perform the swap
-      [étapes[j], étapes[j - 1]] = [étapes[j - 1], étapes[j]];
-
-      // Update states after swap
-      étapes[j].state = 'default'; // Element moved to the right is now default (or part of sorted portion)
-      étapes[j - 1].state = 'highlight'; // Element moved to the left is still the one being inserted/focused
-      pushFrame(étapes);
-      
-      j--;
-
-      // If there's a next comparison, highlight those elements
-      if (j > 0) {
-        étapes[j].state = 'highlight'; // Current element (still being inserted)
-        étapes[j - 1].state = 'highlight'; // Next element to compare against
-        pushFrame(étapes);
-      }
-    }
-
-    // After the inner loop, elements from index 0 to i are sorted.
-    // Mark them as 'sorted' and reset others.
-    for (let k = 0; k < étapes.length; k++) {
-      if (k <= i) {
-        étapes[k].state = 'sorted';
-      } else {
-        // Elements not yet processed in the outer loop should revert to 'default'
-        // if they were highlighted but not part of the current sorted segment.
-        étapes[k].state = 'default'; 
-      }
-    }
-    // Specifically, the element at `j` (where the inserted element landed) is sorted.
-    // And all elements before it are sorted.
-    // Ensure correct states for the full array in this frame.
-     for (let k = 0; k <=i; k++) étapes[k].state = 'sorted';
-     for (let k = i+1; k < étapes.length; k++) étapes[k].state = 'default';
-
-    pushFrame(étapes);
-  }
-
-  // Final frame: all elements are sorted
-  étapes.forEach(d => (d.state = 'sorted'));
-  pushFrame(étapes);
-
-  return frames;
-}
-
-
 export default function G2ChartComponent_algorithm_sort_insertion_sort() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Helper code extracted from original (review and adapt if necessary):
+  const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

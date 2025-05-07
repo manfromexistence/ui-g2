@@ -17,78 +17,79 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Default data used as a fallback because no specific data source was detected:
-const data = [
-  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-];
-
-// Trailing helpers extracted from original:
-
-function watermark({ x, y }, context) {
-  const { document } = context;
-
-  const g = document.createElement('g', {});
-  const c1 = document.createElement('circle', {
-    style: {
-      cx: x,
-      cy: y,
-      lineWidth: 4,
-      r: 65,
-      stroke: 'red',
-      opacity: 0.3,
-    },
-  });
-  const c2 = document.createElement('circle', {
-    style: {
-      cx: x,
-      cy: y,
-      lineWidth: 2,
-      r: 50,
-      stroke: 'red',
-      opacity: 0.3,
-    },
-  });
-
-  const text = document.createElement('text', {
-    style: {
-      x,
-      y,
-      text: '数据保密',
-      transformOrigin: 'center',
-      transform: 'rotate(30)',
-      fontSize: 20,
-      fill: 'red',
-      textAlign: 'center',
-      textBaseline: 'middle',
-      fillOpacity: 0.3,
-    },
-  });
-
-  g.appendChild(c1);
-  g.appendChild(c2);
-  g.appendChild(text);
-  return g;
-}
-
 export default function G2ChartComponent_annotation_shape_watermark() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Default data used as a fallback because no specific data source was detected:
+  const data = [
+    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+  ];
+  
+  // Trailing helpers extracted from original:
+  
+  function watermark({ x, y }, context) {
+    const { document } = context;
+  
+    const g = document.createElement('g', {});
+    const c1 = document.createElement('circle', {
+      style: {
+        cx: x,
+        cy: y,
+        lineWidth: 4,
+        r: 65,
+        stroke: 'red',
+        opacity: 0.3,
+      },
+    });
+    const c2 = document.createElement('circle', {
+      style: {
+        cx: x,
+        cy: y,
+        lineWidth: 2,
+        r: 50,
+        stroke: 'red',
+        opacity: 0.3,
+      },
+    });
+  
+    const text = document.createElement('text', {
+      style: {
+        x,
+        y,
+        text: '数据保密',
+        transformOrigin: 'center',
+        transform: 'rotate(30)',
+        fontSize: 20,
+        fill: 'red',
+        textAlign: 'center',
+        textBaseline: 'middle',
+        fillOpacity: 0.3,
+      },
+    });
+  
+    g.appendChild(c1);
+    g.appendChild(c2);
+    g.appendChild(text);
+    return g;
+  }
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook

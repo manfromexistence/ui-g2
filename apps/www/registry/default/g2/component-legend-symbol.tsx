@@ -17,25 +17,26 @@ import {
 
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
-// Helper functions and data defined in the G2 original example:
-// Helper code extracted from original (review and adapt if necessary):
-const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
-  (x, y, r) => {
-    const radius = r / 2;
-
-    return [
-      ['M', x + radius, y - r],
-      ['L', x - radius, y - r],
-      ['A', radius, radius, 0, 0, 0, x - r, y - radius],
-      ['L', x - r, y + radius],
-      ['A', radius, radius, 0, 0, 0, x - radius, y + r],
-      ['L', x + radius, y + r],
-      ['A', radius, radius, 0, 0, 0, x + r, y + radius],
-      ['L', x + r, y - radius],
-      ['A', radius, radius, 0, 0, 0, x + radius, y - r],
-      ['
-
 export default function G2ChartComponent_component_legend_symbol() {
+  // Helper functions and data extracted from the original G2 example.
+  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Helper code extracted from original (review and adapt if necessary):
+  const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
+    (x, y, r) => {
+      const radius = r / 2;
+  
+      return [
+        ['M', x + radius, y - r],
+        ['L', x - radius, y - r],
+        ['A', radius, radius, 0, 0, 0, x - r, y - radius],
+        ['L', x - r, y + radius],
+        ['A', radius, radius, 0, 0, 0, x - radius, y + r],
+        ['L', x + radius, y + r],
+        ['A', radius, radius, 0, 0, 0, x + r, y + radius],
+        ['L', x + r, y - radius],
+        ['A', radius, radius, 0, 0, 0, x + radius, y - r],
+        ['
+
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
