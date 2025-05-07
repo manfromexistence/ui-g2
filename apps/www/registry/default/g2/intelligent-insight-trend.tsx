@@ -25,7 +25,7 @@ export default function G2ChartComponent_intelligent_insight_trend() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -40,11 +40,11 @@ export default function G2ChartComponent_intelligent_insight_trend() {
           .encode('x', 'date')
           .encode('y', 'close');
         
-        g2ChartInstance.current.line();
+        chartRef.current.line();
         
-        g2ChartInstance.current.mark(Trend);
+        chartRef.current.mark(Trend);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/trend.ts:", error);

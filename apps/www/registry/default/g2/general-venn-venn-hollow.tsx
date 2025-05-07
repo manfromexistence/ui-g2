@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_venn_venn_hollow() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -61,7 +61,7 @@ export default function G2ChartComponent_general_venn_venn_hollow() {
           .style('lineWidth', 8)
           .tooltip(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/venn/demo/venn-hollow.ts:", error);

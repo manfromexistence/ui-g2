@@ -24,14 +24,14 @@ export default function G2ChartComponent_general_ema_ema_basic() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           height: 300,
         });
         
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'view',
           children: [
             {
@@ -97,7 +97,7 @@ export default function G2ChartComponent_general_ema_ema_basic() {
           ],
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/ema/demo/ema-basic.ts:", error);

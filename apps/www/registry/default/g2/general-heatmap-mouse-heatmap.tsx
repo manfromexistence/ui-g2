@@ -25,7 +25,7 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 640,
           height: 480,
@@ -33,12 +33,12 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
         });
         
         
-        g2ChartInstance.current.style({
+        chartRef.current.style({
           viewFill: '#4e79a7',
         });
         
-        g2ChartInstance.current.data([]);
-        g2ChartInstance.current.axis(false);
+        chartRef.current.data([]);
+        chartRef.current.axis(false);
         
         chart
           .heatmap()
@@ -51,9 +51,9 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
           .tooltip(false)
           .animate(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
-        g2ChartInstance.current.on(
+        chartRef.current.on(
           'plot:pointermove',
           throttle((e) => {
             const { x, y } = e;
@@ -68,7 +68,7 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
         
             const d = transform(data);
         
-            g2ChartInstance.current.changeData(d);
+            chartRef.current.changeData(d);
           }),
         );
         

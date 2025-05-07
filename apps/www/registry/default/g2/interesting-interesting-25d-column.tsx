@@ -38,13 +38,13 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data(data);
+        chartRef.current.data(data);
         
         chart
           .interval()
@@ -53,11 +53,11 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
           .style('shape', 'column25d')
           .scale('x', { padding: 0.3 });
         
-        g2ChartInstance.current.legend('year', {
+        chartRef.current.legend('year', {
           width: 10,
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         /**
          * Draw 2.5d column shape.

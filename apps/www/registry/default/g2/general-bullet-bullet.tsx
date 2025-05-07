@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_bullet_bullet() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
@@ -38,9 +38,9 @@ export default function G2ChartComponent_general_bullet_bullet() {
           },
         ];
         
-        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
         
-        g2ChartInstance.current.data(data);
+        chartRef.current.data(data);
         
         chart
           .interval()
@@ -83,7 +83,7 @@ export default function G2ChartComponent_general_bullet_bullet() {
             items: [{ channel: 'y' }],
           });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/bullet/demo/bullet.ts:", error);

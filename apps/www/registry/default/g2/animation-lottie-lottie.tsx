@@ -25,7 +25,7 @@ export default function G2ChartComponent_animation_lottie_lottie() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -46,10 +46,10 @@ export default function G2ChartComponent_animation_lottie_lottie() {
           .animate('enter', { type: 'fadeIn', duration: 1000 })
           .animate('exit', { type: 'fadeOut', duration: 2000 });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         (async () => {
-          const { canvas } = g2ChartInstance.current.getContext();
+          const { canvas } = chartRef.current.getContext();
           await canvas.ready;
         
           const lottieJSON = await fetch(

@@ -24,7 +24,7 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
               container: chartRef.current,
             });
         
@@ -52,7 +52,7 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
               .encode('groupKey', 'gender')
               .encode('shape', 'point');
         
-            g2ChartInstance.current.render();
+            chartRef.current.render();
           });
         // --- G2 Chart Logic End ---
       } catch (error) {

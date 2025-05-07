@@ -24,7 +24,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -50,7 +50,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
           ])
           .axis('y', { title: false });
         
-        g2ChartInstance.current.interval().encode('x', 'Day').encode('y', 'Value');
+        chartRef.current.interval().encode('x', 'Day').encode('y', 'Value');
         
         chart
           .range()
@@ -82,7 +82,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
             backgroundOpacity: 0.25,
           });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         // Process data.
         function overThreshold(data, threshold) {

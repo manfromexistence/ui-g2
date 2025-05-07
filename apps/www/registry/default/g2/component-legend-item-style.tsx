@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_legend_item_style() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current, height: 350 });
+        chartRef.current = new Chart({ container: chartRef.current, height: 350 });
         
         const shapeList = ['bowtie', 'smooth', 'hv', 'rect', 'hollowPoint'];
         const data = [
@@ -34,7 +34,7 @@ export default function G2ChartComponent_component_legend_item_style() {
           { genre: 'Shooter', sold: 350 },
           { genre: 'Other', sold: 150 },
         ];
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'interval',
           data,
           encode: { x: 'genre', y: 'sold', color: 'genre' },
@@ -55,7 +55,7 @@ export default function G2ChartComponent_component_legend_item_style() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/item-style.ts:", error);

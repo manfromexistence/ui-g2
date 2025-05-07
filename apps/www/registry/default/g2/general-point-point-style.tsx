@@ -24,10 +24,10 @@ export default function G2ChartComponent_general_point_point_style() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current });
+        chartRef.current = new Chart({ container: chartRef.current });
         
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'point',
           style: {
             fill: 'skyblue', // 图形填充颜色，支持颜色字符串，优先级高于color通道
@@ -57,7 +57,7 @@ export default function G2ChartComponent_general_point_point_style() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-style.ts:", error);

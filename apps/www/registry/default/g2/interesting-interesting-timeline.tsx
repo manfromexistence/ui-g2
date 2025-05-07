@@ -24,7 +24,7 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           paddingLeft: 60,
           paddingRight: 60,
@@ -78,7 +78,7 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           },
         ];
         
-        g2ChartInstance.current.data(data);
+        chartRef.current.data(data);
         
         chart
           .line()
@@ -114,9 +114,9 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           .style('stroke', '#000')
           .style('fill', '#fff');
         
-        g2ChartInstance.current.interaction('tooltip', false);
+        chartRef.current.interaction('tooltip', false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/timeline.ts:", error);

@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_point_point_dot() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 800,
           height: 1200,
@@ -33,9 +33,9 @@ export default function G2ChartComponent_general_point_point_dot() {
         
         const xy = (node) => node.encode('x', 'state').encode('y', 'population');
         
-        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/bmw-prod/b6f2ff26-b232-447d-a613-0df5e30104a0.csv',
@@ -60,9 +60,9 @@ export default function G2ChartComponent_general_point_point_dot() {
             items: ['population'],
           });
         
-        g2ChartInstance.current.interaction('tooltip', { shared: true });
+        chartRef.current.interaction('tooltip', { shared: true });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-dot.ts:", error);

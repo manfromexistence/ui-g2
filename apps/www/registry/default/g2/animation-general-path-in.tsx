@@ -24,7 +24,7 @@ export default function G2ChartComponent_animation_general_path_in() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -41,7 +41,7 @@ export default function G2ChartComponent_animation_general_path_in() {
           .encode('y', 'close')
           .animate('enter', { type: 'pathIn', duration: 1000 });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/path-in.ts:", error);

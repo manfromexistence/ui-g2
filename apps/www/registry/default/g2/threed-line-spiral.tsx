@@ -32,7 +32,7 @@ export default function G2ChartComponent_threed_line_spiral() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           renderer,
           depth: 400, // Define the depth of chart.
@@ -72,8 +72,8 @@ export default function G2ChartComponent_threed_line_spiral() {
           .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 2 });
         
-        g2ChartInstance.current.render().then(() => {
-          const { canvas } = g2ChartInstance.current.getContext();
+        chartRef.current.render().then(() => {
+          const { canvas } = chartRef.current.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 5000, 45, 640 / 480);
@@ -82,7 +82,7 @@ export default function G2ChartComponent_threed_line_spiral() {
           camera.setType(CameraType.ORBITING);
         });
         
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
         // Review original script and adapt necessary logic, including the render call.
         // Original script content after initialization (partial for reference):

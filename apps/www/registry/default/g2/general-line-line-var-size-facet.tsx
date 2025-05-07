@@ -24,14 +24,14 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
               container: chartRef.current,
               paddingLeft: 150,
               paddingBottom: 30,
             });
         
         
-            const facet = g2ChartInstance.current.facetRect().data(data).encode('x', 'site');
+            const facet = chartRef.current.facetRect().data(data).encode('x', 'site');
         
             facet
               .line()
@@ -48,7 +48,7 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
               .attr('frame', false)
               .interaction('tooltip', { series: false });
         
-            g2ChartInstance.current.render();
+            chartRef.current.render();
           });
         // --- G2 Chart Logic End ---
       } catch (error) {

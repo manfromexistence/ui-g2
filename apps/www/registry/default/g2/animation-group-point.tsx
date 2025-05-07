@@ -24,13 +24,13 @@ export default function G2ChartComponent_animation_group_point() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.style('plotFill', '#000');
+        chartRef.current.style('plotFill', '#000');
         
         chart
           .point()
@@ -79,7 +79,7 @@ export default function G2ChartComponent_animation_group_point() {
           .style('dy', '30')
           .animate('enter', { delay: 2400 });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/point.ts:", error);

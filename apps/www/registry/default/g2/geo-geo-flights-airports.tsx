@@ -24,13 +24,13 @@ export default function G2ChartComponent_geo_geo_flights_airports() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
             container: chartRef.current,
             autoFit: true,
           });
         
         
-          const geoView = g2ChartInstance.current.geoView().coordinate({ type: 'albersUsa' });
+          const geoView = chartRef.current.geoView().coordinate({ type: 'albersUsa' });
         
           geoView
             .geoPath()
@@ -76,7 +76,7 @@ export default function G2ChartComponent_geo_geo_flights_airports() {
             .encode('y', ['origin_latitude', 'dest_latitude'])
             .style('stroke', 'black');
         
-          g2ChartInstance.current.render();
+          chartRef.current.render();
         });
         // --- G2 Chart Logic End ---
       } catch (error) {

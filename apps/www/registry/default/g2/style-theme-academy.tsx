@@ -24,14 +24,14 @@ export default function G2ChartComponent_style_theme_academy() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
         // Apply academy theme.
-        g2ChartInstance.current.theme({ type: 'academy' });
+        chartRef.current.theme({ type: 'academy' });
         
         chart
           .interval()
@@ -53,7 +53,7 @@ export default function G2ChartComponent_style_theme_academy() {
           .interaction('tooltip', { shared: true })
           .interaction('elementHighlight', { background: true });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/academy.ts:", error);

@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
@@ -41,7 +41,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
             range: [0, 1],
           });
         
-        g2ChartInstance.current.axisX().attr('title', 'AxisX');
+        chartRef.current.axisX().attr('title', 'AxisX');
         
         chart
           .axisY()
@@ -51,7 +51,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
           .style('gridLineWidth', 10)
           .style('gridStroke', 'red');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-xy.ts:", error);

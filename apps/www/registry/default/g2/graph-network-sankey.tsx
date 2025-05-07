@@ -24,7 +24,7 @@ export default function G2ChartComponent_graph_network_sankey() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 900,
           height: 600,
@@ -53,7 +53,7 @@ export default function G2ChartComponent_graph_network_sankey() {
           .style('nodeLineWidth', 1.2)
           .style('linkFillOpacity', 0.4);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/network/demo/sankey.ts:", error);

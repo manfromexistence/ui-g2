@@ -24,13 +24,13 @@ export default function G2ChartComponent_general_dual_dual_aggregated_line_area(
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/weather.json',
           transform: [
@@ -72,7 +72,7 @@ export default function G2ChartComponent_general_dual_dual_aggregated_line_area(
           })
           .tooltip({ channel: 'y', valueFormatter: '.1f' });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/dual-aggregated-line-area.ts:", error);

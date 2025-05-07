@@ -24,13 +24,13 @@ export default function G2ChartComponent_analysis_group_bar_multi_measure() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/movies.json',
         });
@@ -55,7 +55,7 @@ export default function G2ChartComponent_analysis_group_bar_multi_measure() {
           .encode('series', () => 'US Gross')
           .tooltip({ channel: 'y', valueFormatter: '~s' });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-multi-measure.ts:", error);

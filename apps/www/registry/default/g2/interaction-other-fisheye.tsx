@@ -24,7 +24,7 @@ export default function G2ChartComponent_interaction_other_fisheye() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
@@ -45,9 +45,9 @@ export default function G2ChartComponent_interaction_other_fisheye() {
           .style('fillOpacity', 0.3)
           .style('lineWidth', 1);
         
-        g2ChartInstance.current.interaction('fisheye');
+        chartRef.current.interaction('fisheye');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/other/demo/fisheye.ts:", error);

@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_scrollbar_scrollbar() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
@@ -42,8 +42,8 @@ export default function G2ChartComponent_component_scrollbar_scrollbar() {
           .scrollbar('x', {})
           .scrollbar('y', { value: 0.2 });
         
-        g2ChartInstance.current.on('afterrender', () => {
-          const { canvas } = g2ChartInstance.current.getContext();
+        chartRef.current.on('afterrender', () => {
+          const { canvas } = chartRef.current.getContext();
           const { document } = canvas;
           document
             .querySelector('.g2-scrollbar')
@@ -52,7 +52,7 @@ export default function G2ChartComponent_component_scrollbar_scrollbar() {
             });
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/scrollbar/demo/scrollbar.ts:", error);

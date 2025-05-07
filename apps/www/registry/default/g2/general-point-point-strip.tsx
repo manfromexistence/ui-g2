@@ -24,13 +24,13 @@ export default function G2ChartComponent_general_point_point_strip() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           height: 300,
         });
         
         
-        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         chart
           .point()
@@ -49,7 +49,7 @@ export default function G2ChartComponent_general_point_point_strip() {
           .scale('y', { zero: true })
           .scale('color', { type: 'ordinal' });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-strip.ts:", error);

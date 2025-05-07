@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_point_point_stacked() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           height: 360,
         });
@@ -51,9 +51,9 @@ export default function G2ChartComponent_general_point_point_stacked() {
           .legend('color', { title: 'Gender' })
           .tooltip({ channel: 'x', name: 'age' });
         
-        g2ChartInstance.current.lineY().data([0]).style('stroke', 'black');
+        chartRef.current.lineY().data([0]).style('stroke', 'black');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-stacked.ts:", error);

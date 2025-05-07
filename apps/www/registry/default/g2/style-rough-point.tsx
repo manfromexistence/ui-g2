@@ -25,7 +25,7 @@ export default function G2ChartComponent_style_rough_point() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
               container: chartRef.current,
               autoFit: true,
               plugins: [new Plugin()],
@@ -58,7 +58,7 @@ export default function G2ChartComponent_style_rough_point() {
               })
               .legend('color', { itemLabelFontFamily: 'Gaegu' });
         
-            g2ChartInstance.current.render();
+            chartRef.current.render();
           },
         });
         // --- G2 Chart Logic End ---

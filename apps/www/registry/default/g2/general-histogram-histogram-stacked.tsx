@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_histogram_histogram_stacked() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
               container: chartRef.current,
               autoFit: true,
               height: 500,
@@ -47,7 +47,7 @@ export default function G2ChartComponent_general_histogram_histogram_stacked() {
                 inset: 0.5,
               });
         
-            g2ChartInstance.current.render();
+            chartRef.current.render();
           });
         // --- G2 Chart Logic End ---
       } catch (error) {

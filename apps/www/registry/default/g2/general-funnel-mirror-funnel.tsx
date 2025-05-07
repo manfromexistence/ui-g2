@@ -36,21 +36,21 @@ export default function G2ChartComponent_general_funnel_mirror_funnel() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data(data);
+        chartRef.current.data(data);
         
-        g2ChartInstance.current.scale('x', { padding: 0 });
-        g2ChartInstance.current.scale('color', {
+        chartRef.current.scale('x', { padding: 0 });
+        chartRef.current.scale('color', {
           range: ['#0050B3', '#1890FF', '#40A9FF', '#69C0FF', '#BAE7FF'],
         });
-        g2ChartInstance.current.axis(false);
+        chartRef.current.axis(false);
         
-        g2ChartInstance.current.coordinate({
+        chartRef.current.coordinate({
           transform: [{ type: 'transpose' }],
         });
         
@@ -105,7 +105,7 @@ export default function G2ChartComponent_general_funnel_mirror_funnel() {
           .style('stroke', '#FFF')
           .animate('enter', { type: 'fadeIn' });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/funnel/demo/mirror-funnel.ts:", error);

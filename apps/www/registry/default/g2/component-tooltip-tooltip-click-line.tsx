@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_click_line() 
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -51,11 +51,11 @@ export default function G2ChartComponent_component_tooltip_tooltip_click_line() 
             mount: 'body',
           });
         
-        g2ChartInstance.current.on('plot:click', ({ offsetX, target }) => {
-          g2ChartInstance.current.emit('tooltip:show', { offsetX, offsetY: 20, target });
+        chartRef.current.on('plot:click', ({ offsetX, target }) => {
+          chartRef.current.emit('tooltip:show', { offsetX, offsetY: 20, target });
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-click-line.ts:", error);

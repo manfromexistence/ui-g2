@@ -32,13 +32,13 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data([
+        chartRef.current.data([
           { time: '16', north: 0, south: 0 },
           { time: '18', north: 7, south: -8 },
           { time: '20', north: 6, south: -7 },
@@ -66,7 +66,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
           .encode('color', () => 'south')
           .encode('shape', 'smooth');
         
-        g2ChartInstance.current.interaction('tooltip', {
+        chartRef.current.interaction('tooltip', {
           css: {
             '.g2-tooltip': {
               background: 'transparent',
@@ -110,7 +110,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-two.ts:", error);

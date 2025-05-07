@@ -31,13 +31,13 @@ export default function G2ChartComponent_general_pie_donut_base() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.coordinate({ type: 'theta', outerRadius: 0.8, innerRadius: 0.5 });
+        chartRef.current.coordinate({ type: 'theta', outerRadius: 0.8, innerRadius: 0.5 });
         
         chart
           .interval()
@@ -90,7 +90,7 @@ export default function G2ChartComponent_general_pie_donut_base() {
           .style('fill', '#8c8c8c')
           .style('textAlign', 'center');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/donut-base.ts:", error);

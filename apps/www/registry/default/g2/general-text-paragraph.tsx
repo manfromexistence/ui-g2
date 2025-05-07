@@ -29,14 +29,14 @@ export default function G2ChartComponent_general_text_paragraph() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 640,
           height: 480,
         });
         
         
-        g2ChartInstance.current.data(paragraph);
+        chartRef.current.data(paragraph);
         
         chart
           .text()
@@ -79,7 +79,7 @@ export default function G2ChartComponent_general_text_paragraph() {
           .axis(false)
           .legend(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/paragraph.ts:", error);

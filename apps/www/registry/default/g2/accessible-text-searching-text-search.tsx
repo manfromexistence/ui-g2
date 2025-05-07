@@ -33,7 +33,7 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 900,
           height: 1000,
@@ -41,7 +41,7 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
         });
         
         
-        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         chart
           .interval()
@@ -68,7 +68,7 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
             { name: 'end', field: 'end', valueFormatter: labelFormatter },
           ]);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/accessible/text-searching/demo/text-search.ts:", error);

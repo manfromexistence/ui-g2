@@ -24,7 +24,7 @@ export default function G2ChartComponent_expr_base_expr() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
@@ -127,9 +127,9 @@ export default function G2ChartComponent_expr_base_expr() {
           ],
         };
         
-        g2ChartInstance.current.options(spec);
+        chartRef.current.options(spec);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/expr/base/demo/expr.ts:", error);

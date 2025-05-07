@@ -24,14 +24,14 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
         
         const [render, remove] = useTip({
           container: document.getElementById('container'),
-          onRemove: () => g2ChartInstance.current.emit('brush:remove', {}),
+          onRemove: () => chartRef.current.emit('brush:remove', {}),
         });
         
         const data = [
@@ -55,19 +55,19 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
           .scale('y', { nice: true })
           .interaction('brushXHighlight', true);
         
-        g2ChartInstance.current.on('brush:start', onStart);
-        g2ChartInstance.current.on('brush:end', onUpdate);
-        g2ChartInstance.current.on('brush:remove', onRemove);
+        chartRef.current.on('brush:start', onStart);
+        chartRef.current.on('brush:end', onUpdate);
+        chartRef.current.on('brush:remove', onRemove);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         function onStart() {
-          g2ChartInstance.current.emit('tooltip:disable');
+          chartRef.current.emit('tooltip:disable');
           remove();
         }
         
         function onUpdate(e) {
-          const { canvas } = g2ChartInstance.current.getContext();
+          const { canvas } = chartRef.current.getContext();
           const [mask] = canvas.document.getElementsByClassName(MASK_CLASS_NAME);
           const bounds = mask.getBounds();
           const x = bounds.max[0];
@@ -82,7 +82,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
         function onRemove(e) {
           const { nativeEvent } = e;
           if (nativeEvent) remove();
-          g2ChartInstance.current.emit('tooltip:enable');
+          chartRef.current.emit('tooltip:enable');
         }
         
         function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {

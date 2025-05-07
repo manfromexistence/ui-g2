@@ -24,13 +24,13 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data([
+        chartRef.current.data([
           { x: -3, y: 7.5 },
           { x: -2, y: 3 },
           { x: -1, y: 0.5 },
@@ -72,10 +72,10 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
           .style('lineWidth', 2)
           .tooltip(false);
         
-        g2ChartInstance.current.lineX().data([0]);
-        g2ChartInstance.current.lineY().data([0]);
+        chartRef.current.lineX().data([0]);
+        chartRef.current.lineY().data([0]);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/regression/demo/quadratic-regression.ts:", error);

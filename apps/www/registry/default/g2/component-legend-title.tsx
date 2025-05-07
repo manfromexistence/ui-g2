@@ -24,10 +24,10 @@ export default function G2ChartComponent_component_legend_title() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current, height: 300 });
+        chartRef.current = new Chart({ container: chartRef.current, height: 300 });
         
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'legends',
           title: '图例标题',
           titleSpacing: 0,
@@ -60,7 +60,7 @@ export default function G2ChartComponent_component_legend_title() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/title.ts:", error);

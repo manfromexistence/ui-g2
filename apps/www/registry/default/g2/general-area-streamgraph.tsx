@@ -24,13 +24,13 @@ export default function G2ChartComponent_general_area_streamgraph() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/unemployment-by-industry.json',
         });
@@ -43,7 +43,7 @@ export default function G2ChartComponent_general_area_streamgraph() {
           .encode('y', 'unemployed')
           .encode('color', 'industry');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/streamgraph.ts:", error);

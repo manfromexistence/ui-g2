@@ -25,7 +25,7 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current });
+        chartRef.current = new Chart({ container: chartRef.current });
         
         
         function getOrigin(points) {
@@ -66,7 +66,7 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
           };
         };
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'gauge',
           data: {
             value: {
@@ -84,7 +84,7 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts:", error);

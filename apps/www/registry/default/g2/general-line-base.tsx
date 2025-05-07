@@ -35,7 +35,7 @@ export default function G2ChartComponent_general_line_base() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_line_base() {
             nice: true,
           });
         
-        g2ChartInstance.current.line().label({
+        chartRef.current.line().label({
           text: 'value',
           style: {
             dx: -10,
@@ -61,9 +61,9 @@ export default function G2ChartComponent_general_line_base() {
           },
         });
         
-        g2ChartInstance.current.point().style('fill', 'white').tooltip(false);
+        chartRef.current.point().style('fill', 'white').tooltip(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/base.ts:", error);

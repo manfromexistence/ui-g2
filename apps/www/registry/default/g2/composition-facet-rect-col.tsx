@@ -24,7 +24,7 @@ export default function G2ChartComponent_composition_facet_rect_col() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
               container: chartRef.current,
               height: 800,
               paddingLeft: 140,
@@ -63,7 +63,7 @@ export default function G2ChartComponent_composition_facet_rect_col() {
               .encode('shape', 'hollow')
               .axis('y', { labelAutoRotate: false });
         
-            g2ChartInstance.current.render();
+            chartRef.current.render();
           });
         // --- G2 Chart Logic End ---
       } catch (error) {

@@ -24,7 +24,7 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -69,15 +69,15 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           .encode('key', 'type')
           .encode('color', 'type');
         
-        g2ChartInstance.current.render().then(() => {
-          g2ChartInstance.current.on('element-point:select', (v) => {
+        chartRef.current.render().then(() => {
+          chartRef.current.on('element-point:select', (v) => {
             const {
               data: { selection },
             } = v;
             console.log(selection, 'selection');
           });
         
-          g2ChartInstance.current.on('element-point:moved', (v) => {
+          chartRef.current.on('element-point:moved', (v) => {
             const {
               data: { changeData, data },
             } = v;
@@ -86,17 +86,17 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           });
         });
         
-        g2ChartInstance.current.on('afterrender', () => {
-          g2ChartInstance.current.emit('element-point:select', {
+        chartRef.current.on('afterrender', () => {
+          chartRef.current.emit('element-point:select', {
             data: {
               selection: [1, 2],
             },
           });
           // Clear select.
-          // g2ChartInstance.current.emit('element-point:unselect');
+          // chartRef.current.emit('element-point:unselect');
         });
         
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
         // Review original script and adapt necessary logic, including the render call.
         // Original script content after initialization (partial for reference):

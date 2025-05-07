@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_legend_category() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           insetTop: 30,
@@ -132,7 +132,7 @@ export default function G2ChartComponent_component_legend_category() {
           .legend({
             color: {
               itemMarker: (_, index) => () => {
-                const { document } = g2ChartInstance.current.getContext().canvas;
+                const { document } = chartRef.current.getContext().canvas;
                 const image = document.createElement('image', {
                   style: {
                     width: 20,
@@ -150,7 +150,7 @@ export default function G2ChartComponent_component_legend_category() {
           })
           .tooltip(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/category.ts:", error);

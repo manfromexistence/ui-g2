@@ -32,7 +32,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -122,16 +122,16 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
             },
           });
         
-        g2ChartInstance.current.on('element:click', ({ data }) =>
-          g2ChartInstance.current.emit('tooltip:show', {
+        chartRef.current.on('element:click', ({ data }) =>
+          chartRef.current.emit('tooltip:show', {
             data,
             offsetY: 0,
           }),
         );
         
-        g2ChartInstance.current.on('plot:click', () => g2ChartInstance.current.emit('tooltip:hide'));
+        chartRef.current.on('plot:click', () => chartRef.current.emit('tooltip:hide'));
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-click.ts:", error);

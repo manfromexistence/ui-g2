@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_line_line_aggregated_label() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -48,7 +48,7 @@ export default function G2ChartComponent_general_line_line_aggregated_label() {
           })
           .tooltip({ channel: 'y', valueFormatter: '.1f' });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-aggregated-label.ts:", error);

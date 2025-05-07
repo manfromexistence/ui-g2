@@ -25,14 +25,14 @@ export default function G2ChartComponent_style_pattern_dots_pattern() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 500,
           height: 400,
         });
         
         
-        g2ChartInstance.current.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
+        chartRef.current.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
         
         const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];
         
@@ -71,7 +71,7 @@ export default function G2ChartComponent_style_pattern_dots_pattern() {
           })
           .legend(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/pattern/demo/dots-pattern.ts:", error);

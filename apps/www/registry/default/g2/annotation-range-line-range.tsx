@@ -24,13 +24,13 @@ export default function G2ChartComponent_annotation_range_line_range() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           height: 360,
         });
         
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/year-population.json',
         });
@@ -61,9 +61,9 @@ export default function G2ChartComponent_annotation_range_line_range() {
           .style('lineWidth', 1.5)
           .tooltip(false);
         
-        g2ChartInstance.current.interaction('legendFilter', false);
+        chartRef.current.interaction('legendFilter', false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/range/demo/line-range.ts:", error);

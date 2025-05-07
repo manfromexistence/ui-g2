@@ -28,18 +28,18 @@ export default function G2ChartComponent_general_helix_helix() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           height: 500,
         });
         
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           value: data,
         });
         
-        g2ChartInstance.current.coordinate({
+        chartRef.current.coordinate({
           type: 'helix',
           startAngle: 0.5 * Math.PI,
           endAngle: 12.5 * Math.PI,
@@ -61,7 +61,7 @@ export default function G2ChartComponent_general_helix_helix() {
             type: 'fadeIn',
           });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/helix/demo/helix.ts:", error);

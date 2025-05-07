@@ -24,7 +24,7 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -35,7 +35,7 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
           .call(worldMap, geoPolyconic, '#f00')
           .call(worldMap, geoRectangularPolyconic, '#00f');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         function worldMap(node, projection, color, opacity = 0.7) {
           const geoView = node.geoView().coordinate({

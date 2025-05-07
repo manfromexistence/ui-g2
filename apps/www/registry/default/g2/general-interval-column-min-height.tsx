@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_interval_column_min_height() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current });
+        chartRef.current = new Chart({ container: chartRef.current });
         
         
         chart
@@ -41,7 +41,7 @@ export default function G2ChartComponent_general_interval_column_min_height() {
           .encode('color', 'genre')
           .style('minHeight', 50);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/column-min-height.ts:", error);

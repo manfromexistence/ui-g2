@@ -33,14 +33,14 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           theme: 'dark',
         });
         
         
-        g2ChartInstance.current.data(data).coordinate({ type: 'radial', innerRadius: 0.35 });
+        chartRef.current.data(data).coordinate({ type: 'radial', innerRadius: 0.35 });
         
         chart
           .interval()
@@ -86,7 +86,7 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
           )
           .tooltip(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/radial-bar-with-background.ts:", error);

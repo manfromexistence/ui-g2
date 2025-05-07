@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_vector_poisson() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
               container: chartRef.current,
               autoFit: true,
             });
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_vector_poisson() {
                 { channel: 'y', valueFormatter: '.2f' },
               ]);
         
-            g2ChartInstance.current.render();
+            chartRef.current.render();
           });
         
         // ------------ library ---------------

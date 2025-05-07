@@ -31,7 +31,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: FW + P * 2,
           height: FH + P * 2,
@@ -40,7 +40,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
         
         
         // Draw football field.
-        g2ChartInstance.current.shape().style('x', '0%').style('y', '0%').style('render', football);
+        chartRef.current.shape().style('x', '0%').style('y', '0%').style('render', football);
         
         // Analysis messi's shoot data.
         chart
@@ -63,7 +63,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
           .axis(false)
           .legend(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         /**
          * Draw a football field.

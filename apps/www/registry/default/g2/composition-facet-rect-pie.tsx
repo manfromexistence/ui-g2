@@ -24,7 +24,7 @@ export default function G2ChartComponent_composition_facet_rect_pie() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 800,
         });
@@ -69,7 +69,7 @@ export default function G2ChartComponent_composition_facet_rect_pie() {
           .encode('y', 'value')
           .encode('color', 'activity');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect-pie.ts:", error);

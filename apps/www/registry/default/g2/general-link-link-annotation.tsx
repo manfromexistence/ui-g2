@@ -330,7 +330,7 @@ export default function G2ChartComponent_general_link_link_annotation() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           paddingRight: 20,
@@ -377,7 +377,7 @@ export default function G2ChartComponent_general_link_link_annotation() {
           .encode('shape', 'hollow')
           .style('stroke', '#000');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/link/demo/link-annotation.ts:", error);

@@ -37,7 +37,7 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           renderer,
           width: 600,
@@ -61,8 +61,8 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
           .axis('y', { gridLineWidth: 1, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 1 });
         
-        g2ChartInstance.current.render().then(() => {
-          const { canvas } = g2ChartInstance.current.getContext();
+        chartRef.current.render().then(() => {
+          const { canvas } = chartRef.current.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 2000, 45, 600 / 600);
@@ -71,7 +71,7 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
           camera.setType(CameraType.ORBITING);
         });
         
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
         // Review original script and adapt necessary logic, including the render call.
         // Original script content after initialization (partial for reference):

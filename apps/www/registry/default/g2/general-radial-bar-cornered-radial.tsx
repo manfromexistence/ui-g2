@@ -24,13 +24,13 @@ export default function G2ChartComponent_general_radial_bar_cornered_radial() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.coordinate({ type: 'radial', endAngle: Math.PI });
+        chartRef.current.coordinate({ type: 'radial', endAngle: Math.PI });
         
         chart
           .interval()
@@ -66,7 +66,7 @@ export default function G2ChartComponent_general_radial_bar_cornered_radial() {
           .axis('y', false)
           .animate('enter', { type: 'waveIn', duration: 1000 });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/bar-cornered-radial.ts:", error);

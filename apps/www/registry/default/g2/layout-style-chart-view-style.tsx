@@ -24,10 +24,10 @@ export default function G2ChartComponent_layout_style_chart_view_style() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current });
+        chartRef.current = new Chart({ container: chartRef.current });
         
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           viewStyle: {
             // 配置图表的视图区域的样式
             viewFill: '#DCEEFE',
@@ -72,7 +72,7 @@ export default function G2ChartComponent_layout_style_chart_view_style() {
           legend: false,
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/layout/style/demo/chart-view-style.ts:", error);

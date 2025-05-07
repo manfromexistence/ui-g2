@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_axis_axis_multi() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -52,7 +52,7 @@ export default function G2ChartComponent_component_axis_axis_multi() {
           })
           .style('grid', false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-multi.ts:", error);

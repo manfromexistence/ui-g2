@@ -41,7 +41,7 @@ export default function G2ChartComponent_general_rose_polar_stack() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           width: 720,
@@ -49,7 +49,7 @@ export default function G2ChartComponent_general_rose_polar_stack() {
         });
         
         
-        g2ChartInstance.current.coordinate({ type: 'polar', innerRadius: 0.1 });
+        chartRef.current.coordinate({ type: 'polar', innerRadius: 0.1 });
         
         chart
           .interval()
@@ -96,15 +96,15 @@ export default function G2ChartComponent_general_rose_polar_stack() {
           .state('active', { stroke: 'black', lineWidth: 1, zIndex: 101 })
           .state('inactive', { opacity: 0.5, zIndex: 100 });
         
-        g2ChartInstance.current.interaction('tooltip', {
+        chartRef.current.interaction('tooltip', {
           body: false,
           crosshairsStroke: 'red',
           crosshairsStrokeWidth: 4,
         });
         
-        g2ChartInstance.current.interaction('elementHighlight', true);
+        chartRef.current.interaction('elementHighlight', true);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/polar-stack.ts:", error);

@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_legend_custom() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
         });
         
@@ -47,11 +47,11 @@ export default function G2ChartComponent_component_legend_custom() {
           .encode('color', colorField)
           .legend(false); // Hide built-in legends.
         
-        g2ChartInstance.current.render().then(renderCustomLegend);
+        chartRef.current.render().then(renderCustomLegend);
         
         function renderCustomLegend(chart) {
           // Get color scale.
-          const scale = g2ChartInstance.current.getScaleByChannel('color');
+          const scale = chartRef.current.getScaleByChannel('color');
           const { domain, range } = scale.getOptions();
           const excludedValues = [];
         
@@ -95,11 +95,11 @@ export default function G2ChartComponent_component_legend_custom() {
             const selectedData = data.filter((d) =>
               selectedValues.includes(d[colorField]),
             );
-            g2ChartInstance.current.changeData(selectedData);
+            chartRef.current.changeData(selectedData);
           }
         }
         
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
         // Review original script and adapt necessary logic, including the render call.
         // Original script content after initialization (partial for reference):

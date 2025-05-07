@@ -24,13 +24,13 @@ export default function G2ChartComponent_component_title_title_style() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.title({
+        chartRef.current.title({
           align: 'right',
           title: 'Sold by genre, sorted by sold',
           titleFontSize: 15,
@@ -56,7 +56,7 @@ export default function G2ChartComponent_component_title_title_style() {
           .encode('color', 'genre')
           .style('minHeight', 50);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/title/demo/title-style.ts:", error);

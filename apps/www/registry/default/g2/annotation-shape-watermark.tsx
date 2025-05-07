@@ -24,7 +24,7 @@ export default function G2ChartComponent_annotation_shape_watermark() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -56,9 +56,9 @@ export default function G2ChartComponent_annotation_shape_watermark() {
           .tooltip({ channel: 'y', valueFormatter: '~s' })
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
-        g2ChartInstance.current.shape().style('x', '80%').style('y', '70%').style('render', watermark);
+        chartRef.current.shape().style('x', '80%').style('y', '70%').style('render', watermark);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         
         function watermark({ x, y }, context) {
           const { document } = context;

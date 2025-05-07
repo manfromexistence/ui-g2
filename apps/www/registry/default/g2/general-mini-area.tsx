@@ -28,14 +28,14 @@ export default function G2ChartComponent_general_mini_area() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 480,
           height: 80,
         });
         
         
-        g2ChartInstance.current.data(data);
+        chartRef.current.data(data);
         
         chart
           .area()
@@ -48,11 +48,11 @@ export default function G2ChartComponent_general_mini_area() {
           .animate('enter', { type: 'fadeIn' })
           .axis(false);
         
-        g2ChartInstance.current.interaction('tooltip', {
+        chartRef.current.interaction('tooltip', {
           render: (e, { title, items }) => items[0].value,
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/area.ts:", error);

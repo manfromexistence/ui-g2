@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 244,
           height: 244,
@@ -90,7 +90,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           .encode('size', 12)
           .style('transform', 'translateX(10)');
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/apple-activity.ts:", error);

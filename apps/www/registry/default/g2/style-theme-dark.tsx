@@ -24,7 +24,7 @@ export default function G2ChartComponent_style_theme_dark() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           width: 500,
           height: 400,
@@ -71,7 +71,7 @@ export default function G2ChartComponent_style_theme_dark() {
           .animate('enter', { type: 'waveIn', duration: 1000 })
           .legend(false);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/dark.ts:", error);

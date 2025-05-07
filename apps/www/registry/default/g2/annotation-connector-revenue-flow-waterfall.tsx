@@ -32,7 +32,7 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -91,7 +91,7 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
           .tooltip({ channel: 'y', valueFormatter: '~s' })
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/connector/demo/revenue-flow-waterfall.ts:", error);

@@ -111,19 +111,19 @@ export default function G2ChartComponent_intelligent_insight_low_variance() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        g2ChartInstance.current.data(data).encode('x', 'date').encode('y', 'fertility');
+        chartRef.current.data(data).encode('x', 'date').encode('y', 'fertility');
         
-        g2ChartInstance.current.interval();
+        chartRef.current.interval();
         
-        g2ChartInstance.current.mark(LowVariance);
+        chartRef.current.mark(LowVariance);
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/low-variance.ts:", error);

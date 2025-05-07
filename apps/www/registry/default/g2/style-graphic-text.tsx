@@ -24,13 +24,13 @@ export default function G2ChartComponent_style_graphic_text() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           height: 350,
         });
         
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'liquid',
           autoFit: true,
           data: 0.581,
@@ -61,7 +61,7 @@ export default function G2ChartComponent_style_graphic_text() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/graphic/demo/text.ts:", error);

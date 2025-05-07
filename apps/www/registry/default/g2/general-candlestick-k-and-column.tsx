@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+        chartRef.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           height: 360,
@@ -32,7 +32,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
         });
         
         
-        g2ChartInstance.current.data({
+        chartRef.current.data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/antvdemo/assets/data/candle-sticks.json',
@@ -50,7 +50,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
             range: ['#4daf4a', '#999999', '#e41a1c'],
           });
         
-        g2ChartInstance.current.link()
+        chartRef.current.link()
           .encode('y', ['min', 'max'])
           .tooltip({
             title: 'time',
@@ -62,7 +62,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
             ],
           });
         
-        g2ChartInstance.current.interval()
+        chartRef.current.interval()
           .encode('y', ['start', 'end'])
           .style('fillOpacity', 1)
           .style('stroke', (d) => {
@@ -118,19 +118,19 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
             title: false,
           });
         
-        g2ChartInstance.current.on('legend:filter', (e) => {
+        chartRef.current.on('legend:filter', (e) => {
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           ColumnChart.emit('legend:filter', { data });
         });
         
-        g2ChartInstance.current.on('legend:reset', (e) => {
+        chartRef.current.on('legend:reset', (e) => {
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           ColumnChart.emit('legend:reset', { data });
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         ColumnChart.render();
         // --- G2 Chart Logic End ---
       } catch (error) {

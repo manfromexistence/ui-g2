@@ -24,10 +24,10 @@ export default function G2ChartComponent_component_legend_nav_style() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({ container: chartRef.current, height: 350 });
+        chartRef.current = new Chart({ container: chartRef.current, height: 350 });
         
         
-        g2ChartInstance.current.options({
+        chartRef.current.options({
           type: 'interval',
           data: [
             { genre: 'Sports', sold: 50 },
@@ -85,7 +85,7 @@ export default function G2ChartComponent_component_legend_nav_style() {
           },
         });
         
-        g2ChartInstance.current.render();
+        chartRef.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/nav-style.ts:", error);
