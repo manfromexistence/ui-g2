@@ -26,9 +26,6 @@ const data = [
   { year: '1962 年', sales: 38 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_interval_bar_basic_transposed() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

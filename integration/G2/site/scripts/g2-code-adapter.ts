@@ -1,7 +1,7 @@
 // @ts-nocheck
 export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName = "chartRef.current") {
     let g2CodeBlock = "";
-    const imports = new Set();
+    const imports = new Set<string>();
     let helperCode = "";
 
     // 1. Extract imports from @antv packages
@@ -15,30 +15,50 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         imports.add('import { Chart } from "@antv/g2";');
     }
 
-    // 2. Attempt to extract helper functions and top-level const/let (heuristic)
-    // Original regex: /^(?:export\s+)?(?:const|let|function)\s+([a-zA-Z0-9_]+)\s*=\s*[\s\S]*(?:;|}(?!\s*else|\s*catch|\s*finally))/gm;
-    // Modified regex to be non-greedy, include class/var/async, and refine end conditions:
-    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?:;|}(?!(?:\s*else|\s*catch|\s*finally|\s*\.\s*\w+|\s*,)))[\s;]*(?=\s*\n|\s*$|^(?:export|async|const|let|var|function|class))/gm;
-    let helperMatch;
-    const potentialHelpers = [];
-    const codeWithoutImports = originalG2SourceCode.replace(importRegex, '');
+    let originalChartVarName = null;
+    let initializationStartIndex = -1;
+    let initializationEndIndex = -1; // Used to get postInitializationCode
 
-    while((helperMatch = topLevelDeclarationRegex.exec(codeWithoutImports)) !== null) {
-        if (!helperMatch[0].includes("new Chart(")) {
-            potentialHelpers.push(helperMatch[0]);
-        }
-    }
-    if (potentialHelpers.length > 0) {
-        helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + potentialHelpers.join("\n\n") + "\n";
-    }
-
-    // 3. Extract the G2 chart initialization logic
-    // Updated regex to include 'var'
     const chartVarRegex = /(?:const|let|var)\s+([a-zA-Z_]\w*)\s*=\s*new\s+Chart\s*\(([\s\S]*?)\);/m;
     const chartVarMatch = originalG2SourceCode.match(chartVarRegex);
 
     if (chartVarMatch) {
-        const originalChartVarName = chartVarMatch[1];
+        originalChartVarName = chartVarMatch[1];
+        initializationStartIndex = chartVarMatch.index;
+        initializationEndIndex = chartVarMatch.index + chartVarMatch[0].length;
+    }
+
+    // 2. Attempt to extract helper functions and top-level const/let.
+    // These are items defined *before* the main chart initialization.
+    const potentialHelpers = [];
+    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?:;|}(?!(?:\s*else|\s*catch|\s*finally|\s*\.\s*\w+|\s*,)))[\s;]*(?=\s*\n|\s*$|^(?:export|async|const|let|var|function|class))/gm;
+    
+    let regexMatchForHelpers;
+    topLevelDeclarationRegex.lastIndex = 0; // Reset regex state
+
+    while((regexMatchForHelpers = topLevelDeclarationRegex.exec(originalG2SourceCode)) !== null) {
+        // A declaration is a "helper" if it appears before chart initialization,
+        // or if chart initialization is not found (initializationStartIndex === -1).
+        if (initializationStartIndex === -1 || regexMatchForHelpers.index < initializationStartIndex) {
+            // Avoid picking up the chart initialization statement itself if it somehow matched here.
+            if (!regexMatchForHelpers[0].includes("new Chart(")) {
+                potentialHelpers.push(regexMatchForHelpers[0]);
+            }
+        }
+    }
+    
+    if (potentialHelpers.length > 0) {
+        helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + potentialHelpers.join("\n\n") + "\n";
+        if (originalChartVarName) { // Adapt if originalChartVarName is known (e.g. for global chart var)
+            helperCode = helperCode.replace(
+                new RegExp(`\\b${originalChartVarName}\\.`, "g"),
+                "g2ChartInstance.current."
+            );
+        }
+    }
+
+    // 3. Extract the G2 chart initialization logic and subsequent code
+    if (chartVarMatch) { // originalChartVarName, initializationEndIndex are set from above
         let chartArgs = chartVarMatch[2];
 
         // Adapt container argument
@@ -53,7 +73,7 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
 
         g2CodeBlock = `g2ChartInstance.current = new Chart(${chartArgs});\n`;
 
-        const initializationEndIndex = chartVarMatch.index + chartVarMatch[0].length;
+        // Code after "new Chart(...);"
         const postInitializationCode = originalG2SourceCode.substring(initializationEndIndex);
         
         // Adapt all subsequent code by replacing the original chart variable references
@@ -63,14 +83,6 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         );
 
         g2CodeBlock += adaptedPostInitializationCode;
-
-        // Adapt helper code if it exists and uses the original chart variable
-        if (helperCode && originalChartVarName) {
-            helperCode = helperCode.replace(
-                new RegExp(`\\b${originalChartVarName}\\.`, "g"), 
-                "g2ChartInstance.current."
-            );
-        }
 
         // Check if a render call was adapted. If not, add a TODO.
         const renderCallPatternInAdapted = /g2ChartInstance\.current\.render\s*\(\s*\)\s*;/;
@@ -92,6 +104,7 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         }
     } else {
         // Fallback if no `new Chart(...)` was found by the regex
+        // helperCode might have been populated with all top-level items if initializationStartIndex remained -1.
         g2CodeBlock = `// TODO: Could not automatically find 'new Chart(...)' initialization.\n`;
         g2CodeBlock += `// Please paste and adapt G2 code from original script here, ensuring 'container: ${chartRefName}' and using 'g2ChartInstance.current'.\n`;
         g2CodeBlock += `// Original script content (partial for reference):\n`;
@@ -105,7 +118,7 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
 
     return {
         imports: Array.from(imports).join("\n"),
-        g2Code: g2CodeBlock.trim(), // Trim potential trailing newlines
-        helpers: helperCode // helperCode is now potentially adapted
+        g2Code: g2CodeBlock.trim(), 
+        helpers: helperCode.trim() 
     };
 }

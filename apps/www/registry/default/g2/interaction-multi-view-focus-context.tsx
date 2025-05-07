@@ -14,11 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interaction/multi-view/demo/focus-context.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-function createPathRender(compute) {
-  return (group, options, document) => {
-    if (!group.handle) {
-      const path = document.createElement('path');
 
 
 export default function G2ChartComponent_interaction_multi_view_focus_context() {

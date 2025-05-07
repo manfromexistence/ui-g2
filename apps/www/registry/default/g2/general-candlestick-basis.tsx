@@ -207,9 +207,6 @@ const data = [
   },
 ];
 
-
-
-
 export default function G2ChartComponent_general_candlestick_basis() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

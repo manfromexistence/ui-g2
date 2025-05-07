@@ -142,9 +142,6 @@ const colors = [
   '#0860BF',
 ];
 
-
-
-
 export default function G2ChartComponent_general_rose_wind_rose() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

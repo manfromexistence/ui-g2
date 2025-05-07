@@ -26,9 +26,6 @@ const events = [
   { name: 'event celebration', startTime: 17, endTime: 18 },
 ];
 
-
-
-
 export default function G2ChartComponent_storytelling_storytelling_gantt() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

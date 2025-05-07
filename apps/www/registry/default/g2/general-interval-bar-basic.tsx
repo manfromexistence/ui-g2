@@ -44,8 +44,6 @@ const data = [
   { letter: 'Z', frequency: 0.00074 },
 ];
 
-
-
 export default function G2ChartComponent_general_interval_bar_basic() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

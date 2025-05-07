@@ -543,9 +543,6 @@ const Data = [
   ],
 ];
 
-
-
-
 export default function G2ChartComponent_annotation_line_anomaly_area_line() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

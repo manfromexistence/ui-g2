@@ -20,20 +20,6 @@ const data = [
   { type: '女性', percent: 43.6, color: '#f0657d' },
 ];
 
-
-
-const facetRect = chart
-  .facetRect()
-  .data(data)
-  .encode('x', 'type')
-  .axis(false)
-  .legend(false)
-  .view()
-  .attr('frame', false)
-  .coordinate({ type: 'theta', innerRadius: 0.5, outerRadius: 0.8 });
-
-
-
 export default function G2ChartComponent_general_pie_pie_base_facet() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

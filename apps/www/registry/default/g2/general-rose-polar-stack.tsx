@@ -33,8 +33,6 @@ const data = [
   { year: '2014', '类型 A': 38.2, '类型 B': 19.5, '类型 C': 18 },
 ];
 
-
-
 export default function G2ChartComponent_general_rose_polar_stack() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -14,12 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/analysis/regression/demo/quadratic-regression.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const regression = regressionQuad()
-  .x((d) => d.x)
-  .y((d) => d.y)
-  .domain([-4, 4]);
-
 
 
 export default function G2ChartComponent_analysis_regression_quadratic_regression() {

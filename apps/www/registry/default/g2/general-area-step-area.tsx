@@ -27,9 +27,6 @@ const data = [
   { year: '1999', value: 33233 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_area_step_area() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

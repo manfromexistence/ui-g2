@@ -67,7 +67,6 @@ const Avatars = [
 function getLovePoints() {
   let angle = 0;
 
-
 export default function G2ChartComponent_general_image_contributor() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

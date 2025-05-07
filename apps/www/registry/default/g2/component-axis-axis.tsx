@@ -14,9 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/axis/demo/axis.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-function medal(ranking) {
-  if (ranking > 2) return `第${ranking + 1}名`;
 
 
 export default function G2ChartComponent_component_axis_axis() {

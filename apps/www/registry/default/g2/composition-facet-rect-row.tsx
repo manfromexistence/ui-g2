@@ -14,15 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/facet/demo/rect-row.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const facetRect = chart
-  .facetRect()
-  .data({
-    type: 'fetch',
-    value: 'https://assets.antv.antgroup.com/g2/anscombe.json',
-  })
-  .encode('x', 'series');
-
 
 
 export default function G2ChartComponent_composition_facet_rect_row() {

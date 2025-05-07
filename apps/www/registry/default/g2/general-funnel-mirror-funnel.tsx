@@ -28,9 +28,6 @@ const data = [
   { action: '完成', visitor: 80, site: '站点2' },
 ];
 
-
-
-
 export default function G2ChartComponent_general_funnel_mirror_funnel() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

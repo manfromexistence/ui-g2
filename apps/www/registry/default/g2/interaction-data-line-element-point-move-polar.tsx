@@ -38,9 +38,6 @@ const data = [
   { item: 'UX', type: 'b', score: 60 },
 ];
 
-
-
-
 export default function G2ChartComponent_interaction_data_line_element_point_move_polar() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

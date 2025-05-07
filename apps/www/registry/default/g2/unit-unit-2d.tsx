@@ -14,22 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/unit/unit/demo/2d.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const facetRect = chart
-  .facetRect()
-  .data({
-    type: 'fetch',
-    value: 'https://assets.antv.antgroup.com/g2/titanic2.json',
-    transform: [
-      {
-        type: 'sortBy',
-        fields: [['Survived', false]],
-      },
-    ],
-  })
-  .encode('x', 'Class')
-  .encode('y', 'Sex');
-
 
 
 export default function G2ChartComponent_unit_unit_2d() {

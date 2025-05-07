@@ -34,9 +34,6 @@ const data = [
   { name: 'Berlin', 月份: 'Aug.', 月均降雨量: 42.4 },
 ];
 
-
-
-
 export default function G2ChartComponent_interaction_data_bar_normalizey_element_point_move() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

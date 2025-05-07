@@ -20,9 +20,6 @@ const words =
     .split('\n')
     .map((d) => ({ text: d }));
 
-
-
-
 export default function G2ChartComponent_general_text_poetry() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

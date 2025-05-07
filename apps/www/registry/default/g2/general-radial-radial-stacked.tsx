@@ -23,9 +23,6 @@ const data = [
   { State: 'AK', 小于5岁: 72083, '5至13岁': 85640, '14至17岁': 22153 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_radial_radial_stacked() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

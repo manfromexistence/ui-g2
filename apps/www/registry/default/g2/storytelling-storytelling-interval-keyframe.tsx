@@ -22,11 +22,6 @@ const sex = [
   { city: 'B', sex: '女', value: 70 },
 ];
 
-
-const keyframe = g2ChartInstance.current.timingKeyframe();
-
-
-
 export default function G2ChartComponent_storytelling_storytelling_interval_keyframe() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -17,12 +17,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
 
-
-
-const keyframe = g2ChartInstance.current.timingKeyframe();
-
-
-
 export default function G2ChartComponent_algorithm_sort_insertion_sort() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

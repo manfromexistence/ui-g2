@@ -20,9 +20,6 @@ const data = [
   546, 983, 340, 539, 243, 226, 192,
 ];
 
-
-
-
 export default function G2ChartComponent_general_mini_column() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

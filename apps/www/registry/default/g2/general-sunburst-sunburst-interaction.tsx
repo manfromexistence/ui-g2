@@ -18,9 +18,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const Chart = extend(Runtime, { ...corelib(), ...plotlib() });
 
-
-
-
 export default function G2ChartComponent_general_sunburst_sunburst_interaction() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

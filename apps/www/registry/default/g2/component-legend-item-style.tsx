@@ -14,17 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/legend/demo/item-style.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const shapeList = ['bowtie', 'smooth', 'hv', 'rect', 'hollowPoint'];
-
-
-const data = [
-  { genre: 'Sports', sold: 50 },
-  { genre: 'Strategy', sold: 115 },
-  { genre: 'Action', sold: 120 },
-  { genre: 'Shooter', sold: 350 },
-  { genre: 'Other', sold: 150 },
-];
 
 
 export default function G2ChartComponent_component_legend_item_style() {

@@ -18,7 +18,6 @@ import {
 function processRow(row) {
   row.cx = row.x;
 
-
 export default function G2ChartComponent_geo_geo_hexjson_usa() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

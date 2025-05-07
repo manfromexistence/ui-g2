@@ -14,22 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/facet/demo/rect-bar.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const days = ['Sun.', 'Mon.', 'Tues.', 'Wed.', 'Thur.', 'Fri.', 'Sat.'];
-
-
-const mockData = () => {
-  const names = ['Eat', 'Play', 'Sleep'];
-
-const facetRect = chart
-  .facetRect()
-  .data(mockData())
-  .encode('x', 'day')
-  .encode('y', 'week')
-  .scale('x', { domain: days })
-  .legend('color', { position: 'right' })
-  .attr('paddingRight', 100);
-
 
 
 export default function G2ChartComponent_composition_facet_rect_bar() {

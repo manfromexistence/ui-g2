@@ -17,9 +17,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const random = randomPoisson(Math.pow(10, 2.6));
 
-
-
-
 export default function G2ChartComponent_analysis_bin_poisson() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

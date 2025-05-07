@@ -31,9 +31,6 @@ const axis = {
   lineLineWidth: 1,
 };
 
-
-
-
 export default function G2ChartComponent_general_parallel_line_parallel_horizontal() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

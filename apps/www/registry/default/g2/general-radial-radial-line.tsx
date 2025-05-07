@@ -28,9 +28,6 @@ const data = [
   { term: 'The Olivia Experiment', count: 1 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_radial_radial_line() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

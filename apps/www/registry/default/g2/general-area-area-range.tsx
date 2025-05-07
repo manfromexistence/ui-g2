@@ -85,9 +85,6 @@ const averages = [
   { time: 1248998400000, temperature: 13.6 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_area_area_range() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

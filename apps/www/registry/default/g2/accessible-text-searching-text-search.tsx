@@ -25,9 +25,6 @@ const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
 
 const left = (d) => d.end > -1500 && d.start > -3000;
 
-
-
-
 export default function G2ChartComponent_accessible_text_searching_text_search() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

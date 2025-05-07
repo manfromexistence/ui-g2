@@ -14,25 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/annotation/connector/demo/interval-connector.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-function linkData(data) {
-  return data.reduce((r, d, idx) => {
-    if (idx > 0) {
-      return r.concat({
-        x1: data[idx - 1].x,
-        x2: d.x,
-        value: d.isTotal ? d.end : d.start,
-      });
-
-function connectorData(data) {
-  return [
-    {
-      x1: data[0].x,
-      y1: data[0].end,
-      x2: data[data.length - 1].x,
-      y2: data[data.length - 1].end,
-    },
-  ];
 
 
 export default function G2ChartComponent_annotation_connector_interval_connector() {

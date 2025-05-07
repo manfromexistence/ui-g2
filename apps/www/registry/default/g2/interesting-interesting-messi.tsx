@@ -23,13 +23,6 @@ const FH = 400;
 
 const P = 50;
 
-
-
-function football(_, context) {
-  const { document } = context;
-
-
-
 export default function G2ChartComponent_interesting_interesting_messi() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

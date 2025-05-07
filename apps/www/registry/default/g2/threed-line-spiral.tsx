@@ -24,17 +24,6 @@ const renderer = new WebGLRenderer();
 
 const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
 
-
-const pointCount = 500;
-
-
-let r;
-
-
-const data = [];
-
-
-
 export default function G2ChartComponent_threed_line_spiral() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

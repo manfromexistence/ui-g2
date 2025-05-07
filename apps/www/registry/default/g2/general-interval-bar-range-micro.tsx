@@ -22,7 +22,6 @@ const floatTimestamp = (s) => +new Date(s) + +`0.${s.slice(s.length - 3)}`;
 const format = (n) => {
   const x = Math.floor(n);
 
-
 export default function G2ChartComponent_general_interval_bar_range_micro() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

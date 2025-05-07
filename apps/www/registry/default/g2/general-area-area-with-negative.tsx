@@ -38,9 +38,6 @@ const data = [
   { year: '2015', north: 334, south: -184 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_area_area_with_negative() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

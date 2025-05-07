@@ -14,50 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/unit/unit/demo/nested.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const facetRect = chart
-  .facetRect()
-  .data({
-    type: 'fetch',
-    value: 'https://assets.antv.antgroup.com/g2/titanic.json',
-    transform: [
-      {
-        type: 'sortBy',
-        fields: ['survived', 'sex'],
-      },
-      {
-        type: 'map',
-        callback: ({ survived, ...d }) => ({
-          ...d,
-          survived: survived + '',
-        }),
-      },
-    ],
-  })
-  .encode('y', 'pclass')
-  .attr('shareSize', true);
-
-
-
-const facetRect2 = facetRect
-  .facetRect()
-  .encode('x', 'survived')
-  .axis('y', false)
-  .axis('x', {
-    labelFormatter: (d) => (d === '1' ? 'Yes' : 'No'),
-    position: 'bottom',
-  })
-  .attr('shareSize', true);
-
-
-
-const facetRect3 = facetRect2
-  .facetRect()
-  .encode('y', 'sex')
-  .attr('shareSize', true)
-  .axis('x', false)
-  .axis('y', { position: 'left' });
-
 
 
 export default function G2ChartComponent_unit_unit_nested() {

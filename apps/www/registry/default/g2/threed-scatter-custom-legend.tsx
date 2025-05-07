@@ -28,8 +28,6 @@ const renderer = new WebGLRenderer();
 
 const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
 
-
-
 export default function G2ChartComponent_threed_scatter_custom_legend() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

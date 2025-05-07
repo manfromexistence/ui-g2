@@ -15,14 +15,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-function getOrigin(points) {
-  if (points.length === 1) return points[0];
-
-const customShape = (style) => {
-  return (points, value, coordinate, theme) => {
-    // 获取几何点中心坐标
-    const [x, y] = getOrigin(points);
 
 
 export default function G2ChartComponent_general_gauge_gauge_custom_shape() {

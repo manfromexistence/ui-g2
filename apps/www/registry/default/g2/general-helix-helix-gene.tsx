@@ -29,8 +29,6 @@ const baseValues = {
   KO: 2.3,
 };
 
-
-
 export default function G2ChartComponent_general_helix_helix_gene() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

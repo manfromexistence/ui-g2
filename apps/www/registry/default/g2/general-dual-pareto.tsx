@@ -25,9 +25,6 @@ const data = [
   { x: 'Clothing Shrank', value: 18 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_dual_pareto() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

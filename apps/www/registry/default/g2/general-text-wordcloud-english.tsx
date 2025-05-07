@@ -219,9 +219,6 @@ const Word = {
   block: 1,
 };
 
-
-
-
 export default function G2ChartComponent_general_text_wordcloud_english() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

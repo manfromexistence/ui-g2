@@ -23,9 +23,6 @@ const data = [
   { item: '事例五', count: 9, percent: 0.09 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_pie_pie_base() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

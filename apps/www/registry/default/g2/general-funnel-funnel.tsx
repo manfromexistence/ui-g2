@@ -23,9 +23,6 @@ const data = [
   { action: '完成交易', pv: 8000 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_funnel_funnel() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

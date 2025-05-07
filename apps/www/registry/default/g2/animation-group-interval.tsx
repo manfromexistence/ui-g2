@@ -24,9 +24,6 @@ const fruits = [
   { type: 'Banana', year: '2002', value: 30 },
 ];
 
-
-
-
 export default function G2ChartComponent_animation_group_interval() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

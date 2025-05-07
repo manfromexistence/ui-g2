@@ -90,9 +90,6 @@ const data = [
   },
 ];
 
-
-
-
 export default function G2ChartComponent_general_box_grouped_box() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

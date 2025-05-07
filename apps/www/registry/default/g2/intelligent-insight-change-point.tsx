@@ -87,9 +87,6 @@ const data = [
   },
 ];
 
-
-
-
 export default function G2ChartComponent_intelligent_insight_change_point() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

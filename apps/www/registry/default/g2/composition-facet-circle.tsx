@@ -42,12 +42,6 @@ const data = M.flatMap((month) =>
   })),
 );
 
-
-
-const facetCircle = g2ChartInstance.current.facetCircle().data(data).encode('position', 'month');
-
-
-
 export default function G2ChartComponent_composition_facet_circle() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

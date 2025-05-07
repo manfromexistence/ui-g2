@@ -24,7 +24,6 @@ function css(...styles) {
     )
     .join(';');
 
-
 export default function G2ChartComponent_component_tooltip_tooltip_click() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -32,9 +32,6 @@ const encodeX = 'text';
 
 const encodeY = 'value';
 
-
-
-
 export default function G2ChartComponent_general_funnel_funnel_annotation() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

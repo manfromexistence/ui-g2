@@ -24,10 +24,6 @@ const renderer = new WebGLRenderer();
 
 const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
 
-
-const data: { x: string; z: string; y: number; color: number }[] = [];
-
-
 export default function G2ChartComponent_threed_bar_cone() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

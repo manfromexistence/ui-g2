@@ -30,9 +30,6 @@ const data = [
   { year: '2012', population: 30.3 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_rose_donut_rose() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

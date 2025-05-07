@@ -139,9 +139,6 @@ const data = [
   },
 ];
 
-
-
-
 export default function G2ChartComponent_intelligent_insight_time_series_outlier() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

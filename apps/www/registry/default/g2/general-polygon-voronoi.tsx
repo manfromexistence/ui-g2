@@ -32,7 +32,6 @@ const layout = (data) => {
       }),
     );
 
-
 export default function G2ChartComponent_general_polygon_voronoi() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

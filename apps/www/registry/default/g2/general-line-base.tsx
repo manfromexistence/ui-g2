@@ -27,9 +27,6 @@ const data = [
   { year: '1999', value: 13 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_line_base() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

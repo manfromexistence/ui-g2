@@ -14,25 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/repeat/demo/matrix-col.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const repeatMatrix = chart
-  .repeatMatrix()
-  .data({
-    type: 'fetch',
-    value: 'https://assets.antv.antgroup.com/g2/weather.json',
-    transform: [
-      {
-        type: 'map',
-        callback: ({ date, ...d }) => ({
-          ...d,
-          date: new Date(date).getMonth() + '',
-        }),
-      },
-    ],
-  })
-  .encode('y', ['temp_max', 'precipitation', 'wind'])
-  .encode('x', 'date');
-
 
 
 export default function G2ChartComponent_composition_repeat_matrix_col() {

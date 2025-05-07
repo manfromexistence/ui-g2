@@ -379,15 +379,6 @@ const data = [
   { x: 360, y: 0 },
 ];
 
-
-
-const keyframe = g2ChartInstance.current.timingKeyframe({
-  direction: 'alternate',
-  iterationCount: 4,
-});
-
-
-
 export default function G2ChartComponent_general_radar_complex_radial() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

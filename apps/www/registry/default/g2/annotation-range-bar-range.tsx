@@ -36,9 +36,6 @@ const data = [
   { city: '杭州', 职业: '程序员', 平均年收入: 28 },
 ];
 
-
-
-
 export default function G2ChartComponent_annotation_range_bar_range() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

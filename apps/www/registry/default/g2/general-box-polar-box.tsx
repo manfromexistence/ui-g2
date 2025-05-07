@@ -26,9 +26,6 @@ const data = [
   { x: 'West Africa', y: [1, 6, 8, 13, 16] },
 ];
 
-
-
-
 export default function G2ChartComponent_general_box_polar_box() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

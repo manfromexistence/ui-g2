@@ -14,16 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/space/demo/space-flex.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const flex = chart
-  .spaceFlex()
-  .data({
-    type: 'fetch',
-    value: 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
-  })
-  .attr('direction', 'col')
-  .attr('ratio', [1, 2]);
-
 
 
 export default function G2ChartComponent_composition_space_space_flex() {

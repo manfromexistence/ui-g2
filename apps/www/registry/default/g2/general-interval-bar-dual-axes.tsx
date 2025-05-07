@@ -20,9 +20,6 @@ const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
 
 const left = (d) => d.end > -1500 && d.start > -3000;
 
-
-
-
 export default function G2ChartComponent_general_interval_bar_dual_axes() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

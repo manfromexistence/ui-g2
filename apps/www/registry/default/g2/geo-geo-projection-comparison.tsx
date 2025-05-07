@@ -14,13 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/geo/geo/demo/projection-comparison.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-function worldMap(node, projection, color, opacity = 0.7) {
-  const geoView = node.geoView().coordinate({
-    type: projection,
-    size: 'fitWidth',
-  });
-
 
 
 export default function G2ChartComponent_geo_geo_projection_comparison() {

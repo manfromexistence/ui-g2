@@ -25,9 +25,6 @@ const data = [
   { time: '10:40', call: 13, waiting: 1, people: 2 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_dual_line_bar() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

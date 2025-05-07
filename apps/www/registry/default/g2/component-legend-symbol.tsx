@@ -19,21 +19,6 @@ const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
   (x, y, r) => {
     const radius = r / 2;
 
-
-const data = [
-  { genre: 'Sports', sold: 275 },
-  { genre: 'Strategy', sold: 115 },
-  { genre: 'Action', sold: 120 },
-  { genre: 'Shooter', sold: 350 },
-  { genre: 'Other', sold: 150 },
-];
-
-
-
-const colorField = 'genre';
-
-
-
 export default function G2ChartComponent_component_legend_symbol() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

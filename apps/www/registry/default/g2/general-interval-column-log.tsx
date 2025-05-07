@@ -17,9 +17,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const EPSILON = 1e-6;
 
-
-
-
 export default function G2ChartComponent_general_interval_column_log() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

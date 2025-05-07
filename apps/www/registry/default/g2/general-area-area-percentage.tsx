@@ -39,9 +39,6 @@ const data = [
   { country: 'Europe', year: '2050', value: 628 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_area_area_percentage() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -23,9 +23,6 @@ const data = [
   { item: '事例五', count: 9, percent: 0.09 },
 ];
 
-
-
-
 export default function G2ChartComponent_interaction_data_pie_element_point_move() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

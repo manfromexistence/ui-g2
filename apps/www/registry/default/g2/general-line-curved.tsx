@@ -42,9 +42,6 @@ const data = [
   { month: 'Dec', city: 'London', temperature: 4.8 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_line_curved() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

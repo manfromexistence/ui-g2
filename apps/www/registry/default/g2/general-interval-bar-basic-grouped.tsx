@@ -34,9 +34,6 @@ const data = [
   { name: 'Berlin', 月份: 'Aug.', 月均降雨量: 42.4 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_interval_bar_basic_grouped() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

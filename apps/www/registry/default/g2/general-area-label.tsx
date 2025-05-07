@@ -125,9 +125,6 @@ const RegionStateMap = new Map([
   ['Wyoming', 'Mountain'],
 ]);
 
-
-
-
 export default function G2ChartComponent_general_area_label() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

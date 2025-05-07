@@ -24,7 +24,6 @@ const linkData = (data) =>
         value: d.isTotal ? d.end : d.start,
       });
 
-
 export default function G2ChartComponent_annotation_connector_revenue_flow_waterfall() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

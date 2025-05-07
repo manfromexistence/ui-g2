@@ -30,9 +30,6 @@ const axis = {
   lineLineWidth: 1,
 };
 
-
-
-
 export default function G2ChartComponent_general_radar_parallel_radar() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -17,9 +17,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const progress = 0.7;
 
-
-
-
 export default function G2ChartComponent_general_mini_ring() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

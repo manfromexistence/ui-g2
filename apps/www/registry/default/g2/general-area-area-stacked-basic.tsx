@@ -46,9 +46,6 @@ const data = [
   { country: 'Oceania', year: '2050', value: 300 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_area_area_stacked_basic() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

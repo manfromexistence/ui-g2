@@ -38,9 +38,6 @@ const data = [
   { item: 'UX', type: 'b', score: 60 },
 ];
 
-
-
-
 export default function G2ChartComponent_general_radar_radar() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

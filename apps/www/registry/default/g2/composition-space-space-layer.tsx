@@ -14,22 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/space/demo/space-layer.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const scaleColor = (node) =>
-  node.scale('color', {
-    palette: 'cool',
-    offset: (t) => t * 0.8 + 0.1,
-  });
-
-
-
-const layer = g2ChartInstance.current.spaceLayer().data({
-  type: 'fetch',
-  value:
-    'https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
-  format: 'csv',
-});
-
 
 
 export default function G2ChartComponent_composition_space_space_layer() {

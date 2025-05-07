@@ -22,9 +22,6 @@ const data = [
   15.2, 15.6, 16.0, 16.3, 17.3, 17.5, 17.9, 18.0, 18.0, 20.6, 21, 23.4,
 ];
 
-
-
-
 export default function G2ChartComponent_general_histogram_histogram() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -104,9 +104,6 @@ const options = {
   ],
 };
 
-
-
-
 export default function G2ChartComponent_component_tooltip_tooltip_marker() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

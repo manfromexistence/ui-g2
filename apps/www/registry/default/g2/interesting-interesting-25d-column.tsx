@@ -30,13 +30,6 @@ const data = [
   { year: '1968 年', sales: 144 },
 ];
 
-
-
-function myColumn({ fill, stroke }, context) {
-  return (points) => {
-    const x3 = points[1][0] - points[0][0];
-
-
 export default function G2ChartComponent_interesting_interesting_25d_column() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -14,16 +14,6 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/bullet/demo/bullet.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const data = [
-  {
-    title: '满意度',
-    ranges: 100,
-    measures: 80,
-    target: 85,
-  },
-];
-
 
 
 export default function G2ChartComponent_general_bullet_bullet() {
