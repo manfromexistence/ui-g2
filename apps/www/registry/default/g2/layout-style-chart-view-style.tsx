@@ -15,8 +15,9 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/layout/style/demo/chart-view-style.ts
 
-const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
+// Helper functions and data defined in the G2 original example:
 
 
 export default function G2ChartComponent_layout_style_chart_view_style() {

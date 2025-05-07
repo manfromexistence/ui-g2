@@ -15,8 +15,9 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/tooltip/demo/tooltip-custom.ts
 
-const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
+// Helper functions and data defined in the G2 original example:
 // Default data used as a fallback because no specific data source was detected:
 const data = [
   { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },

@@ -64,8 +64,9 @@ import {
 
 // Original G2 example path: ${relativeOriginalPath}
 
-const FALLBACK_COLORS_JSON = '${FALLBACK_COLORS_JSON}'; // Added definition
+const FALLBACK_COLORS_JSON = '${FALLBACK_COLORS_JSON}';
 
+// Helper functions and data defined in the G2 original example:
 ${finalHelpers}
 
 export default function G2ChartComponent_${chartIdBase.replace(/-/g, '_')}() {

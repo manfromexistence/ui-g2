@@ -15,8 +15,9 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/algorithm/sort/demo/bubble-sort.ts
 
-const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
+// Helper functions and data defined in the G2 original example:
 // Helper code extracted from original (review and adapt if necessary):
 const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
 
