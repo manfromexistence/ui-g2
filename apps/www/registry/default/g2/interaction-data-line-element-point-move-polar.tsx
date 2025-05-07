@@ -21,8 +21,6 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { item: 'Design', type: 'a', score: 70 },
     { item: 'Design', type: 'b', score: 30 },

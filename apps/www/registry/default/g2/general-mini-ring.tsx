@@ -43,8 +43,6 @@ export default function G2ChartComponent_general_mini_ring() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const progress = 0.7;
 
   const chartRef = useRef<HTMLDivElement>(null);

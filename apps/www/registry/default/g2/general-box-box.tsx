@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_box_box() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { x: 'Oceania', y: [1, 9, 16, 22, 24] },
     { x: 'East Europe', y: [1, 5, 8, 12, 16] },

@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_area_range_spline_area() {
   /**
    * A recreation of this demo: https://www.anychart.com/zh/products/anychart/gallery/Combined_Charts/Range_Spline-Area,_Spline_and_Marker_Chart.php
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

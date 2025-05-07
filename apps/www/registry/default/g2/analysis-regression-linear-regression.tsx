@@ -46,8 +46,6 @@ export default function G2ChartComponent_analysis_regression_linear_regression()
   /**
    * A recreation of this demo: https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
    */
-  import { Chart } from '@antv/g2';
-  import { regressionLinear } from 'd3-regression';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

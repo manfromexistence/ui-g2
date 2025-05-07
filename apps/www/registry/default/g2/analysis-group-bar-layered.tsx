@@ -46,7 +46,6 @@ export default function G2ChartComponent_analysis_group_bar_layered() {
   /**
    * A recreation of this demo: https://vega.github.io/vega-lite/examples/bar_layered_transparent.html
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

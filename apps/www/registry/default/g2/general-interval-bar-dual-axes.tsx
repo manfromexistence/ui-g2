@@ -43,8 +43,6 @@ export default function G2ChartComponent_general_interval_bar_dual_axes() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
   const left = (d) => d.end > -1500 && d.start > -3000;
 

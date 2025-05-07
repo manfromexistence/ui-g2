@@ -48,13 +48,6 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
   ];
   
   // Code from original script before chart initialization:
-  import { CameraType } from '@antv/g';
-  import { Renderer as WebGLRenderer } from '@antv/g-webgl';
-  import { Plugin as ThreeDPlugin, DirectionalLight } from '@antv/g-plugin-3d';
-  import { Plugin as ControlPlugin } from '@antv/g-plugin-control';
-  import { Runtime, corelib, extend } from '@antv/g2';
-  import { threedlib } from '@antv/g2-extension-3d';
-  
   // 添加图例
   function legendColor(g2ChartInstance.current) {
     // 创建 Legend 并且挂在图例

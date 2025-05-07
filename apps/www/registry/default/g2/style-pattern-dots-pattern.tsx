@@ -47,8 +47,6 @@ export default function G2ChartComponent_style_pattern_dots_pattern() {
   /**
    * A recreation of this demo: https://nivo.rocks/pie/
    */
-  import { Chart } from '@antv/g2';
-  import { dots } from '@antv/g-pattern';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

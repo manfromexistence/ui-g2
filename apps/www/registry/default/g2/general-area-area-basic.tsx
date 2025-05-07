@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_area_area_basic() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { year: '1991', value: 15468 },
     { year: '1992', value: 16100 },

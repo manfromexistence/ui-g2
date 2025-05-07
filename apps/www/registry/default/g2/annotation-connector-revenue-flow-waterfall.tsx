@@ -46,7 +46,6 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
   /**
    * A recreation of this demo: https://www.anychart.com/zh/products/anychart/gallery/Waterfall_Charts/ACME_corp._Revenue_Flow_2017.php
    */
-  import { Chart } from '@antv/g2';
   
   const linkData = (data) =>
     data.reduce((r, d, idx) => {

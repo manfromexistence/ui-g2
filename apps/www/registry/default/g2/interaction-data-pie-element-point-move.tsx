@@ -21,8 +21,6 @@ export default function G2ChartComponent_interaction_data_pie_element_point_move
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { item: '事例一', count: 40, percent: 0.4 },
     { item: '事例二', count: 21, percent: 0.21 },

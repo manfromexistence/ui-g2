@@ -43,8 +43,6 @@ export default function G2ChartComponent_general_interval_column_log() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const EPSILON = 1e-6;
 
   const chartRef = useRef<HTMLDivElement>(null);

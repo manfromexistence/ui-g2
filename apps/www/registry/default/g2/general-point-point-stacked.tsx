@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_point_point_stacked() {
   /**
    * A recreation of this demo: https://observablehq.com/@mbostock/global-temperature-trends
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

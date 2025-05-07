@@ -43,8 +43,6 @@ export default function G2ChartComponent_general_image_icon() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const dataXO = [
     {
       x: 0,

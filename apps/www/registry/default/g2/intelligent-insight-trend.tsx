@@ -48,8 +48,6 @@ export default function G2ChartComponent_intelligent_insight_trend() {
    * AVA: https://github.com/antvis/AVA
    * g2-extension-ava: https://github.com/antvis/g2-extensions/tree/master/ava
    */
-  import { Chart } from '@antv/g2';
-  import { Trend } from '@antv/g2-extension-ava';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -48,7 +48,6 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
    *
    * We use a range mark to highlight the values beyond a threshold
    */
-  import { Chart } from '@antv/g2';
   
   // Trailing helpers extracted from original:
   

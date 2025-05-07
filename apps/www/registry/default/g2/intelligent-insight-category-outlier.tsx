@@ -26,8 +26,6 @@ export default function G2ChartComponent_intelligent_insight_category_outlier() 
    * AVA: https://github.com/antvis/AVA
    * g2-extension-ava: https://github.com/antvis/g2-extensions/tree/master/ava
    */
-  import { Chart } from '@antv/g2';
-  import { CategoryOutlier } from '@antv/g2-extension-ava';
   
   const data = [
     {

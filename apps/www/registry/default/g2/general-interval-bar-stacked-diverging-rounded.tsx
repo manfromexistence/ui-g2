@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_interval_bar_stacked_diverging_
   /**
    * A recreation of this demo: https://nivo.rocks/storybook/?path=/docs/bar--diverging-stacked
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

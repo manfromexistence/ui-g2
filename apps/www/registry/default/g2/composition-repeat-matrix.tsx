@@ -46,7 +46,6 @@ export default function G2ChartComponent_composition_repeat_matrix() {
   /**
    * A recreation of this demo: https://vega.github.io/vega-lite/examples/interactive_splom.html
    */
-  import { Chart } from '@antv/g2';
   
   const toNaN = (d) => (d === 'NaN' ? NaN : d);
 

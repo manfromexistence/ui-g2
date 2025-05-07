@@ -45,10 +45,6 @@ export default function G2ChartComponent_general_sunburst_sunburst_pattern() {
   ];
   
   // Code from original script before chart initialization:
-  import { lines } from '@antv/g-pattern';
-  import { plotlib } from '@antv/g2-extension-plot';
-  import { Runtime, corelib, extend } from '@antv/g2';
-  
   const Chart = extend(Runtime, { ...corelib(), ...plotlib() });
   
   const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];

@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_pie_point_jitter_radial() {
   /**
    * A recreation of this demo:
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

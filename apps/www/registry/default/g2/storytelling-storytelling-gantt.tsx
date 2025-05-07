@@ -46,7 +46,6 @@ export default function G2ChartComponent_storytelling_storytelling_gantt() {
   /**
    * A recreation of this demo: https://canisjs.github.io/canis-editor/index.html?exmp=gantt_1
    */
-  import { Chart } from '@antv/g2';
   
   const events = [
     { name: 'event planning', startTime: 1, endTime: 4 },

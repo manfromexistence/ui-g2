@@ -43,8 +43,6 @@ export default function G2ChartComponent_interesting_interesting_petal() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart, register } from '@antv/g2';
-  
   // 注册自定义图形，代码在下面
   register('shape.interval.petal', petal);
   

@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_line_line_connect_nulls() {
   /**
    * A recreation of this demo: https://observablehq.com/@d3/line-with-missing-data
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

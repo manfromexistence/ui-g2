@@ -46,7 +46,6 @@ export default function G2ChartComponent_annotation_connector_interval_connector
   /**
    * A recreation of this demo: https://www.anychart.com/products/anychart/gallery/Waterfall_Charts/Waterfall_Arrows.php
    */
-  import { Chart } from '@antv/g2';
   
   // Trailing helpers extracted from original:
   

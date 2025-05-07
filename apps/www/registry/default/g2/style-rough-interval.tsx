@@ -44,10 +44,6 @@ export default function G2ChartComponent_style_rough_interval() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  import { Plugin } from '@antv/g-plugin-rough-canvas-renderer';
-  import WebFont from 'webfontloader';
-  
   WebFont.load({
     google: {
       families: ['Gaegu'],

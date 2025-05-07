@@ -43,8 +43,6 @@ export default function G2ChartComponent_annotation_line_anomaly_area_line() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const Data = [
     [
       '01-01',

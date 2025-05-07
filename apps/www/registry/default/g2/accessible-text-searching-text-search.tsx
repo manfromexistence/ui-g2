@@ -44,9 +44,6 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  import { Plugin } from '@antv/g-plugin-a11y';
-  
   const plugin = new Plugin({ enableExtractingText: true });
   
   const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');

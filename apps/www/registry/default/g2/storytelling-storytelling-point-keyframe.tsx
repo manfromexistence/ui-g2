@@ -43,8 +43,6 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   fetch(
     'https://gw.alipayobjects.com/os/bmw-prod/fbe4a8c1-ce04-4ba3-912a-0b26d6965333.json',
   )

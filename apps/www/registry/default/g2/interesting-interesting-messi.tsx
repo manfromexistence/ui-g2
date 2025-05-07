@@ -43,8 +43,6 @@ export default function G2ChartComponent_interesting_interesting_messi() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const FW = 600;
   const FH = 400;
   const P = 50;

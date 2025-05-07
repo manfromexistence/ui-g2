@@ -46,7 +46,6 @@ export default function G2ChartComponent_animation_group_line() {
   /**
    * A recreation of this demo: https://canisjs.github.io/canis-editor/index.html?exmp=purchases_1
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

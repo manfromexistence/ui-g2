@@ -43,8 +43,6 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   function css(...styles) {
     return styles
       .map((obj) =>

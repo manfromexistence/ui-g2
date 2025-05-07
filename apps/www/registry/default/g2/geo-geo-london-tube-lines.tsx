@@ -46,8 +46,6 @@ export default function G2ChartComponent_geo_geo_london_tube_lines() {
   /**
    * A recreation of this demo: https://vega.github.io/vega-lite/examples/geo_layer_line_london.html
    */
-  import { Chart } from '@antv/g2';
-  import { feature } from 'topojson';
   
   Promise.all([
     fetch('https://assets.antv.antgroup.com/g2/londonBoroughs.json').then((res) =>

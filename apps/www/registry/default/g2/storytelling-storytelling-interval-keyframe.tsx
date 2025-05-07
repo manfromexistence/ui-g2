@@ -43,8 +43,6 @@ export default function G2ChartComponent_storytelling_storytelling_interval_keyf
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const sex = [
     { city: 'A', sex: '男', value: 52 },
     { city: 'A', sex: '女', value: 48 },

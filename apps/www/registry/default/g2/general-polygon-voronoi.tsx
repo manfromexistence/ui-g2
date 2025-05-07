@@ -43,9 +43,6 @@ export default function G2ChartComponent_general_polygon_voronoi() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  import * as d3 from 'd3-voronoi';
-  
   const layout = (data) => {
     return d3
       .voronoi()

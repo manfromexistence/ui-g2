@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_point_point_aggregated() {
   /**
    * A recreation of this demo: https://vega.github.io/vega-lite/examples/circle_github_punchcard.html
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

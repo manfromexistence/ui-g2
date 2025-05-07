@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_link_link_shape() {
   /**
    * A recreation of this demo: https://observablehq.com/@observablehq/plot-link?collection=@observablehq/plot
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

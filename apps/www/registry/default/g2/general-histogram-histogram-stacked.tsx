@@ -43,8 +43,6 @@ export default function G2ChartComponent_general_histogram_histogram_stacked() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/diamond.json')
     .then((res) => res.json())
     .then((data) => {

@@ -46,8 +46,6 @@ export default function G2ChartComponent_animation_group_point() {
   /**
    * A recreation of this demo: https://canisjs.github.io/canis-editor/index.html?exmp=polio_1
    */
-  import { Chart } from '@antv/g2';
-  import { interpolateHcl } from 'd3-interpolate';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

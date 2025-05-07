@@ -43,8 +43,6 @@ export default function G2ChartComponent_interesting_interesting_national() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const SIZE = 256;
 
   const chartRef = useRef<HTMLDivElement>(null);

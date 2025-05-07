@@ -43,9 +43,6 @@ export default function G2ChartComponent_general_polygon_treemap() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  import * as d3 from 'd3-hierarchy';
-  
   const layout = (data) => {
     const root = d3.hierarchy(data);
     root.count();

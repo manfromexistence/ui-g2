@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_text_wordcloud_english() {
   /**
    * A recreation of this demo: // https://www.jasondavies.com/wordcloud/
    */
-  import { Chart } from '@antv/g2';
   
   const Word = {
     '32': 2,

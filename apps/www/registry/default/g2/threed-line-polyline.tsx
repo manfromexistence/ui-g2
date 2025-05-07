@@ -26,13 +26,6 @@ export default function G2ChartComponent_threed_line_polyline() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { CameraType } from '@antv/g';
-  import { Renderer as WebGLRenderer } from '@antv/g-webgl';
-  import { Plugin as ThreeDPlugin } from '@antv/g-plugin-3d';
-  import { Plugin as ControlPlugin } from '@antv/g-plugin-control';
-  import { Runtime, corelib, extend } from '@antv/g2';
-  import { threedlib } from '@antv/g2-extension-3d';
-  
   // Create a WebGL renderer.
   const renderer = new WebGLRenderer();
   renderer.registerPlugin(new ThreeDPlugin());

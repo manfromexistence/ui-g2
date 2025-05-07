@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_rose_polar_stack() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { year: '2000', '类型 A': 21.0, '类型 B': 16, '类型 C': 8 },
     { year: '2001', '类型 A': 25.0, '类型 B': 16, '类型 C': 8 },

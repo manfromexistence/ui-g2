@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   function syncTicksOfDomainsFromZero(scales) {
     scales.forEach((scale) => scale.update({ nice: true }));
     const normalize = (d) => d / Math.pow(10, Math.ceil(Math.log(d) / Math.LN10));

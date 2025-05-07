@@ -43,8 +43,6 @@ export default function G2ChartComponent_animation_group_interval() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const fruits = [
     { type: 'Apple', year: '2001', value: 260 },
     { type: 'Orange', year: '2001', value: 100 },

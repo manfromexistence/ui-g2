@@ -46,7 +46,6 @@ export default function G2ChartComponent_style_theme_dark() {
   /**
    * A recreation of this demo: https://nivo.rocks/pie/
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

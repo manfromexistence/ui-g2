@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_dual_line_bar() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { time: '10:10', call: 4, waiting: 2, people: 2 },
     { time: '10:15', call: 2, waiting: 6, people: 3 },

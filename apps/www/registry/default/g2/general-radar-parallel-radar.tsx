@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_radar_parallel_radar() {
   /**
    * A recreation of this demo: https://observablehq.com/@d3/parallel-coordinates
    */
-  import { Chart } from '@antv/g2';
   
   const axis = {
     zIndex: 1,

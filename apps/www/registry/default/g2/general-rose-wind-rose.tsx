@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_rose_wind_rose() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { direction: 'N', level: '< 0.5 m/s', value: 1.81 },
     { direction: 'N', level: '0.5-2 m/s', value: 1.78 },

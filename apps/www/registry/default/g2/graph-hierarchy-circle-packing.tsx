@@ -42,9 +42,7 @@ export default function G2ChartComponent_graph_hierarchy_circle_packing() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  import { interpolateHcl } from 'd3-interpolate';
+  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

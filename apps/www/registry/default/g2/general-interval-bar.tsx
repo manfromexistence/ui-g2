@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_interval_bar() {
   /**
    * A recreation of this demo: https://observablehq.com/@d3/horizontal-bar-g2ChartInstance.current
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

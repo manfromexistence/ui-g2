@@ -46,8 +46,6 @@ export default function G2ChartComponent_geo_geo_world_map() {
   /**
    * A recreation of this demo: https://observablehq.com/@d3/world-map
    */
-  import { Chart, register } from '@antv/g2';
-  import { feature } from 'topojson';
   
   register('data.feature', ({ name }) => {
     return (data) => feature(data, data.objects[name]).features;

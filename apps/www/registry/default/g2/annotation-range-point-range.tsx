@@ -46,7 +46,6 @@ export default function G2ChartComponent_annotation_range_point_range() {
   /**
    * A recreation of this demo: https://www.anychart.com/zh/products/anychart/gallery/Quadrant_Charts/Top_30_Countries_by_Quality_of_Life.php
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

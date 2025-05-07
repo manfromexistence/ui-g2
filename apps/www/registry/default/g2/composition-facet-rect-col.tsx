@@ -46,8 +46,6 @@ export default function G2ChartComponent_composition_facet_rect_col() {
   /**
    * A recreation of one of these demos: https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot
    */
-  import { Chart } from '@antv/g2';
-  import { groupSort, median } from 'd3-array';
   
   fetch('https://assets.antv.antgroup.com/g2/barley.json')
     .then((res) => res.json())

@@ -43,8 +43,6 @@ export default function G2ChartComponent_general_interval_bar_range_micro() {
   ];
   
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const floatTimestamp = (s) => +new Date(s) + +`0.${s.slice(s.length - 3)}`;
   
   const format = (n) => {

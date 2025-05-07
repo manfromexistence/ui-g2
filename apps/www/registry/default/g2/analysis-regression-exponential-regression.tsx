@@ -46,8 +46,6 @@ export default function G2ChartComponent_analysis_regression_exponential_regress
   /**
    * A recreation of this demo: https://echarts.apache.org/examples/zh/editor.html?c=scatter-exponential-regression
    */
-  import { Chart } from '@antv/g2';
-  import { regressionExp } from 'd3-regression';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

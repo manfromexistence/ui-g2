@@ -21,8 +21,6 @@ export default function G2ChartComponent_general_interval_bar_basic_grouped() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Code from original script before chart initialization:
-  import { Chart } from '@antv/g2';
-  
   const data = [
     { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
     { name: 'London', 月份: 'Feb.', 月均降雨量: 28.8 },

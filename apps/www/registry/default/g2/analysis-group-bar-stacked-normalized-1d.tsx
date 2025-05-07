@@ -46,7 +46,6 @@ export default function G2ChartComponent_analysis_group_bar_stacked_normalized_1
   /**
    * A recreation of one of these demos: https://observablehq.com/@observablehq/plot-group?collection=@observablehq/plot
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

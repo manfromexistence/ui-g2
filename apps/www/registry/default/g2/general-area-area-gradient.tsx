@@ -46,7 +46,6 @@ export default function G2ChartComponent_general_area_area_gradient() {
   /**
    * A recreation of this demo: https://vega.github.io/vega-lite/examples/area_gradient.html
    */
-  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -46,8 +46,6 @@ export default function G2ChartComponent_geo_geo_hexjson_usa() {
   /**
    * A recreation of this demo: http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html
    */
-  import { Chart, register } from '@antv/g2';
-  import { getGridForHexJSON, renderHexJSON } from 'd3-hexjson';
   
   function processRow(row) {
     row.cx = row.x;

@@ -46,8 +46,6 @@ export default function G2ChartComponent_general_line_line_threshold() {
   /**
    * A recreation of this demo: https://observablehq.com/@d3/threshold-encoding
    */
-  import { Chart } from '@antv/g2';
-  import { median } from 'd3-array';
   
   fetch('https://assets.antv.antgroup.com/g2/temperatures2.json')
     .then((res) => res.json())

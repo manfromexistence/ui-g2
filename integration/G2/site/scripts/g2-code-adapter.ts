@@ -98,6 +98,11 @@ export function extractAndAdaptG2Code(
     if (initializationStartIndex > 0) {
         let preChartCode = originalG2SourceCode.substring(0, initializationStartIndex);
         
+        // Filter out import statements from preChartCode, as they are handled separately
+        const preChartCodeLines = preChartCode.split('\n');
+        const nonImportLines = preChartCodeLines.filter(line => !line.trim().startsWith('import '));
+        preChartCode = nonImportLines.join('\n');
+
         // Perform adaptations on this block if necessary
         if (originalChartVarName && originalChartVarName !== g2InstanceVarName) {
             preChartCode = preChartCode.replace(new RegExp(`\\b${originalChartVarName}\\.(?!current\\b)`, "g"), `${g2InstanceVarName}.`);
