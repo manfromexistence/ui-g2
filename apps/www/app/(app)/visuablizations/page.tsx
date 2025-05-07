@@ -19,6 +19,7 @@ export default function ChartsPage() {
             id="examples"
             className="grid flex-1 scroll-mt-20 items-start gap-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-10"
           >
+            <Charts.G2ChartComponent_accessible_text_searching_text_search />
             <ChartDisplay name="accessible-text-searching-text-search" title="Accessible Text Searching Text Search">
               <Charts.G2ChartComponent_accessible_text_searching_text_search />
             </ChartDisplay>

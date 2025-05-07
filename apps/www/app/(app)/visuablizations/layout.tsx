@@ -11,9 +11,9 @@ import {
 } from "@/components/page-header"
 import { Button } from "@/registry/new-york/ui/button"
 
-const title = "Beautiful Charts"
+const title = "Beautiful Visualizations"
 const description =
-  "Built using Recharts. Copy and paste into your apps. Open Source."
+  "Built using Antv. Copy and paste into your apps. Open Source."
 
 export const metadata: Metadata = {
   title,
@@ -52,7 +52,7 @@ export default function ChartsLayout({
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
           <Button asChild size="sm">
-            <a href="#charts">Browse Charts</a>
+            <a href="#charts">Browse Visualizations</a>
           </Button>
           <Button asChild variant="ghost" size="sm">
             <Link href="/docs/components/chart">Documentation</Link>
