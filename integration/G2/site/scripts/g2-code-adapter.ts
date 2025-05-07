@@ -16,7 +16,9 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
     }
 
     // 2. Attempt to extract helper functions and top-level const/let (heuristic)
-    const topLevelDeclarationRegex = /^(?:export\s+)?(?:const|let|function)\s+([a-zA-Z0-9_]+)\s*=\s*[\s\S]*(?:;|}(?!\s*else|\s*catch|\s*finally))/gm; // Changed from non-greedy [\s\S]*? to greedy [\s\S]*
+    // Original regex: /^(?:export\s+)?(?:const|let|function)\s+([a-zA-Z0-9_]+)\s*=\s*[\s\S]*(?:;|}(?!\s*else|\s*catch|\s*finally))/gm;
+    // Modified regex to be non-greedy, include class/var/async, and refine end conditions:
+    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?:;|}(?!(?:\s*else|\s*catch|\s*finally|\s*\.\s*\w+|\s*,)))[\s;]*(?=\s*\n|\s*$|^(?:export|async|const|let|var|function|class)))/gm;
     let helperMatch;
     const potentialHelpers = [];
     const codeWithoutImports = originalG2SourceCode.replace(importRegex, '');
