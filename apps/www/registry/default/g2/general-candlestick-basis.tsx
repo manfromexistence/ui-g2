@@ -215,13 +215,13 @@ export default function G2ChartComponent_general_candlestick_basis() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data(data)
           .encode('x', 'time')
           .encode('color', (d) => {
@@ -236,7 +236,7 @@ export default function G2ChartComponent_general_candlestick_basis() {
             range: ['#4daf4a', '#999999', '#e41a1c'],
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .link()
           .encode('y', ['min', 'max'])
           .tooltip({
@@ -249,7 +249,7 @@ export default function G2ChartComponent_general_candlestick_basis() {
             ],
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('y', ['start', 'end'])
           .style('fillOpacity', 1)
@@ -271,7 +271,7 @@ export default function G2ChartComponent_general_candlestick_basis() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/candlestick/demo/basis.ts:", error);

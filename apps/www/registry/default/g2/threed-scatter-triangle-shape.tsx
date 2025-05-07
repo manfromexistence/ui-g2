@@ -32,14 +32,14 @@ export default function G2ChartComponent_threed_scatter_triangle_shape() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           renderer,
           depth: 400, // Define the depth of chart.
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .point3D()
           .data({
             type: 'fetch',
@@ -70,7 +70,7 @@ export default function G2ChartComponent_threed_scatter_triangle_shape() {
           camera.setType(CameraType.ORBITING);
         });
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
         // Review original script and adapt necessary logic, including the render call.
         // Original script content after initialization (partial for reference):

@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_mini_pie() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 100,
           height: 100,
@@ -33,7 +33,7 @@ export default function G2ChartComponent_general_mini_pie() {
         
         chart.coordinate({ type: 'theta' });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -58,7 +58,7 @@ export default function G2ChartComponent_general_mini_pie() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/pie.ts:", error);

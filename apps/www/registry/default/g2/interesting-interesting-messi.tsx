@@ -31,7 +31,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: FW + P * 2,
           height: FH + P * 2,
@@ -43,7 +43,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
         chart.shape().style('x', '0%').style('y', '0%').style('render', football);
         
         // Analysis messi's shoot data.
-        chartRef.current
+        g2ChartInstance.current
           .rect()
           .data({
             type: 'fetch',
@@ -129,7 +129,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
           return g;
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/messi.ts:", error);

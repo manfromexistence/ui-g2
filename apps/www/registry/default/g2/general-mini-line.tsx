@@ -28,7 +28,7 @@ export default function G2ChartComponent_general_mini_line() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 480,
           height: 80,
@@ -37,7 +37,7 @@ export default function G2ChartComponent_general_mini_line() {
         
         chart.data(data);
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', (_, idx) => idx)
           .encode('y', (d) => d)
@@ -61,7 +61,7 @@ export default function G2ChartComponent_general_mini_line() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/line.ts:", error);

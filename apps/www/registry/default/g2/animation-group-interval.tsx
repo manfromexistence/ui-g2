@@ -32,12 +32,12 @@ export default function G2ChartComponent_animation_group_interval() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data(fruits)
           .transform({ type: 'stackEnter', groupBy: 'color' })
@@ -50,7 +50,7 @@ export default function G2ChartComponent_animation_group_interval() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/interval.ts:", error);

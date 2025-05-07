@@ -24,14 +24,14 @@ export default function G2ChartComponent_graph_network_sankey() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 900,
           height: 600,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .sankey()
           .data({
             type: 'fetch',
@@ -55,7 +55,7 @@ export default function G2ChartComponent_graph_network_sankey() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/network/demo/sankey.ts:", error);

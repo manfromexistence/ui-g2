@@ -24,13 +24,13 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .spaceLayer()
           .call(worldMap, geoPolyconic, '#f00')
           .call(worldMap, geoRectangularPolyconic, '#00f');
@@ -67,7 +67,7 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
             .style('fill', 'none');
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/projection-comparison.ts:", error);

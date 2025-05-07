@@ -24,7 +24,7 @@ export default function G2ChartComponent_analysis_group_bar_multi_measure() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -35,7 +35,7 @@ export default function G2ChartComponent_analysis_group_bar_multi_measure() {
           value: 'https://assets.antv.antgroup.com/g2/movies.json',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .transform({ type: 'groupX', y: 'sum' })
           .axis('y', { labelFormatter: '~s' })
@@ -46,7 +46,7 @@ export default function G2ChartComponent_analysis_group_bar_multi_measure() {
           .encode('color', () => 'Worldwide Gross')
           .tooltip({ channel: 'y', valueFormatter: '~s' });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .transform({ type: 'groupX', y: 'sum' })
           .encode('x', 'Major Genre')
@@ -57,7 +57,7 @@ export default function G2ChartComponent_analysis_group_bar_multi_measure() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-multi-measure.ts:", error);

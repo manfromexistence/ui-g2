@@ -24,14 +24,14 @@ export default function G2ChartComponent_annotation_connector_interval_connector
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           insetTop: 30,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data([
             { x: 'Net Sales', value: 5085000, start: 0, end: 5085000 },
             { x: 'Cost of Sales', value: -1250450, start: 5085000, end: 3834550 },
@@ -46,7 +46,7 @@ export default function G2ChartComponent_annotation_connector_interval_connector
           .axis('y', { labelFormatter: '~s' })
           .legend(null);
         
-        chartRef.current
+        g2ChartInstance.current
           .link()
           .data({ transform: [{ type: 'custom', callback: linkData }] })
           .encode('x', ['x1', 'x2'])
@@ -55,7 +55,7 @@ export default function G2ChartComponent_annotation_connector_interval_connector
           .style('lineDash', [4, 2])
           .tooltip(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .connector()
           .data({ transform: [{ type: 'custom', callback: connectorData }] })
           .encode('x', ['x1', 'x2'])
@@ -69,7 +69,7 @@ export default function G2ChartComponent_annotation_connector_interval_connector
           .style({ stroke: '#697474', offset: 16 })
           .tooltip(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'x')
           .encode('y', ['start', 'end'])
@@ -120,7 +120,7 @@ export default function G2ChartComponent_annotation_connector_interval_connector
           ];
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/connector/demo/interval-connector.ts:", error);

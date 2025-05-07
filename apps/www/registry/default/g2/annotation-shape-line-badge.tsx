@@ -24,14 +24,14 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           insetTop: 50,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data({
             type: 'fetch',
             value:
@@ -47,13 +47,13 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
           })
           .axis('x', { labelAutoHide: 'greedy' });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'value')
           .encode('color', 'type');
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .data([new Date('2017-12-17'), 100])
           .encode('shape', 'badge')
@@ -67,7 +67,7 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/line-badge.ts:", error);

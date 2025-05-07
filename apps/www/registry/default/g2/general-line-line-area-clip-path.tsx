@@ -510,7 +510,7 @@ const data = [
 
 
 
-function clip(chartRef.current) {
+function clip(g2ChartInstance.current) {
   const { canvas } = chart.getContext();
 
 export default function G2ChartComponent_general_line_line_area_clip_path() {
@@ -521,7 +521,7 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -553,11 +553,11 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
           ],
         });
         
-        chart.on('afterrender', () => clip(chartRef.current));
+        chart.on('afterrender', () => clip(g2ChartInstance.current));
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-area-clip-path.ts:", error);

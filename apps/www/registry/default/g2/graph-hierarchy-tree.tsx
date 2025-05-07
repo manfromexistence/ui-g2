@@ -24,7 +24,7 @@ export default function G2ChartComponent_graph_hierarchy_tree() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           height: 1500,
           width: 800,
@@ -35,7 +35,7 @@ export default function G2ChartComponent_graph_hierarchy_tree() {
         
         chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chartRef.current
+        g2ChartInstance.current
           .tree()
           .data({
             type: 'fetch',
@@ -56,7 +56,7 @@ export default function G2ChartComponent_graph_hierarchy_tree() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/tree.ts:", error);

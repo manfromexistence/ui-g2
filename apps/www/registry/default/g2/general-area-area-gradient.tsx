@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_area_area_gradient() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -41,13 +41,13 @@ export default function G2ChartComponent_general_area_area_gradient() {
           ],
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'price')
           .style('fill', 'linear-gradient(-90deg, white 0%, darkgreen 100%)');
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'price')
@@ -56,7 +56,7 @@ export default function G2ChartComponent_general_area_area_gradient() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-gradient.ts:", error);

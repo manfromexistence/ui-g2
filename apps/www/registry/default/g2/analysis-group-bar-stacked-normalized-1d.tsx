@@ -24,7 +24,7 @@ export default function G2ChartComponent_analysis_group_bar_stacked_normalized_1
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           height: 120,
         });
@@ -32,7 +32,7 @@ export default function G2ChartComponent_analysis_group_bar_stacked_normalized_1
         
         chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data({
             type: 'fetch',
@@ -48,7 +48,7 @@ export default function G2ChartComponent_analysis_group_bar_stacked_normalized_1
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-stacked-normalized-1d.ts:", error);

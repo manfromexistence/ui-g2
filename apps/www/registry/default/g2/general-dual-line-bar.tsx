@@ -33,7 +33,7 @@ export default function G2ChartComponent_general_dual_line_bar() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -41,13 +41,13 @@ export default function G2ChartComponent_general_dual_line_bar() {
         
         chart.data(data);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'waiting')
           .axis('y', { title: 'Waiting', titleFill: '#5B8FF9' });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', 'time')
           .encode('y', 'people')
@@ -64,7 +64,7 @@ export default function G2ChartComponent_general_dual_line_bar() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/line-bar.ts:", error);

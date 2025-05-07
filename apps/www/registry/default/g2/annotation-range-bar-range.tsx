@@ -44,14 +44,14 @@ export default function G2ChartComponent_annotation_range_bar_range() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           height: 500,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data([
             { y: [0, 25], region: '1' },
             { y: [25, 50], region: '2' },
@@ -62,7 +62,7 @@ export default function G2ChartComponent_annotation_range_bar_range() {
           .style('fillOpacity', 0.4)
           .animate('enter', { type: 'fadeIn' });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data(data)
           .encode('x', '职业')
@@ -82,7 +82,7 @@ export default function G2ChartComponent_annotation_range_bar_range() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/range/demo/bar-range.ts:", error);

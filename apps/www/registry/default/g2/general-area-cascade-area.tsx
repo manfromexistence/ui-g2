@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_area_cascade_area() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_area_cascade_area() {
             'https://gw.alipayobjects.com/os/bmw-prod/f38a8ad0-6e1f-4bb3-894c-7db50781fdec.json',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .transform({ type: 'stackY', orderBy: 'maxIndex', reverse: true })
           .encode('x', (d) => new Date(d.year))
@@ -47,7 +47,7 @@ export default function G2ChartComponent_general_area_cascade_area() {
           .axis('y', { labelFormatter: '~s' })
           .tooltip({ channel: 'y', valueFormatter: '.2f' });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .transform({ type: 'stackY', orderBy: 'maxIndex', reverse: true, y: 'y1' })
           .encode('x', (d) => new Date(d.year))
@@ -62,7 +62,7 @@ export default function G2ChartComponent_general_area_cascade_area() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/cascade-area.ts:", error);

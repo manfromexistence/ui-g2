@@ -32,13 +32,13 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data({
             type: 'fetch',
@@ -66,7 +66,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
             offset: [0, -10],
             mount: 'body',
             render: (event, { title, items }) => {
-              const plot = chartRef.current
+              const plot = g2ChartInstance.current
                 .getContext()
                 .canvas.document.getElementsByClassName('plot')[0];
               const plotBounds = plot.getRenderBounds();
@@ -133,7 +133,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-click.ts:", error);

@@ -24,13 +24,13 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data([
             { Day: 1, Value: 54.8 },
             { Day: 2, Value: 112.1 },
@@ -52,7 +52,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
         
         chart.interval().encode('x', 'Day').encode('y', 'Value');
         
-        chartRef.current
+        g2ChartInstance.current
           .range()
           .data({
             transform: [
@@ -66,7 +66,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
           .encode('y', 'y')
           .encode('color', '#F4664A');
         
-        chartRef.current
+        g2ChartInstance.current
           .lineY()
           .data([300])
           .style('stroke', '#F4664A')
@@ -91,7 +91,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
             .map(({ Day: x, Value: y }) => ({ x: [x, x], y: [threshold, y] }));
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/interval-threshold.ts:", error);

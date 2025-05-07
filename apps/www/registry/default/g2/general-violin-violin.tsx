@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_violin_violin() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -35,7 +35,7 @@ export default function G2ChartComponent_general_violin_violin() {
           value: 'https://assets.antv.antgroup.com/g2/species.json',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .density()
           .data({
             transform: [
@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_violin_violin() {
           .encode('size', 'size')
           .tooltip(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .boxplot()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -66,7 +66,7 @@ export default function G2ChartComponent_general_violin_violin() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/violin/demo/violin.ts:", error);

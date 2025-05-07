@@ -24,12 +24,12 @@ export default function G2ChartComponent_component_axis_axis_xy() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .scale('x', {
             type: 'linear',
             domain: [5, 10],
@@ -43,7 +43,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
         
         chart.axisX().attr('title', 'AxisX');
         
-        chartRef.current
+        g2ChartInstance.current
           .axisY()
           .attr('title', 'AxisY')
           .attr('tickCount', 10)
@@ -53,7 +53,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-xy.ts:", error);

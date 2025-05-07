@@ -24,12 +24,12 @@ export default function G2ChartComponent_component_axis_axis_polar() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .coordinate({ type: 'polar' })
           .scale('x', {
             type: 'linear',
@@ -42,12 +42,12 @@ export default function G2ChartComponent_component_axis_axis_polar() {
             range: [1, 0],
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .axisX()
           .attr('title', 'AxisX')
           .attr('tickFilter', (_, i, ticks) => i && i !== ticks.length - 1);
         
-        chartRef.current
+        g2ChartInstance.current
           .axisY()
           .attr('title', 'AxisY')
           .style('labelFontSize', 14)
@@ -56,7 +56,7 @@ export default function G2ChartComponent_component_axis_axis_polar() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-polar.ts:", error);

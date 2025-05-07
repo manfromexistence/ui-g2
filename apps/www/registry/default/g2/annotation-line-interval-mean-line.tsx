@@ -24,7 +24,7 @@ export default function G2ChartComponent_annotation_line_interval_mean_line() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -35,7 +35,7 @@ export default function G2ChartComponent_annotation_line_interval_mean_line() {
           value: 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .transform({ type: 'groupX', y: 'mean' })
           .encode('x', (d) => new Date(d.date).getUTCMonth())
@@ -43,7 +43,7 @@ export default function G2ChartComponent_annotation_line_interval_mean_line() {
           .scale('y', { tickCount: 5, domainMax: 6 })
           .tooltip({ channel: 'y', valueFormatter: '.2f' });
         
-        chartRef.current
+        g2ChartInstance.current
           .lineY()
           .transform({ type: 'groupX', y: 'mean' }) // groupX 为分组并对指定的通道进行聚合，可以理解为把数据通过 y 通道的数据聚合， 然后取平均值(mean) 变更为一条数据。
           .encode('y', 'precipitation')
@@ -54,7 +54,7 @@ export default function G2ChartComponent_annotation_line_interval_mean_line() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/interval-mean-line.ts:", error);

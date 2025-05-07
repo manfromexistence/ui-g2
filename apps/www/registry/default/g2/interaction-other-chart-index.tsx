@@ -24,12 +24,12 @@ export default function G2ChartComponent_interaction_other_chart_index() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .data({
             type: 'fetch',
@@ -48,7 +48,7 @@ export default function G2ChartComponent_interaction_other_chart_index() {
             fontSize: 10,
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .interaction('chartIndex', {
             ruleStroke: '#aaa',
             labelDx: 5,
@@ -61,7 +61,7 @@ export default function G2ChartComponent_interaction_other_chart_index() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/other/demo/chart-index.ts:", error);

@@ -32,7 +32,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -52,14 +52,14 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
           { time: '12', north: 5, south: -9 },
         ]);
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', (d) => d.time)
           .encode('y', 'north')
           .encode('color', () => 'north')
           .encode('shape', 'smooth');
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', (d) => d.time)
           .encode('y', 'south')
@@ -112,7 +112,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-two.ts:", error);

@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
@@ -55,7 +55,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
         
         chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chartRef.current
+        g2ChartInstance.current
           .data(data)
           .scale('color', {
             range: [colors['ranges'], colors['measures'], colors['target']].flat(),
@@ -66,7 +66,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
             },
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .axis({
             y: {
@@ -82,7 +82,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
           .encode('color', (d, i) => ['优', '良', '差'][i])
           .style('maxWidth', 30);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'title')
           .encode('y', 'measures')
@@ -95,7 +95,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
             dx: 5,
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .encode('x', 'title')
           .encode('y', 'target')
@@ -112,7 +112,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/bullet/demo/bullet-datas.ts:", error);

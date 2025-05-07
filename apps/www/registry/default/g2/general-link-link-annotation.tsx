@@ -330,14 +330,14 @@ export default function G2ChartComponent_general_link_link_annotation() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           paddingRight: 20,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .link()
           .data([1])
           .encode('x', [() => incdomain[0], () => incdomain[1]])
@@ -352,7 +352,7 @@ export default function G2ChartComponent_general_link_link_annotation() {
           })
           .style('stroke', '#000');
         
-        chartRef.current
+        g2ChartInstance.current
           .link()
           .data([0.6, 0.7, 0.8, 0.9])
           .encode('x', [() => incdomain[0], () => incdomain[1]])
@@ -368,7 +368,7 @@ export default function G2ChartComponent_general_link_link_annotation() {
           .style('stroke', '#000')
           .style('opacity', 0.2);
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .data(income)
           .encode('x', 'm')
@@ -379,7 +379,7 @@ export default function G2ChartComponent_general_link_link_annotation() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/link/demo/link-annotation.ts:", error);

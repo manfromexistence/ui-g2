@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           height: 640,
           padding: 0,
@@ -34,7 +34,7 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
         
         chart.coordinate({ type: 'theta', innerRadius: 0.6 });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data({
             type: 'fetch',
@@ -50,7 +50,7 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
           })
           .legend(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .style('text', 'Donut')
           // Relative position
@@ -60,9 +60,9 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
           .style('fontWeight', 'bold')
           .style('textAlign', 'center');
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
-          .style('text', 'chartRef.current')
+          .style('text', 'g2ChartInstance.current')
           // Absolute position
           .style('x', 640 / 2 - 16)
           .style('y', 360)
@@ -72,7 +72,7 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie-donut-text.ts:", error);

@@ -24,14 +24,14 @@ export default function G2ChartComponent_style_theme_dark() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 500,
           height: 400,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .theme({
             type: 'classicDark',
             view: {
@@ -40,7 +40,7 @@ export default function G2ChartComponent_style_theme_dark() {
           }) // Apply dark theme.
           .coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -73,7 +73,7 @@ export default function G2ChartComponent_style_theme_dark() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/dark.ts:", error);

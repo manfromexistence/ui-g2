@@ -38,7 +38,7 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -46,7 +46,7 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
         
         chart.data(data);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'year')
           .encode('y', 'sales')
@@ -118,7 +118,7 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
           };
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/25d-column.ts:", error);

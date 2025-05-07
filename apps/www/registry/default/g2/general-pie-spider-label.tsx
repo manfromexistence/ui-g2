@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_pie_spider_label() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 500,
           height: 400,
@@ -33,7 +33,7 @@ export default function G2ChartComponent_general_pie_spider_label() {
         
         chart.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -70,7 +70,7 @@ export default function G2ChartComponent_general_pie_spider_label() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/spider-label.ts:", error);

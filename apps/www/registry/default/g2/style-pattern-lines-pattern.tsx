@@ -25,7 +25,7 @@ export default function G2ChartComponent_style_pattern_lines_pattern() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 500,
           height: 400,
@@ -36,7 +36,7 @@ export default function G2ChartComponent_style_pattern_lines_pattern() {
         
         const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -72,7 +72,7 @@ export default function G2ChartComponent_style_pattern_lines_pattern() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/pattern/demo/lines-pattern.ts:", error);

@@ -24,14 +24,14 @@ export default function G2ChartComponent_graph_hierarchy_circle_packing() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 1000,
           height: 1000,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .pack()
           .data({
             type: 'fetch',
@@ -54,7 +54,7 @@ export default function G2ChartComponent_graph_hierarchy_circle_packing() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/circle-packing.ts:", error);

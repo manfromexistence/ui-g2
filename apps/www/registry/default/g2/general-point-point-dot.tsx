@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_point_point_dot() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 800,
           height: 1200,
@@ -41,7 +41,7 @@ export default function G2ChartComponent_general_point_point_dot() {
             'https://gw.alipayobjects.com/os/bmw-prod/b6f2ff26-b232-447d-a613-0df5e30104a0.csv',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .link()
           .scale('y', { labelFormatter: '.0%' })
           .transform({ type: 'groupX', y: 'min', y1: 'max' })
@@ -49,7 +49,7 @@ export default function G2ChartComponent_general_point_point_dot() {
           .style('stroke', '#000')
           .tooltip(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .scale('color', { palette: 'spectral' })
           .call(xy)
@@ -64,7 +64,7 @@ export default function G2ChartComponent_general_point_point_dot() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-dot.ts:", error);

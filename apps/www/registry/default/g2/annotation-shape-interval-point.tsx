@@ -24,7 +24,7 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
           paddingRight: 30,
@@ -48,7 +48,7 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
           { x: 'Dec', tick: 15.5, value: 17.2 },
         ]);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'x')
           .encode('y', 'value')
@@ -64,7 +64,7 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
             textAlign: 'start',
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .encode('x', 'x')
           .encode('y', 'tick')
@@ -75,7 +75,7 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/interval-point.ts:", error);

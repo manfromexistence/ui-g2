@@ -25,7 +25,7 @@ export default function G2ChartComponent_style_rough_radial() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
               container: chartRef.current,
               height: 480,
               plugins: [new Plugin()],
@@ -34,7 +34,7 @@ export default function G2ChartComponent_style_rough_radial() {
         
             chart.coordinate({ type: 'theta' });
         
-            chartRef.current
+            g2ChartInstance.current
               .interval()
               .transform({ type: 'stackY' })
               .data({
@@ -83,7 +83,7 @@ export default function G2ChartComponent_style_rough_radial() {
           },
         });
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/rough/demo/radial.ts:", error);

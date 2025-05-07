@@ -24,13 +24,13 @@ export default function G2ChartComponent_annotation_line_point_line() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .data([
             { x: 95, y: 95, z: 13.8, name: 'BE', country: 'Belgium' },
@@ -67,7 +67,7 @@ export default function G2ChartComponent_annotation_line_point_line() {
           })
           .legend('size', false);
         
-        chartRef.current
+        g2ChartInstance.current
           .lineY()
           .data([50])
           .style('stroke', '#000')
@@ -84,7 +84,7 @@ export default function G2ChartComponent_annotation_line_point_line() {
             backgroundOpacity: 0.15,
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .lineX()
           .data([65])
           .style('stroke', '#000')
@@ -102,7 +102,7 @@ export default function G2ChartComponent_annotation_line_point_line() {
           });
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/point-line.ts:", error);

@@ -111,7 +111,7 @@ export default function G2ChartComponent_intelligent_insight_category_outlier() 
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -125,7 +125,7 @@ export default function G2ChartComponent_intelligent_insight_category_outlier() 
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/category-outlier.ts:", error);

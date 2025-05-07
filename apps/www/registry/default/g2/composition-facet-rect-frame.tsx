@@ -24,7 +24,7 @@ export default function G2ChartComponent_composition_facet_rect_frame() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 928,
           height: 320,
@@ -33,7 +33,7 @@ export default function G2ChartComponent_composition_facet_rect_frame() {
         });
         
         
-        const facetRect = chartRef.current
+        const facetRect = g2ChartInstance.current
           .facetRect()
           .data({
             type: 'fetch',
@@ -54,7 +54,7 @@ export default function G2ChartComponent_composition_facet_rect_frame() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect-frame.ts:", error);

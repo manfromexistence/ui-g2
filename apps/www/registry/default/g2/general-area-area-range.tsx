@@ -93,13 +93,13 @@ export default function G2ChartComponent_general_area_area_range() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data({
             value: data,
             transform: [
@@ -115,7 +115,7 @@ export default function G2ChartComponent_general_area_area_range() {
           })
           .axis('y', { title: false });
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', (d) => new Date(d.time).toLocaleDateString())
           .encode('y', ['low', 'high'])
@@ -126,7 +126,7 @@ export default function G2ChartComponent_general_area_area_range() {
             items: [(d) => ({ name: '温度区间', value: `${d.low}-${d.high}` })],
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .data(averages)
           .encode('x', (d) => new Date(d.time).toLocaleDateString())
@@ -142,7 +142,7 @@ export default function G2ChartComponent_general_area_area_range() {
               }),
             ],
           });
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .data(averages)
           .encode('x', (d) => new Date(d.time).toLocaleDateString())
@@ -153,7 +153,7 @@ export default function G2ChartComponent_general_area_area_range() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-range.ts:", error);

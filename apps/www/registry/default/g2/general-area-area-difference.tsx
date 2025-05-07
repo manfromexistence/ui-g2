@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_area_area_difference() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -35,7 +35,7 @@ export default function G2ChartComponent_general_area_area_difference() {
           value: 'https://assets.antv.antgroup.com/g2/temperature-compare.json',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .data({
             transform: [
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_area_area_difference() {
           .encode('shape', 'hvh');
         // .scale('color', { range: ['#67a9cf', '#ef8a62'] });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'San Francisco')
@@ -64,7 +64,7 @@ export default function G2ChartComponent_general_area_area_difference() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-difference.ts:", error);

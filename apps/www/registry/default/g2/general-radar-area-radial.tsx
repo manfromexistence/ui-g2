@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_radar_area_radial() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 954,
           height: 954,
@@ -47,7 +47,7 @@ export default function G2ChartComponent_general_radar_area_radial() {
         
         chart.coordinate({ type: 'polar', innerRadius: 0.4 });
         
-        chartRef.current
+        g2ChartInstance.current
           .axis('y', {
             zIndex: 1,
             direction: 'center',
@@ -63,21 +63,21 @@ export default function G2ChartComponent_general_radar_area_radial() {
           })
           .scale('x', { utc: true });
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', 'date')
           .encode('y', ['minmin', 'maxmax'])
           .style('fill', 'lightsteelblue')
           .style('fillOpacity', 0.2);
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', 'date')
           .encode('y', ['min', 'max'])
           .style('fill', 'steelblue')
           .style('fillOpacity', 0.2);
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', 'date')
           .encode('y', 'avg')
@@ -87,7 +87,7 @@ export default function G2ChartComponent_general_radar_area_radial() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/area-radial.ts:", error);

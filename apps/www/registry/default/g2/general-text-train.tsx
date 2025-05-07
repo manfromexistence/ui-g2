@@ -24,7 +24,7 @@ export default function G2ChartComponent_general_text_train() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 600,
           height: 300,
@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_text_train() {
         const Y = [-3, -2, -1, 0, 1, 2, 3];
         
         // Time axis
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .data(X.slice(1))
           .encode('x', (v) => v)
@@ -48,7 +48,7 @@ export default function G2ChartComponent_general_text_train() {
           .axis(false);
         
         // South / North label
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .data(['South', 'North'])
           .encode('x', 4)
@@ -60,7 +60,7 @@ export default function G2ChartComponent_general_text_train() {
           .axis(false);
         
         // NLB
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .data({
             type: 'fetch',
@@ -78,7 +78,7 @@ export default function G2ChartComponent_general_text_train() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/train.ts:", error);

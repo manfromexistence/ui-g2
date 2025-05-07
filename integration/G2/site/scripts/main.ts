@@ -65,7 +65,8 @@ function main() {
                         const chartIdBase = targetReactFileName.replace(/\.tsx$/, '');
 
                         const originalG2SourceCode = fs.readFileSync(originalG2FilePath, 'utf-8');
-                        const g2Logic = extractAndAdaptG2Code(originalG2SourceCode, 'chartRef.current');
+                        // Pass both g2InstanceVarName ('g2ChartInstance.current') and domContainerVarName ('chartRef.current')
+                        const g2Logic = extractAndAdaptG2Code(originalG2SourceCode, 'g2ChartInstance.current', 'chartRef.current');
 
                         const reactComponentContent = getReactComponentTemplate(originalG2FilePath, cardTitle, chartIdBase, g2Logic, baseWorkspaceDir);
                         fs.writeFileSync(targetReactFilePath, reactComponentContent);

@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_funnel_mirror_funnel() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_funnel_mirror_funnel() {
           transform: [{ type: 'transpose' }],
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data({
             transform: [
@@ -83,7 +83,7 @@ export default function G2ChartComponent_general_funnel_mirror_funnel() {
           .style('stroke', '#FFF')
           .animate('enter', { type: 'fadeIn' });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data({
             transform: [
@@ -107,7 +107,7 @@ export default function G2ChartComponent_general_funnel_mirror_funnel() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/funnel/demo/mirror-funnel.ts:", error);

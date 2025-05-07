@@ -24,7 +24,7 @@ export default function G2ChartComponent_layout_layout_chart_layout() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({ container: chartRef.current });
+        g2ChartInstance.current = new Chart({ container: chartRef.current });
         
         
         chart.options({
@@ -65,7 +65,7 @@ export default function G2ChartComponent_layout_layout_chart_layout() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/layout/layout/demo/chart-layout.ts:", error);

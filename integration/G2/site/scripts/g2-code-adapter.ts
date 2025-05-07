@@ -1,5 +1,9 @@
 // @ts-nocheck
-export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName = "chartRef.current") {
+export function extractAndAdaptG2Code(
+    originalG2SourceCode: string, 
+    g2InstanceVarName = "g2ChartInstance.current", 
+    domContainerVarName = "chartRef.current"
+) {
     let g2CodeBlock = "";
     const imports = new Set<string>();
     let helperCode = "";
@@ -31,7 +35,8 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
     // 2. Attempt to extract helper functions and top-level const/let.
     // These are items defined *before* the main chart initialization.
     const potentialHelpers = [];
-    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?:;|}(?!(?:\s*else|\s*catch|\s*finally|\s*\.\s*\w+|\s*,)))[\s;]*(?=\s*\n|\s*$|^(?:export|async|const|let|var|function|class))/gm;
+    // Refined regex to include function* (generator functions)
+    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?:;|}(?!(?:\s*else|\s*catch|\s*finally|\s*\.\s*\w+|\s*,)))[\s;]*(?=\s*\n|\s*$|^(?:export|async|const|let|var|function(?:\s*\*)?|class))/gm;
     
     const codeToSearchForHelpers = initializationStartIndex !== -1 
         ? originalG2SourceCode.substring(0, initializationStartIndex) 
@@ -50,18 +55,18 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + potentialHelpers.join("\n\n") + "\n";
         
         // Always attempt to replace literal 'chart' and 'chart.'
-        helperCode = helperCode.replace(/\bchart\.(?!\w)/g, `${chartRefName}.`);
-        helperCode = helperCode.replace(/\bchart\b(?!\.|\w)/g, `${chartRefName}`);
+        helperCode = helperCode.replace(/\bchart\.(?!\w)/g, `${g2InstanceVarName}.`);
+        helperCode = helperCode.replace(/\bchart\b(?!\.|\w)/g, `${g2InstanceVarName}`);
 
         // If originalChartVarName was identified and is different from 'chart', replace it too.
         if (originalChartVarName && originalChartVarName !== 'chart') {
             helperCode = helperCode.replace(
                 new RegExp(`\\b${originalChartVarName}\\.(?!\\w)`, "g"), 
-                `${chartRefName}.`
+                `${g2InstanceVarName}.`
             );
             helperCode = helperCode.replace(
                 new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\w)`, "g"), 
-                `${chartRefName}`
+                `${g2InstanceVarName}`
             );
         }
     }
@@ -70,48 +75,50 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
     if (chartVarMatch) { 
         let chartArgs = chartVarMatch[2];
 
+        // Use domContainerVarName for the container property
         chartArgs = chartArgs.replace(
             /container\s*:\s*(['"`])?[a-zA-Z0-9_]+(['"`])?/,
-            `container: ${chartRefName}`
+            `container: ${domContainerVarName}`
         );
         chartArgs = chartArgs.replace(
             /container\s*:\s*document\.getElementById\([^)]+\)/,
-            `container: ${chartRefName}`
+            `container: ${domContainerVarName}`
         );
 
-        g2CodeBlock = `${chartRefName} = new Chart(${chartArgs});\n`;
+        // Use g2InstanceVarName for assigning the new Chart instance
+        g2CodeBlock = `${g2InstanceVarName} = new Chart(${chartArgs});\n`;
 
         const postInitializationCode = originalG2SourceCode.substring(initializationEndIndex);
         
         let adaptedPostInitializationCode = postInitializationCode;
 
-        // Always attempt to replace literal 'chart' and 'chart.'
+        // Always attempt to replace literal 'chart' and 'chart.' with g2InstanceVarName
         adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
             /\bchart\.(?!\w)/g,
-            `${chartRefName}.`
+            `${g2InstanceVarName}.`
         );
         adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
             /\bchart\b(?!\.|\w)/g,
-            `${chartRefName}`
+            `${g2InstanceVarName}`
         );
         
-        // If originalChartVarName was identified and is different from 'chart', replace it too.
+        // If originalChartVarName was identified and is different from 'chart', replace it too with g2InstanceVarName
         if (originalChartVarName && originalChartVarName !== 'chart') {
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
                 new RegExp(`\\b${originalChartVarName}\\.(?!\\w)`, "g"), 
-                `${chartRefName}.`
+                `${g2InstanceVarName}.`
             );
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
                 new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\w)`, "g"), 
-                `${chartRefName}`
+                `${g2InstanceVarName}`
             );
         }
 
         g2CodeBlock += adaptedPostInitializationCode;
 
-        const renderCallPatternInAdapted = new RegExp(`\\b${chartRefName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;`);
+        const renderCallPatternInAdapted = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;`);
         if (!renderCallPatternInAdapted.test(adaptedPostInitializationCode)) {
-            g2CodeBlock += `\n// TODO: Ensure '${chartRefName}.render()' is called appropriately.`;
+            g2CodeBlock += `\n// TODO: Ensure '${g2InstanceVarName}.render()' is called appropriately.`;
             
             if (originalChartVarName) {
                 const originalRenderRegex = new RegExp(`\\b${originalChartVarName}\\.render\\s*\\(\\s*\\)\\s*;`);
@@ -133,7 +140,7 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
     } else {
         // Fallback if no `new Chart(...)` was found by the regex
         g2CodeBlock = `// TODO: Could not automatically find 'new Chart(...)' initialization.\n`;
-        g2CodeBlock += `// Please review the original script and adapt the G2 logic, ensuring to use '${chartRefName}'.\n`;
+        g2CodeBlock += `// Please review the original script and adapt the G2 logic, ensuring to use '${g2InstanceVarName}' for the chart instance and '${domContainerVarName}' for the container.\n`;
         if (helperCode.trim().length > 0) {
              g2CodeBlock += `// Some top-level declarations might have been extracted into 'helpers' above.\n`;
         }
@@ -146,14 +153,14 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         }
         
         // Basic adaptation attempt for the snippet
-        displaySnippet = displaySnippet.replace(/\bchart\.(?!\w)/g, `${chartRefName}.`);
-        displaySnippet = displaySnippet.replace(/\bchart\b(?!\.|\w)/g, `${chartRefName}`);
+        displaySnippet = displaySnippet.replace(/\bchart\.(?!\w)/g, `${g2InstanceVarName}.`);
+        displaySnippet = displaySnippet.replace(/\bchart\b(?!\.|\w)/g, `${g2InstanceVarName}`);
         // If originalChartVarName was known and different, also try to adapt it in the snippet
         if (originalChartVarName && originalChartVarName !== 'chart') {
-            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\.(?!\\w)`, "g"), `${chartRefName}.`);
-            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\w)`, "g"), `${chartRefName}`);
+            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\.(?!\\w)`, "g"), `${g2InstanceVarName}.`);
+            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\w)`, "g"), `${g2InstanceVarName}`);
         }
-        g2CodeBlock += `// (Attempted to adapt chart references to '${chartRefName}' in the snippet below)\n`;
+        g2CodeBlock += `// (Attempted to adapt chart references to '${g2InstanceVarName}' in the snippet below)\n`;
         
         g2CodeBlock += displaySnippet.split('\n').map(l => `// ${l}`).join('\n');
     }

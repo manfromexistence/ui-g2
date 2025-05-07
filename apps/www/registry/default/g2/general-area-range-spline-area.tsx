@@ -24,13 +24,13 @@ export default function G2ChartComponent_general_area_range_spline_area() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data({
             type: 'fetch',
             value: 'https://assets.antv.antgroup.com/g2/range-spline-area.json',
@@ -44,7 +44,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .axis('y', { title: false })
           .scale('x', { type: 'linear', tickCount: 10 });
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', 'x')
           .encode('y', ['low', 'high'])
@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .style('fill', '#64b5f6')
           .style('lineWidth', 1);
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .encode('x', 'x')
           .encode('y', 'v2')
@@ -61,7 +61,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .encode('shape', 'point')
           .tooltip('v2');
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', 'x')
           .encode('y', 'v3')
@@ -70,7 +70,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/range-spline-area.ts:", error);

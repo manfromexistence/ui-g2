@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_pie_pie_base() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -39,7 +39,7 @@ export default function G2ChartComponent_general_pie_pie_base() {
         
         chart.coordinate({ type: 'theta', outerRadius: 0.8 });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data(data)
           .transform({ type: 'stackY' })
@@ -57,7 +57,7 @@ export default function G2ChartComponent_general_pie_pie_base() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie-base.ts:", error);

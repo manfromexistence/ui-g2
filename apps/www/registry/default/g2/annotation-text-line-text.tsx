@@ -24,13 +24,13 @@ export default function G2ChartComponent_annotation_text_line_text() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data({
             type: 'fetch',
             value:
@@ -46,13 +46,13 @@ export default function G2ChartComponent_annotation_text_line_text() {
           })
           .axis('x', { labelAutoHide: 'greedy' });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'value')
           .encode('color', 'type');
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .data([new Date('2017-12-17'), 100])
           .style({
@@ -75,7 +75,7 @@ export default function G2ChartComponent_annotation_text_line_text() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/text/demo/line-text.ts:", error);

@@ -24,7 +24,7 @@ export default function G2ChartComponent_animation_group_point() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -32,7 +32,7 @@ export default function G2ChartComponent_animation_group_point() {
         
         chart.style('plotFill', '#000');
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .data({
             type: 'fetch',
@@ -58,7 +58,7 @@ export default function G2ChartComponent_animation_group_point() {
           .attr('padding', 0)
           .axis(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .style('text', 'Polio incidence rates')
           .style('x', '50%')
@@ -68,7 +68,7 @@ export default function G2ChartComponent_animation_group_point() {
           .style('fill', '#666')
           .animate('enter', { delay: 2000 });
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .style('text', 'United States, 1950s')
           .style('x', '50%')
@@ -81,7 +81,7 @@ export default function G2ChartComponent_animation_group_point() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/point.ts:", error);

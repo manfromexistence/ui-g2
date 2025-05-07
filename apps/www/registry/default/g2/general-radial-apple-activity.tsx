@@ -24,14 +24,14 @@ export default function G2ChartComponent_general_radial_apple_activity() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 244,
           height: 244,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .data([
             {
               name: 'activity1',
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           ])
           .coordinate({ type: 'radial', innerRadius: 0.2 });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'name')
           .encode('y', 1)
@@ -64,7 +64,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           .style('fillOpacity', 0.25)
           .animate(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'name')
           .encode('y', 'percent')
@@ -82,7 +82,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
             duration: 1000,
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .image()
           .encode('x', 'name')
           .encode('y', 0)
@@ -92,7 +92,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/apple-activity.ts:", error);

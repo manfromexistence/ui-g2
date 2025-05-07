@@ -24,7 +24,7 @@ export default function G2ChartComponent_component_legend_custom() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
@@ -39,7 +39,7 @@ export default function G2ChartComponent_component_legend_custom() {
         
         const colorField = 'genre';
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data(data)
           .encode('x', 'genre')
@@ -49,7 +49,7 @@ export default function G2ChartComponent_component_legend_custom() {
         
         chart.render().then(renderCustomLegend);
         
-        function renderCustomLegend(chartRef.current) {
+        function renderCustomLegend(g2ChartInstance.current) {
           // Get color scale.
           const scale = chart.getScaleByChannel('color');
           const { domain, range } = scale.getOptions();
@@ -99,7 +99,7 @@ export default function G2ChartComponent_component_legend_custom() {
           }
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
         // Review original script and adapt necessary logic, including the render call.
         // Original script content after initialization (partial for reference):

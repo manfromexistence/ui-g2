@@ -25,7 +25,7 @@ export default function G2ChartComponent_general_mini_progress() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 480,
           height: 60,
@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_mini_progress() {
           transform: [{ type: 'transpose' }],
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data([1, progress])
           .encode('y', (d) => d)
@@ -59,7 +59,7 @@ export default function G2ChartComponent_general_mini_progress() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/progress.ts:", error);

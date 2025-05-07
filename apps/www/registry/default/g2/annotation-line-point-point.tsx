@@ -24,7 +24,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           height: 180,
         });
@@ -41,14 +41,14 @@ export default function G2ChartComponent_annotation_line_point_point() {
           ],
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .encode('x', 'body_mass_g')
           .encode('y', 'species')
           .style('stroke', '#000')
           .tooltip({ channel: 'x' });
         
-        chartRef.current
+        g2ChartInstance.current
           .link()
           .transform({ type: 'groupY', x: 'min', x1: 'max' })
           .encode('x', 'body_mass_g')
@@ -56,7 +56,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
           .style('stroke', '#000')
           .tooltip(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .transform({ type: 'groupY', x: 'median' })
           .encode('y', 'species')
@@ -68,7 +68,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/point-point.ts:", error);

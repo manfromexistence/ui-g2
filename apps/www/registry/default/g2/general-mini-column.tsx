@@ -28,7 +28,7 @@ export default function G2ChartComponent_general_mini_column() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           width: 480,
           height: 80,
@@ -37,13 +37,13 @@ export default function G2ChartComponent_general_mini_column() {
         
         chart.data(data);
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', (_, idx) => idx)
           .encode('y', (d) => d)
           .axis(false);
         
-        chartRef.current
+        g2ChartInstance.current
           .lineY()
           .data([700])
           .style('arrow', true)
@@ -63,7 +63,7 @@ export default function G2ChartComponent_general_mini_column() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/column.ts:", error);

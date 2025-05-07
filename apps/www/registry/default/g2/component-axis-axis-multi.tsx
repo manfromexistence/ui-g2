@@ -24,13 +24,13 @@ export default function G2ChartComponent_component_axis_axis_multi() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .data({
             type: 'fetch',
@@ -41,7 +41,7 @@ export default function G2ChartComponent_component_axis_axis_multi() {
           .encode('y', 'frequency')
           .axis('y', { labelFormatter: '.0%' });
         
-        chartRef.current
+        g2ChartInstance.current
           .axisY()
           .attr('position', 'right')
           .scale('y', {
@@ -54,7 +54,7 @@ export default function G2ChartComponent_component_axis_axis_multi() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-multi.ts:", error);

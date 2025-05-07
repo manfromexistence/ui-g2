@@ -24,7 +24,7 @@ export default function G2ChartComponent_style_theme_layout_area() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           height: 240,
           marginLeft: 40,
@@ -42,7 +42,7 @@ export default function G2ChartComponent_style_theme_layout_area() {
           contentFill: '#76b7b2',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .data({
             type: 'fetch',
@@ -63,7 +63,7 @@ export default function G2ChartComponent_style_theme_layout_area() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/layout-area.ts:", error);

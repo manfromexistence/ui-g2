@@ -101,7 +101,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -109,7 +109,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
         
         chart.data(data);
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', 'Month')
           .encode('y', 'Temperature')
@@ -125,7 +125,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
             titleFill: '#EE6666',
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .interval()
           .encode('x', 'Month')
           .encode('y', 'Evaporation')
@@ -138,7 +138,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
             titleFill: '#5470C6',
           });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', 'Month')
           .encode('y', 'Precipitation')
@@ -155,7 +155,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/multi-line-sync.ts:", error);

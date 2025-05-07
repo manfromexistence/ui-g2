@@ -24,7 +24,7 @@ export default function G2ChartComponent_animation_group_line() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -35,7 +35,7 @@ export default function G2ChartComponent_animation_group_line() {
           value: 'https://assets.antv.antgroup.com/g2/doughnut-purchases.json',
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .encode('x', 'year')
           .encode('y', 'count')
@@ -47,7 +47,7 @@ export default function G2ChartComponent_animation_group_line() {
           .animate('enter', { type: 'pathIn', duration: 3000 })
           .axis('y', { labelFormatter: '~s' });
         
-        chartRef.current
+        g2ChartInstance.current
           .point()
           .transform({ type: 'stackEnter' })
           .encode('x', 'year')
@@ -56,7 +56,7 @@ export default function G2ChartComponent_animation_group_line() {
           .encode('shape', 'point')
           .animate('enter', { duration: 300 });
         
-        chartRef.current
+        g2ChartInstance.current
           .text()
           .transform({ type: 'stackEnter' })
           .encode('x', 'year')
@@ -70,7 +70,7 @@ export default function G2ChartComponent_animation_group_line() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/line.ts:", error);

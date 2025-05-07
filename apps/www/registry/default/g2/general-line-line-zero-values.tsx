@@ -24,12 +24,12 @@ export default function G2ChartComponent_general_line_line_zero_values() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .data([
             { date: '06-10', count: 0, type: '测试' },
@@ -48,7 +48,7 @@ export default function G2ChartComponent_general_line_line_zero_values() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-zero-values.ts:", error);

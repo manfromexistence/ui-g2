@@ -24,7 +24,7 @@ export default function G2ChartComponent_annotation_line_histogram_mean_line() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -41,14 +41,14 @@ export default function G2ChartComponent_annotation_line_histogram_mean_line() {
           ],
         });
         
-        chartRef.current
+        g2ChartInstance.current
           .rect()
           .transform({ type: 'binX', y: 'count', thresholds: 9 })
           .encode('x', 'IMDB Rating')
           .scale('y', { domainMax: 1000 })
           .style('inset', 1);
         
-        chartRef.current
+        g2ChartInstance.current
           .lineX()
           .transform({ type: 'groupColor', x: 'mean' }) // groupColor 为分组并对指定的通道进行聚合，可以理解为把数据通过 x 通道的数据 取平均值(mean) 变更为一条数据。
           .encode('x', 'IMDB Rating')
@@ -59,7 +59,7 @@ export default function G2ChartComponent_annotation_line_histogram_mean_line() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/histogram-mean-line.ts:", error);

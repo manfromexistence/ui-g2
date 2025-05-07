@@ -24,7 +24,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
         
@@ -47,7 +47,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
           { date: '2007-05-07', close: 103.92 },
         ];
         
-        chartRef.current
+        g2ChartInstance.current
           .line()
           .data(data)
           .encode('x', (d) => new Date(d.date))
@@ -115,7 +115,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
           return [render, remove];
         }
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/brush/demo/brush-emit.ts:", error);

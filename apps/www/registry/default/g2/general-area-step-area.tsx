@@ -35,7 +35,7 @@ export default function G2ChartComponent_general_area_step_area() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        chartRef.current = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
@@ -43,7 +43,7 @@ export default function G2ChartComponent_general_area_step_area() {
         
         chart.data(data);
         
-        chartRef.current
+        g2ChartInstance.current
           .area()
           .encode('x', 'year')
           .encode('y', 'value')
@@ -64,7 +64,7 @@ export default function G2ChartComponent_general_area_step_area() {
         
         chart.render();
         
-        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/step-area.ts:", error);
