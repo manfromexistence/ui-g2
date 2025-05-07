@@ -21,11 +21,11 @@ import {
 
 // Helper code extracted from original (review and adapt if necessary):
 function cameraButton(chart) {
-  const node = chart.getContainer();
+  const node = g2ChartInstance.current.getContainer();
 
 function legendColor(chart) {
   // 创建 Legend 并且挂在图例
-  const node = chart.getContainer();
+  const node = g2ChartInstance.current.getContainer();
 
 const renderer = new WebGLRenderer();
 

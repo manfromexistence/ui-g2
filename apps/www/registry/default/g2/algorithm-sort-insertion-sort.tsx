@@ -19,7 +19,7 @@ const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
 
 
 
-const keyframe = chart.timingKeyframe();
+const keyframe = g2ChartInstance.current.timingKeyframe();
 
 
 

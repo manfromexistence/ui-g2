@@ -511,7 +511,7 @@ const data = [
 
 
 function clip(chart) {
-  const { canvas } = chart.getContext();
+  const { canvas } = g2ChartInstance.current.getContext();
 
 
 export default function G2ChartComponent_general_line_line_area_clip_path() {

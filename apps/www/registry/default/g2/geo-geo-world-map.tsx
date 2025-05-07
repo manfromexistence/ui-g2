@@ -15,7 +15,7 @@ import {
 // Original G2 example path: integration/G2/site/examples/geo/geo/demo/world-map.ts
 
 // Helper code extracted from original (review and adapt if necessary):
-const geoView = chart.geoView().coordinate({ type: 'orthographic' });
+const geoView = g2ChartInstance.current.geoView().coordinate({ type: 'orthographic' });
 
 
 

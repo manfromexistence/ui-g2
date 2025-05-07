@@ -16,7 +16,7 @@ import {
 
 // Helper code extracted from original (review and adapt if necessary):
 function onStart() {
-  chart.emit('tooltip:disable');
+  g2ChartInstance.current.emit('tooltip:disable');
 
 async function onUpdate(e) {
   const data = await fetch(

@@ -381,7 +381,7 @@ const data = [
 
 
 
-const keyframe = chart.timingKeyframe({
+const keyframe = g2ChartInstance.current.timingKeyframe({
   direction: 'alternate',
   iterationCount: 4,
 });

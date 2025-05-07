@@ -30,7 +30,7 @@ const colorField = 'genre';
 
 function renderCustomLegend(chart) {
   // Get color scale.
-  const scale = chart.getScaleByChannel('color');
+  const scale = g2ChartInstance.current.getScaleByChannel('color');
 
 
 export default function G2ChartComponent_component_legend_custom() {

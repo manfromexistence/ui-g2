@@ -23,7 +23,7 @@ const sex = [
 ];
 
 
-const keyframe = chart.timingKeyframe();
+const keyframe = g2ChartInstance.current.timingKeyframe();
 
 
 

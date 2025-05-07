@@ -44,7 +44,7 @@ const data = M.flatMap((month) =>
 
 
 
-const facetCircle = chart.facetCircle().data(data).encode('position', 'month');
+const facetCircle = g2ChartInstance.current.facetCircle().data(data).encode('position', 'month');
 
 
 

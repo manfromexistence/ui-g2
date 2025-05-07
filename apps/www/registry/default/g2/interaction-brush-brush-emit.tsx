@@ -30,10 +30,10 @@ const data = [
 
 
 function onStart() {
-  chart.emit('tooltip:disable');
+  g2ChartInstance.current.emit('tooltip:disable');
 
 function onUpdate(e) {
-  const { canvas } = chart.getContext();
+  const { canvas } = g2ChartInstance.current.getContext();
 
 function onRemove(e) {
   const { nativeEvent } = e;

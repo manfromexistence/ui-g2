@@ -64,6 +64,14 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
 
         g2CodeBlock += adaptedPostInitializationCode;
 
+        // Adapt helper code if it exists and uses the original chart variable
+        if (helperCode && originalChartVarName) {
+            helperCode = helperCode.replace(
+                new RegExp(`\\b${originalChartVarName}\\.`, "g"), 
+                "g2ChartInstance.current."
+            );
+        }
+
         // Check if a render call was adapted. If not, add a TODO.
         const renderCallPatternInAdapted = /g2ChartInstance\.current\.render\s*\(\s*\)\s*;/;
         if (!renderCallPatternInAdapted.test(adaptedPostInitializationCode)) {
@@ -98,6 +106,6 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
     return {
         imports: Array.from(imports).join("\n"),
         g2Code: g2CodeBlock.trim(), // Trim potential trailing newlines
-        helpers: helperCode
+        helpers: helperCode // helperCode is now potentially adapted
     };
 }

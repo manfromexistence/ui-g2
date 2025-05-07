@@ -23,7 +23,7 @@ const scaleColor = (node) =>
 
 
 
-const layer = chart.spaceLayer().data({
+const layer = g2ChartInstance.current.spaceLayer().data({
   type: 'fetch',
   value:
     'https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
