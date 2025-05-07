@@ -233,7 +233,7 @@ export default function G2ChartComponent_general_text_wordcloud_english() {
         });
         
         
-        chart
+        chartRef.current
           .wordCloud()
           .data(Object.entries(Word).map(([text, value]) => ({ text, value })))
           .layout({
@@ -242,7 +242,9 @@ export default function G2ChartComponent_general_text_wordcloud_english() {
           .encode('color', 'text')
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/wordCloud-english.ts:", error);

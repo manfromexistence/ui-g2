@@ -33,7 +33,7 @@ export default function G2ChartComponent_composition_facet_rect_frame() {
         });
         
         
-        const facetRect = chart
+        const facetRect = chartRef.current
           .facetRect()
           .data({
             type: 'fetch',
@@ -52,7 +52,9 @@ export default function G2ChartComponent_composition_facet_rect_frame() {
           .viewStyle('plotLineWidth', 2)
           .viewStyle('plotOpacity', 0.5);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect-frame.ts:", error);

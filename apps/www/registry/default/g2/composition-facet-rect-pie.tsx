@@ -51,7 +51,7 @@ export default function G2ChartComponent_composition_facet_rect_pie() {
           }).flat(Infinity);
         };
         
-        const facetRect = chart
+        const facetRect = chartRef.current
           .facetRect()
           .data(mockData())
           .encode('x', 'day')
@@ -69,7 +69,9 @@ export default function G2ChartComponent_composition_facet_rect_pie() {
           .encode('y', 'value')
           .encode('color', 'activity');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect-pie.ts:", error);

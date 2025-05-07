@@ -30,9 +30,9 @@ export default function G2ChartComponent_general_pie_point_jitter_radial() {
         });
         
         
-        chartRef.current.coordinate({ type: 'polar' });
+        chart.coordinate({ type: 'polar' });
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -43,7 +43,9 @@ export default function G2ChartComponent_general_pie_point_jitter_radial() {
           .encode('color', 'clarity')
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/point-jitter-radial.ts:", error);

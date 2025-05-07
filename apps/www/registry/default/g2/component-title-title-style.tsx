@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_title_title_style() {
         });
         
         
-        chartRef.current.title({
+        chart.title({
           align: 'right',
           title: 'Sold by genre, sorted by sold',
           titleFontSize: 15,
@@ -42,7 +42,7 @@ export default function G2ChartComponent_component_title_title_style() {
           subtitleFontStyle: 'italic',
         });
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { genre: 'Sports', sold: 0 },
@@ -56,7 +56,9 @@ export default function G2ChartComponent_component_title_title_style() {
           .encode('color', 'genre')
           .style('minHeight', 50);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/title/demo/title-style.ts:", error);

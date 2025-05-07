@@ -56,7 +56,7 @@ export default function G2ChartComponent_general_line_curved() {
         });
         
         
-        chart
+        chartRef.current
           .data(data)
           .encode('x', 'month')
           .encode('y', 'temperature')
@@ -69,11 +69,13 @@ export default function G2ChartComponent_general_line_curved() {
           })
           .axis('y', { labelFormatter: (d) => d + '°C' });
         
-        chartRef.current.line().encode('shape', 'smooth');
+        chart.line().encode('shape', 'smooth');
         
-        chartRef.current.point().encode('shape', 'point').tooltip(false);
+        chart.point().encode('shape', 'point').tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/curved.ts:", error);

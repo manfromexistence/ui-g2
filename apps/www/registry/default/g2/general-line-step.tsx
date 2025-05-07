@@ -44,7 +44,7 @@ export default function G2ChartComponent_general_line_step() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data(data)
           .encode('x', 'month')
@@ -57,7 +57,9 @@ export default function G2ChartComponent_general_line_step() {
             nice: true,
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/step.ts:", error);

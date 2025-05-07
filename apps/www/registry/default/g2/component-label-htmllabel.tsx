@@ -40,7 +40,7 @@ export default function G2ChartComponent_component_label_htmllabel() {
           { repo: 'X6', star: 4755 },
         ];
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .encode('x', 'repo')
@@ -60,7 +60,9 @@ export default function G2ChartComponent_component_label_htmllabel() {
           })
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/label/demo/htmlLabel.ts:", error);

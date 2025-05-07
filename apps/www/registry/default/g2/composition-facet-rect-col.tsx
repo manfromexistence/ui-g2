@@ -33,7 +33,7 @@ export default function G2ChartComponent_composition_facet_rect_col() {
             });
         
         
-            const facetRect = chart
+            const facetRect = chartRef.current
               .facetRect()
               .data(data)
               .encode('y', 'site')
@@ -63,8 +63,10 @@ export default function G2ChartComponent_composition_facet_rect_col() {
               .encode('shape', 'hollow')
               .axis('y', { labelAutoRotate: false });
         
-            chartRef.current.render();
+            chart.render();
           });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect-col.ts:", error);

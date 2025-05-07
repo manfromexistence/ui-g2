@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_gauge_gauge_custom_color() {
         });
         
         
-        chart
+        chartRef.current
           .gauge()
           .data({
             value: {
@@ -49,7 +49,9 @@ export default function G2ChartComponent_general_gauge_gauge_custom_color() {
           )
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/gauge/demo/gauge-custom-color.ts:", error);

@@ -99,7 +99,7 @@ export default function G2ChartComponent_general_area_area_range() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             value: data,
             transform: [
@@ -115,7 +115,7 @@ export default function G2ChartComponent_general_area_area_range() {
           })
           .axis('y', { title: false });
         
-        chart
+        chartRef.current
           .area()
           .encode('x', (d) => new Date(d.time).toLocaleDateString())
           .encode('y', ['low', 'high'])
@@ -126,7 +126,7 @@ export default function G2ChartComponent_general_area_area_range() {
             items: [(d) => ({ name: '温度区间', value: `${d.low}-${d.high}` })],
           });
         
-        chart
+        chartRef.current
           .line()
           .data(averages)
           .encode('x', (d) => new Date(d.time).toLocaleDateString())
@@ -142,7 +142,7 @@ export default function G2ChartComponent_general_area_area_range() {
               }),
             ],
           });
-        chart
+        chartRef.current
           .point()
           .data(averages)
           .encode('x', (d) => new Date(d.time).toLocaleDateString())
@@ -151,7 +151,9 @@ export default function G2ChartComponent_general_area_area_range() {
           .encode('size', 4)
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-range.ts:", error);

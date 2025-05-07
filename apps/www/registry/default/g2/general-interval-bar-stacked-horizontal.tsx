@@ -31,9 +31,9 @@ export default function G2ChartComponent_general_interval_bar_stacked_horizontal
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -48,7 +48,9 @@ export default function G2ChartComponent_general_interval_bar_stacked_horizontal
           .encode('color', 'age')
           .axis('y', { labelFormatter: '~s' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-stacked-horizontal.ts:", error);

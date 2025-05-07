@@ -30,9 +30,9 @@ export default function G2ChartComponent_animation_group_point() {
         });
         
         
-        chartRef.current.style('plotFill', '#000');
+        chart.style('plotFill', '#000');
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -58,7 +58,7 @@ export default function G2ChartComponent_animation_group_point() {
           .attr('padding', 0)
           .axis(false);
         
-        chart
+        chartRef.current
           .text()
           .style('text', 'Polio incidence rates')
           .style('x', '50%')
@@ -68,7 +68,7 @@ export default function G2ChartComponent_animation_group_point() {
           .style('fill', '#666')
           .animate('enter', { delay: 2000 });
         
-        chart
+        chartRef.current
           .text()
           .style('text', 'United States, 1950s')
           .style('x', '50%')
@@ -79,7 +79,9 @@ export default function G2ChartComponent_animation_group_point() {
           .style('dy', '30')
           .animate('enter', { delay: 2400 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/point.ts:", error);

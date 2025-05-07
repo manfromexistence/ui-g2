@@ -20,9 +20,9 @@ import {
 // Original G2 example path: integration/G2/site/examples/threed/scatter/demo/custom-legend.ts
 
 // Helper code extracted from original (review and adapt if necessary):
-function legendColor(chart) {
+function legendColor(chartRef.current) {
   // 创建 Legend 并且挂在图例
-  const node = chartRef.current.getContainer();
+  const node = chart.getContainer();
 
 const renderer = new WebGLRenderer();
 
@@ -43,7 +43,7 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
         });
         
         
-        chart
+        chartRef.current
           .point3D()
           .data({
             type: 'fetch',
@@ -63,10 +63,10 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
           .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 2 });
         
-        chartRef.current.render().then(() => {
-          legendColor(chart);
+        chart.render().then(() => {
+          legendColor(chartRef.current);
         
-          const { canvas } = chartRef.current.getContext();
+          const { canvas } = chart.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 5000, 45, 640 / 480);

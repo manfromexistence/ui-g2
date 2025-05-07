@@ -32,7 +32,7 @@ export default function G2ChartComponent_renderer_renderer_svg() {
         });
         
         
-        const flex = chart
+        const flex = chartRef.current
           .spaceFlex()
           .data({
             type: 'fetch',
@@ -72,7 +72,9 @@ export default function G2ChartComponent_renderer_renderer_svg() {
           .encode('y', 'temp_max')
           .encode('shape', 'point');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/renderer/renderer/demo/svg.ts:", error);

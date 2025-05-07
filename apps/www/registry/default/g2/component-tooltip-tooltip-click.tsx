@@ -38,7 +38,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -66,7 +66,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
             offset: [0, -10],
             mount: 'body',
             render: (event, { title, items }) => {
-              const plot = chart
+              const plot = chartRef.current
                 .getContext()
                 .canvas.document.getElementsByClassName('plot')[0];
               const plotBounds = plot.getRenderBounds();
@@ -122,16 +122,18 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
             },
           });
         
-        chartRef.current.on('element:click', ({ data }) =>
-          chartRef.current.emit('tooltip:show', {
+        chart.on('element:click', ({ data }) =>
+          chart.emit('tooltip:show', {
             data,
             offsetY: 0,
           }),
         );
         
-        chartRef.current.on('plot:click', () => chartRef.current.emit('tooltip:hide'));
+        chart.on('plot:click', () => chart.emit('tooltip:hide'));
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-click.ts:", error);

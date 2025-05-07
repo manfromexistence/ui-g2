@@ -117,13 +117,15 @@ export default function G2ChartComponent_intelligent_insight_low_variance() {
         });
         
         
-        chartRef.current.data(data).encode('x', 'date').encode('y', 'fertility');
+        chart.data(data).encode('x', 'date').encode('y', 'fertility');
         
-        chartRef.current.interval();
+        chart.interval();
         
-        chartRef.current.mark(LowVariance);
+        chart.mark(LowVariance);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/low-variance.ts:", error);

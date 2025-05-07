@@ -48,7 +48,7 @@ export default function G2ChartComponent_interaction_data_column_element_point_m
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .encode('x', '月份')
@@ -64,7 +64,9 @@ export default function G2ChartComponent_interaction_data_column_element_point_m
           })
           .transform({ type: 'stackY' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/column-element-point-move.ts:", error);

@@ -46,7 +46,7 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
         });
         
         
-        chart
+        chartRef.current
           .surface3D()
           .data(points)
           .encode('x', 'x')
@@ -61,8 +61,8 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
           .axis('y', { gridLineWidth: 1, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 1 });
         
-        chartRef.current.render().then(() => {
-          const { canvas } = chartRef.current.getContext();
+        chart.render().then(() => {
+          const { canvas } = chart.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 2000, 45, 600 / 600);

@@ -45,7 +45,7 @@ export default function G2ChartComponent_interesting_interesting_national() {
         const MY_PHOTO =
           'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vYY6RrxEWKwAAAAAAAAAAAAADmJ7AQ/original';
         
-        chart
+        chartRef.current
           .image()
           .data([{ x: 0.5, y: 0.5 }])
           .encode('x', 'x')
@@ -55,7 +55,7 @@ export default function G2ChartComponent_interesting_interesting_national() {
           .axis(false)
           .tooltip(false);
         
-        chart
+        chartRef.current
           .image()
           .data([{ x: 0.5, y: 0.5 }])
           .encode('x', 'x')
@@ -68,7 +68,9 @@ export default function G2ChartComponent_interesting_interesting_national() {
           .axis(false)
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/national.ts:", error);

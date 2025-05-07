@@ -29,7 +29,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
         });
         
         
-        chart
+        chartRef.current
           .scale('x', {
             type: 'linear',
             domain: [5, 10],
@@ -41,9 +41,9 @@ export default function G2ChartComponent_component_axis_axis_xy() {
             range: [0, 1],
           });
         
-        chartRef.current.axisX().attr('title', 'AxisX');
+        chart.axisX().attr('title', 'AxisX');
         
-        chart
+        chartRef.current
           .axisY()
           .attr('title', 'AxisY')
           .attr('tickCount', 10)
@@ -51,7 +51,9 @@ export default function G2ChartComponent_component_axis_axis_xy() {
           .style('gridLineWidth', 10)
           .style('gridStroke', 'red');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-xy.ts:", error);

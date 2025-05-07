@@ -47,11 +47,11 @@ export default function G2ChartComponent_general_funnel_funnel_annotation() {
         });
         
         
-        chartRef.current.coordinate({
+        chart.coordinate({
           transform: [{ type: 'transpose' }],
         });
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .transform({ type: 'symmetryY' })
@@ -94,7 +94,7 @@ export default function G2ChartComponent_general_funnel_funnel_annotation() {
             dy: 15,
           });
         
-        chart
+        chartRef.current
           .connector()
           .data([
             {
@@ -129,7 +129,9 @@ export default function G2ChartComponent_general_funnel_funnel_annotation() {
           .style('connectLength1', -12)
           .style('offset2', -20);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/funnel/demo/funnel-annotation.ts:", error);

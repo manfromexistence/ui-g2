@@ -31,7 +31,7 @@ export default function G2ChartComponent_animation_lottie_lottie() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { genre: 'Sports', sold: 275 },
@@ -46,10 +46,10 @@ export default function G2ChartComponent_animation_lottie_lottie() {
           .animate('enter', { type: 'fadeIn', duration: 1000 })
           .animate('exit', { type: 'fadeOut', duration: 2000 });
         
-        chartRef.current.render();
+        chart.render();
         
         (async () => {
-          const { canvas } = chartRef.current.getContext();
+          const { canvas } = chart.getContext();
           await canvas.ready;
         
           const lottieJSON = await fetch(
@@ -60,6 +60,8 @@ export default function G2ChartComponent_animation_lottie_lottie() {
           wrapper.scale(0.5);
           wrapper.translate(160, 100);
         })();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/lottie/demo/lottie.ts:", error);

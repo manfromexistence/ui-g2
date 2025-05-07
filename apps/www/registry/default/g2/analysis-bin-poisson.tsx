@@ -31,7 +31,7 @@ export default function G2ChartComponent_analysis_bin_poisson() {
         });
         
         
-        chart
+        chartRef.current
           .rect()
           .data(new Array(5000).fill(0).map(random))
           .encode('x', (d) => d)
@@ -43,7 +43,9 @@ export default function G2ChartComponent_analysis_bin_poisson() {
             }),
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/bin/demo/poisson.ts:", error);

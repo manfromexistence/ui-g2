@@ -29,9 +29,9 @@ export default function G2ChartComponent_general_pie_spider_label_overlap() {
         });
         
         
-        chart;
+        chartRef.current;
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { type: '微博', value: 93.33 },
@@ -56,7 +56,9 @@ export default function G2ChartComponent_general_pie_spider_label_overlap() {
           })
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/spider-label-overlap.ts:", error);

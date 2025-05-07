@@ -30,12 +30,12 @@ export default function G2ChartComponent_analysis_regression_exponential_regress
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/exponential-regression.json',
         });
         
-        chart
+        chartRef.current
           .point()
           .encode('x', (d) => d[0])
           .encode('y', (d) => d[1])
@@ -45,7 +45,7 @@ export default function G2ChartComponent_analysis_regression_exponential_regress
           .style('fillOpacity', 0.75)
           .axis('y', { labelFormatter: '~s' });
         
-        chart
+        chartRef.current
           .line()
           .data({
             transform: [
@@ -67,7 +67,9 @@ export default function G2ChartComponent_analysis_regression_exponential_regress
           })
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/regression/demo/exponential-regression.ts:", error);

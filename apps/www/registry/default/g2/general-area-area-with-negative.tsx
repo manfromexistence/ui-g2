@@ -52,7 +52,7 @@ export default function G2ChartComponent_general_area_area_with_negative() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             value: data,
             transform: [
@@ -68,11 +68,13 @@ export default function G2ChartComponent_general_area_area_with_negative() {
           .encode('y', 'value')
           .encode('color', 'type');
         
-        chartRef.current.area().style('fillOpacity', 0.3);
+        chart.area().style('fillOpacity', 0.3);
         
-        chartRef.current.line().style('strokeWidth', 2).tooltip(false);
+        chart.line().style('strokeWidth', 2).tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-with-negative.ts:", error);

@@ -30,12 +30,12 @@ export default function G2ChartComponent_analysis_regression_logarithmic_regress
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/logarithmic-regression.json',
         });
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -50,7 +50,7 @@ export default function G2ChartComponent_analysis_regression_logarithmic_regress
           .y((d) => d.y)
           .domain([0.81, 35]);
         
-        chart
+        chartRef.current
           .line()
           .data({
             transform: [
@@ -72,7 +72,9 @@ export default function G2ChartComponent_analysis_regression_logarithmic_regress
           })
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/regression/demo/logarithmic-regression.ts:", error);

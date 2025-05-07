@@ -30,12 +30,12 @@ export default function G2ChartComponent_general_interval_bar_dodged() {
         });
         
         
-        chartRef.current.title({
+        chart.title({
           title: 'Population by age and state',
           subtitle: 'It shows the population of U.S. by age and state.',
         });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -51,11 +51,13 @@ export default function G2ChartComponent_general_interval_bar_dodged() {
           .scale('y', { nice: true })
           .axis('y', { labelFormatter: '~s' });
         
-        chart
+        chartRef.current
           .interaction('tooltip', { shared: true })
           .interaction('elementHighlightByColor', { background: true });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-dodged.ts:", error);

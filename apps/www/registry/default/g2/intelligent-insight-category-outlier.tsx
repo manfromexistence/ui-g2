@@ -117,13 +117,15 @@ export default function G2ChartComponent_intelligent_insight_category_outlier() 
         });
         
         
-        chartRef.current.data(data).encode('x', 'date').encode('y', 'fertility');
+        chart.data(data).encode('x', 'date').encode('y', 'fertility');
         
-        chartRef.current.interval();
+        chart.interval();
         
-        chartRef.current.mark(CategoryOutlier);
+        chart.mark(CategoryOutlier);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/category-outlier.ts:", error);

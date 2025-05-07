@@ -75,7 +75,7 @@ export default function G2ChartComponent_graph_hierarchy_treemap_drill_down() {
           ],
         };
         
-        chart
+        chartRef.current
           .treemap()
           .data({
             value: data,
@@ -101,7 +101,9 @@ export default function G2ChartComponent_graph_hierarchy_treemap_drill_down() {
             labelDy: 5,
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/treemap-drill-down.ts:", error);

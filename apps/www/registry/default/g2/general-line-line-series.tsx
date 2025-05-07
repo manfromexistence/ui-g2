@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_line_line_series() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -41,9 +41,11 @@ export default function G2ChartComponent_general_line_line_series() {
           .encode('y', 'unemployment')
           .encode('series', 'division');
         
-        chartRef.current.interaction('tooltip', { filter: (d, i) => i < 10 });
+        chart.interaction('tooltip', { filter: (d, i) => i < 10 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-series.ts:", error);

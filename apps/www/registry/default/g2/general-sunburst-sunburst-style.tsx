@@ -32,7 +32,7 @@ export default function G2ChartComponent_general_sunburst_sunburst_style() {
         });
         
         
-        chart
+        chartRef.current
           .sunburst()
           .data({
             type: 'fetch',
@@ -46,7 +46,9 @@ export default function G2ChartComponent_general_sunburst_sunburst_style() {
             },
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/sunburst/demo/sunburst-style.ts:", error);

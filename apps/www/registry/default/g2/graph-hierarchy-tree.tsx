@@ -33,9 +33,9 @@ export default function G2ChartComponent_graph_hierarchy_tree() {
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .tree()
           .data({
             type: 'fetch',
@@ -54,7 +54,9 @@ export default function G2ChartComponent_graph_hierarchy_tree() {
           .style('labelBackground', true)
           .style('labelBackgroundFill', '#fff');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/tree.ts:", error);

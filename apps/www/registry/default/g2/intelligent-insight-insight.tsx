@@ -31,7 +31,7 @@ export default function G2ChartComponent_intelligent_insight_insight() {
         });
         
         
-        chartRef.current.options({
+        chart.options({
           children: [
             {
               type: 'line',
@@ -79,7 +79,9 @@ export default function G2ChartComponent_intelligent_insight_insight() {
           ],
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/insight.ts:", error);

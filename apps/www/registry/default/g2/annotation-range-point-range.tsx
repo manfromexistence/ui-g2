@@ -29,7 +29,7 @@ export default function G2ChartComponent_annotation_range_point_range() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value:
@@ -40,7 +40,7 @@ export default function G2ChartComponent_annotation_range_point_range() {
           .style('mainStroke', '#5B8FF9')
           .style('mainLineWidth', 2);
         
-        chart
+        chartRef.current
           .range()
           .data([
             { x: [0, 0.5], y: [0, 0.5] },
@@ -56,7 +56,7 @@ export default function G2ChartComponent_annotation_range_point_range() {
           .animate(false)
           .tooltip(false);
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -65,7 +65,9 @@ export default function G2ChartComponent_annotation_range_point_range() {
           .scale('y', { domain: [0, 80] })
           .label({ text: 'name', fontSize: 10, dy: 6 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/range/demo/point-range.ts:", error);

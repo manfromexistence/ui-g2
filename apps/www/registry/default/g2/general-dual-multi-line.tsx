@@ -104,9 +104,9 @@ export default function G2ChartComponent_general_dual_multi_line() {
         });
         
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'Month')
           .encode('y', 'Temperature')
@@ -119,7 +119,7 @@ export default function G2ChartComponent_general_dual_multi_line() {
             titleFill: '#EE6666',
           });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'Month')
           .encode('y', 'Evaporation')
@@ -132,7 +132,7 @@ export default function G2ChartComponent_general_dual_multi_line() {
             titleFill: '#5470C6',
           });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'Month')
           .encode('y', 'Precipitation')
@@ -147,7 +147,9 @@ export default function G2ChartComponent_general_dual_multi_line() {
             titleFill: '#91CC75',
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/multi-line.ts:", error);

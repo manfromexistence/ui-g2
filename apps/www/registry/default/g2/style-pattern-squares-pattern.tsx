@@ -32,11 +32,11 @@ export default function G2ChartComponent_style_pattern_squares_pattern() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
+        chart.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
         
         const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -68,7 +68,9 @@ export default function G2ChartComponent_style_pattern_squares_pattern() {
           })
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/pattern/demo/squares-pattern.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_point_point_bubble() {
         });
         
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -57,7 +57,9 @@ export default function G2ChartComponent_general_point_point_bubble() {
             lineWidth: 1,
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-bubble.ts:", error);

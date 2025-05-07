@@ -27,7 +27,7 @@ export default function G2ChartComponent_component_legend_title() {
         chartRef.current = new Chart({ container: chartRef.current, height: 300 });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'legends',
           title: '图例标题',
           titleSpacing: 0,
@@ -60,7 +60,9 @@ export default function G2ChartComponent_component_legend_title() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/title.ts:", error);

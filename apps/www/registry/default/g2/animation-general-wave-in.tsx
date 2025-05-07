@@ -30,9 +30,9 @@ export default function G2ChartComponent_animation_general_wave_in() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta' });
+        chart.coordinate({ type: 'theta' });
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { genre: 'Sports', sold: 275 },
@@ -46,7 +46,9 @@ export default function G2ChartComponent_animation_general_wave_in() {
           .encode('y', 'sold')
           .animate('enter', { type: 'waveIn', duration: 1000 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/wave-in.ts:", error);

@@ -39,15 +39,15 @@ export default function G2ChartComponent_general_dual_line_bar() {
         });
         
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'waiting')
           .axis('y', { title: 'Waiting', titleFill: '#5B8FF9' });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'time')
           .encode('y', 'people')
@@ -62,7 +62,9 @@ export default function G2ChartComponent_general_dual_line_bar() {
             titleFill: '#fdae6b',
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/line-bar.ts:", error);

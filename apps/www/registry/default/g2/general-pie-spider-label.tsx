@@ -31,9 +31,9 @@ export default function G2ChartComponent_general_pie_spider_label() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
+        chart.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -68,7 +68,9 @@ export default function G2ChartComponent_general_pie_spider_label() {
           .animate('enter', { type: 'waveIn' })
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/spider-label.ts:", error);

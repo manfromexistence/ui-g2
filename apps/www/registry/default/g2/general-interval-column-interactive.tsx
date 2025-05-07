@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_interval_column_interactive() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -44,7 +44,9 @@ export default function G2ChartComponent_general_interval_column_interactive() {
           .state('unselected', { fill: '#ccc' })
           .interaction('elementSelect'); // 设置高亮交互;
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/column-interactive.ts:", error);

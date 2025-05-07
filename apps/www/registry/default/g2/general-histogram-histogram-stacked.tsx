@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_histogram_histogram_stacked() {
             });
         
         
-            chart
+            chartRef.current
               .interval()
               .encode('x', 'depth')
               .encode('y', 'count')
@@ -47,8 +47,10 @@ export default function G2ChartComponent_general_histogram_histogram_stacked() {
                 inset: 0.5,
               });
         
-            chartRef.current.render();
+            chart.render();
           });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/histogram/demo/histogram-stacked.ts:", error);

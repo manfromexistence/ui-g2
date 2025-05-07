@@ -53,9 +53,9 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
           },
         ];
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .data(data)
           .scale('color', {
             range: [colors['ranges'], colors['measures'], colors['target']].flat(),
@@ -66,7 +66,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
             },
           });
         
-        chart
+        chartRef.current
           .interval()
           .axis({
             y: {
@@ -82,7 +82,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
           .encode('color', (d, i) => ['优', '良', '差'][i])
           .style('maxWidth', 30);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'title')
           .encode('y', 'measures')
@@ -95,7 +95,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
             dx: 5,
           });
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'title')
           .encode('y', 'target')
@@ -108,9 +108,11 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
             items: [{ channel: 'y' }],
           });
         
-        chartRef.current.interaction('tooltip', { shared: true });
+        chart.interaction('tooltip', { shared: true });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/bullet/demo/bullet-datas.ts:", error);

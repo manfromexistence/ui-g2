@@ -33,7 +33,7 @@ export default function G2ChartComponent_composition_repeat_matrix_col() {
         });
         
         
-        const repeatMatrix = chart
+        const repeatMatrix = chartRef.current
           .repeatMatrix()
           .data({
             type: 'fetch',
@@ -57,7 +57,9 @@ export default function G2ChartComponent_composition_repeat_matrix_col() {
           .encode('color', 'location')
           .scale('y', { zero: true });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/repeat/demo/matrix-col.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_geo_geo_london_tube_lines() {
           });
         
         
-          const geoView = chartRef.current.geoView();
+          const geoView = chart.geoView();
         
           geoView
             .geoPath()
@@ -84,8 +84,10 @@ export default function G2ChartComponent_geo_geo_london_tube_lines() {
               ],
             });
         
-          chartRef.current.render();
+          chart.render();
         });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/london-tube-lines.ts:", error);

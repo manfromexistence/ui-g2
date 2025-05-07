@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_venn_venn_hollow() {
         });
         
         
-        chart
+        chartRef.current
           .path()
           .data({
             type: 'inline',
@@ -61,7 +61,9 @@ export default function G2ChartComponent_general_venn_venn_hollow() {
           .style('lineWidth', 8)
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/venn/demo/venn-hollow.ts:", error);

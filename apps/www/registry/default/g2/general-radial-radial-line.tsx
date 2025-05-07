@@ -43,11 +43,11 @@ export default function G2ChartComponent_general_radial_radial_line() {
         });
         
         
-        chart
+        chartRef.current
           .data(data)
           .coordinate({ type: 'radial', innerRadius: 0.2, endAngle: Math.PI });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'term')
           .encode('y', 'count')
@@ -59,7 +59,7 @@ export default function G2ChartComponent_general_radial_radial_line() {
             },
           });
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'term')
           .encode('y', 'count')
@@ -75,7 +75,7 @@ export default function G2ChartComponent_general_radial_radial_line() {
             ],
           });
         
-        chart
+        chartRef.current
           .text()
           .style('text', 'Music')
           .style('x', '50%')
@@ -83,7 +83,9 @@ export default function G2ChartComponent_general_radial_radial_line() {
           .style('textAlign', 'center')
           .style('fontSize', 24);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/radial-line.ts:", error);

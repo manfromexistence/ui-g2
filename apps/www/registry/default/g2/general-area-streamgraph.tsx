@@ -30,12 +30,12 @@ export default function G2ChartComponent_general_area_streamgraph() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/unemployment-by-industry.json',
         });
         
-        chart
+        chartRef.current
           .area()
           .transform({ type: 'stackY' })
           .transform({ type: 'symmetryY' })
@@ -43,7 +43,9 @@ export default function G2ChartComponent_general_area_streamgraph() {
           .encode('y', 'unemployed')
           .encode('color', 'industry');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/streamgraph.ts:", error);

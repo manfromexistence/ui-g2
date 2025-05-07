@@ -57,7 +57,7 @@ export default function G2ChartComponent_composition_facet_circle() {
         });
         
         
-        const facetCircle = chartRef.current.facetCircle().data(data).encode('position', 'month');
+        const facetCircle = chart.facetCircle().data(data).encode('position', 'month');
         
         facetCircle
           .interval()
@@ -65,7 +65,9 @@ export default function G2ChartComponent_composition_facet_circle() {
           .encode('y', 'value')
           .encode('color', 'name');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/circle.ts:", error);

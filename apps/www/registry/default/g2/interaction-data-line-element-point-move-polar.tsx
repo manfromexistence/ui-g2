@@ -52,9 +52,9 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
         });
         
         
-        chartRef.current.coordinate({ type: 'polar' });
+        chart.coordinate({ type: 'polar' });
         
-        chart
+        chartRef.current
           .data(data)
           .scale('x', { padding: 0.5, align: 0 })
           .scale('y', { tickCount: 5, domainMax: 80 })
@@ -76,7 +76,7 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
             gridLineDash: [0, 0],
           });
         
-        chart
+        chartRef.current
           .area()
           .encode('x', 'item')
           .encode('y', 'score')
@@ -84,7 +84,7 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           .encode('key', 'type')
           .style('fillOpacity', 0.5);
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'item')
           .encode('y', 'score')
@@ -92,9 +92,11 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           .encode('key', 'type')
           .style('lineWidth', 2);
         
-        chartRef.current.interaction('tooltip', { crosshairsLineDash: [4, 4] });
+        chart.interaction('tooltip', { crosshairsLineDash: [4, 4] });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/line-element-point-move-polar.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_unit_unit_basic() {
         });
         
         
-        const facetRect = chart
+        const facetRect = chartRef.current
           .facetRect()
           .data({
             type: 'fetch',
@@ -63,7 +63,9 @@ export default function G2ChartComponent_unit_unit_basic() {
             items: ['pclass', 'survived'],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/unit/unit/demo/basic.ts:", error);

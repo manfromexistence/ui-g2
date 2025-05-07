@@ -392,7 +392,7 @@ export default function G2ChartComponent_general_radar_complex_radial() {
           autoFit: true,
         });
         
-        const keyframe = chartRef.current.timingKeyframe({
+        const keyframe = chart.timingKeyframe({
           direction: 'alternate',
           iterationCount: 4,
         });
@@ -434,7 +434,9 @@ export default function G2ChartComponent_general_radar_complex_radial() {
           .encode('color', '#ff8800')
           .style('lineWidth', 2);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/complex-radial.ts:", error);

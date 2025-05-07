@@ -49,18 +49,21 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
     if (potentialHelpers.length > 0) {
         helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + potentialHelpers.join("\n\n") + "\n";
         if (originalChartVarName) {
+            // Replace "originalChartVarName." (e.g., "myChart.")
             helperCode = helperCode.replace(
-                new RegExp(`\\b${originalChartVarName}\\.`, "g"),
+                new RegExp(`\\b${originalChartVarName}\\.(?!\\w)`, "g"), // Dot, not followed by word char
                 `${chartRefName}.`
+            );
+            // Replace "originalChartVarName" as a standalone variable (e.g., "myChart")
+            helperCode = helperCode.replace(
+                new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\w)`, "g"), // Whole word, not followed by dot or word char
+                `${chartRefName}`
             );
         }
-        // Fallback for literal 'chart.' if originalChartVarName was different or not found,
-        // or if helpers use 'chart.' even when originalChartVarName is something else.
-        if (originalChartVarName !== 'chart') { // Avoid double replacement
-             helperCode = helperCode.replace(
-                /\bchart\./g, 
-                `${chartRefName}.`
-            );
+        // Fallback for literal 'chart'
+        if (originalChartVarName !== 'chart') { 
+             helperCode = helperCode.replace(/\bchart\.(?!\w)/g, `${chartRefName}.`);
+             helperCode = helperCode.replace(/\bchart\b(?!\.|\w)/g, `${chartRefName}`);
         }
     }
 
@@ -84,22 +87,29 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         let adaptedPostInitializationCode = postInitializationCode;
         if (originalChartVarName) {
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
-                new RegExp(`\\b${originalChartVarName}\\.`, "g"), 
+                new RegExp(`\\b${originalChartVarName}\\.(?!\\w)`, "g"), 
                 `${chartRefName}.`
             );
+            adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
+                new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\w)`, "g"), 
+                `${chartRefName}`
+            );
         }
-        // Fallback for 'chart.' in post-init code as well, though less likely to be needed here
-        // if originalChartVarName was correctly identified and used.
+        
         if (originalChartVarName !== 'chart') {
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
-                /\bchart\./g,
+                /\bchart\.(?!\w)/g,
                 `${chartRefName}.`
+            );
+            adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
+                /\bchart\b(?!\.|\w)/g,
+                `${chartRefName}`
             );
         }
 
         g2CodeBlock += adaptedPostInitializationCode;
 
-        const renderCallPatternInAdapted = new RegExp(`\\b${chartRefName}\\.render\\s*\\(\\s*\\)\\s*;`);
+        const renderCallPatternInAdapted = new RegExp(`\\b${chartRefName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;`);
         if (!renderCallPatternInAdapted.test(adaptedPostInitializationCode)) {
             g2CodeBlock += `\n// TODO: Ensure '${chartRefName}.render()' is called appropriately.`;
             
@@ -135,10 +145,11 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
             displaySnippet += "\n// ... (code truncated)";
         }
         
-        if (displaySnippet.includes("chart.")) {
-             displaySnippet = displaySnippet.replace(/\bchart\./g, `${chartRefName}.`);
-             g2CodeBlock += `// (Attempted to adapt 'chart.' to '${chartRefName}.' in the snippet below)\n`;
-        }
+        // Basic adaptation attempt for the snippet
+        displaySnippet = displaySnippet.replace(/\bchart\.(?!\w)/g, `${chartRefName}.`);
+        displaySnippet = displaySnippet.replace(/\bchart\b(?!\.|\w)/g, `${chartRefName}`);
+        g2CodeBlock += `// (Attempted to adapt 'chart' to '${chartRefName}' in the snippet below)\n`;
+        
         g2CodeBlock += displaySnippet.split('\n').map(l => `// ${l}`).join('\n');
     }
 

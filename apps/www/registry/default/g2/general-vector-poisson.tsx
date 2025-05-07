@@ -37,7 +37,7 @@ export default function G2ChartComponent_general_vector_poisson() {
               rotate: noise(x, y) * 360,
             }));
         
-            chart
+            chartRef.current
               .vector()
               .data(data)
               .encode('x', 'x')
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_vector_poisson() {
                 { channel: 'y', valueFormatter: '.2f' },
               ]);
         
-            chartRef.current.render();
+            chart.render();
           });
         
         // ------------ library ---------------
@@ -139,6 +139,8 @@ export default function G2ChartComponent_general_vector_poisson() {
           return a + t * (b - a);
         }
         // ------------ library ---------------
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/vector/demo/poisson.ts:", error);

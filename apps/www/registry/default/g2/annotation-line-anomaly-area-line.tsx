@@ -557,9 +557,9 @@ export default function G2ChartComponent_annotation_line_anomaly_area_line() {
         });
         
         
-        chartRef.current.data(Data);
+        chart.data(Data);
         
-        chart
+        chartRef.current
           .area()
           .encode('x', (d) => new Date(d[0]))
           .encode('y', [(d) => d[1], (d) => d[2]])
@@ -567,21 +567,21 @@ export default function G2ChartComponent_annotation_line_anomaly_area_line() {
           .style('fillOpacity', 0.1)
           .style('fill', 'orange');
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d[0]))
           .encode('y', (d) => d[3])
           .encode('color', '#FF6B3B')
           .encode('shape', 'smooth');
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d[0]))
           .encode('y', (d) => d[4])
           .encode('color', '#5B8FF9')
           .style('lineWidth', 2);
         
-        chart
+        chartRef.current
           .point()
           .data([
             ['01-08', 0.417885699969663],
@@ -597,7 +597,9 @@ export default function G2ChartComponent_annotation_line_anomaly_area_line() {
           .style('lineWidth', 1)
           .style('stroke', '#FFF');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/anomaly-area-line.ts:", error);

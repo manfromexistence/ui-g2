@@ -101,13 +101,15 @@ export default function G2ChartComponent_intelligent_insight_change_point() {
         });
         
         
-        chartRef.current.data(data).encode('x', 'date').encode('y', 'discount_price');
+        chart.data(data).encode('x', 'date').encode('y', 'discount_price');
         
-        chartRef.current.line();
+        chart.line();
         
-        chartRef.current.mark(ChangePoint);
+        chart.mark(ChangePoint);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/change-point.ts:", error);

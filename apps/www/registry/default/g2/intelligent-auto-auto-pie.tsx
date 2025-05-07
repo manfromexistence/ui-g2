@@ -30,7 +30,7 @@ export default function G2ChartComponent_intelligent_auto_auto_pie() {
         });
         
         
-        chartRef.current.mark(Auto).data([
+        chart.mark(Auto).data([
           { type: '分类一', value: 27 },
           { type: '分类二', value: 25 },
           { type: '分类三', value: 18 },
@@ -39,7 +39,9 @@ export default function G2ChartComponent_intelligent_auto_auto_pie() {
           { type: 'Other', value: 5 },
         ]);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/auto/demo/auto-pie.ts:", error);

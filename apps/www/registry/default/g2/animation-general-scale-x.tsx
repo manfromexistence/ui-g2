@@ -30,7 +30,7 @@ export default function G2ChartComponent_animation_general_scale_x() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { genre: 'Sports', sold: 275 },
@@ -45,7 +45,9 @@ export default function G2ChartComponent_animation_general_scale_x() {
           .animate('enter', { type: 'scaleInX', duration: 1000 })
           .animate('exit', { type: 'scaleOutX', duration: 2000 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/scale-x.ts:", error);

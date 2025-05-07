@@ -42,7 +42,7 @@ export default function G2ChartComponent_component_legend_symbol() {
         
         const colorField = 'genre';
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .encode('x', 'genre')
@@ -54,7 +54,10 @@ export default function G2ChartComponent_component_legend_symbol() {
             },
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/symbol.ts:", error);

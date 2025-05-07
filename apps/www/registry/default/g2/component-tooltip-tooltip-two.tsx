@@ -38,7 +38,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
         });
         
         
-        chartRef.current.data([
+        chart.data([
           { time: '16', north: 0, south: 0 },
           { time: '18', north: 7, south: -8 },
           { time: '20', north: 6, south: -7 },
@@ -52,21 +52,21 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
           { time: '12', north: 5, south: -9 },
         ]);
         
-        chart
+        chartRef.current
           .area()
           .encode('x', (d) => d.time)
           .encode('y', 'north')
           .encode('color', () => 'north')
           .encode('shape', 'smooth');
         
-        chart
+        chartRef.current
           .area()
           .encode('x', (d) => d.time)
           .encode('y', 'south')
           .encode('color', () => 'south')
           .encode('shape', 'smooth');
         
-        chartRef.current.interaction('tooltip', {
+        chart.interaction('tooltip', {
           css: {
             '.g2-tooltip': {
               background: 'transparent',
@@ -110,7 +110,9 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-two.ts:", error);

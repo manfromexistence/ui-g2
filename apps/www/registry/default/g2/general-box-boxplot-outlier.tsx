@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_box_boxplot_outlier() {
         });
         
         
-        chart
+        chartRef.current
           .boxplot()
           .data({
             type: 'fetch',
@@ -40,7 +40,9 @@ export default function G2ChartComponent_general_box_boxplot_outlier() {
           .encode('x', 'Expt')
           .encode('y', 'Speed');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/box/demo/boxplot-outlier.ts:", error);

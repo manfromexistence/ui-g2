@@ -40,9 +40,9 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
         });
         
         
-        chartRef.current.data(data).coordinate({ type: 'radial', innerRadius: 0.35 });
+        chart.data(data).coordinate({ type: 'radial', innerRadius: 0.35 });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'type')
           .encode('y', 0.2)
@@ -52,7 +52,7 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
           })
           .tooltip(false);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'type')
           .encode('y', 'value')
@@ -74,7 +74,7 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
           })
           .interaction('elementHighlight');
         
-        chart
+        chartRef.current
           .image()
           .style('x', '50%')
           .style('y', '50%')
@@ -86,7 +86,9 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
           )
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/radial-bar-with-background.ts:", error);

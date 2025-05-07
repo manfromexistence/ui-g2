@@ -41,9 +41,9 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -68,7 +68,8 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
             { name: 'end', field: 'end', valueFormatter: labelFormatter },
           ]);
         
-        chartRef.current.render();
+        chart.render();
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/accessible/text-searching/demo/text-search.ts:", error);

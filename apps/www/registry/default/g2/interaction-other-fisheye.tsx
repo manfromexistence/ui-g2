@@ -29,7 +29,7 @@ export default function G2ChartComponent_interaction_other_fisheye() {
         });
         
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -45,9 +45,11 @@ export default function G2ChartComponent_interaction_other_fisheye() {
           .style('fillOpacity', 0.3)
           .style('lineWidth', 1);
         
-        chartRef.current.interaction('fisheye');
+        chart.interaction('fisheye');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/other/demo/fisheye.ts:", error);

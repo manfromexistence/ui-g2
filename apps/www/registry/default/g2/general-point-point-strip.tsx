@@ -30,9 +30,9 @@ export default function G2ChartComponent_general_point_point_strip() {
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -49,7 +49,9 @@ export default function G2ChartComponent_general_point_point_strip() {
           .scale('y', { zero: true })
           .scale('color', { type: 'ordinal' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-strip.ts:", error);

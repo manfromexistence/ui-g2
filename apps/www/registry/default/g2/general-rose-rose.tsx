@@ -31,9 +31,9 @@ export default function G2ChartComponent_general_rose_rose() {
         });
         
         
-        chartRef.current.coordinate({ type: 'polar' });
+        chart.coordinate({ type: 'polar' });
         
-        chart
+        chartRef.current
           .interval()
           .transform({ type: 'groupX', y: 'sum' })
           .data({
@@ -54,7 +54,9 @@ export default function G2ChartComponent_general_rose_rose() {
           .animate('enter', { type: 'waveIn' })
           .tooltip({ channel: 'y', valueFormatter: '~s' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/rose.ts:", error);

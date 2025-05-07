@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_line_line_sample() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -45,7 +45,9 @@ export default function G2ChartComponent_general_line_line_sample() {
             strategy: 'max',
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-sample.ts:", error);

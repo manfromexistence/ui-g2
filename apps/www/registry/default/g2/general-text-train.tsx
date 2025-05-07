@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_text_train() {
         const Y = [-3, -2, -1, 0, 1, 2, 3];
         
         // Time axis
-        chart
+        chartRef.current
           .text()
           .data(X.slice(1))
           .encode('x', (v) => v)
@@ -48,7 +48,7 @@ export default function G2ChartComponent_general_text_train() {
           .axis(false);
         
         // South / North label
-        chart
+        chartRef.current
           .text()
           .data(['South', 'North'])
           .encode('x', 4)
@@ -60,7 +60,7 @@ export default function G2ChartComponent_general_text_train() {
           .axis(false);
         
         // NLB
-        chart
+        chartRef.current
           .text()
           .data({
             type: 'fetch',
@@ -76,7 +76,9 @@ export default function G2ChartComponent_general_text_train() {
           .scale('color', { range: ['currentColor', 'peru', 'brown'] })
           .style('stroke', 'transparent');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/train.ts:", error);

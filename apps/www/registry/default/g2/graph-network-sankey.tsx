@@ -31,7 +31,7 @@ export default function G2ChartComponent_graph_network_sankey() {
         });
         
         
-        chart
+        chartRef.current
           .sankey()
           .data({
             type: 'fetch',
@@ -53,7 +53,9 @@ export default function G2ChartComponent_graph_network_sankey() {
           .style('nodeLineWidth', 1.2)
           .style('linkFillOpacity', 0.4);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/network/demo/sankey.ts:", error);

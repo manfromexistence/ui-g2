@@ -37,9 +37,9 @@ export default function G2ChartComponent_general_pie_pie_base() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta', outerRadius: 0.8 });
+        chart.coordinate({ type: 'theta', outerRadius: 0.8 });
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .transform({ type: 'stackY' })
@@ -55,7 +55,9 @@ export default function G2ChartComponent_general_pie_pie_base() {
             value: `${data.percent * 100}%`,
           }));
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie-base.ts:", error);

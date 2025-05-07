@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_line_marker()
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data([
             { month: 'Jan', city: 'Tokyo', temperature: 7 },
@@ -74,7 +74,9 @@ export default function G2ChartComponent_component_tooltip_tooltip_line_marker()
             },
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-line-marker.ts:", error);

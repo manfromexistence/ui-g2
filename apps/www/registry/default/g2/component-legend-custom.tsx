@@ -39,7 +39,7 @@ export default function G2ChartComponent_component_legend_custom() {
         
         const colorField = 'genre';
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .encode('x', 'genre')
@@ -47,11 +47,11 @@ export default function G2ChartComponent_component_legend_custom() {
           .encode('color', colorField)
           .legend(false); // Hide built-in legends.
         
-        chartRef.current.render().then(renderCustomLegend);
+        chart.render().then(renderCustomLegend);
         
-        function renderCustomLegend(chart) {
+        function renderCustomLegend(chartRef.current) {
           // Get color scale.
-          const scale = chartRef.current.getScaleByChannel('color');
+          const scale = chart.getScaleByChannel('color');
           const { domain, range } = scale.getOptions();
           const excludedValues = [];
         
@@ -95,7 +95,7 @@ export default function G2ChartComponent_component_legend_custom() {
             const selectedData = data.filter((d) =>
               selectedValues.includes(d[colorField]),
             );
-            chartRef.current.changeData(selectedData);
+            chart.changeData(selectedData);
           }
         }
         

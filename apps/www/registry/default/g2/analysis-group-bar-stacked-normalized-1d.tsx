@@ -30,9 +30,9 @@ export default function G2ChartComponent_analysis_group_bar_stacked_normalized_1
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -46,7 +46,9 @@ export default function G2ChartComponent_analysis_group_bar_stacked_normalized_1
           .label({ text: 'sex', position: 'inside' })
           .tooltip({ channel: 'y', valueFormatter: '.0%' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-stacked-normalized-1d.ts:", error);

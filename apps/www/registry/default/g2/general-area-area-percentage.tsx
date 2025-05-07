@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_area_area_percentage() {
         });
         
         
-        chart
+        chartRef.current
           .data(data)
           .transform([{ type: 'stackY' }, { type: 'normalizeY' }])
           .encode('x', 'year')
@@ -62,14 +62,16 @@ export default function G2ChartComponent_general_area_area_percentage() {
           .axis('x', { title: false })
           .axis('y', { title: false, labelFormatter: '.0%' });
         
-        chart
+        chartRef.current
           .area()
           .tooltip({ channel: 'y0', valueFormatter: '.0%' })
           .style('fillOpacity', 0.3);
         
-        chartRef.current.line().tooltip(false);
+        chart.line().tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-percentage.ts:", error);

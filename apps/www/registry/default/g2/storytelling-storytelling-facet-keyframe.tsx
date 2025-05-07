@@ -42,7 +42,7 @@ export default function G2ChartComponent_storytelling_storytelling_facet_keyfram
         
             const utcX = (node) => node.scale('x', { utc: true });
         
-            const keyframe = chart
+            const keyframe = chartRef.current
               .timingKeyframe()
               .attr('direction', 'alternate')
               .attr('iterationCount', 2);
@@ -81,8 +81,10 @@ export default function G2ChartComponent_storytelling_storytelling_facet_keyfram
               .call(utcX)
               .style('fillOpacity', 0.8);
         
-            chartRef.current.render();
+            chart.render();
           });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/facet-keyframe.ts:", error);

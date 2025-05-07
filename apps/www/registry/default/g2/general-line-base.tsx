@@ -41,7 +41,7 @@ export default function G2ChartComponent_general_line_base() {
         });
         
         
-        chart
+        chartRef.current
           .data(data)
           .encode('x', 'year')
           .encode('y', 'value')
@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_line_base() {
             nice: true,
           });
         
-        chartRef.current.line().label({
+        chart.line().label({
           text: 'value',
           style: {
             dx: -10,
@@ -61,9 +61,11 @@ export default function G2ChartComponent_general_line_base() {
           },
         });
         
-        chartRef.current.point().style('fill', 'white').tooltip(false);
+        chart.point().style('fill', 'white').tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/base.ts:", error);

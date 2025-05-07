@@ -38,7 +38,7 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
         });
         
         
-        chart
+        chartRef.current
           .data([
             { x: 'Start', value: 23000000, start: 0, end: 23000000 },
             { x: 'Jan', value: 2200000, start: 23000000, end: 25200000 },
@@ -59,7 +59,7 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
           .axis('y', { labelFormatter: '~s' })
           .legend(null);
         
-        chart
+        chartRef.current
           .link()
           .data({ transform: [{ type: 'custom', callback: linkData }] })
           .encode('x', ['x1', 'x2'])
@@ -67,7 +67,7 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
           .style('stroke', '#697474')
           .tooltip(false);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'x')
           .encode('y', ['start', 'end'])
@@ -91,7 +91,9 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
           .tooltip({ channel: 'y', valueFormatter: '~s' })
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/connector/demo/revenue-flow-waterfall.ts:", error);

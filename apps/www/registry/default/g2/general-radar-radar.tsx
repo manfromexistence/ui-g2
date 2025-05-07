@@ -52,16 +52,16 @@ export default function G2ChartComponent_general_radar_radar() {
         });
         
         
-        chartRef.current.coordinate({ type: 'polar' });
+        chart.coordinate({ type: 'polar' });
         
-        chart
+        chartRef.current
           .data(data)
           .scale('x', { padding: 0.5, align: 0 })
           .scale('y', { tickCount: 5 })
           .axis('x', { grid: true })
           .axis('y', { zIndex: 1, title: false });
         
-        chart
+        chartRef.current
           .area()
           .encode('x', 'item')
           .encode('y', 'score')
@@ -70,7 +70,7 @@ export default function G2ChartComponent_general_radar_radar() {
           .style('fillOpacity', 0.5)
           .scale('y', { domainMax: 80 });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'item')
           .encode('y', 'score')
@@ -78,9 +78,11 @@ export default function G2ChartComponent_general_radar_radar() {
           .encode('shape', 'smooth')
           .style('lineWidth', 2);
         
-        chartRef.current.interaction('tooltip', { crosshairsLineDash: [4, 4] });
+        chart.interaction('tooltip', { crosshairsLineDash: [4, 4] });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/radar.ts:", error);

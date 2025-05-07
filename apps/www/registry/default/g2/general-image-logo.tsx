@@ -62,16 +62,16 @@ export default function G2ChartComponent_general_image_logo() {
         });
         
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .link()
           .encode('x', ['name', 'name'])
           .encode('y', (d) => [0, d.value])
           .style('stroke', '#dfdfdf')
           .style('lineDash', [2, 2]);
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'name')
           .encode('y', 'value')
@@ -80,7 +80,7 @@ export default function G2ChartComponent_general_image_logo() {
           .scale('y', { domain: [0, 50] })
           .style('opacity', 0.5);
         
-        chart
+        chartRef.current
           .image()
           .encode('x', 'name')
           .encode('y', 'value')
@@ -89,7 +89,9 @@ export default function G2ChartComponent_general_image_logo() {
           .scale('y', { domain: [0, 50] })
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/image/demo/logo.ts:", error);

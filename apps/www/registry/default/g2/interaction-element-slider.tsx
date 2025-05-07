@@ -29,7 +29,7 @@ export default function G2ChartComponent_interaction_element_slider() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -41,7 +41,9 @@ export default function G2ChartComponent_interaction_element_slider() {
           .slider('y', true)
           .slider('x', true);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/element/demo/slider.ts:", error);

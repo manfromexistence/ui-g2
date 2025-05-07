@@ -27,7 +27,7 @@ export default function G2ChartComponent_style_graphic_mark() {
         chartRef.current = new Chart({ container: chartRef.current, height: 350 });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'interval',
           data: [
             { genre: 'Sports', sold: 30 },
@@ -53,7 +53,9 @@ export default function G2ChartComponent_style_graphic_mark() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/graphic/demo/mark.ts:", error);

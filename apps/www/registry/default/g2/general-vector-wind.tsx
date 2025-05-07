@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_vector_wind() {
         });
         
         
-        chart
+        chartRef.current
           .vector()
           .data({
             type: 'fetch',
@@ -48,7 +48,9 @@ export default function G2ChartComponent_general_vector_wind() {
           .legend(false)
           .tooltip({ title: { channel: 'color', valueFormatter: '.1f' } });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/vector/demo/wind.ts:", error);

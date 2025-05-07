@@ -82,9 +82,9 @@ export default function G2ChartComponent_general_image_contributor() {
         });
         
         
-        chartRef.current.data(getLovePoints());
+        chart.data(getLovePoints());
         
-        chart
+        chartRef.current
           .image()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -99,7 +99,9 @@ export default function G2ChartComponent_general_image_contributor() {
           .axis(false)
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/image/demo/contributor.ts:", error);

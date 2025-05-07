@@ -30,7 +30,7 @@ export default function G2ChartComponent_style_graphic_text() {
         });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'liquid',
           autoFit: true,
           data: 0.581,
@@ -61,7 +61,9 @@ export default function G2ChartComponent_style_graphic_text() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/graphic/demo/text.ts:", error);

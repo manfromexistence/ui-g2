@@ -30,9 +30,9 @@ export default function G2ChartComponent_general_box_grouped_boxplot_outlier() {
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .boxplot()
           .data({
             type: 'fetch',
@@ -43,7 +43,9 @@ export default function G2ChartComponent_general_box_grouped_boxplot_outlier() {
           .encode('color', 'sex')
           .encode('series', 'sex');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/box/demo/grouped-boxplot-outlier.ts:", error);

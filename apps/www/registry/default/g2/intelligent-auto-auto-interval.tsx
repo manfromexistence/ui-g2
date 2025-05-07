@@ -30,13 +30,15 @@ export default function G2ChartComponent_intelligent_auto_auto_interval() {
         });
         
         
-        chartRef.current.mark(Auto).data([
+        chart.mark(Auto).data([
           { price: 100, type: 'A' },
           { price: 120, type: 'B' },
           { price: 150, type: 'C' },
         ]);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/auto/demo/auto-interval.ts:", error);

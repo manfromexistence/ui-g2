@@ -30,16 +30,16 @@ export default function G2ChartComponent_general_violin_violin_polar() {
         });
         
         
-        chartRef.current.coordinate({
+        chart.coordinate({
           type: 'polar',
         });
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/species.json',
         });
         
-        chart
+        chartRef.current
           .density()
           .data({
             transform: [
@@ -57,7 +57,7 @@ export default function G2ChartComponent_general_violin_violin_polar() {
           .encode('size', 'size')
           .tooltip(false);
         
-        chart
+        chartRef.current
           .boxplot()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -68,7 +68,9 @@ export default function G2ChartComponent_general_violin_violin_polar() {
           .style('strokeOpacity', 0.5)
           .style('point', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/violin/demo/violin-polar.ts:", error);

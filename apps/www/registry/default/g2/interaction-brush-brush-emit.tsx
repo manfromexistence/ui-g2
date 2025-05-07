@@ -31,7 +31,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
         
         const [render, remove] = useTip({
           container: document.getElementById('container'),
-          onRemove: () => chartRef.current.emit('brush:remove', {}),
+          onRemove: () => chart.emit('brush:remove', {}),
         });
         
         const data = [
@@ -47,7 +47,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
           { date: '2007-05-07', close: 103.92 },
         ];
         
-        chart
+        chartRef.current
           .line()
           .data(data)
           .encode('x', (d) => new Date(d.date))
@@ -55,19 +55,19 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
           .scale('y', { nice: true })
           .interaction('brushXHighlight', true);
         
-        chartRef.current.on('brush:start', onStart);
-        chartRef.current.on('brush:end', onUpdate);
-        chartRef.current.on('brush:remove', onRemove);
+        chart.on('brush:start', onStart);
+        chart.on('brush:end', onUpdate);
+        chart.on('brush:remove', onRemove);
         
-        chartRef.current.render();
+        chart.render();
         
         function onStart() {
-          chartRef.current.emit('tooltip:disable');
+          chart.emit('tooltip:disable');
           remove();
         }
         
         function onUpdate(e) {
-          const { canvas } = chartRef.current.getContext();
+          const { canvas } = chart.getContext();
           const [mask] = canvas.document.getElementsByClassName(MASK_CLASS_NAME);
           const bounds = mask.getBounds();
           const x = bounds.max[0];
@@ -82,7 +82,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
         function onRemove(e) {
           const { nativeEvent } = e;
           if (nativeEvent) remove();
-          chartRef.current.emit('tooltip:enable');
+          chart.emit('tooltip:enable');
         }
         
         function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
@@ -114,6 +114,8 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
         
           return [render, remove];
         }
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/brush/demo/brush-emit.ts:", error);

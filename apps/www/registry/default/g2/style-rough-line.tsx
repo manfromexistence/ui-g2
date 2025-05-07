@@ -32,7 +32,7 @@ export default function G2ChartComponent_style_rough_line() {
             });
         
         
-            chart
+            chartRef.current
               .line()
               .data({
                 type: 'fetch',
@@ -63,9 +63,11 @@ export default function G2ChartComponent_style_rough_line() {
               .legend('color', { itemLabelFontFamily: 'Gaegu' })
               .style('roughness', 2);
         
-            chartRef.current.render();
+            chart.render();
           },
         });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/rough/demo/line.ts:", error);

@@ -31,9 +31,9 @@ export default function G2ChartComponent_general_mini_pie() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta' });
+        chart.coordinate({ type: 'theta' });
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { id: 'c', value: 526 },
@@ -52,11 +52,13 @@ export default function G2ChartComponent_general_mini_pie() {
           .axis(false)
           .legend(false);
         
-        chartRef.current.interaction('tooltip', {
+        chart.interaction('tooltip', {
           render: (e, { title, items }) => items[0].value,
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/pie.ts:", error);

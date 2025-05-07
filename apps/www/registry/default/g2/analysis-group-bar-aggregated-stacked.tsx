@@ -30,7 +30,7 @@ export default function G2ChartComponent_analysis_group_bar_aggregated_stacked()
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -46,7 +46,9 @@ export default function G2ChartComponent_analysis_group_bar_aggregated_stacked()
             range: ['#e7ba52', '#c7c7c7', '#aec7e8', '#1f77b4', '#9467bd'],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-aggregated-stacked.ts:", error);

@@ -29,7 +29,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_render() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -40,7 +40,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_render() {
           .encode('x', 'letter')
           .encode('y', 'frequency');
         
-        chartRef.current.interaction('tooltip', {
+        chart.interaction('tooltip', {
           render: (event, { title, items }) => `
           <div
             style="
@@ -80,7 +80,9 @@ export default function G2ChartComponent_component_tooltip_tooltip_render() {
           `,
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-render.ts:", error);

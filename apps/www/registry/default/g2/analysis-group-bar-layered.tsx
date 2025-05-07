@@ -30,7 +30,7 @@ export default function G2ChartComponent_analysis_group_bar_layered() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -53,7 +53,9 @@ export default function G2ChartComponent_analysis_group_bar_layered() {
           .style('fillOpacity', 0.7)
           .tooltip({ channel: 'y', valueFormatter: '~s' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-layered.ts:", error);

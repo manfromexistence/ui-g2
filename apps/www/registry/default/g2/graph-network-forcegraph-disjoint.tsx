@@ -31,7 +31,7 @@ export default function G2ChartComponent_graph_network_forcegraph_disjoint() {
         });
         
         
-        chart
+        chartRef.current
           .forceGraph()
           .data({
             type: 'fetch',
@@ -42,7 +42,9 @@ export default function G2ChartComponent_graph_network_forcegraph_disjoint() {
           })
           .scale('color', { range: schemeTableau10 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/network/demo/forceGraph-disjoint.ts:", error);

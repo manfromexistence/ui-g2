@@ -116,7 +116,7 @@ export default function G2ChartComponent_general_image_icon() {
         });
         
         
-        chart
+        chartRef.current
           .image()
           .data(dataXO)
           .encode('x', 'x')
@@ -128,7 +128,9 @@ export default function G2ChartComponent_general_image_icon() {
           .scale('size', { type: 'linear', range: [12, 32] })
           .legend('size', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/image/demo/icon.ts:", error);

@@ -40,9 +40,9 @@ export default function G2ChartComponent_general_dual_dual_axis_stacked_group_ba
           { time: '10:40', call: 13, waiting: 1, people: 2, mock: 2 },
         ];
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .interval()
           .data({
             transform: [{ type: 'fold', fields: ['call', 'waiting'] }],
@@ -55,14 +55,14 @@ export default function G2ChartComponent_general_dual_dual_axis_stacked_group_ba
           .scale('y', { nice: true })
           .axis('y', { title: null });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'people')
           .encode('color', () => 'people')
           .encode('series', () => 'b');
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'mock')
@@ -71,7 +71,9 @@ export default function G2ChartComponent_general_dual_dual_axis_stacked_group_ba
           .scale('y', { independent: true })
           .axis('y', { position: 'right' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/dual-axis-stacked-group-bar.ts:", error);

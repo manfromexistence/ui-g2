@@ -32,11 +32,11 @@ export default function G2ChartComponent_general_mini_progress() {
         });
         
         
-        chartRef.current.coordinate({
+        chart.coordinate({
           transform: [{ type: 'transpose' }],
         });
         
-        chart
+        chartRef.current
           .interval()
           .data([1, progress])
           .encode('y', (d) => d)
@@ -46,7 +46,7 @@ export default function G2ChartComponent_general_mini_progress() {
           .legend(false)
           .axis(false);
         
-        chartRef.current.text().style({
+        chart.text().style({
           text: `${progress * 100}%`,
           x: '50%',
           y: '50%',
@@ -55,9 +55,11 @@ export default function G2ChartComponent_general_mini_progress() {
           fontStyle: 'bold',
         });
         
-        chartRef.current.interaction('tooltip', false);
+        chart.interaction('tooltip', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/progress.ts:", error);

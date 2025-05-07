@@ -56,11 +56,11 @@ export default function G2ChartComponent_general_bullet_bullets() {
           },
         ];
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'title')
           .encode('y', 'ranges')
@@ -76,7 +76,7 @@ export default function G2ChartComponent_general_bullet_bullets() {
             },
           });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'title')
           .encode('y', 'measures')
@@ -89,7 +89,7 @@ export default function G2ChartComponent_general_bullet_bullets() {
             dx: 5,
           });
         
-        chart
+        chartRef.current
           .point()
           .encode('size', 15)
           .encode('x', 'title')
@@ -101,7 +101,9 @@ export default function G2ChartComponent_general_bullet_bullets() {
             items: [{ channel: 'y' }],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/bullet/demo/bullets.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_composition_space_space_flex() {
         });
         
         
-        const flex = chart
+        const flex = chartRef.current
           .spaceFlex()
           .data({
             type: 'fetch',
@@ -79,7 +79,9 @@ export default function G2ChartComponent_composition_space_space_flex() {
               .encode('color', 'steelblue'),
           );
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/space/demo/space-flex.ts:", error);

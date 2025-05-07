@@ -30,9 +30,9 @@ export default function G2ChartComponent_general_pie_pie() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta' });
+        chart.coordinate({ type: 'theta' });
         
-        chart
+        chartRef.current
           .interval()
           .transform({ type: 'stackY' })
           .data({
@@ -62,7 +62,9 @@ export default function G2ChartComponent_general_pie_pie() {
           .animate('enter', { type: 'waveIn' })
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie.ts:", error);

@@ -27,7 +27,7 @@ export default function G2ChartComponent_general_area_rank_trend_area() {
         chartRef.current = new Chart({ container: chartRef.current });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'view',
           autoFit: true,
           paddingRight: 10,
@@ -99,7 +99,9 @@ export default function G2ChartComponent_general_area_rank_trend_area() {
           ],
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/rank-trend-area.ts:", error);

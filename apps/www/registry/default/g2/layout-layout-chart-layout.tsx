@@ -27,7 +27,7 @@ export default function G2ChartComponent_layout_layout_chart_layout() {
         chartRef.current = new Chart({ container: chartRef.current });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'point',
           height: 600,
           width: 700,
@@ -63,7 +63,9 @@ export default function G2ChartComponent_layout_layout_chart_layout() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/layout/layout/demo/chart-layout.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_candlestick_k_and_area() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value: 'https://gw.alipayobjects.com/os/antvdemo/assets/data/stock-03.json',
@@ -50,18 +50,18 @@ export default function G2ChartComponent_general_candlestick_k_and_area() {
             labelFormatter: (d) => new Date(d).toLocaleDateString(),
           });
         
-        chartRef.current.interaction('tooltip', {
+        chart.interaction('tooltip', {
           shared: true,
         });
         
-        chart
+        chartRef.current
           .area()
           .encode('y', 'range')
           .style('fillOpacity', 0.3)
           .style('fill', '#64b5f6')
           .animate(false);
         
-        chart
+        chartRef.current
           .link()
           .encode('y', ['lowest', 'highest'])
           .encode('color', 'trend')
@@ -69,7 +69,7 @@ export default function G2ChartComponent_general_candlestick_k_and_area() {
             type: 'waveIn',
           });
         
-        chart
+        chartRef.current
           .interval()
           .encode('y', ['start', 'end'])
           .encode('color', 'trend')
@@ -90,9 +90,11 @@ export default function G2ChartComponent_general_candlestick_k_and_area() {
             type: 'waveIn',
           });
         
-        chartRef.current.line().encode('x', 'date').encode('y', 'mean').style('stroke', '#FACC14');
+        chart.line().encode('x', 'date').encode('y', 'mean').style('stroke', '#FACC14');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/candlestick/demo/k-and-area.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_analysis_bin_binx_color() {
         });
         
         
-        chart
+        chartRef.current
           .rect()
           .data({
             type: 'fetch',
@@ -42,7 +42,9 @@ export default function G2ChartComponent_analysis_bin_binx_color() {
           .transform({ type: 'stackY', orderBy: 'series' })
           .style('inset', 0.5);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/bin/demo/binx-color.ts:", error);

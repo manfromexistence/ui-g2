@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_tooltip_tooltip2d() {
         });
         
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -41,7 +41,9 @@ export default function G2ChartComponent_component_tooltip_tooltip2d() {
           .encode('y', 'weight')
           .encode('color', 'gender');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip2d.ts:", error);

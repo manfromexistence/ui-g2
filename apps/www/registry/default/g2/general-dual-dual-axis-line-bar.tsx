@@ -40,9 +40,9 @@ export default function G2ChartComponent_general_dual_dual_axis_line_bar() {
           { time: '10:40', call: 13, waiting: 1, people: 2 },
         ];
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'waiting')
@@ -51,7 +51,7 @@ export default function G2ChartComponent_general_dual_dual_axis_line_bar() {
           .axis('y', { title: 'Waiting' })
           .scale('y', { nice: true });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'people')
@@ -60,14 +60,16 @@ export default function G2ChartComponent_general_dual_dual_axis_line_bar() {
           .scale('y', { independent: true })
           .axis('y', { position: 'right', grid: null, title: 'People' });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'time')
           .encode('y', 'call')
           .encode('color', () => 'call')
           .scale('series', { independent: true });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/dual-axis-line-bar.ts:", error);

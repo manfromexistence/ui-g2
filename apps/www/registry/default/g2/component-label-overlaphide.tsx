@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_label_overlaphide() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -47,7 +47,9 @@ export default function G2ChartComponent_component_label_overlaphide() {
             ],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/label/demo/overlapHide.ts:", error);

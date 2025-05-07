@@ -30,7 +30,7 @@ export default function G2ChartComponent_interaction_element_highlight() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -43,7 +43,9 @@ export default function G2ChartComponent_interaction_element_highlight() {
           .axis('y', { labelFormatter: '.0%' })
           .interaction('elementHighlight', { background: true });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/element/demo/highlight.ts:", error);

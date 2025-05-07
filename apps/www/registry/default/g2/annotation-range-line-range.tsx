@@ -30,12 +30,12 @@ export default function G2ChartComponent_annotation_range_line_range() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/year-population.json',
         });
         
-        chart
+        chartRef.current
           .rangeX()
           .data([
             { year: [new Date('1933'), new Date('1945')], event: 'Nazi Rule' },
@@ -47,13 +47,13 @@ export default function G2ChartComponent_annotation_range_line_range() {
           .style('fillOpacity', 0.75)
           .tooltip(false);
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d.year))
           .encode('y', 'population')
           .encode('color', '#333');
         
-        chart
+        chartRef.current
           .point()
           .encode('x', (d) => new Date(d.year))
           .encode('y', 'population')
@@ -61,9 +61,11 @@ export default function G2ChartComponent_annotation_range_line_range() {
           .style('lineWidth', 1.5)
           .tooltip(false);
         
-        chartRef.current.interaction('legendFilter', false);
+        chart.interaction('legendFilter', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/range/demo/line-range.ts:", error);

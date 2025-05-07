@@ -30,7 +30,7 @@ export default function G2ChartComponent_style_graphic_gauge() {
         });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'gauge',
           data: {
             value: { target: 159, total: 400, name: 'score', thresholds: [200, 400] },
@@ -45,7 +45,9 @@ export default function G2ChartComponent_style_graphic_gauge() {
           legend: false,
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/graphic/demo/gauge.ts:", error);

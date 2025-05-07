@@ -30,9 +30,9 @@ export default function G2ChartComponent_interesting_interesting_petal() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta' });
+        chart.coordinate({ type: 'theta' });
         
-        chartRef.current.data([
+        chart.data([
           { type: '分类一', value: 27 },
           { type: '分类二', value: 25 },
           { type: '分类三', value: 18 },
@@ -41,7 +41,7 @@ export default function G2ChartComponent_interesting_interesting_petal() {
           { type: 'Other', value: 5 },
         ]);
         
-        chart
+        chartRef.current
           .interval()
           .transform({ type: 'stackY' })
           .encode('y', 'value')
@@ -58,7 +58,7 @@ export default function G2ChartComponent_interesting_interesting_petal() {
           .animate('enter', { type: 'fadeIn' })
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
         
         /** Functions for custom shape. */
         
@@ -129,7 +129,7 @@ export default function G2ChartComponent_interesting_interesting_petal() {
               ['Z'],
             ];
         
-            const { document } = chartRef.current.getContext().canvas;
+            const { document } = chart.getContext().canvas;
             const g = document.createElement('g', {});
             const p = document.createElement('path', {
               style: {
@@ -143,6 +143,8 @@ export default function G2ChartComponent_interesting_interesting_petal() {
             return g;
           };
         }
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/petal.ts:", error);

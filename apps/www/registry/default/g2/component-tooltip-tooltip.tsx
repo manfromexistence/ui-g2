@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_tooltip_tooltip() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -41,7 +41,9 @@ export default function G2ChartComponent_component_tooltip_tooltip() {
           .encode('y', 'frequency')
           .axis('y', { labelFormatter: '.0%' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip.ts:", error);

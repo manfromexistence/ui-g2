@@ -35,9 +35,9 @@ export default function G2ChartComponent_general_mini_area() {
         });
         
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .area()
           .encode('x', (_, idx) => idx)
           .encode('y', (d) => d)
@@ -48,11 +48,13 @@ export default function G2ChartComponent_general_mini_area() {
           .animate('enter', { type: 'fadeIn' })
           .axis(false);
         
-        chartRef.current.interaction('tooltip', {
+        chart.interaction('tooltip', {
           render: (e, { title, items }) => items[0].value,
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/area.ts:", error);

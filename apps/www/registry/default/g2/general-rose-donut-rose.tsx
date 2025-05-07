@@ -46,9 +46,9 @@ export default function G2ChartComponent_general_rose_donut_rose() {
         });
         
         
-        chartRef.current.coordinate({ type: 'polar', innerRadius: 0.2 });
+        chart.coordinate({ type: 'polar', innerRadius: 0.2 });
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .encode('x', 'year')
@@ -82,9 +82,11 @@ export default function G2ChartComponent_general_rose_donut_rose() {
             stroke: '#fff',
           });
         
-        chartRef.current.interaction('elementHighlight', true);
+        chart.interaction('elementHighlight', true);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/donut-rose.ts:", error);

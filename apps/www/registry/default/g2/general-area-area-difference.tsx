@@ -30,12 +30,12 @@ export default function G2ChartComponent_general_area_area_difference() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/temperature-compare.json',
         });
         
-        chart
+        chartRef.current
           .area()
           .data({
             transform: [
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_area_area_difference() {
           .encode('shape', 'hvh');
         // .scale('color', { range: ['#67a9cf', '#ef8a62'] });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'San Francisco')
@@ -62,7 +62,9 @@ export default function G2ChartComponent_general_area_area_difference() {
           .style('stroke', '#000')
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-difference.ts:", error);

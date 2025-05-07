@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_violin_density() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/species.json',
           transform: [
@@ -43,7 +43,7 @@ export default function G2ChartComponent_general_violin_density() {
           ],
         });
         
-        chart
+        chartRef.current
           .density()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -51,7 +51,9 @@ export default function G2ChartComponent_general_violin_density() {
           .encode('size', 'size')
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/violin/demo/density.ts:", error);

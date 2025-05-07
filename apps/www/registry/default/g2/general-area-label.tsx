@@ -139,7 +139,7 @@ export default function G2ChartComponent_general_area_label() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/population-by-state.json',
           transform: [
@@ -160,7 +160,7 @@ export default function G2ChartComponent_general_area_label() {
           ],
         });
         
-        chart
+        chartRef.current
           .area()
           .transform([{ type: 'stackY' }, { type: 'normalizeY' }])
           .encode('x', 'date')
@@ -176,7 +176,7 @@ export default function G2ChartComponent_general_area_label() {
           })
           .tooltip({ channel: 'y', valueFormatter: (d) => d.toFixed(3) });
         
-        chart
+        chartRef.current
           .line()
           .transform([{ type: 'stackY' }, { type: 'normalizeY' }])
           .encode('x', 'date')
@@ -188,7 +188,9 @@ export default function G2ChartComponent_general_area_label() {
           .style('fillOpacity', 0.8)
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/label.ts:", error);

@@ -27,7 +27,7 @@ export default function G2ChartComponent_style_graphic_pattern() {
         chartRef.current = new Chart({ container: chartRef.current, height: 350 });
         
         
-        chartRef.current.options({
+        chart.options({
           type: 'interval',
           height: 350,
           data: [
@@ -43,7 +43,9 @@ export default function G2ChartComponent_style_graphic_pattern() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/graphic/demo/pattern.ts:", error);

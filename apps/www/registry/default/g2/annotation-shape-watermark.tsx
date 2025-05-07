@@ -30,7 +30,7 @@ export default function G2ChartComponent_annotation_shape_watermark() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { month: 'Jan.', profit: 387264, start: 0, end: 387264 },
@@ -56,9 +56,9 @@ export default function G2ChartComponent_annotation_shape_watermark() {
           .tooltip({ channel: 'y', valueFormatter: '~s' })
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
-        chartRef.current.shape().style('x', '80%').style('y', '70%').style('render', watermark);
+        chart.shape().style('x', '80%').style('y', '70%').style('render', watermark);
         
-        chartRef.current.render();
+        chart.render();
         
         function watermark({ x, y }, context) {
           const { document } = context;
@@ -105,6 +105,8 @@ export default function G2ChartComponent_annotation_shape_watermark() {
           g.appendChild(text);
           return g;
         }
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/watermark.ts:", error);

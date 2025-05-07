@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_candlestick_line_candle_stick()
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value: 'https://assets.antv.antgroup.com/g2/aapl2.json',
@@ -49,7 +49,7 @@ export default function G2ChartComponent_general_candlestick_line_candle_stick()
             range: ['#4daf4a', '#999999', '#e41a1c'],
           });
         
-        chart
+        chartRef.current
           .link()
           .encode('x', 'Date')
           .encode('y', ['Low', 'High'])
@@ -63,7 +63,7 @@ export default function G2ChartComponent_general_candlestick_line_candle_stick()
             ],
           });
         
-        chart
+        chartRef.current
           .link()
           .encode('x', 'Date')
           .encode('y', ['Open', 'Close'])
@@ -80,9 +80,11 @@ export default function G2ChartComponent_general_candlestick_line_candle_stick()
             ],
           });
         
-        chartRef.current.interaction('tooltip', { shared: true, groupName: false });
+        chart.interaction('tooltip', { shared: true, groupName: false });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/candlestick/demo/line-candle-stick.ts:", error);

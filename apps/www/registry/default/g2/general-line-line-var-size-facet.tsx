@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
             });
         
         
-            const facet = chartRef.current.facetRect().data(data).encode('x', 'site');
+            const facet = chart.facetRect().data(data).encode('x', 'site');
         
             facet
               .line()
@@ -48,8 +48,10 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
               .attr('frame', false)
               .interaction('tooltip', { series: false });
         
-            chartRef.current.render();
+            chart.render();
           });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-var-size-facet.ts:", error);

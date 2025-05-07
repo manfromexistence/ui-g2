@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
         });
         
         
-        chart
+        chartRef.current
           .data([
             {
               name: 'activity1',
@@ -54,7 +54,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           ])
           .coordinate({ type: 'radial', innerRadius: 0.2 });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'name')
           .encode('y', 1)
@@ -64,7 +64,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           .style('fillOpacity', 0.25)
           .animate(false);
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'name')
           .encode('y', 'percent')
@@ -82,7 +82,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
             duration: 1000,
           });
         
-        chart
+        chartRef.current
           .image()
           .encode('x', 'name')
           .encode('y', 0)
@@ -90,7 +90,9 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           .encode('size', 12)
           .style('transform', 'translateX(10)');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/apple-activity.ts:", error);

@@ -42,9 +42,9 @@ export default function G2ChartComponent_analysis_regression_polynomial_regressi
           { x: 8, y: 180 },
         ];
         
-        chartRef.current.data(dataPolynomial);
+        chart.data(dataPolynomial);
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -57,7 +57,7 @@ export default function G2ChartComponent_analysis_regression_polynomial_regressi
           .x((d) => d.x)
           .y((d) => d.y);
         
-        chart
+        chartRef.current
           .line()
           .data({
             transform: [
@@ -80,7 +80,9 @@ export default function G2ChartComponent_analysis_regression_polynomial_regressi
           })
           .tooltip(null);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/regression/demo/polynomial-regression.ts:", error);

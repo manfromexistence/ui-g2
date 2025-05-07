@@ -30,9 +30,9 @@ export default function G2ChartComponent_general_radial_bar_radial() {
         });
         
         
-        chartRef.current.coordinate({ type: 'radial', innerRadius: 0.1, endAngle: Math.PI });
+        chart.coordinate({ type: 'radial', innerRadius: 0.1, endAngle: Math.PI });
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { question: '问题 1', percent: 0.21 },
@@ -61,7 +61,9 @@ export default function G2ChartComponent_general_radial_bar_radial() {
           })
           .animate('enter', { type: 'waveIn', duration: 800 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/bar-radial.ts:", error);

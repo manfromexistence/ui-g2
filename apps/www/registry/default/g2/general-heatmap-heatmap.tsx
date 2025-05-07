@@ -31,9 +31,9 @@ export default function G2ChartComponent_general_heatmap_heatmap() {
         });
         
         
-        chartRef.current.axis(false);
+        chart.axis(false);
         
-        chart
+        chartRef.current
           .image()
           .style(
             'src',
@@ -45,7 +45,7 @@ export default function G2ChartComponent_general_heatmap_heatmap() {
           .style('height', '100%')
           .tooltip(false);
         
-        chart
+        chartRef.current
           .heatmap()
           .data({
             type: 'fetch',
@@ -57,7 +57,9 @@ export default function G2ChartComponent_general_heatmap_heatmap() {
           .style('opacity', 0)
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/heatmap/demo/heatmap.ts:", error);

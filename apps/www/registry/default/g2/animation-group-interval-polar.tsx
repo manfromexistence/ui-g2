@@ -30,9 +30,9 @@ export default function G2ChartComponent_animation_group_interval_polar() {
         });
         
         
-        chartRef.current.coordinate({ type: 'polar' });
+        chart.coordinate({ type: 'polar' });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -49,7 +49,9 @@ export default function G2ChartComponent_animation_group_interval_polar() {
           .animate('enter', { type: 'waveIn' })
           .axis('y', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/interval-polar.ts:", error);

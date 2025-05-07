@@ -30,7 +30,7 @@ export default function G2ChartComponent_interaction_data_area_element_point_mov
         });
         
         
-        chart
+        chartRef.current
           .area()
           .data([
             { year: '1991', value: 3, type: 'type1' },
@@ -63,7 +63,9 @@ export default function G2ChartComponent_interaction_data_area_element_point_mov
           .encode('key', 'type')
           .encode('color', 'type');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/area-element-point-move.ts:", error);

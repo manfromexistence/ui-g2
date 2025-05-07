@@ -30,12 +30,12 @@ export default function G2ChartComponent_component_title_title() {
         });
         
         
-        chartRef.current.title({
+        chart.title({
           title: 'Sold by genre, sorted by sold', // 标题内容
           subtitle: 'It shows the sales volume of genre, sored by sold.', // 副标题内容
         });
         
-        chart
+        chartRef.current
           .interval()
           .data([
             { genre: 'Sports', sold: 0 },
@@ -49,7 +49,9 @@ export default function G2ChartComponent_component_title_title() {
           .encode('color', 'genre')
           .style('minHeight', 50);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/title/demo/title.ts:", error);

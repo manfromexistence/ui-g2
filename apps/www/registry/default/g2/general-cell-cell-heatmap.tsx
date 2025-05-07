@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_cell_cell_heatmap() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value: 'https://assets.antv.antgroup.com/g2/vaccines.json',
@@ -49,7 +49,7 @@ export default function G2ChartComponent_general_cell_cell_heatmap() {
             ],
           });
         
-        chart
+        chartRef.current
           .cell()
           .encode('x', 'year')
           .encode('y', 'name')
@@ -57,7 +57,7 @@ export default function G2ChartComponent_general_cell_cell_heatmap() {
           .style('inset', 0.5)
           .tooltip({ title: { channel: 'color', valueFormatter: '.2f' } });
         
-        chart
+        chartRef.current
           .lineX()
           .data([1963])
           .style('stroke', 'black')
@@ -77,7 +77,9 @@ export default function G2ChartComponent_general_cell_cell_heatmap() {
           })
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/cell/demo/cell-heatmap.ts:", error);

@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_cell_cell_threshold() {
         });
         
         
-        chart
+        chartRef.current
           .cell()
           .data({
             type: 'fetch',
@@ -51,7 +51,9 @@ export default function G2ChartComponent_general_cell_cell_threshold() {
           .style('inset', 2)
           .animate('enter', { type: 'fadeIn' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/cell/demo/cell-threshold.ts:", error);

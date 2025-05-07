@@ -32,7 +32,7 @@ export default function G2ChartComponent_style_rough_point() {
             });
         
         
-            chart
+            chartRef.current
               .point()
               .data({
                 type: 'fetch',
@@ -58,9 +58,11 @@ export default function G2ChartComponent_style_rough_point() {
               })
               .legend('color', { itemLabelFontFamily: 'Gaegu' });
         
-            chartRef.current.render();
+            chart.render();
           },
         });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/rough/demo/point.ts:", error);

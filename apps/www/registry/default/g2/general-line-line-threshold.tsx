@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_line_line_threshold() {
             });
         
         
-            chart
+            chartRef.current
               .line()
               .data(data)
               .scale('y', { nice: true })
@@ -50,8 +50,10 @@ export default function G2ChartComponent_general_line_line_threshold() {
               .style('lineJoin', 'round')
               .axis('x', { title: 'date' });
         
-            chartRef.current.render();
+            chart.render();
           });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-threshold.ts:", error);

@@ -29,7 +29,7 @@ export default function G2ChartComponent_interaction_other_chart_index() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -48,7 +48,7 @@ export default function G2ChartComponent_interaction_other_chart_index() {
             fontSize: 10,
           });
         
-        chart
+        chartRef.current
           .interaction('chartIndex', {
             ruleStroke: '#aaa',
             labelDx: 5,
@@ -59,7 +59,9 @@ export default function G2ChartComponent_interaction_other_chart_index() {
           })
           .interaction('tooltip', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/other/demo/chart-index.ts:", error);

@@ -52,9 +52,9 @@ export default function G2ChartComponent_general_radar_radial_with_background_co
         });
         
         
-        chartRef.current.coordinate({ type: 'polar' });
+        chart.coordinate({ type: 'polar' });
         
-        chart
+        chartRef.current
           .data(data)
           .scale('x', { padding: 0.5, align: 0 })
           .scale('y', { tickCount: 5, domainMin: 0, domainMax: 80 })
@@ -74,14 +74,14 @@ export default function G2ChartComponent_general_radar_radial_with_background_co
             },
           });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'item')
           .encode('y', 'score')
           .encode('color', 'type')
           .style('lineWidth', 2);
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'item')
           .encode('y', 'score')
@@ -90,9 +90,11 @@ export default function G2ChartComponent_general_radar_radial_with_background_co
           .encode('size', 3)
           .tooltip(null);
         
-        chartRef.current.interaction('tooltip', { crosshairsLineDash: [4, 4] });
+        chart.interaction('tooltip', { crosshairsLineDash: [4, 4] });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/radial-with-background-color.ts:", error);

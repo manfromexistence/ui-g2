@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_radar_area_radial() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/seasonal-weather.json',
           transform: [
@@ -45,9 +45,9 @@ export default function G2ChartComponent_general_radar_area_radial() {
           ],
         });
         
-        chartRef.current.coordinate({ type: 'polar', innerRadius: 0.4 });
+        chart.coordinate({ type: 'polar', innerRadius: 0.4 });
         
-        chart
+        chartRef.current
           .axis('y', {
             zIndex: 1,
             direction: 'center',
@@ -63,21 +63,21 @@ export default function G2ChartComponent_general_radar_area_radial() {
           })
           .scale('x', { utc: true });
         
-        chart
+        chartRef.current
           .area()
           .encode('x', 'date')
           .encode('y', ['minmin', 'maxmax'])
           .style('fill', 'lightsteelblue')
           .style('fillOpacity', 0.2);
         
-        chart
+        chartRef.current
           .area()
           .encode('x', 'date')
           .encode('y', ['min', 'max'])
           .style('fill', 'steelblue')
           .style('fillOpacity', 0.2);
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'date')
           .encode('y', 'avg')
@@ -85,7 +85,9 @@ export default function G2ChartComponent_general_radar_area_radial() {
           .style('lineWidth', 1.5)
           .tooltip({ channel: 'y', valueFormatter: '.1f' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/area-radial.ts:", error);

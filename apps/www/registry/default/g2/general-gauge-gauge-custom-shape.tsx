@@ -66,7 +66,7 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
           };
         };
         
-        chartRef.current.options({
+        chart.options({
           type: 'gauge',
           data: {
             value: {
@@ -84,7 +84,9 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
           },
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts:", error);

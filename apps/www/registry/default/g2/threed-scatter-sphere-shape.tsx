@@ -39,7 +39,7 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
         });
         
         
-        chart
+        chartRef.current
           .point3D()
           .data({
             type: 'fetch',
@@ -61,8 +61,8 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
           .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 2 });
         
-        chartRef.current.render().then(() => {
-          const { canvas } = chartRef.current.getContext();
+        chart.render().then(() => {
+          const { canvas } = chart.getContext();
           const camera = canvas.getCamera();
           camera.setPerspective(0.1, 5000, 45, 640 / 480);
           camera.setType(CameraType.ORBITING);

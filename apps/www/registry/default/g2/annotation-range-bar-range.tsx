@@ -51,7 +51,7 @@ export default function G2ChartComponent_annotation_range_bar_range() {
         });
         
         
-        chart
+        chartRef.current
           .data([
             { y: [0, 25], region: '1' },
             { y: [25, 50], region: '2' },
@@ -62,7 +62,7 @@ export default function G2ChartComponent_annotation_range_bar_range() {
           .style('fillOpacity', 0.4)
           .animate('enter', { type: 'fadeIn' });
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .encode('x', '职业')
@@ -80,7 +80,9 @@ export default function G2ChartComponent_annotation_range_bar_range() {
             ],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/range/demo/bar-range.ts:", error);

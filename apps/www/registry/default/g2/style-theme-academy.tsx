@@ -31,9 +31,9 @@ export default function G2ChartComponent_style_theme_academy() {
         
         
         // Apply academy theme.
-        chartRef.current.theme({ type: 'academy' });
+        chart.theme({ type: 'academy' });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -49,11 +49,13 @@ export default function G2ChartComponent_style_theme_academy() {
           .axis('y', { labelFormatter: '~s' })
           .axis('x', { zIndex: 1 });
         
-        chart
+        chartRef.current
           .interaction('tooltip', { shared: true })
           .interaction('elementHighlight', { background: true });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/academy.ts:", error);

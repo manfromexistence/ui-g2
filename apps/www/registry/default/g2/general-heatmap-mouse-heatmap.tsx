@@ -33,14 +33,14 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
         });
         
         
-        chartRef.current.style({
+        chart.style({
           viewFill: '#4e79a7',
         });
         
-        chartRef.current.data([]);
-        chartRef.current.axis(false);
+        chart.data([]);
+        chart.axis(false);
         
-        chart
+        chartRef.current
           .heatmap()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -51,9 +51,9 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
           .tooltip(false)
           .animate(false);
         
-        chartRef.current.render();
+        chart.render();
         
-        chartRef.current.on(
+        chart.on(
           'plot:pointermove',
           throttle((e) => {
             const { x, y } = e;
@@ -68,7 +68,7 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
         
             const d = transform(data);
         
-            chartRef.current.changeData(d);
+            chart.changeData(d);
           }),
         );
         
@@ -81,6 +81,8 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
           });
           return arr;
         }
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts:", error);

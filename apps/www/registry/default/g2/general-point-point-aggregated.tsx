@@ -31,9 +31,9 @@ export default function G2ChartComponent_general_point_point_aggregated() {
         });
         
         
-        chartRef.current.style('mainStroke', 'black');
+        chart.style('mainStroke', 'black');
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -50,7 +50,9 @@ export default function G2ChartComponent_general_point_point_aggregated() {
           .encode('color', 'count')
           .encode('shape', 'point');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-aggregated.ts:", error);

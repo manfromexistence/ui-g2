@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_area_gradient() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/stocks.json',
           transform: [
@@ -41,20 +41,22 @@ export default function G2ChartComponent_general_area_area_gradient() {
           ],
         });
         
-        chart
+        chartRef.current
           .area()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'price')
           .style('fill', 'linear-gradient(-90deg, white 0%, darkgreen 100%)');
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'price')
           .style('stroke', 'darkgreen')
           .style('lineWidth', 2);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-gradient.ts:", error);

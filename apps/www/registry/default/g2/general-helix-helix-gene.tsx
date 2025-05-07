@@ -45,16 +45,16 @@ export default function G2ChartComponent_general_helix_helix_gene() {
         });
         
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chartRef.current.coordinate({
+        chart.coordinate({
           type: 'helix',
           startAngle: 0.2 * Math.PI,
           endAngle: 6.5 * Math.PI,
           innerRadius: 0.1,
         });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'time')
           .encode('y', 'group')
@@ -79,7 +79,9 @@ export default function G2ChartComponent_general_helix_helix_gene() {
             duration: 1000,
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/helix/demo/helix-gene.ts:", error);

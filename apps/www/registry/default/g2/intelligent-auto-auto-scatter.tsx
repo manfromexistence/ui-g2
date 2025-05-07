@@ -30,13 +30,15 @@ export default function G2ChartComponent_intelligent_auto_auto_scatter() {
         });
         
         
-        chartRef.current.mark(Auto).data({
+        chart.mark(Auto).data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/basement_prod/6b4aa721-b039-49b9-99d8-540b3f87d339.json',
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/auto/demo/auto-scatter.ts:", error);

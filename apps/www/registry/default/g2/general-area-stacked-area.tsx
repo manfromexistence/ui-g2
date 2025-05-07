@@ -30,12 +30,12 @@ export default function G2ChartComponent_general_area_stacked_area() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/unemployment-by-industry.json',
         });
         
-        chart
+        chartRef.current
           .area()
           .transform([
             { type: 'stackY' }, // Try to remove this line.
@@ -45,7 +45,9 @@ export default function G2ChartComponent_general_area_stacked_area() {
           .encode('color', 'industry')
           .encode('shape', 'smooth');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/stacked-area.ts:", error);

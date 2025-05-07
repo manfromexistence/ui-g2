@@ -30,7 +30,7 @@ export default function G2ChartComponent_algorithm_sort_selection_sort() {
         });
         
         
-        const keyframe = chartRef.current.timingKeyframe();
+        const keyframe = chart.timingKeyframe();
         
         for (const frame of selectionSort(data)) {
           keyframe
@@ -42,7 +42,9 @@ export default function G2ChartComponent_algorithm_sort_selection_sort() {
             .encode('color', 'swap');
         }
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/algorithm/sort/demo/selection-sort.ts:", error);

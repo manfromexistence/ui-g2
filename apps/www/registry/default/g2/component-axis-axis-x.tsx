@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_axis_axis_x() {
         });
         
         
-        chart
+        chartRef.current
           .axisX()
           .scale('x', {
             type: 'linear',
@@ -40,7 +40,9 @@ export default function G2ChartComponent_component_axis_axis_x() {
           .attr('tickCount', 10)
           .attr('title', 'AxisX');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-x.ts:", error);

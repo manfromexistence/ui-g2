@@ -37,9 +37,9 @@ export default function G2ChartComponent_general_radial_radial_stacked() {
         });
         
         
-        chartRef.current.coordinate({ type: 'radial' });
+        chart.coordinate({ type: 'radial' });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             value: data,
@@ -83,7 +83,9 @@ export default function G2ChartComponent_general_radial_radial_stacked() {
             shared: true,
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/radial-stacked.ts:", error);

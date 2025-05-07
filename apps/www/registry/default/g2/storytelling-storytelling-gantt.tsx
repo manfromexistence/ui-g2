@@ -40,9 +40,9 @@ export default function G2ChartComponent_storytelling_storytelling_gantt() {
         });
         
         
-        chartRef.current.coordinate({ transform: [{ type: 'transpose' }] });
+        chart.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart
+        chartRef.current
           .interval()
           .data(events)
           .encode('x', 'name')
@@ -55,7 +55,9 @@ export default function G2ChartComponent_storytelling_storytelling_gantt() {
             range: [0, 3000],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/gantt.ts:", error);

@@ -31,7 +31,7 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
         });
         
         
-        focus
+        chartRef.current
           .area()
           .data({
             type: 'fetch',
@@ -46,7 +46,7 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           .interaction('tooltip', false)
           .interaction('brushXFilter', true);
         
-        chartRef.current.render();
+        focus.render();
         
         // Render context View.
         const context = new Chart({
@@ -103,11 +103,11 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
         }
         
         // Add event listeners  to communicate.
-        chartRef.current.on('brush:filter', (e) => {
+        focus.on('brush:filter', (e) => {
           const { nativeEvent } = e;
           if (!nativeEvent) return;
           const { selection } = e.data;
-          const { x: scaleX } = chartRef.current.getScale();
+          const { x: scaleX } = focus.getScale();
           const [[x1, x2]] = selection;
           const domainX = scaleX.getOptions().domain;
           if (x1 === domainX[0] && x2 === domainX[1]) {
@@ -121,7 +121,7 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           const { selection } = data;
-          chartRef.current.emit('brush:filter', { data: { selection } });
+          focus.emit('brush:filter', { data: { selection } });
         });
         
         context.on('brush:remove', (e) => {
@@ -129,8 +129,10 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           if (!nativeEvent) return;
           const { x: scaleX, y: scaleY } = context.getScale();
           const selection = [scaleX.getOptions().domain, scaleY.getOptions().domain];
-          chartRef.current.emit('brush:filter', { data: { selection } });
+          focus.emit('brush:filter', { data: { selection } });
         });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/multi-view/demo/focus-context.ts:", error);

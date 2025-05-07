@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_orderly_area() {
         });
         
         
-        chart
+        chartRef.current
           .area()
           .data({
             type: 'fetch',
@@ -47,7 +47,9 @@ export default function G2ChartComponent_general_area_orderly_area() {
           .axis('y', { labelFormatter: '~s' })
           .legend('color', { size: 72, autoWrap: true, maxRows: 3, cols: 6 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/orderly-area.ts:", error);

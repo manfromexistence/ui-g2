@@ -30,7 +30,7 @@ export default function G2ChartComponent_annotation_text_line_text() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value:
@@ -46,13 +46,13 @@ export default function G2ChartComponent_annotation_text_line_text() {
           })
           .axis('x', { labelAutoHide: 'greedy' });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'value')
           .encode('color', 'type');
         
-        chart
+        chartRef.current
           .text()
           .data([new Date('2017-12-17'), 100])
           .style({
@@ -73,7 +73,9 @@ export default function G2ChartComponent_annotation_text_line_text() {
           })
           .tooltip(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/text/demo/line-text.ts:", error);

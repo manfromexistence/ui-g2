@@ -30,7 +30,7 @@ export default function G2ChartComponent_intelligent_auto_auto_line() {
         });
         
         
-        chartRef.current.mark(Auto).data([
+        chart.mark(Auto).data([
           { year: '2007', sales: 28 },
           { year: '2008', sales: 55 },
           { year: '2009', sales: 43 },
@@ -42,7 +42,9 @@ export default function G2ChartComponent_intelligent_auto_auto_line() {
           { year: '2015', sales: 52 },
         ]);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/auto/demo/auto-line.ts:", error);

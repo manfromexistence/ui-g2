@@ -39,9 +39,9 @@ export default function G2ChartComponent_general_dual_pareto() {
         });
         
         
-        chartRef.current.title('Pareto Chart of Customer Complaints');
+        chart.title('Pareto Chart of Customer Complaints');
         
-        chartRef.current.data({
+        chart.data({
           type: 'inline',
           value: data,
           transform: [
@@ -63,7 +63,7 @@ export default function G2ChartComponent_general_dual_pareto() {
           ],
         });
         
-        chart
+        chartRef.current
           .interval()
           .encode('x', 'x')
           .encode('y', 'value')
@@ -77,7 +77,7 @@ export default function G2ChartComponent_general_dual_pareto() {
             textBaseline: 'bottom',
           });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'x')
           .encode('y', 'accumulate')
@@ -93,7 +93,7 @@ export default function G2ChartComponent_general_dual_pareto() {
             valueFormatter: (d) => `${(d * 100).toFixed(2)}%`,
           });
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'x')
           .encode('y', 'accumulate')
@@ -102,7 +102,9 @@ export default function G2ChartComponent_general_dual_pareto() {
           .axis('y', null)
           .tooltip(null);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/pareto.ts:", error);

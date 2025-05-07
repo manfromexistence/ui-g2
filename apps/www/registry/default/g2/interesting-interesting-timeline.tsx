@@ -78,9 +78,9 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           },
         ];
         
-        chartRef.current.data(data);
+        chart.data(data);
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'year')
           .encode('y', 1)
@@ -105,7 +105,7 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           })
           .axis(false);
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'year')
           .encode('y', 1)
@@ -114,9 +114,11 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           .style('stroke', '#000')
           .style('fill', '#fff');
         
-        chartRef.current.interaction('tooltip', false);
+        chart.interaction('tooltip', false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/timeline.ts:", error);

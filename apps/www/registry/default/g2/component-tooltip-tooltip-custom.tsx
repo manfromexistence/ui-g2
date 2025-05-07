@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_custom() {
         });
         
         
-        chart
+        chartRef.current
           .boxplot()
           .data({
             type: 'fetch',
@@ -44,7 +44,9 @@ export default function G2ChartComponent_component_tooltip_tooltip_custom() {
           .tooltip({ name: 'q3', channel: 'y3' })
           .tooltip({ name: 'max', color: 'red', channel: 'y4' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-custom.ts:", error);

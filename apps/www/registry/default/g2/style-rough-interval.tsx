@@ -33,7 +33,7 @@ export default function G2ChartComponent_style_rough_interval() {
             });
         
         
-            chart
+            chartRef.current
               .interval()
               .data([
                 { month: 'Jan.', profit: 387264, start: 0, end: 387264 },
@@ -73,9 +73,11 @@ export default function G2ChartComponent_style_rough_interval() {
               })
               .legend('color', { itemLabelFontFamily: 'Gaegu' });
         
-            chartRef.current.render();
+            chart.render();
           },
         });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/rough/demo/interval.ts:", error);

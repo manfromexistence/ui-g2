@@ -39,7 +39,7 @@ export default function G2ChartComponent_threed_scatter_circle_shape() {
         });
         
         
-        chart
+        chartRef.current
           .point3D()
           .data({
             type: 'fetch',
@@ -63,8 +63,8 @@ export default function G2ChartComponent_threed_scatter_circle_shape() {
           .style('lineWidth', 2)
           .style('fillOpacity', 0.6);
         
-        chartRef.current.render().then(() => {
-          const { canvas } = chartRef.current.getContext();
+        chart.render().then(() => {
+          const { canvas } = chart.getContext();
           const camera = canvas.getCamera();
           camera.setPerspective(0.1, 5000, 45, 640 / 480);
           camera.setType(CameraType.ORBITING);

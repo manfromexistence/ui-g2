@@ -34,7 +34,7 @@ export default function G2ChartComponent_general_pie_pie_base_facet() {
         });
         
         
-        const facetRect = chart
+        const facetRect = chartRef.current
           .facetRect()
           .data(data)
           .encode('x', 'type')
@@ -86,7 +86,9 @@ export default function G2ChartComponent_general_pie_pie_base_facet() {
           .style('y', '50%')
           .style('dy', 20);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie-base-facet.ts:", error);

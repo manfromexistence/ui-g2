@@ -50,7 +50,7 @@ export default function G2ChartComponent_threed_bar_cube() {
           }
         }
         
-        chart
+        chartRef.current
           .interval3D()
           .data({
             type: 'inline',
@@ -71,8 +71,8 @@ export default function G2ChartComponent_threed_bar_cube() {
           .axis('z', { gridLineWidth: 2 })
           .style('opacity', 0.7);
         
-        chartRef.current.render().then(() => {
-          const { canvas } = chartRef.current.getContext();
+        chart.render().then(() => {
+          const { canvas } = chart.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 5000, 45, 640 / 480);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_animation_general_path_in() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -41,7 +41,9 @@ export default function G2ChartComponent_animation_general_path_in() {
           .encode('y', 'close')
           .animate('enter', { type: 'pathIn', duration: 1000 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/path-in.ts:", error);

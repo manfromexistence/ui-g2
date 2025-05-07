@@ -37,9 +37,9 @@ export default function G2ChartComponent_interaction_data_pie_element_point_move
         });
         
         
-        chartRef.current.coordinate({ type: 'theta', outerRadius: 0.8 });
+        chart.coordinate({ type: 'theta', outerRadius: 0.8 });
         
-        chart
+        chartRef.current
           .interval()
           .data(data)
           .transform({ type: 'stackY' })
@@ -59,7 +59,9 @@ export default function G2ChartComponent_interaction_data_pie_element_point_move
             value: `${data.percent * 100}%`,
           }));
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/pie-element-point-move.ts:", error);

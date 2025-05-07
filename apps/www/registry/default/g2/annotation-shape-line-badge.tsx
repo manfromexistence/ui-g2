@@ -31,7 +31,7 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value:
@@ -47,13 +47,13 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
           })
           .axis('x', { labelAutoHide: 'greedy' });
         
-        chart
+        chartRef.current
           .line()
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'value')
           .encode('color', 'type');
         
-        chart
+        chartRef.current
           .text()
           .data([new Date('2017-12-17'), 100])
           .encode('shape', 'badge')
@@ -65,7 +65,9 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
             markerFillOpacity: 0.55,
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/line-badge.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value: 'https://assets.antv.antgroup.com/g2/range-spline-area.json',
@@ -44,7 +44,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .axis('y', { title: false })
           .scale('x', { type: 'linear', tickCount: 10 });
         
-        chart
+        chartRef.current
           .area()
           .encode('x', 'x')
           .encode('y', ['low', 'high'])
@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .style('fill', '#64b5f6')
           .style('lineWidth', 1);
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'x')
           .encode('y', 'v2')
@@ -61,14 +61,16 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .encode('shape', 'point')
           .tooltip('v2');
         
-        chart
+        chartRef.current
           .line()
           .encode('x', 'x')
           .encode('y', 'v3')
           .encode('color', '#FF6B3B')
           .encode('shape', 'smooth');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/range-spline-area.ts:", error);

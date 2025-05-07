@@ -38,7 +38,7 @@ export default function G2ChartComponent_general_polygon_treemap() {
         });
         
         
-        chart
+        chartRef.current
           .data({
             type: 'fetch',
             value:
@@ -47,7 +47,7 @@ export default function G2ChartComponent_general_polygon_treemap() {
           })
           .legend(false);
         
-        chart
+        chartRef.current
           .polygon()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -62,7 +62,7 @@ export default function G2ChartComponent_general_polygon_treemap() {
           .scale('size', { type: 'identity' })
           .axis(false);
         
-        chart
+        chartRef.current
           .text()
           .data({
             transform: [
@@ -81,7 +81,9 @@ export default function G2ChartComponent_general_polygon_treemap() {
           .style('textAlign', 'start')
           .style('fontSize', 12);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/polygon/demo/treemap.ts:", error);

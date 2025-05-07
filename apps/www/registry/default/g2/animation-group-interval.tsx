@@ -37,7 +37,7 @@ export default function G2ChartComponent_animation_group_interval() {
         });
         
         
-        chart
+        chartRef.current
           .interval()
           .data(fruits)
           .transform({ type: 'stackEnter', groupBy: 'color' })
@@ -48,7 +48,9 @@ export default function G2ChartComponent_animation_group_interval() {
           .encode('color', 'type')
           .animate('enter', { duration: 500 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/interval.ts:", error);

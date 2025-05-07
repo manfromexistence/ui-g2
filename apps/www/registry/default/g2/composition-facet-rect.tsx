@@ -32,7 +32,7 @@ export default function G2ChartComponent_composition_facet_rect() {
         });
         
         
-        const facetRect = chart
+        const facetRect = chartRef.current
           .facetRect()
           .data({
             type: 'fetch',
@@ -70,7 +70,9 @@ export default function G2ChartComponent_composition_facet_rect() {
           .encode('y', 'culmen_length_mm')
           .encode('color', 'island');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect.ts:", error);

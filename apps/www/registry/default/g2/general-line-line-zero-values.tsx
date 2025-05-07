@@ -29,7 +29,7 @@ export default function G2ChartComponent_general_line_line_zero_values() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data([
             { date: '06-10', count: 0, type: '测试' },
@@ -46,7 +46,9 @@ export default function G2ChartComponent_general_line_line_zero_values() {
             domain: [0, 1],
           });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-zero-values.ts:", error);

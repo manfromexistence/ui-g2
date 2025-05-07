@@ -31,7 +31,7 @@ export default function G2ChartComponent_graph_hierarchy_circle_packing() {
         });
         
         
-        chart
+        chartRef.current
           .pack()
           .data({
             type: 'fetch',
@@ -52,7 +52,9 @@ export default function G2ChartComponent_graph_hierarchy_circle_packing() {
             d.r >= 10 && d.height === 0 ? `${d.data.name}` : '',
           );
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/circle-packing.ts:", error);

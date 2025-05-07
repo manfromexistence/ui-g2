@@ -29,7 +29,7 @@ export default function G2ChartComponent_component_scrollbar_scrollbar() {
         });
         
         
-        chart
+        chartRef.current
           .line()
           .data({
             type: 'fetch',
@@ -42,8 +42,8 @@ export default function G2ChartComponent_component_scrollbar_scrollbar() {
           .scrollbar('x', {})
           .scrollbar('y', { value: 0.2 });
         
-        chartRef.current.on('afterrender', () => {
-          const { canvas } = chartRef.current.getContext();
+        chart.on('afterrender', () => {
+          const { canvas } = chart.getContext();
           const { document } = canvas;
           document
             .querySelector('.g2-scrollbar')
@@ -52,7 +52,9 @@ export default function G2ChartComponent_component_scrollbar_scrollbar() {
             });
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/scrollbar/demo/scrollbar.ts:", error);

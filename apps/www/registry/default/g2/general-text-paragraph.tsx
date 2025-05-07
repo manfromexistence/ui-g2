@@ -36,9 +36,9 @@ export default function G2ChartComponent_general_text_paragraph() {
         });
         
         
-        chartRef.current.data(paragraph);
+        chart.data(paragraph);
         
-        chart
+        chartRef.current
           .text()
           .encode('x', 'idx')
           .encode('y', 1)
@@ -60,7 +60,7 @@ export default function G2ChartComponent_general_text_paragraph() {
           .axis(false)
           .legend(false);
         
-        chart
+        chartRef.current
           .text()
           .encode('x', 'idx')
           .encode('y', 1)
@@ -79,7 +79,9 @@ export default function G2ChartComponent_general_text_paragraph() {
           .axis(false)
           .legend(false);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/paragraph.ts:", error);

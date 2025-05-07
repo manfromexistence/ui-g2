@@ -36,7 +36,7 @@ export default function G2ChartComponent_storytelling_storytelling_interval_keyf
         });
         
         
-        const keyframe = chartRef.current.timingKeyframe();
+        const keyframe = chart.timingKeyframe();
         
         keyframe
           .interval()
@@ -55,7 +55,9 @@ export default function G2ChartComponent_storytelling_storytelling_interval_keyf
           .encode('color', 'sex')
           .encode('groupKey', 'city');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/interval-keyframe.ts:", error);

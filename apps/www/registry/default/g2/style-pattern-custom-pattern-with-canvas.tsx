@@ -91,7 +91,7 @@ export default function G2ChartComponent_style_pattern_custom_pattern_with_canva
         const pattern2 = createPattern('#edaa53', '#44120c', true);
         const pattern3 = createPattern('#edaa53', '#fff');
         
-        chart
+        chartRef.current
           .cell()
           .data({
             type: 'fetch',
@@ -118,7 +118,9 @@ export default function G2ChartComponent_style_pattern_custom_pattern_with_canva
           })
           .animate('enter', { type: 'fadeIn' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/pattern/demo/custom-pattern-with-canvas.ts:", error);

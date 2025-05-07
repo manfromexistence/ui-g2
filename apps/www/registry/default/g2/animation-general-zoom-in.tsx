@@ -31,7 +31,7 @@ export default function G2ChartComponent_animation_general_zoom_in() {
         });
         
         
-        chart
+        chartRef.current
           .point()
           .data({
             type: 'fetch',
@@ -49,7 +49,9 @@ export default function G2ChartComponent_animation_general_zoom_in() {
           .legend('size', false)
           .animate('enter', { type: 'zoomIn', duration: 1000 });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/zoom-in.ts:", error);

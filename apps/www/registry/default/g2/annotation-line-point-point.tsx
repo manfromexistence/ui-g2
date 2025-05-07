@@ -30,7 +30,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
         });
         
         
-        chartRef.current.data({
+        chart.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/penguins.json',
           transform: [
@@ -41,14 +41,14 @@ export default function G2ChartComponent_annotation_line_point_point() {
           ],
         });
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'body_mass_g')
           .encode('y', 'species')
           .style('stroke', '#000')
           .tooltip({ channel: 'x' });
         
-        chart
+        chartRef.current
           .link()
           .transform({ type: 'groupY', x: 'min', x1: 'max' })
           .encode('x', 'body_mass_g')
@@ -56,7 +56,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
           .style('stroke', '#000')
           .tooltip(false);
         
-        chart
+        chartRef.current
           .point()
           .transform({ type: 'groupY', x: 'median' })
           .encode('y', 'species')
@@ -66,7 +66,9 @@ export default function G2ChartComponent_annotation_line_point_point() {
           .style('stroke', 'red')
           .tooltip({ channel: 'x' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/point-point.ts:", error);

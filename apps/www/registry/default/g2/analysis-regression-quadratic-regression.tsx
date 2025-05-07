@@ -30,7 +30,7 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
         });
         
         
-        chartRef.current.data([
+        chart.data([
           { x: -3, y: 7.5 },
           { x: -2, y: 3 },
           { x: -1, y: 0.5 },
@@ -40,7 +40,7 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
           { x: 3, y: 14 },
         ]);
         
-        chart
+        chartRef.current
           .point()
           .encode('x', 'x')
           .encode('y', 'y')
@@ -56,7 +56,7 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
           .y((d) => d.y)
           .domain([-4, 4]);
         
-        chart
+        chartRef.current
           .line()
           .data({
             transform: [
@@ -72,10 +72,12 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
           .style('lineWidth', 2)
           .tooltip(false);
         
-        chartRef.current.lineX().data([0]);
-        chartRef.current.lineY().data([0]);
+        chart.lineX().data([0]);
+        chart.lineY().data([0]);
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/regression/demo/quadratic-regression.ts:", error);

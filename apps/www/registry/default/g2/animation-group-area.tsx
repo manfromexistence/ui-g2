@@ -30,7 +30,7 @@ export default function G2ChartComponent_animation_group_area() {
         });
         
         
-        chart
+        chartRef.current
           .area()
           .data({
             type: 'fetch',
@@ -44,7 +44,9 @@ export default function G2ChartComponent_animation_group_area() {
           .transform({ type: 'stackY', orderBy: 'value' })
           .animate('enter', { type: 'growInX' });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/area.ts:", error);

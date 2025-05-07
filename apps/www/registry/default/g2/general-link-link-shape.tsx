@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_link_link_shape() {
           { x1: 12, y1: 5, x2: 15, y2: 8, shape: 'vhv' },
           { x1: 12, y1: 12, x2: 15, y2: 15, shape: 'arc' },
         ].forEach((data) => {
-          chart
+          chartRef.current
             .link()
             .data([data])
             .encode('x', ['x1', 'x2'])
@@ -54,7 +54,9 @@ export default function G2ChartComponent_general_link_link_shape() {
             });
         });
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/link/demo/link-shape.ts:", error);

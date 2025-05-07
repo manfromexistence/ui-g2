@@ -32,9 +32,9 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
         });
         
         
-        chartRef.current.coordinate({ type: 'theta', innerRadius: 0.6 });
+        chart.coordinate({ type: 'theta', innerRadius: 0.6 });
         
-        chart
+        chartRef.current
           .interval()
           .data({
             type: 'fetch',
@@ -50,7 +50,7 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
           })
           .legend(false);
         
-        chart
+        chartRef.current
           .text()
           .style('text', 'Donut')
           // Relative position
@@ -60,9 +60,9 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
           .style('fontWeight', 'bold')
           .style('textAlign', 'center');
         
-        chart
+        chartRef.current
           .text()
-          .style('text', 'chart')
+          .style('text', 'chartRef.current')
           // Absolute position
           .style('x', 640 / 2 - 16)
           .style('y', 360)
@@ -70,7 +70,9 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
           .style('fontWeight', 'bold')
           .style('textAlign', 'center');
         
-        chartRef.current.render();
+        chart.render();
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie-donut-text.ts:", error);

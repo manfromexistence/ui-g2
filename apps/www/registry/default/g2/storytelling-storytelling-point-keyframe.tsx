@@ -29,7 +29,7 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
             });
         
         
-            const keyframe = chart
+            const keyframe = chartRef.current
               .timingKeyframe()
               .attr('direction', 'alternate')
               .attr('iterationCount', 4);
@@ -52,8 +52,10 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
               .encode('groupKey', 'gender')
               .encode('shape', 'point');
         
-            chartRef.current.render();
+            chart.render();
           });
+        
+        // TODO: Ensure 'chartRef.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/point-keyframe.ts:", error);
