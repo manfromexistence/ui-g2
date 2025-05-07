@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "visuablizationscard"
+} from "@/registry/default/ui/card"
 import {
   ChartConfig,
   ChartContainer,
@@ -77,17 +77,17 @@ export default function Component() {
             <Area
               dataKey="mobile"
               type="natural"
-              fill={chartConfig.mobile.color}
+              fill="var(--color-mobile)"
               fillOpacity={0.4}
-              stroke={chartConfig.mobile.color}
+              stroke="var(--color-mobile)"
               stackId="a"
             />
             <Area
               dataKey="desktop"
               type="natural"
-              fill={chartConfig.desktop.color}
+              fill="var(--color-desktop)"
               fillOpacity={0.4}
-              stroke={chartConfig.desktop.color}
+              stroke="var(--color-desktop)"
               stackId="a"
             />
           </AreaChart>

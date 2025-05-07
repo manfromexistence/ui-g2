@@ -1,5 +1,5 @@
 // filepath: /workspaces/ui-g2/apps/www/registry/registry-g2.ts
-import { type Registry } from "shadcn/registry";
+import { type Registry } from "shadcn/registry"
 
 export const g2: Registry["items"] = [
   {
@@ -4215,4 +4215,4 @@ export const g2: Registry["items"] = [
     ],
     categories: ["g2"],
   },
-];
+]
