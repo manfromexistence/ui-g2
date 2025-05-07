@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/area/demo/area-range.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [
   { time: 1246406400000, temperature: [14.3, 27.7] },
@@ -48,40 +50,6 @@ const data = [
   { time: 1248825600000, temperature: [10.8, 17.8] },
   { time: 1248912000000, temperature: [11.8, 18.5] },
   { time: 1248998400000, temperature: [10.8, 16.1] },
-];
-
-const averages = [
-  { time: 1246406400000, temperature: 21.5 },
-  { time: 1246492800000, temperature: 22.1 },
-  { time: 1246579200000, temperature: 23 },
-  { time: 1246665600000, temperature: 23.8 },
-  { time: 1246752000000, temperature: 21.4 },
-  { time: 1246838400000, temperature: 21.3 },
-  { time: 1246924800000, temperature: 18.3 },
-  { time: 1247011200000, temperature: 15.4 },
-  { time: 1247097600000, temperature: 16.4 },
-  { time: 1247184000000, temperature: 17.7 },
-  { time: 1247270400000, temperature: 17.5 },
-  { time: 1247356800000, temperature: 17.6 },
-  { time: 1247443200000, temperature: 17.7 },
-  { time: 1247529600000, temperature: 16.8 },
-  { time: 1247616000000, temperature: 17.7 },
-  { time: 1247702400000, temperature: 16.3 },
-  { time: 1247788800000, temperature: 17.8 },
-  { time: 1247875200000, temperature: 18.1 },
-  { time: 1247961600000, temperature: 17.2 },
-  { time: 1248048000000, temperature: 14.4 },
-  { time: 1248134400000, temperature: 13.7 },
-  { time: 1248220800000, temperature: 15.7 },
-  { time: 1248307200000, temperature: 14.6 },
-  { time: 1248393600000, temperature: 15.3 },
-  { time: 1248480000000, temperature: 15.3 },
-  { time: 1248566400000, temperature: 15.8 },
-  { time: 1248652800000, temperature: 15.2 },
-  { time: 1248739200000, temperature: 14.8 },
-  { time: 1248825600000, temperature: 14.4 },
-  { time: 1248912000000, temperature: 15 },
-  { time: 1248998400000, temperature: 13.6 },
 ];
 
 export default function G2ChartComponent_general_area_area_range() {
@@ -119,8 +87,6 @@ export default function G2ChartComponent_general_area_area_range() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .data({
             value: data,
@@ -178,7 +144,7 @@ export default function G2ChartComponent_general_area_area_range() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-range.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/area/demo/area-range.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/area/demo/area-range.ts</div>';
         }
       }
     }

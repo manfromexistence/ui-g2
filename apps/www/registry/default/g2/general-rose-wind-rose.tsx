@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/rose/demo/wind-rose.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [
   { direction: 'N', level: '< 0.5 m/s', value: 1.81 },
@@ -131,16 +133,6 @@ const data = [
   { direction: 'NNW', level: '> 10 m/s', value: 0.07 },
 ];
 
-const colors = [
-  '#E3F4BF',
-  '#BEF7C8',
-  '#86E6C8',
-  '#36CFC9',
-  '#209BDD',
-  '#1581E6',
-  '#0860BF',
-];
-
 export default function G2ChartComponent_general_rose_wind_rose() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -178,8 +170,6 @@ export default function G2ChartComponent_general_rose_wind_rose() {
           padding: 50,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.coordinate({ type: 'polar' });
         
         g2ChartInstance.current
@@ -221,7 +211,7 @@ export default function G2ChartComponent_general_rose_wind_rose() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/wind-rose.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/rose/demo/wind-rose.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/rose/demo/wind-rose.ts</div>';
         }
       }
     }

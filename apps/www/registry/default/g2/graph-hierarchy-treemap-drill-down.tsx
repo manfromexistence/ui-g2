@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/graph/hierarchy/demo/treemap-drill-down.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 
 
 export default function G2ChartComponent_graph_hierarchy_treemap_drill_down() {
@@ -53,8 +55,6 @@ export default function G2ChartComponent_graph_hierarchy_treemap_drill_down() {
           height: 400,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         const data = {
           name: '商品',
           children: [
@@ -130,7 +130,7 @@ export default function G2ChartComponent_graph_hierarchy_treemap_drill_down() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/treemap-drill-down.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/graph/hierarchy/demo/treemap-drill-down.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/graph/hierarchy/demo/treemap-drill-down.ts</div>';
         }
       }
     }

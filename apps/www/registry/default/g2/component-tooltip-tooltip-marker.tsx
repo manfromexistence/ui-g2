@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/tooltip/demo/tooltip-marker.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [
   { item: 'Design', type: 'a', score: 70 },
@@ -38,70 +40,6 @@ const data = [
   { item: 'UX', type: 'a', score: 50 },
   { item: 'UX', type: 'b', score: 60 },
 ];
-
-const options = {
-  type: 'view',
-  coordinate: {
-    type: 'polar',
-  },
-  scale: {
-    x: { padding: 0.5, align: 0 },
-    y: { tickCount: 5, domainMax: 80 },
-  },
-  autoFit: true,
-  data,
-  interaction: {
-    legendFilter: false,
-    elementPointMove: true,
-    tooltip: {
-      crosshairs: true,
-      crosshairsStroke: 'red',
-      crosshairsLineDash: [4, 4],
-      markerType: 'hollow',
-    },
-  },
-  axis: {
-    x: {
-      grid: true,
-      gridStrokeWidth: 1,
-      tick: false,
-      gridLineDash: [0, 0],
-    },
-    y: {
-      zIndex: 1,
-      title: false,
-      gridConnect: 'line',
-      gridStrokeWidth: 1,
-      gridLineDash: [0, 0],
-    },
-  },
-  children: [
-    {
-      type: 'area',
-      encode: {
-        x: 'item',
-        y: 'score',
-        color: 'type',
-        key: 'type',
-      },
-      style: {
-        fillOpacity: 0.5,
-      },
-    },
-    {
-      type: 'line',
-      encode: {
-        x: 'item',
-        y: 'score',
-        color: 'type',
-        key: 'type',
-      },
-      style: {
-        lineWidth: 2,
-      },
-    },
-  ],
-};
 
 export default function G2ChartComponent_component_tooltip_tooltip_marker() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -137,8 +75,6 @@ export default function G2ChartComponent_component_tooltip_tooltip_marker() {
           container: chartRef.current,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.options(options);
         
         g2ChartInstance.current.render();
@@ -146,7 +82,7 @@ export default function G2ChartComponent_component_tooltip_tooltip_marker() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-marker.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/tooltip/demo/tooltip-marker.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/tooltip/demo/tooltip-marker.ts</div>';
         }
       }
     }

@@ -15,7 +15,40 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interaction/brush/demo/brush.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
 
+// Trailing helpers extracted from original:
+}
+
+function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
+  let div;
+
+  const render = (data, [x, y]) => {
+    if (div) remove();
+    div = document.createElement('div');
+    div.innerHTML = `
+    Select a node:
+    <ul>${data.map((d) => `<li>x:${d.weight},y:${d.height}</li>`).join('')}</ul>
+    `;
+    div.style.position = 'absolute';
+    div.style.background = '#eee';
+    div.style.padding = '0.5em';
+    div.style.left = x + offsetX + 'px';
+    div.style.top = y + offsetY + 'px';
+    div.onclick = () => {
+      remove();
+      onRemove();
+    };
+    container.append(div);
+  };
+
+  const remove = () => {
+    if (div) div.remove();
+    div = null;
+  };
+
+  return [render, remove];
+}
 
 export default function G2ChartComponent_interaction_brush_brush() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -52,8 +85,6 @@ export default function G2ChartComponent_interaction_brush_brush() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         const [render, remove] = useTip({
           container: document.getElementById('container'),
           onRemove: () => g2ChartInstance.current.emit('brush:remove', {}),
@@ -116,42 +147,11 @@ export default function G2ChartComponent_interaction_brush_brush() {
           const { nativeEvent } = e;
           if (nativeEvent) remove();
           g2ChartInstance.current.emit('tooltip:enable');
-        }
-        
-        function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
-          let div;
-        
-          const render = (data, [x, y]) => {
-            if (div) remove();
-            div = document.createElement('div');
-            div.innerHTML = `
-            Select a node:
-            <ul>${data.map((d) => `<li>x:${d.weight},y:${d.height}</li>`).join('')}</ul>
-            `;
-            div.style.position = 'absolute';
-            div.style.background = '#eee';
-            div.style.padding = '0.5em';
-            div.style.left = x + offsetX + 'px';
-            div.style.top = y + offsetY + 'px';
-            div.onclick = () => {
-              remove();
-              onRemove();
-            };
-            container.append(div);
-          };
-        
-          const remove = () => {
-            if (div) div.remove();
-            div = null;
-          };
-        
-          return [render, remove];
-        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/brush/demo/brush.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/interaction/brush/demo/brush.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/interaction/brush/demo/brush.ts</div>';
         }
       }
     }

@@ -98,7 +98,7 @@ export function extractAndAdaptG2Code(
     const potentialHelpers = [];
     // Refined regex to better capture full bodies of multi-line helpers.
     // It looks for the start of the next declaration or the end of the string.
-    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?=\n\s*^(?:(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+[a-zA-Z_]\w*)|^\s*$(?![\r\n]))/gm;
+    const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?=\n\s*^(?:(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+[a-zA-Z_]\w*)|(?:const|let|var)\s+[a-zA-Z_]\w*\s*=\s*new\s+Chart\s*[(]|\Z)/gm;
     
     const codeToSearchForHelpers = initializationStartIndex !== -1 
         ? originalG2SourceCode.substring(0, initializationStartIndex) 
@@ -153,11 +153,11 @@ export function extractAndAdaptG2Code(
         // Handle originalChartVarName first if it exists
         if (originalChartVarName) {
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
-                new RegExp(`\\b${originalChartVarName}\\.`, "g"), 
+                new RegExp(`\\b${originalChartVarName}\\.(?!current\\b)`, "g"), // Avoid replacing .current if g2InstanceVarName is like 'g2ChartInstance.current'
                 `${g2InstanceVarName}.`
             );
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
-                new RegExp(`\\b${originalChartVarName}\\b(?!\\.)`, "g"), 
+                new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\s*=\\s*new\\s+Chart)`, "g"), // Avoid replacing the var in its own declaration
                 `${g2InstanceVarName}`
             );
         }
@@ -165,19 +165,99 @@ export function extractAndAdaptG2Code(
         // Fallback for literal 'chart' if originalChartVarName was not 'chart' or was null
         if (originalChartVarName !== 'chart') {
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
-                /\bchart\./g,
+                /\bchart\.(?!current\b)/g, // Avoid replacing .current
                 `${g2InstanceVarName}.`
             );
             adaptedPostInitializationCode = adaptedPostInitializationCode.replace(
-                /\bchart\b(?!\.)/g,
+                /\bchart\b(?!\\.|\\s*=\\s*new\\s+Chart)/g, // Avoid replacing var in new Chart or if it's 'chart.current'
                 `${g2InstanceVarName}`
             );
         }
         
-        let finalAdaptedCode = chartInitializationCode; 
+        const linesFromAdaptedPostInit = adaptedPostInitializationCode.split('\n');
+        let lastG2OpLineActualIndex = -1;
+        const g2OpPattern = new RegExp(`^\\s*${g2InstanceVarName.replace('.', '\\.')}\\.`);
+        // declarationPattern and commentOrEmptyPattern are already defined earlier in the function
+        // const declarationPattern = /^\s*(?:export\s+)?(?:async\s+)?(const|let|var|function(?:\s*\*)?|class)\s+/;
+        // const commentOrEmptyPattern = /^\s*(\/\/.*)?$/;
 
-        let tempPostInitOps = adaptedPostInitializationCode;
+
+        for (let i = 0; i < linesFromAdaptedPostInit.length; i++) {
+            if (g2OpPattern.test(linesFromAdaptedPostInit[i].trim())) {
+                lastG2OpLineActualIndex = i;
+            }
+        }
         
+        let currentChartOpLines = [];
+        let currentTrailingHelperLines = [];
+
+        if (lastG2OpLineActualIndex !== -1) {
+            currentChartOpLines = linesFromAdaptedPostInit.slice(0, lastG2OpLineActualIndex + 1);
+            currentTrailingHelperLines = linesFromAdaptedPostInit.slice(lastG2OpLineActualIndex + 1);
+        } else {
+            // No G2 ops found after chart initialization in adaptedPostInitializationCode.
+            // Determine if adaptedPostInitializationCode is primarily helpers or should be chart ops.
+            let firstNonEmptyLineIsDeclaration = false;
+            let allHelpersOrEmpty = true;
+            for (const line of linesFromAdaptedPostInit) {
+                const trimmed = line.trim();
+                if (trimmed === '') continue;
+                if (declarationPattern.test(trimmed) || commentOrEmptyPattern.test(trimmed)) {
+                    if (!commentOrEmptyPattern.test(trimmed) && !firstNonEmptyLineIsDeclaration) {
+                        // Check only the first actual code line
+                         firstNonEmptyLineIsDeclaration = declarationPattern.test(trimmed);
+                    }
+                } else {
+                    allHelpersOrEmpty = false; // Found a line that's not a declaration, comment, or empty
+                    break;
+                }
+            }
+
+            if (allHelpersOrEmpty) { // If all lines are declarations, comments, or empty
+                 currentChartOpLines = [];
+                 currentTrailingHelperLines = linesFromAdaptedPostInit;
+            } else {
+                 // Contains non-G2 ops and non-declarations/comments, treat as chart ops.
+                 currentChartOpLines = linesFromAdaptedPostInit;
+                 currentTrailingHelperLines = [];
+            }
+        }
+        
+        // Filter out a leading stray '});' from the start of currentTrailingHelperLines
+        if (currentTrailingHelperLines.length > 0 && currentTrailingHelperLines[0].trim() === '});') {
+            currentTrailingHelperLines.shift(); // Remove it
+        }
+        
+        if (currentTrailingHelperLines.length > 0) {
+            const newTrailingHelpers = currentTrailingHelperLines.join('\n');
+            if (newTrailingHelpers.trim().length > 0) { // Only add if there's actual content
+                if (helperCode.trim().length > 0 && !helperCode.endsWith('\n\n') && !helperCode.endsWith('\n')) {
+                    helperCode += '\n'; // Add one newline if there's existing helper code but no trailing newlines
+                }
+                 if (helperCode.trim().length > 0 && !helperCode.endsWith('\n\n')) {
+                     helperCode += '\n'; // Ensure a blank line before appending new helpers if there's existing content
+                 }
+                helperCode += "// Trailing helpers extracted from original:\n" + newTrailingHelpers;
+            }
+        }
+        // Ensure helperCode ends with a newline if it has content
+        if (helperCode.trim().length > 0 && !helperCode.endsWith('\n')) {
+            helperCode += '\n';
+        }
+
+
+        let tempPostInitOps = currentChartOpLines.join('\n');
+        
+        // Clean up stray '});' from tempPostInitOps before adding theme or render
+        tempPostInitOps = tempPostInitOps.trim();
+        if (tempPostInitOps.endsWith('});')) {
+            const coreOps = tempPostInitOps.substring(0, tempPostInitOps.length - 2).trim();
+            // Ensure the part before '});' is a valid statement ending
+            if (coreOps.endsWith(';') || coreOps.endsWith(')') || coreOps.endsWith('}')) {
+                tempPostInitOps = coreOps;
+            }
+        }
+
         const themeOverrideCode = `${g2InstanceVarName}.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });`;
         
         let themeCallFoundInPostInit = false;
@@ -194,8 +274,22 @@ export function extractAndAdaptG2Code(
             tempPostInitOps = themeOverrideCode + "\n" + tempPostInitOps;
         }
         
-        finalAdaptedCode += tempPostInitOps;
-        g2CodeBlock = finalAdaptedCode;
+        g2CodeBlock = chartInitializationCode + tempPostInitOps; // Correctly combine chart init and operations
+
+        // Remove any trailing }); that might have been incorrectly captured or formed
+        // This is a bit of a heuristic. A more robust solution would involve AST parsing.
+        g2CodeBlock = g2CodeBlock.trim();
+        // If g2CodeBlock ends with '});' and this '});' is not part of a valid code structure
+        // (e.g., it's truly extraneous after all operations).
+        if (g2CodeBlock.endsWith('});')) {
+            // A simple check: if the part before '});' ends with a semicolon or a closing brace from a method chain,
+            // then the '});' is likely extraneous.
+            const coreCode = g2CodeBlock.substring(0, g2CodeBlock.length - 2).trim();
+            if (coreCode.endsWith(';') || coreCode.endsWith(')')) { // Or other valid statement endings
+                 g2CodeBlock = coreCode;
+            }
+        }
+
 
         const renderCallPatternInAdapted = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;?`);
         if (!renderCallPatternInAdapted.test(g2CodeBlock)) { // Test the whole g2CodeBlock
@@ -228,7 +322,7 @@ export function extractAndAdaptG2Code(
         // Basic adaptation attempt for the snippet
         if (originalChartVarName && originalChartVarName !== 'chart') {
             displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\.`, "g"), `${g2InstanceVarName}.`);
-            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\.)`, "g"), `${g2InstanceVarName}`);
+            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\\.)`, "g"), `${g2InstanceVarName}`);
         }
         // Always try to adapt literal 'chart' in snippet as it's a common case / fallback
         displaySnippet = displaySnippet.replace(/\bchart\./g, `${g2InstanceVarName}.`);

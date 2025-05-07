@@ -15,13 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/histogram/demo/histogram.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  1.2, 3.4, 3.7, 4.3, 5.2, 5.8, 6.1, 6.5, 6.8, 7.1, 7.3, 7.7, 8.3, 8.6, 8.8,
-  9.1, 9.2, 9.4, 9.5, 9.7, 10.5, 10.7, 10.8, 11.0, 11.0, 11.1, 11.2, 11.3, 11.4,
-  11.4, 11.7, 12.0, 12.9, 12.9, 13.3, 13.7, 13.8, 13.9, 14.0, 14.2, 14.5, 15,
-  15.2, 15.6, 16.0, 16.3, 17.3, 17.5, 17.9, 18.0, 18.0, 20.6, 21, 23.4,
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_general_histogram_histogram() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -59,8 +77,6 @@ export default function G2ChartComponent_general_histogram_histogram() {
           height: 500,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .interval()
           .data(data)
@@ -81,7 +97,7 @@ export default function G2ChartComponent_general_histogram_histogram() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/histogram/demo/histogram.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/histogram/demo/histogram.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/histogram/demo/histogram.ts</div>';
         }
       }
     }

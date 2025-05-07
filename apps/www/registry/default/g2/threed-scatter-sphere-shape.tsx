@@ -20,6 +20,30 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/scatter/demo/sphere-shape.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
+const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+];
+
 // Helper code extracted from original (review and adapt if necessary):
 const renderer = new WebGLRenderer();
 renderer.registerPlugin(new ThreeDPlugin());
@@ -27,7 +51,22 @@ renderer.registerPlugin(new ControlPlugin());
 
 // Customize our own Chart with threedlib.
 
-const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+// Trailing helpers extracted from original:
+  const { canvas } = g2ChartInstance.current.getContext();
+  const camera = canvas.getCamera();
+  camera.setPerspective(0.1, 5000, 45, 640 / 480);
+  camera.setType(CameraType.ORBITING);
+
+  // Add a directional light into scene.
+  const light = new DirectionalLight({
+    style: {
+      intensity: 3,
+      fill: 'white',
+      direction: [-1, 0, 1],
+    },
+  });
+  canvas.appendChild(light);
+});
 
 export default function G2ChartComponent_threed_scatter_sphere_shape() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -65,8 +104,6 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
           depth: 400, // Define the depth of chart.
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .point3D()
           .data({
@@ -90,26 +127,11 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
           .axis('z', { gridLineWidth: 2 });
         
         g2ChartInstance.current.render().then(() => {
-          const { canvas } = g2ChartInstance.current.getContext();
-          const camera = canvas.getCamera();
-          camera.setPerspective(0.1, 5000, 45, 640 / 480);
-          camera.setType(CameraType.ORBITING);
-        
-          // Add a directional light into scene.
-          const light = new DirectionalLight({
-            style: {
-              intensity: 3,
-              fill: 'white',
-              direction: [-1, 0, 1],
-            },
-          });
-          canvas.appendChild(light);
-        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/scatter/demo/sphere-shape.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/threed/scatter/demo/sphere-shape.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/threed/scatter/demo/sphere-shape.ts</div>';
         }
       }
     }

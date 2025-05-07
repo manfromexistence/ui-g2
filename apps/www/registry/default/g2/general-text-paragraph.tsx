@@ -15,12 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/text/demo/paragraph.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const paragraph = [
-  'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.',
-  'There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs—commerce surrounds it with her surf. Right and left, the streets take you waterward. Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land. Look at the crowds of water-gazers there.',
-  'Circumambulate the city of a dreamy Sabbath afternoon. Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward. What do you see?—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries. Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep. But these are all landsmen; of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks. How then is this? Are the green fields gone? What do they here?',
-].map((text, idx) => ({ idx, text }));
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
+const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+];
+
+
 
 export default function G2ChartComponent_general_text_paragraph() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -58,8 +77,6 @@ export default function G2ChartComponent_general_text_paragraph() {
           height: 480,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data(paragraph);
         
         g2ChartInstance.current
@@ -108,7 +125,7 @@ export default function G2ChartComponent_general_text_paragraph() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/paragraph.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/text/demo/paragraph.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/text/demo/paragraph.ts</div>';
         }
       }
     }

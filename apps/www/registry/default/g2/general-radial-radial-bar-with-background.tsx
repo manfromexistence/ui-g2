@@ -15,16 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/radial/demo/radial-bar-with-background.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  { type: '1-3秒', value: 0.16 },
-  { type: '4-10秒', value: 0.125 },
-  { type: '11-30秒', value: 0.2 },
-  { type: '1-3分', value: 0.2 },
-  { type: '3-10分', value: 0.05 },
-  { type: '10-30分', value: 0.01 },
-  { type: '30+分', value: 0.015 },
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_general_radial_radial_bar_with_background() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -62,8 +77,6 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
           theme: 'dark',
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data(data).coordinate({ type: 'radial', innerRadius: 0.35 });
         
         g2ChartInstance.current
@@ -115,7 +128,7 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/radial-bar-with-background.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/radial/demo/radial-bar-with-background.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/radial/demo/radial-bar-with-background.ts</div>';
         }
       }
     }

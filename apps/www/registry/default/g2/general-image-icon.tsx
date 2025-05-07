@@ -15,6 +15,30 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/image/demo/icon.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
+const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+];
+
 // Helper code extracted from original (review and adapt if necessary):
 const dataXO = [
   {
@@ -97,9 +121,6 @@ const dataXO = [
 const x =
   'https://gw.alipayobjects.com/zos/antfincdn/xYAYJ3T969/94c968a3f33eac63c63b87b2f0f6cd97e2db624c65646d6839a5eb4d9c1b5543e922befd040cc5d55deaaa1c7e57c0075a186aa25874490616f2652d11f08592.svg';
 
-const o =
-  'https://gw.alipayobjects.com/zos/antfincdn/JtFvbgBbjN/3917899b7468c526a5bfe18f94d3cf1cfedf7a7c808976870a866d71d4a322af778ffb34fd3c06783be80ff60b10be3279d5dbc82f07a7201f4978130bc8edd6.svg';
-
 export default function G2ChartComponent_general_image_icon() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -135,8 +156,6 @@ export default function G2ChartComponent_general_image_icon() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .image()
           .data(dataXO)
@@ -154,7 +173,7 @@ export default function G2ChartComponent_general_image_icon() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/image/demo/icon.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/image/demo/icon.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/image/demo/icon.ts</div>';
         }
       }
     }

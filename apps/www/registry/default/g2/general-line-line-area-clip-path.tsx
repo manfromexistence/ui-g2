@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/line/demo/line-area-clip-path.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [
   {
@@ -509,23 +511,6 @@ const data = [
   },
 ];
 
-function clip(chart) {
-  const { canvas } = g2ChartInstance.current.getContext();
-  const document = canvas.document;
-  const [cloned] = document.getElementsByClassName('cloned-line');
-  if (cloned) cloned.remove();
-  const elements = document.getElementsByClassName('element');
-  const line = elements.find((d) => d.markType === 'line');
-  const area = elements.find((d) => d.markType === 'area');
-  const clonedLine = line.cloneNode(true);
-  clonedLine.__data__ = line.__data__;
-  clonedLine.style.stroke = 'orange';
-  clonedLine.style.clipPath = null;
-  clonedLine.className = 'cloned-line';
-  line.parentNode.insertBefore(clonedLine, line);
-  line.style.clipPath = area;
-}
-
 export default function G2ChartComponent_general_line_line_area_clip_path() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -561,8 +546,6 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.options({
           type: 'view',
           data,
@@ -596,7 +579,7 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-area-clip-path.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/line/demo/line-area-clip-path.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/line/demo/line-area-clip-path.ts</div>';
         }
       }
     }

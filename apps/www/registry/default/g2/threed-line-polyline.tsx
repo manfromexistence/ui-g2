@@ -20,6 +20,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/line/demo/polyline.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const renderer = new WebGLRenderer();
 renderer.registerPlugin(new ThreeDPlugin());
@@ -27,7 +29,13 @@ renderer.registerPlugin(new ControlPlugin());
 
 // Customize our own Chart with threedlib.
 
-const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+// Trailing helpers extracted from original:
+  const { canvas } = g2ChartInstance.current.getContext();
+  const camera = canvas.getCamera();
+  // Use perspective projection mode.
+  camera.setPerspective(0.1, 5000, 45, 640 / 480);
+  camera.setType(CameraType.ORBITING);
+});
 
 export default function G2ChartComponent_threed_line_polyline() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -65,8 +73,6 @@ export default function G2ChartComponent_threed_line_polyline() {
           depth: 400, // Define the depth of chart.
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         /**
          * 3D Line
          * @see https://plotly.com/javascript/3d-line-plots/
@@ -101,17 +107,11 @@ export default function G2ChartComponent_threed_line_polyline() {
           .axis('z', { gridLineWidth: 2 });
         
         g2ChartInstance.current.render().then(() => {
-          const { canvas } = g2ChartInstance.current.getContext();
-          const camera = canvas.getCamera();
-          // Use perspective projection mode.
-          camera.setPerspective(0.1, 5000, 45, 640 / 480);
-          camera.setType(CameraType.ORBITING);
-        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/line/demo/polyline.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/threed/line/demo/polyline.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/threed/line/demo/polyline.ts</div>';
         }
       }
     }

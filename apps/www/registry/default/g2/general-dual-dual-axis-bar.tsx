@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/dual/demo/dual-axis-bar.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 
 
 export default function G2ChartComponent_general_dual_dual_axis_bar() {
@@ -52,8 +54,6 @@ export default function G2ChartComponent_general_dual_dual_axis_bar() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         const data = [
           { time: '10:10', call: 4, waiting: 2, people: 2 },
           { time: '10:15', call: 2, waiting: 6, people: 3 },
@@ -88,7 +88,7 @@ export default function G2ChartComponent_general_dual_dual_axis_bar() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/dual-axis-bar.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/dual/demo/dual-axis-bar.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/dual/demo/dual-axis-bar.ts</div>';
         }
       }
     }

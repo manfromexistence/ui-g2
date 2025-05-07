@@ -17,6 +17,38 @@ export function getReactComponentTemplate(originalG2FilePath: string, cardTitle:
     //     finalImports += `import { Chart } from "@antv/g2";\n`
     // }
 
+    let finalHelpers = g2Logic.helpers;
+    const defaultDataString = `const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+];`;
+
+    const usesDataMethod = g2Logic.g2Code.includes(".data(");
+    // Check if common data variable names are defined in helpers or g2Code
+    const dataSourceDefinitionPattern = /(?:const|let|var)\s+(data|source|nodes|edges|values|points|poissonData|flareData|barleyData|unemployment|population)\s*=/m;
+    const definesDataSourceInHelpers = dataSourceDefinitionPattern.test(finalHelpers);
+    const definesDataSourceInG2Code = dataSourceDefinitionPattern.test(g2Logic.g2Code);
+
+    if (usesDataMethod && !definesDataSourceInHelpers && !definesDataSourceInG2Code) {
+        finalHelpers = `// Default data used as a fallback because no specific data source was detected:\n${defaultDataString}\n\n${finalHelpers}`;
+    }
+
     return `// @ts-nocheck
 "use client";
 
@@ -32,7 +64,9 @@ import {
 
 // Original G2 example path: ${relativeOriginalPath}
 
-${g2Logic.helpers}
+const FALLBACK_COLORS_JSON = '${FALLBACK_COLORS_JSON}'; // Added definition
+
+${finalHelpers}
 
 export default function G2ChartComponent_${chartIdBase.replace(/-/g, '_')}() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -69,7 +103,7 @@ ${g2Logic.g2Code.split('\n').map(line => '        ' + line).join('\n')}
       } catch (error) {
         console.error("Error initializing G2 chart from ${relativeOriginalPath}:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: ${relativeOriginalPath}</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: ${relativeOriginalPath}</div>';
         }
       }
     }

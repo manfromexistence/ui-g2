@@ -15,81 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/dual/demo/multi-line.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  {
-    Month: 'Jan',
-    Evaporation: 2,
-    Precipitation: 2.6,
-    Temperature: 2,
-  },
-  {
-    Month: 'Feb',
-    Evaporation: 4.9,
-    Precipitation: 5.9,
-    Temperature: 2.2,
-  },
-  {
-    Month: 'Mar',
-    Evaporation: 7,
-    Precipitation: 9,
-    Temperature: 3.3,
-  },
-  {
-    Month: 'Apr',
-    Evaporation: 23.2,
-    Precipitation: 26.4,
-    Temperature: 4.5,
-  },
-  {
-    Month: 'May',
-    Evaporation: 25.6,
-    Precipitation: 28.7,
-    Temperature: 6.3,
-  },
-  {
-    Month: 'Jun',
-    Evaporation: 76.7,
-    Precipitation: 70.7,
-    Temperature: 10.2,
-  },
-  {
-    Month: 'Jul',
-    Evaporation: 135.6,
-    Precipitation: 175.6,
-    Temperature: 20.3,
-  },
-  {
-    Month: 'Aug',
-    Evaporation: 162.2,
-    Precipitation: 182.2,
-    Temperature: 23.4,
-  },
-  {
-    Month: 'Sep',
-    Evaporation: 32.6,
-    Precipitation: 48.7,
-    Temperature: 23,
-  },
-  {
-    Month: 'Oct',
-    Evaporation: 20,
-    Precipitation: 18.8,
-    Temperature: 16.5,
-  },
-  {
-    Month: 'Nov',
-    Evaporation: 6.4,
-    Precipitation: 6,
-    Temperature: 12,
-  },
-  {
-    Month: 'Dec',
-    Evaporation: 3.3,
-    Precipitation: 2.3,
-    Temperature: 6.2,
-  },
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_general_dual_multi_line() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -126,8 +76,6 @@ export default function G2ChartComponent_general_dual_multi_line() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
@@ -176,7 +124,7 @@ export default function G2ChartComponent_general_dual_multi_line() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/multi-line.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/dual/demo/multi-line.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/dual/demo/multi-line.ts</div>';
         }
       }
     }

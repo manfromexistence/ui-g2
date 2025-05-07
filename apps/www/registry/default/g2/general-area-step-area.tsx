@@ -15,18 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/area/demo/step-area.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  { year: '1991', value: 15468 },
-  { year: '1992', value: 16100 },
-  { year: '1993', value: 15900 },
-  { year: '1994', value: 17409 },
-  { year: '1995', value: 17000 },
-  { year: '1996', value: 31056 },
-  { year: '1997', value: 31982 },
-  { year: '1998', value: 32040 },
-  { year: '1999', value: 33233 },
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_general_area_step_area() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -63,8 +76,6 @@ export default function G2ChartComponent_general_area_step_area() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
@@ -91,7 +102,7 @@ export default function G2ChartComponent_general_area_step_area() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/step-area.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/area/demo/step-area.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/area/demo/step-area.ts</div>';
         }
       }
     }

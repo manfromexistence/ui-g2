@@ -16,6 +16,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 
 
 export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
@@ -50,8 +52,6 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
         // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({ container: chartRef.current });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         function getOrigin(points) {
           if (points.length === 1) return points[0];
           const [[x0, y0, z0 = 0], [x2, y2, z2 = 0]] = points;
@@ -113,7 +113,7 @@ export default function G2ChartComponent_general_gauge_gauge_custom_shape() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/gauge/demo/gauge-custom-shape.ts</div>';
         }
       }
     }

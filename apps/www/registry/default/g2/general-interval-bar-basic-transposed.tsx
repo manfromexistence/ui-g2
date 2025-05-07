@@ -15,17 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/interval/demo/bar-basic-transposed.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  { year: '1951 年', sales: 38 },
-  { year: '1952 年', sales: 52 },
-  { year: '1956 年', sales: 61 },
-  { year: '1957 年', sales: 145 },
-  { year: '1958 年', sales: 48 },
-  { year: '1959 年', sales: 38 },
-  { year: '1960 年', sales: 38 },
-  { year: '1962 年', sales: 38 },
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_general_interval_bar_basic_transposed() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -62,8 +76,6 @@ export default function G2ChartComponent_general_interval_bar_basic_transposed()
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .interval()
           .coordinate({ transform: [{ type: 'transpose' }] })
@@ -76,7 +88,7 @@ export default function G2ChartComponent_general_interval_bar_basic_transposed()
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-basic-transposed.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/interval/demo/bar-basic-transposed.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/interval/demo/bar-basic-transposed.ts</div>';
         }
       }
     }

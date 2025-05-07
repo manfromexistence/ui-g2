@@ -15,81 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/box/demo/grouped-box.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  {
-    Species: 'I. setosa',
-    type: 'SepalLength',
-    value: 5.1,
-    bin: [4.3, 4.8, 5, 5.2, 5.8],
-  },
-  {
-    Species: 'I. setosa',
-    type: 'SepalWidth',
-    value: 3.5,
-    bin: [2.3, 3.2, 3.4, 3.7, 4.4],
-  },
-  {
-    Species: 'I. setosa',
-    type: 'PetalLength',
-    value: 1.4,
-    bin: [1, 1.4, 1.5, 1.6, 1.9],
-  },
-  {
-    Species: 'I. setosa',
-    type: 'PetalWidth',
-    value: 0.2,
-    bin: [0.1, 0.2, 0.2, 0.3, 0.6],
-  },
-  {
-    Species: 'I. versicolor',
-    type: 'SepalLength',
-    value: 7,
-    bin: [4.9, 5.6, 5.9, 6.3, 7],
-  },
-  {
-    Species: 'I. versicolor',
-    type: 'SepalWidth',
-    value: 3.2,
-    bin: [2, 2.5, 2.8, 3, 3.4],
-  },
-  {
-    Species: 'I. versicolor',
-    type: 'PetalLength',
-    value: 4.7,
-    bin: [3, 4, 4.35, 4.6, 5.1],
-  },
-  {
-    Species: 'I. versicolor',
-    type: 'PetalWidth',
-    value: 1.4,
-    bin: [1, 1.2, 1.3, 1.5, 1.8],
-  },
-  {
-    Species: 'I. virginica',
-    type: 'SepalLength',
-    value: 6.3,
-    bin: [4.9, 6.2, 6.5, 6.9, 7.9],
-  },
-  {
-    Species: 'I. virginica',
-    type: 'SepalWidth',
-    value: 3.3,
-    bin: [2.2, 2.8, 3, 3.2, 3.8],
-  },
-  {
-    Species: 'I. virginica',
-    type: 'PetalLength',
-    value: 6,
-    bin: [4.5, 5.1, 5.55, 5.9, 6.9],
-  },
-  {
-    Species: 'I. virginica',
-    type: 'PetalWidth',
-    value: 2.5,
-    bin: [1.4, 1.8, 2, 2.3, 2.5],
-  },
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_general_box_grouped_box() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -126,8 +76,6 @@ export default function G2ChartComponent_general_box_grouped_box() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .box()
           .data(data)
@@ -152,7 +100,7 @@ export default function G2ChartComponent_general_box_grouped_box() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/box/demo/grouped-box.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/box/demo/grouped-box.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/box/demo/grouped-box.ts</div>';
         }
       }
     }

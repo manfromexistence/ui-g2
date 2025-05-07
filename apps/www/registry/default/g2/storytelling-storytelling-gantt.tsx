@@ -15,17 +15,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/storytelling/storytelling/demo/gantt.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const events = [
-  { name: 'event planning', startTime: 1, endTime: 4 },
-  { name: 'layout logistics', startTime: 3, endTime: 13 },
-  { name: 'select vendors', startTime: 5, endTime: 8 },
-  { name: 'hire venue', startTime: 9, endTime: 13 },
-  { name: 'hire caterer', startTime: 10, endTime: 14 },
-  { name: 'hire event decorators', startTime: 12, endTime: 17 },
-  { name: 'rehearsal', startTime: 14, endTime: 16 },
-  { name: 'event celebration', startTime: 17, endTime: 18 },
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
+const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_storytelling_storytelling_gantt() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -62,8 +76,6 @@ export default function G2ChartComponent_storytelling_storytelling_gantt() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
@@ -84,7 +96,7 @@ export default function G2ChartComponent_storytelling_storytelling_gantt() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/gantt.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/storytelling/storytelling/demo/gantt.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/storytelling/storytelling/demo/gantt.ts</div>';
         }
       }
     }

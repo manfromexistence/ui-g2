@@ -15,19 +15,11 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/radial/demo/radial-line.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [
-  { term: 'Zombieland', count: 9 },
-  { term: 'Wieners', count: 8 },
-  { term: 'Toy Story', count: 8 },
-  { term: 'trashkannon', count: 7 },
-  { term: 'the GROWLERS', count: 6 },
-  { term: 'mudweiser', count: 6 },
-  { term: 'ThunderCats', count: 4 },
-  { term: 'The Taqwacores - Motion Picture', count: 4 },
-  { term: 'The Shawshank Redemption', count: 2 },
-  { term: 'The Olivia Experiment', count: 1 },
-];
+  { term: '
 
 export default function G2ChartComponent_general_radial_radial_line() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -65,8 +57,6 @@ export default function G2ChartComponent_general_radial_radial_line() {
           padding: 50,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .data(data)
           .coordinate({ type: 'radial', innerRadius: 0.2, endAngle: Math.PI });
@@ -112,7 +102,7 @@ export default function G2ChartComponent_general_radial_radial_line() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/radial-line.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/radial/demo/radial-line.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/radial/demo/radial-line.ts</div>';
         }
       }
     }

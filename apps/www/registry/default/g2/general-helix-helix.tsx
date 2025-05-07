@@ -15,29 +15,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/helix/demo/helix.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [];
-
-const n = 31;
-for (let i = 0; i < 372; i++) {
-  const now = new Date();
-  const currentTime = new Date(now.getTime() + i * 1000 * 3600 * 24);
-  const formattedTime = `${currentTime.getFullYear()}.${String(
-    currentTime.getMonth() + 1,
-  ).padStart(2, '0')}.${String(currentTime.getDate()).padStart(2, '0')}`;
-
-  data[i] = {};
-  data[i].time = formattedTime;
-
-  const random = Math.floor(Math.random() * 10);
-  if ((i % n > 2 && i % n < 4) || (i % n >= 6 && i % n < 7)) {
-    data[i].value = 30 + random * 7;
-  } else if (i % n >= 4 && i % n < 6) {
-    data[i].value = 60 + random * 8;
-  } else {
-    data[i].value = 10 + random * 5;
-  }
-}
 
 export default function G2ChartComponent_general_helix_helix() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -75,8 +56,6 @@ export default function G2ChartComponent_general_helix_helix() {
           height: 500,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data({
           value: data,
         });
@@ -108,7 +87,7 @@ export default function G2ChartComponent_general_helix_helix() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/helix/demo/helix.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/helix/demo/helix.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/helix/demo/helix.ts</div>';
         }
       }
     }

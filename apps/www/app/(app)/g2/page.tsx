@@ -280,9 +280,9 @@ export default function ChartsPage() {
             <ChartDisplay name="composition-facet-rect-bar" title="Composition Facet Rect Bar">
               <Charts.G2ChartComponent_composition_facet_rect_bar />
             </ChartDisplay>
-            {/* <ChartDisplay name="composition-facet-rect-col" title="Composition Facet Rect Col">
+            <ChartDisplay name="composition-facet-rect-col" title="Composition Facet Rect Col">
               <Charts.G2ChartComponent_composition_facet_rect_col />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="composition-facet-rect-frame" title="Composition Facet Rect Frame">
               <Charts.G2ChartComponent_composition_facet_rect_frame />
             </ChartDisplay>
@@ -619,15 +619,15 @@ export default function ChartsPage() {
             <ChartDisplay name="general-line-line-style" title="General Line Line Style">
               <Charts.G2ChartComponent_general_line_line_style />
             </ChartDisplay>
-            {/* <ChartDisplay name="general-line-line-threshold" title="General Line Line Threshold">
+            <ChartDisplay name="general-line-line-threshold" title="General Line Line Threshold">
               <Charts.G2ChartComponent_general_line_line_threshold />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="general-line-line-var-size" title="General Line Line Var Size">
               <Charts.G2ChartComponent_general_line_line_var_size />
             </ChartDisplay>
-            {/* <ChartDisplay name="general-line-line-var-size-facet" title="General Line Line Var Size Facet">
+            <ChartDisplay name="general-line-line-var-size-facet" title="General Line Line Var Size Facet">
               <Charts.G2ChartComponent_general_line_line_var_size_facet />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="general-line-line-var-size-missing" title="General Line Line Var Size Missing">
               <Charts.G2ChartComponent_general_line_line_var_size_missing />
             </ChartDisplay>
@@ -856,9 +856,9 @@ export default function ChartsPage() {
             <ChartDisplay name="general-text-wordcloud-mask" title="General Text Wordcloud Mask">
               <Charts.G2ChartComponent_general_text_wordcloud_mask />
             </ChartDisplay>
-            {/* <ChartDisplay name="general-vector-poisson" title="General Vector Poisson">
+            <ChartDisplay name="general-vector-poisson" title="General Vector Poisson">
               <Charts.G2ChartComponent_general_vector_poisson />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="general-vector-wind" title="General Vector Wind">
               <Charts.G2ChartComponent_general_vector_wind />
             </ChartDisplay>
@@ -1036,21 +1036,21 @@ export default function ChartsPage() {
             <ChartDisplay name="renderer-renderer-webgl" title="Renderer Renderer Webgl">
               <Charts.G2ChartComponent_renderer_renderer_webgl />
             </ChartDisplay>
-            {/* <ChartDisplay name="storytelling-storytelling-facet-keyframe" title="Storytelling Storytelling Facet Keyframe">
+            <ChartDisplay name="storytelling-storytelling-facet-keyframe" title="Storytelling Storytelling Facet Keyframe">
               <Charts.G2ChartComponent_storytelling_storytelling_facet_keyframe />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="storytelling-storytelling-gantt" title="Storytelling Storytelling Gantt">
               <Charts.G2ChartComponent_storytelling_storytelling_gantt />
             </ChartDisplay>
             <ChartDisplay name="storytelling-storytelling-interval-keyframe" title="Storytelling Storytelling Interval Keyframe">
               <Charts.G2ChartComponent_storytelling_storytelling_interval_keyframe />
             </ChartDisplay>
-            {/* <ChartDisplay name="storytelling-storytelling-point-keyframe" title="Storytelling Storytelling Point Keyframe">
+            <ChartDisplay name="storytelling-storytelling-point-keyframe" title="Storytelling Storytelling Point Keyframe">
               <Charts.G2ChartComponent_storytelling_storytelling_point_keyframe />
             </ChartDisplay>
             <ChartDisplay name="storytelling-storytelling-stocks-keyframe" title="Storytelling Storytelling Stocks Keyframe">
               <Charts.G2ChartComponent_storytelling_storytelling_stocks_keyframe />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="style-graphic-area" title="Style Graphic Area">
               <Charts.G2ChartComponent_style_graphic_area />
             </ChartDisplay>
@@ -1087,7 +1087,7 @@ export default function ChartsPage() {
             <ChartDisplay name="style-pattern-squares-pattern" title="Style Pattern Squares Pattern">
               <Charts.G2ChartComponent_style_pattern_squares_pattern />
             </ChartDisplay>
-            {/* <ChartDisplay name="style-rough-interval" title="Style Rough Interval">
+            <ChartDisplay name="style-rough-interval" title="Style Rough Interval">
               <Charts.G2ChartComponent_style_rough_interval />
             </ChartDisplay>
             <ChartDisplay name="style-rough-line" title="Style Rough Line">
@@ -1098,7 +1098,7 @@ export default function ChartsPage() {
             </ChartDisplay>
             <ChartDisplay name="style-rough-radial" title="Style Rough Radial">
               <Charts.G2ChartComponent_style_rough_radial />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="style-theme-academy" title="Style Theme Academy">
               <Charts.G2ChartComponent_style_theme_academy />
             </ChartDisplay>

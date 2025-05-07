@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/layout/style/demo/chart-view-style.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 
 
 export default function G2ChartComponent_layout_style_chart_view_style() {
@@ -49,8 +51,6 @@ export default function G2ChartComponent_layout_style_chart_view_style() {
         // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({ container: chartRef.current });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.options({
           viewStyle: {
             // 配置图表的视图区域的样式
@@ -101,7 +101,7 @@ export default function G2ChartComponent_layout_style_chart_view_style() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/layout/style/demo/chart-view-style.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/layout/style/demo/chart-view-style.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/layout/style/demo/chart-view-style.ts</div>';
         }
       }
     }

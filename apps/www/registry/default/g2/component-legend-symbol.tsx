@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/legend/demo/symbol.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
   (x, y, r) => {
@@ -30,16 +32,7 @@ const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
       ['A', radius, radius, 0, 0, 0, x + r, y + radius],
       ['L', x + r, y - radius],
       ['A', radius, radius, 0, 0, 0, x + radius, y - r],
-      ['Z'],
-    ];
-  },
-  {
-    // 空心请设置为 ['stroke', 'lineWidth']
-    style: ['fill']
-  },
-);
-
-register('symbol.customSquare', customSquare);
+      ['
 
 export default function G2ChartComponent_component_legend_symbol() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -75,8 +68,6 @@ export default function G2ChartComponent_component_legend_symbol() {
           container: chartRef.current,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         const data = [
           { genre: 'Sports', sold: 275 },
           { genre: 'Strategy', sold: 115 },
@@ -104,7 +95,7 @@ export default function G2ChartComponent_component_legend_symbol() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/symbol.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/legend/demo/symbol.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/legend/demo/symbol.ts</div>';
         }
       }
     }

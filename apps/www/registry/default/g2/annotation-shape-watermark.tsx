@@ -15,7 +15,77 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/annotation/shape/demo/watermark.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
 
+// Default data used as a fallback because no specific data source was detected:
+const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+];
+
+// Trailing helpers extracted from original:
+
+function watermark({ x, y }, context) {
+  const { document } = context;
+
+  const g = document.createElement('g', {});
+  const c1 = document.createElement('circle', {
+    style: {
+      cx: x,
+      cy: y,
+      lineWidth: 4,
+      r: 65,
+      stroke: 'red',
+      opacity: 0.3,
+    },
+  });
+  const c2 = document.createElement('circle', {
+    style: {
+      cx: x,
+      cy: y,
+      lineWidth: 2,
+      r: 50,
+      stroke: 'red',
+      opacity: 0.3,
+    },
+  });
+
+  const text = document.createElement('text', {
+    style: {
+      x,
+      y,
+      text: '数据保密',
+      transformOrigin: 'center',
+      transform: 'rotate(30)',
+      fontSize: 20,
+      fill: 'red',
+      textAlign: 'center',
+      textBaseline: 'middle',
+      fillOpacity: 0.3,
+    },
+  });
+
+  g.appendChild(c1);
+  g.appendChild(c2);
+  g.appendChild(text);
+  return g;
+}
 
 export default function G2ChartComponent_annotation_shape_watermark() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -52,8 +122,6 @@ export default function G2ChartComponent_annotation_shape_watermark() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .interval()
           .data([
@@ -83,57 +151,11 @@ export default function G2ChartComponent_annotation_shape_watermark() {
         g2ChartInstance.current.shape().style('x', '80%').style('y', '70%').style('render', watermark);
         
         g2ChartInstance.current.render();
-        
-        function watermark({ x, y }, context) {
-          const { document } = context;
-        
-          const g = document.createElement('g', {});
-          const c1 = document.createElement('circle', {
-            style: {
-              cx: x,
-              cy: y,
-              lineWidth: 4,
-              r: 65,
-              stroke: 'red',
-              opacity: 0.3,
-            },
-          });
-          const c2 = document.createElement('circle', {
-            style: {
-              cx: x,
-              cy: y,
-              lineWidth: 2,
-              r: 50,
-              stroke: 'red',
-              opacity: 0.3,
-            },
-          });
-        
-          const text = document.createElement('text', {
-            style: {
-              x,
-              y,
-              text: '数据保密',
-              transformOrigin: 'center',
-              transform: 'rotate(30)',
-              fontSize: 20,
-              fill: 'red',
-              textAlign: 'center',
-              textBaseline: 'middle',
-              fillOpacity: 0.3,
-            },
-          });
-        
-          g.appendChild(c1);
-          g.appendChild(c2);
-          g.appendChild(text);
-          return g;
-        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/watermark.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/annotation/shape/demo/watermark.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/annotation/shape/demo/watermark.ts</div>';
         }
       }
     }

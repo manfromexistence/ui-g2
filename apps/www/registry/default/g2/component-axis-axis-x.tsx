@@ -15,6 +15,8 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/axis/demo/axis-x.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 
 
 export default function G2ChartComponent_component_axis_axis_x() {
@@ -52,8 +54,6 @@ export default function G2ChartComponent_component_axis_axis_x() {
           height: 80,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current
           .axisX()
           .scale('x', {
@@ -69,7 +69,7 @@ export default function G2ChartComponent_component_axis_axis_x() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-x.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/axis/demo/axis-x.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/axis/demo/axis-x.ts</div>';
         }
       }
     }

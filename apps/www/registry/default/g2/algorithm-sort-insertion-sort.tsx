@@ -15,27 +15,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/algorithm/sort/demo/insertion-sort.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
-
-function* insertionSort(arr) {
-  const len = arr.length;
-  let preIndex, current;
-  for (let i = 1; i < len; i++) {
-    preIndex = i - 1;
-    current = arr[i];
-    while (preIndex >= 0 && arr[preIndex] > current) {
-      arr[preIndex + 1] = arr[preIndex];
-      preIndex--;
-    }
-    arr[preIndex + 1] = current;
-    yield arr.map((a, index) => ({
-      value: a,
-      swap: index === preIndex + 1 || index === i,
-    }));
-  }
-  return arr;
-}
 
 export default function G2ChartComponent_algorithm_sort_insertion_sort() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -71,8 +54,6 @@ export default function G2ChartComponent_algorithm_sort_insertion_sort() {
           container: chartRef.current,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         const keyframe = g2ChartInstance.current.timingKeyframe();
         
         for (const frame of insertionSort(data)) {
@@ -90,7 +71,7 @@ export default function G2ChartComponent_algorithm_sort_insertion_sort() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/algorithm/sort/demo/insertion-sort.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/algorithm/sort/demo/insertion-sort.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/algorithm/sort/demo/insertion-sort.ts</div>';
         }
       }
     }

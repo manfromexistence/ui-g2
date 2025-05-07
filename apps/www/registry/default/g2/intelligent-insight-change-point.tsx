@@ -16,77 +16,31 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/intelligent/insight/demo/change-point.ts
 
-// Helper code extracted from original (review and adapt if necessary):
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
 const data = [
-  {
-    date: '2000',
-    discount_price: 43.37,
-  },
-  {
-    date: '2001',
-    discount_price: 29.34,
-  },
-  {
-    date: '2002',
-    discount_price: 49.12,
-  },
-  {
-    date: '2003',
-    discount_price: 56.99,
-  },
-  {
-    date: '2004',
-    discount_price: 61.23,
-  },
-  {
-    date: '2005',
-    discount_price: 781.99,
-  },
-  {
-    date: '2006',
-    discount_price: 895.71,
-  },
-  {
-    date: '2007',
-    discount_price: 789.24,
-  },
-  {
-    date: '2008',
-    discount_price: 793.51,
-  },
-  {
-    date: '2009',
-    discount_price: 783.98,
-  },
-  {
-    date: '2010',
-    discount_price: 782.78,
-  },
-  {
-    date: '2011',
-    discount_price: 797.05,
-  },
-  {
-    date: '2012',
-    discount_price: 785.12,
-  },
-  {
-    date: '2013',
-    discount_price: 798.85,
-  },
-  {
-    date: '2014',
-    discount_price: 734.49,
-  },
-  {
-    date: '2015',
-    discount_price: 708.74,
-  },
-  {
-    date: '2016',
-    discount_price: 730.55,
-  },
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
 ];
+
+
 
 export default function G2ChartComponent_intelligent_insight_change_point() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -123,8 +77,6 @@ export default function G2ChartComponent_intelligent_insight_change_point() {
           autoFit: true,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data(data).encode('x', 'date').encode('y', 'discount_price');
         
         g2ChartInstance.current.line();
@@ -136,7 +88,7 @@ export default function G2ChartComponent_intelligent_insight_change_point() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/change-point.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/intelligent/insight/demo/change-point.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/intelligent/insight/demo/change-point.ts</div>';
         }
       }
     }

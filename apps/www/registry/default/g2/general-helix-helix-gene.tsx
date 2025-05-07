@@ -15,29 +15,14 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/helix/demo/helix-gene.ts
 
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
 // Helper code extracted from original (review and adapt if necessary):
 const data = [];
 
 const groups = ['WT', 'KO'];
 
 const hours = 72;
-
-const baseValues = {
-  WT: 2.0,
-  KO: 2.3,
-};
-
-for (let i = 0; i < hours; i++) {
-  const time = `${i}h`;
-  groups.forEach((group) => {
-    const fluctuation = Math.random() * 0.4 - 0.2;
-    data.push({
-      time,
-      group,
-      logFPKM: baseValues[group] + Math.sin(i / 10) * 0.3 + fluctuation, // 模拟趋势变化
-    });
-  });
-}
 
 export default function G2ChartComponent_general_helix_helix_gene() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -76,8 +61,6 @@ export default function G2ChartComponent_general_helix_helix_gene() {
           padding: [50, 50, 50, 50],
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.data(data);
         
         g2ChartInstance.current.coordinate({
@@ -117,7 +100,7 @@ export default function G2ChartComponent_general_helix_helix_gene() {
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/helix/demo/helix-gene.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/helix/demo/helix-gene.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/helix/demo/helix-gene.ts</div>';
         }
       }
     }

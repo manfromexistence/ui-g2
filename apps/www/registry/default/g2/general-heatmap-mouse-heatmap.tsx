@@ -15,8 +15,43 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts
 
-// Helper code extracted from original (review and adapt if necessary):
-const data = {};
+const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]'; // Added definition
+
+// Default data used as a fallback because no specific data source was detected:
+const data = [
+  { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
+  { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
+  { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
+  { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
+  { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
+  { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
+  { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
+  { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
+  { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
+  { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
+  { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
+  { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
+  { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
+  { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
+  { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
+  { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
+  { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+];
+
+// Trailing helpers extracted from original:
+  }),
+);
+
+function transform(dataMap) {
+  const arr = [];
+  Object.keys(dataMap).forEach((x) => {
+    Object.keys(dataMap[x]).forEach((y) => {
+      arr.push({ x, y, v: dataMap[x][y] });
+    });
+  });
+  return arr;
+}
 
 export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -55,8 +90,6 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
           padding: 0,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        
-        
         g2ChartInstance.current.style({
           viewFill: '#4e79a7',
         });
@@ -93,23 +126,11 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
             const d = transform(data);
         
             g2ChartInstance.current.changeData(d);
-          }),
-        );
-        
-        function transform(dataMap) {
-          const arr = [];
-          Object.keys(dataMap).forEach((x) => {
-            Object.keys(dataMap[x]).forEach((y) => {
-              arr.push({ x, y, v: dataMap[x][y] });
-            });
-          });
-          return arr;
-        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts</div>;
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts</div>';
         }
       }
     }
