@@ -42,7 +42,9 @@ export default function G2ChartComponent_general_image_icon() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const dataXO = [
     {
       x: 0,
@@ -123,6 +125,8 @@ export default function G2ChartComponent_general_image_icon() {
   
   const x =
     'https://gw.alipayobjects.com/zos/antfincdn/xYAYJ3T969/94c968a3f33eac63c63b87b2f0f6cd97e2db624c65646d6839a5eb4d9c1b5543e922befd040cc5d55deaaa1c7e57c0075a186aa25874490616f2652d11f08592.svg';
+  const o =
+    'https://gw.alipayobjects.com/zos/antfincdn/JtFvbgBbjN/3917899b7468c526a5bfe18f94d3cf1cfedf7a7c808976870a866d71d4a322af778ffb34fd3c06783be80ff60b10be3279d5dbc82f07a7201f4978130bc8edd6.svg';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

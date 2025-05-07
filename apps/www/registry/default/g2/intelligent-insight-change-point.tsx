@@ -21,29 +21,84 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_intelligent_insight_change_point() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  /**
+   * AVA: https://github.com/antvis/AVA
+   * g2-extension-ava: https://github.com/antvis/g2-extensions/tree/master/ava
+   */
+  import { Chart } from '@antv/g2';
+  import { ChangePoint } from '@antv/g2-extension-ava';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    {
+      date: '2000',
+      discount_price: 43.37,
+    },
+    {
+      date: '2001',
+      discount_price: 29.34,
+    },
+    {
+      date: '2002',
+      discount_price: 49.12,
+    },
+    {
+      date: '2003',
+      discount_price: 56.99,
+    },
+    {
+      date: '2004',
+      discount_price: 61.23,
+    },
+    {
+      date: '2005',
+      discount_price: 781.99,
+    },
+    {
+      date: '2006',
+      discount_price: 895.71,
+    },
+    {
+      date: '2007',
+      discount_price: 789.24,
+    },
+    {
+      date: '2008',
+      discount_price: 793.51,
+    },
+    {
+      date: '2009',
+      discount_price: 783.98,
+    },
+    {
+      date: '2010',
+      discount_price: 782.78,
+    },
+    {
+      date: '2011',
+      discount_price: 797.05,
+    },
+    {
+      date: '2012',
+      discount_price: 785.12,
+    },
+    {
+      date: '2013',
+      discount_price: 798.85,
+    },
+    {
+      date: '2014',
+      discount_price: 734.49,
+    },
+    {
+      date: '2015',
+      discount_price: 708.74,
+    },
+    {
+      date: '2016',
+      discount_price: 730.55,
+    },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

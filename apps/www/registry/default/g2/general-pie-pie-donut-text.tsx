@@ -42,7 +42,11 @@ export default function G2ChartComponent_general_pie_pie_donut_text() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo:
+   */
+  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

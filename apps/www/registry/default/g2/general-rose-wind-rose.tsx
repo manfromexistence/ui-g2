@@ -20,7 +20,9 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_rose_wind_rose() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
     { direction: 'N', level: '< 0.5 m/s', value: 1.81 },
     { direction: 'N', level: '0.5-2 m/s', value: 1.78 },
@@ -134,6 +136,16 @@ export default function G2ChartComponent_general_rose_wind_rose() {
     { direction: 'NNW', level: '6-8 m/s', value: 0.23 },
     { direction: 'NNW', level: '8-10 m/s', value: 0.13 },
     { direction: 'NNW', level: '> 10 m/s', value: 0.07 },
+  ];
+  
+  const colors = [
+    '#E3F4BF',
+    '#BEF7C8',
+    '#86E6C8',
+    '#36CFC9',
+    '#209BDD',
+    '#1581E6',
+    '#0860BF',
   ];
 
   const chartRef = useRef<HTMLDivElement>(null);

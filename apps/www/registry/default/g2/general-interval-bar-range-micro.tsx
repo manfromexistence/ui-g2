@@ -42,8 +42,25 @@ export default function G2ChartComponent_general_interval_bar_range_micro() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const floatTimestamp = (s) => +new Date(s) + +`0.${s.slice(s.length - 3)}`;
+  
+  const format = (n) => {
+    const x = Math.floor(n);
+    const s = n + '';
+    const d = new Date(x);
+    const Y = d.getFullYear();
+    const M = d.getMonth() + 1;
+    const D = d.getDate();
+    const H = d.getHours();
+    const MN = d.getMinutes();
+    const S = d.getSeconds();
+    const MS = d.getMilliseconds();
+    const MCM = s.slice(s.length - 3);
+    return `${Y}-${M}-${D} ${H}:${MN}:${S}.${MS}${MCM}`;
+  };
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

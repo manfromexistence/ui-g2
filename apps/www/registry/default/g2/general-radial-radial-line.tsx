@@ -20,9 +20,21 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_radial_radial_line() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
-    { term: '
+    { term: 'Zombieland', count: 9 },
+    { term: 'Wieners', count: 8 },
+    { term: 'Toy Story', count: 8 },
+    { term: 'trashkannon', count: 7 },
+    { term: 'the GROWLERS', count: 6 },
+    { term: 'mudweiser', count: 6 },
+    { term: 'ThunderCats', count: 4 },
+    { term: 'The Taqwacores - Motion Picture', count: 4 },
+    { term: 'The Shawshank Redemption', count: 2 },
+    { term: 'The Olivia Experiment', count: 1 },
+  ];
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

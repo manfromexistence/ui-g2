@@ -42,7 +42,33 @@ export default function G2ChartComponent_geo_geo_hexjson_usa() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html
+   */
+  import { Chart, register } from '@antv/g2';
+  import { getGridForHexJSON, renderHexJSON } from 'd3-hexjson';
   
+  function processRow(row) {
+    row.cx = row.x;
+    row.cy = row.y;
+    row.x = [];
+    row.y = [];
+    row.vertices.forEach((v) => {
+      row.x.push(v.x + row.cx);
+      row.y.push(v.y + row.cy);
+    });
+    return row;
+  }
+  
+  register('data.hexbin', ({ width = 1, height = 1 }) => {
+    return (data) => renderHexJSON(data.value, width, height).map(processRow);
+  });
+  
+  register('data.hexgird', ({ width = 1, height = 1 }) => {
+    return (data) =>
+      renderHexJSON(getGridForHexJSON(data.value), width, height).map(processRow);
+  });
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -20,8 +20,29 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_algorithm_sort_insertion_sort() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
+  
+  function* insertionSort(arr) {
+    const len = arr.length;
+    let preIndex, current;
+    for (let i = 1; i < len; i++) {
+      preIndex = i - 1;
+      current = arr[i];
+      while (preIndex >= 0 && arr[preIndex] > current) {
+        arr[preIndex + 1] = arr[preIndex];
+        preIndex--;
+      }
+      arr[preIndex + 1] = current;
+      yield arr.map((a, index) => ({
+        value: a,
+        swap: index === preIndex + 1 || index === i,
+      }));
+    }
+    return arr;
+  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

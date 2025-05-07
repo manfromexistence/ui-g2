@@ -20,7 +20,9 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_line_line_area_clip_path() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
     {
       timestamp: 1705518060000,
@@ -513,6 +515,23 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
       isOut: false,
     },
   ];
+  
+  function clip(g2ChartInstance.current) {
+    const { canvas } = g2ChartInstance.current.getContext();
+    const document = canvas.document;
+    const [cloned] = document.getElementsByClassName('cloned-line');
+    if (cloned) cloned.remove();
+    const elements = document.getElementsByClassName('element');
+    const line = elements.find((d) => d.markType === 'line');
+    const area = elements.find((d) => d.markType === 'area');
+    const clonedLine = line.cloneNode(true);
+    clonedLine.__data__ = line.__data__;
+    clonedLine.style.stroke = 'orange';
+    clonedLine.style.clipPath = null;
+    clonedLine.className = 'cloned-line';
+    line.parentNode.insertBefore(clonedLine, line);
+    line.style.clipPath = area;
+  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

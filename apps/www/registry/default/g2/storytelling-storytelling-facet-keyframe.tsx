@@ -42,7 +42,14 @@ export default function G2ChartComponent_storytelling_storytelling_facet_keyfram
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
   
+  fetch(
+    'https://gw.alipayobjects.com/os/bmw-prod/7fbb7084-cf34-4e7c-91b3-09e4748dc5e9.json',
+  )
+    .then((res) => res.json())
+    .then((data) => {
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

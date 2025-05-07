@@ -42,7 +42,27 @@ export default function G2ChartComponent_general_parallel_line_parallel_horizont
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://observablehq.com/@d3/parallel-coordinates
+   */
+  import { Chart } from '@antv/g2';
   
+  const axis = {
+    zIndex: 1,
+    line: true,
+    labelStroke: '#fff',
+    labelLineWidth: 5,
+    labelFontSize: 10,
+    labelStrokeLineJoin: 'round',
+    titleStroke: '#fff',
+    titleFontSize: 10,
+    titleLineWidth: 5,
+    titleStrokeLineJoin: 'round',
+    lineStroke: 'black',
+    tickStroke: 'black',
+    lineLineWidth: 1,
+  };
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

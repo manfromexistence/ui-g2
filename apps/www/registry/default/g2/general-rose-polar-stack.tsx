@@ -20,29 +20,26 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_rose_polar_stack() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    { year: '2000', '类型 A': 21.0, '类型 B': 16, '类型 C': 8 },
+    { year: '2001', '类型 A': 25.0, '类型 B': 16, '类型 C': 8 },
+    { year: '2002', '类型 A': 25.0, '类型 B': 15, '类型 C': 8 },
+    { year: '2003', '类型 A': 25.0, '类型 B': 14, '类型 C': 7 },
+    { year: '2004', '类型 A': 25.0, '类型 B': 14, '类型 C': 7 },
+    { year: '2005', '类型 A': 24.0, '类型 B': 13, '类型 C': 8 },
+    { year: '2006', '类型 A': 24.0, '类型 B': 14, '类型 C': 7 },
+    { year: '2007', '类型 A': 26.0, '类型 B': 16, '类型 C': 7 },
+    { year: '2008', '类型 A': 26.0, '类型 B': 15.2, '类型 C': 8 },
+    { year: '2009', '类型 A': 27.1, '类型 B': 15.2, '类型 C': 10 },
+    { year: '2010', '类型 A': 27.5, '类型 B': 15.4, '类型 C': 8 },
+    { year: '2011', '类型 A': 26.4, '类型 B': 15.2, '类型 C': 9 },
+    { year: '2012', '类型 A': 28.8, '类型 B': 15.4, '类型 C': 9 },
+    { year: '2013', '类型 A': 33.3, '类型 B': 16.7, '类型 C': 12 },
+    { year: '2014', '类型 A': 38.2, '类型 B': 19.5, '类型 C': 18 },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

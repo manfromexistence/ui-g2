@@ -42,6 +42,12 @@ export default function G2ChartComponent_interesting_interesting_petal() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart, register } from '@antv/g2';
+  
+  // 注册自定义图形，代码在下面
+  register('shape.interval.petal', petal);
+  
   // Trailing helpers extracted from original:
   
   /** Functions for custom shape. */

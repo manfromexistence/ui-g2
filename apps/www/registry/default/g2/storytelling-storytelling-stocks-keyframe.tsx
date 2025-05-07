@@ -20,6 +20,27 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_storytelling_storytelling_stocks_keyframe() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
+  fetch('https://assets.antv.antgroup.com/g2/stocks2.json')
+    .then((res) => res.json())
+    .then((data) => {
+      const keyframes = [
+        facetLine,
+        facetArea,
+        stackArea,
+        layerArea,
+        streamgraph,
+        normalizeArea,
+        normalizeBar,
+        groupBar,
+        stackBar,
+        bar,
+        pie,
+        rose,
+      ];
+  
   // Trailing helpers extracted from original:
   
   function facetLine(data) {

@@ -42,8 +42,11 @@ export default function G2ChartComponent_general_interval_bar_dual_axes() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
+  const left = (d) => d.end > -1500 && d.start > -3000;
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

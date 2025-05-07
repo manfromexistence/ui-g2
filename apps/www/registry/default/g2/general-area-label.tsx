@@ -42,7 +42,9 @@ export default function G2ChartComponent_general_area_label() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const States = [
     'Massachusetts',
     'Connecticut',
@@ -96,6 +98,60 @@ export default function G2ChartComponent_general_area_label() {
     'Hawaii',
     'Alaska',
   ];
+  
+  const RegionStateMap = new Map([
+    ['Alaska', 'Pacific'],
+    ['Alabama', 'East South Central'],
+    ['Arkansas', 'West South Central'],
+    ['Arizona', 'Mountain'],
+    ['California', 'Pacific'],
+    ['Colorado', 'Mountain'],
+    ['Connecticut', 'New England'],
+    ['District of Columbia', 'South Atlantic'],
+    ['Delaware', 'South Atlantic'],
+    ['Florida', 'South Atlantic'],
+    ['Georgia', 'South Atlantic'],
+    ['Hawaii', 'Pacific'],
+    ['Iowa', 'West North Central'],
+    ['Idaho', 'Mountain'],
+    ['Illinois', 'East North Central'],
+    ['Indiana', 'East North Central'],
+    ['Kansas', 'West North Central'],
+    ['Kentucky', 'East South Central'],
+    ['Louisiana', 'West South Central'],
+    ['Massachusetts', 'New England'],
+    ['Maryland', 'South Atlantic'],
+    ['Maine', 'New England'],
+    ['Michigan', 'East North Central'],
+    ['Minnesota', 'West North Central'],
+    ['Missouri', 'West North Central'],
+    ['Mississippi', 'East South Central'],
+    ['Montana', 'Mountain'],
+    ['North Carolina', 'South Atlantic'],
+    ['North Dakota', 'West North Central'],
+    ['Nebraska', 'West North Central'],
+    ['New Hampshire', 'New England'],
+    ['New Jersey', 'Middle Atlantic'],
+    ['New Mexico', 'Mountain'],
+    ['Nevada', 'Mountain'],
+    ['New York', 'Middle Atlantic'],
+    ['Ohio', 'East North Central'],
+    ['Oklahoma', 'West South Central'],
+    ['Oregon', 'Pacific'],
+    ['Pennsylvania', 'Middle Atlantic'],
+    ['Rhode Island', 'New England'],
+    ['South Carolina', 'South Atlantic'],
+    ['South Dakota', 'West North Central'],
+    ['Tennessee', 'East South Central'],
+    ['Texas', 'West South Central'],
+    ['Utah', 'Mountain'],
+    ['Virginia', 'South Atlantic'],
+    ['Vermont', 'New England'],
+    ['Washington', 'Pacific'],
+    ['Wisconsin', 'East North Central'],
+    ['West Virginia', 'South Atlantic'],
+    ['Wyoming', 'Mountain'],
+  ]);
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

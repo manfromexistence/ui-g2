@@ -42,7 +42,13 @@ export default function G2ChartComponent_general_text_poetry() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
   
+  const words =
+    `This Is Just To Say\nWilliam Carlos Williams, 1934\n\nI have eaten\nthe plums\nthat were in\nthe icebox\n\nand which\nyou were probably\nsaving\nfor breakfast\n\nForgive me\nthey were delicious\nso sweet\nand so cold`
+      .split('\n')
+      .map((d) => ({ text: d }));
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

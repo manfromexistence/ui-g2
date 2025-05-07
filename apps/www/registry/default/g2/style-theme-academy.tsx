@@ -42,7 +42,11 @@ export default function G2ChartComponent_style_theme_academy() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://observablehq.com/@d3/stacked-horizontal-bar-g2ChartInstance.current
+   */
+  import { Chart } from '@antv/g2';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

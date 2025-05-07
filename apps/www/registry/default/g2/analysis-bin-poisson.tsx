@@ -42,7 +42,11 @@ export default function G2ChartComponent_analysis_bin_poisson() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  import { randomPoisson } from 'd3-random';
   
+  const random = randomPoisson(Math.pow(10, 2.6));
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

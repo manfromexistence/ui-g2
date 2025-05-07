@@ -42,7 +42,30 @@ export default function G2ChartComponent_geo_geo_london_tube_lines() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://vega.github.io/vega-lite/examples/geo_layer_line_london.html
+   */
+  import { Chart } from '@antv/g2';
+  import { feature } from 'topojson';
   
+  Promise.all([
+    fetch('https://assets.antv.antgroup.com/g2/londonBoroughs.json').then((res) =>
+      res.json(),
+    ),
+    fetch('https://assets.antv.antgroup.com/g2/londonCentroids.json').then(
+      (res) => res.json(),
+    ),
+    fetch('https://assets.antv.antgroup.com/g2/londonTubeLines.json').then(
+      (res) => res.json(),
+    ),
+  ]).then((values) => {
+    const [londonBoroughs, londonCentroids, londonTubeLines] = values;
+    const london = feature(
+      londonBoroughs,
+      londonBoroughs.objects.boroughs,
+    ).features;
+    const line = feature(londonTubeLines, londonTubeLines.objects.line).features;
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -20,29 +20,19 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_box_polar_box() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    { x: 'Oceania', y: [1, 9, 16, 22, 24] },
+    { x: 'East Europe', y: [1, 5, 8, 12, 16] },
+    { x: 'Australia', y: [1, 8, 12, 19, 26] },
+    { x: 'South America', y: [2, 8, 12, 21, 28] },
+    { x: 'North Africa', y: [1, 8, 14, 18, 24] },
+    { x: 'North America', y: [3, 10, 17, 28, 30] },
+    { x: 'West Europe', y: [1, 7, 10, 17, 22] },
+    { x: 'West Africa', y: [1, 6, 8, 13, 16] },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

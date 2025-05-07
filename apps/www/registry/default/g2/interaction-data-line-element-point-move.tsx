@@ -42,6 +42,9 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   // Trailing helpers extracted from original:
       data: {
         selection: [1, 2],

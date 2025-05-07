@@ -44,8 +44,14 @@ export default function G2ChartComponent_general_sunburst_sunburst_pattern() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { lines } from '@antv/g-pattern';
+  import { plotlib } from '@antv/g2-extension-plot';
+  import { Runtime, corelib, extend } from '@antv/g2';
+  
   const Chart = extend(Runtime, { ...corelib(), ...plotlib() });
+  
+  const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

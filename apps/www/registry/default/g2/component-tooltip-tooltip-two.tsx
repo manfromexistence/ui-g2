@@ -42,7 +42,18 @@ export default function G2ChartComponent_component_tooltip_tooltip_two() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
   
+  function css(...styles) {
+    return styles
+      .map((obj) =>
+        Object.entries(obj)
+          .map(([k, v]) => k + ':' + v)
+          .join(';'),
+      )
+      .join(';');
+  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

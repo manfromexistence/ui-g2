@@ -47,12 +47,21 @@ export default function G2ChartComponent_threed_bar_cone() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { CameraType } from '@antv/g';
+  import { Renderer as WebGLRenderer } from '@antv/g-webgl';
+  import { Plugin as ThreeDPlugin, DirectionalLight } from '@antv/g-plugin-3d';
+  import { Plugin as ControlPlugin } from '@antv/g-plugin-control';
+  import { Runtime, corelib, extend } from '@antv/g2';
+  import { threedlib } from '@antv/g2-extension-3d';
+  
+  // Create a WebGL renderer.
   const renderer = new WebGLRenderer();
   renderer.registerPlugin(new ThreeDPlugin());
   renderer.registerPlugin(new ControlPlugin());
   
   // Customize our own Chart with threedlib.
+  const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
   
   // Trailing helpers extracted from original:
     const { canvas } = g2ChartInstance.current.getContext();

@@ -21,29 +21,100 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_intelligent_insight_category_outlier() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  /**
+   * AVA: https://github.com/antvis/AVA
+   * g2-extension-ava: https://github.com/antvis/g2-extensions/tree/master/ava
+   */
+  import { Chart } from '@antv/g2';
+  import { CategoryOutlier } from '@antv/g2-extension-ava';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    {
+      date: '2000',
+      fertility: 743.37,
+    },
+    {
+      date: '2001',
+      fertility: 729.34,
+    },
+    {
+      date: '2002',
+      fertility: 709.12,
+    },
+    {
+      date: '2003',
+      fertility: 786.99,
+    },
+    {
+      date: '2004',
+      fertility: 711.23,
+    },
+    {
+      date: '2005',
+      fertility: 781.99,
+    },
+    {
+      date: '2006',
+      fertility: 795.71,
+    },
+    {
+      date: '2007',
+      fertility: 789.24,
+    },
+    {
+      date: '2008',
+      fertility: 93.51,
+    },
+    {
+      date: '2009',
+      fertility: 783.98,
+    },
+    {
+      date: '2010',
+      fertility: 702.78,
+    },
+    {
+      date: '2011',
+      fertility: 797.05,
+    },
+    {
+      date: '2012',
+      fertility: 785.12,
+    },
+    {
+      date: '2013',
+      fertility: 798.85,
+    },
+    {
+      date: '2014',
+      fertility: 34.49,
+    },
+    {
+      date: '2015',
+      fertility: 758.74,
+    },
+    {
+      date: '2016',
+      fertility: 730.55,
+    },
+    {
+      date: '2017',
+      fertility: 778.53,
+    },
+    {
+      date: '2018',
+      fertility: 31.47,
+    },
+    {
+      date: '2019',
+      fertility: 791,
+    },
+    {
+      date: '2020',
+      fertility: 796.41,
+    },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

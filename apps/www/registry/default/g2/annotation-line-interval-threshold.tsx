@@ -42,6 +42,14 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://vega.github.io/vega-lite/examples/layer_bar_annotations.html
+   *
+   * We use a range mark to highlight the values beyond a threshold
+   */
+  import { Chart } from '@antv/g2';
+  
   // Trailing helpers extracted from original:
   
   // Process data.

@@ -43,7 +43,13 @@ export default function G2ChartComponent_intelligent_auto_auto_line() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  /**
+   * AVA: https://github.com/antvis/AVA
+   * g2-extension-ava: https://github.com/antvis/g2-extensions/tree/master/ava
+   */
+  import { Chart } from '@antv/g2';
+  import { Auto } from '@antv/g2-extension-ava';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

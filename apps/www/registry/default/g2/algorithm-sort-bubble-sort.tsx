@@ -20,8 +20,26 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_algorithm_sort_bubble_sort() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
+  
+  function* bubbleSort(arr) {
+    const n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j <= n - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        }
+        yield arr.map((a, i) => ({
+          value: a,
+          swap: i === j || i === j + 1,
+        }));
+      }
+    }
+    return arr;
+  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

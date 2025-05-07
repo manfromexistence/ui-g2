@@ -20,26 +20,24 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_interesting_interesting_25d_column() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  import { Chart, register } from '@antv/g2';
+  
+  register('shape.interval.column25d', myColumn);
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    { year: '1951 年', sales: 38 },
+    { year: '1952 年', sales: 52 },
+    { year: '1956 年', sales: 61 },
+    { year: '1957 年', sales: 145 },
+    { year: '1958 年', sales: 48 },
+    { year: '1959 年', sales: 38 },
+    { year: '1960 年', sales: 38 },
+    { year: '1962 年', sales: 38 },
+    { year: '1963 年', sales: 65 },
+    { year: '1964 年', sales: 122 },
+    { year: '1967 年', sales: 132 },
+    { year: '1968 年', sales: 144 },
   ];
   
   // Trailing helpers extracted from original:

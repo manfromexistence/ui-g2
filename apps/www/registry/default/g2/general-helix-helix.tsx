@@ -20,8 +20,31 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_helix_helix() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
+  // mock data
   const data = [];
+  const n = 31;
+  for (let i = 0; i < 372; i++) {
+    const now = new Date();
+    const currentTime = new Date(now.getTime() + i * 1000 * 3600 * 24);
+    const formattedTime = `${currentTime.getFullYear()}.${String(
+      currentTime.getMonth() + 1,
+    ).padStart(2, '0')}.${String(currentTime.getDate()).padStart(2, '0')}`;
+  
+    data[i] = {};
+    data[i].time = formattedTime;
+  
+    const random = Math.floor(Math.random() * 10);
+    if ((i % n > 2 && i % n < 4) || (i % n >= 6 && i % n < 7)) {
+      data[i].value = 30 + random * 7;
+    } else if (i % n >= 4 && i % n < 6) {
+      data[i].value = 60 + random * 8;
+    } else {
+      data[i].value = 10 + random * 5;
+    }
+  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

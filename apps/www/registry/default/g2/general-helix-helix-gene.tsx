@@ -20,12 +20,29 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_helix_helix_gene() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
+  // 模拟数据
   const data = [];
-  
   const groups = ['WT', 'KO'];
-  
   const hours = 72;
+  const baseValues = {
+    WT: 2.0,
+    KO: 2.3,
+  };
+  
+  for (let i = 0; i < hours; i++) {
+    const time = `${i}h`;
+    groups.forEach((group) => {
+      const fluctuation = Math.random() * 0.4 - 0.2;
+      data.push({
+        time,
+        group,
+        logFPKM: baseValues[group] + Math.sin(i / 10) * 0.3 + fluctuation, // 模拟趋势变化
+      });
+    });
+  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

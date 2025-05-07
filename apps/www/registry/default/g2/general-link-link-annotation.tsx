@@ -42,7 +42,12 @@ export default function G2ChartComponent_general_link_link_annotation() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://observablehq.com/@observablehq/plot-link?collection=@observablehq/plot
+   */
+  import { Chart } from '@antv/g2';
+  
   const income = [
     {
       type: 'All workers',
@@ -339,6 +344,17 @@ export default function G2ChartComponent_general_link_link_annotation() {
       age: '65 years old and over',
     },
   ];
+  
+  const incdomain = (() => {
+    const elements = []
+      .concat(
+        income.map((v) => v.m),
+        income.map((v) => v.f),
+      )
+      .filter((v) => typeof v === 'number');
+  
+    return [Math.min(...elements), Math.max(...elements)];
+  })();
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

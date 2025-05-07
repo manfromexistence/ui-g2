@@ -42,7 +42,23 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://www.anychart.com/zh/products/anychart/gallery/Waterfall_Charts/ACME_corp._Revenue_Flow_2017.php
+   */
+  import { Chart } from '@antv/g2';
   
+  const linkData = (data) =>
+    data.reduce((r, d, idx) => {
+      if (idx > 0) {
+        return r.concat({
+          x1: data[idx - 1].x,
+          x2: d.x,
+          value: d.isTotal ? d.end : d.start,
+        });
+      }
+      return r;
+    }, []);
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

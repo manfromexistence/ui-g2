@@ -42,7 +42,9 @@ export default function G2ChartComponent_geo_geo_hexbin_china() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  import DataSet from '@antv/data-set';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

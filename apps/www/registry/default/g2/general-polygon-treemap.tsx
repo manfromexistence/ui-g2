@@ -42,7 +42,10 @@ export default function G2ChartComponent_general_polygon_treemap() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  import * as d3 from 'd3-hierarchy';
+  
   const layout = (data) => {
     const root = d3.hierarchy(data);
     root.count();
@@ -56,6 +59,10 @@ export default function G2ChartComponent_general_polygon_treemap() {
         }),
       )
       .filter((d) => d.height === 0);
+  };
+  const name = (d) => {
+    const { name } = d.data;
+    return name.length > 5 ? name.slice(0, 4) + '...' : name;
   };
 
   const chartRef = useRef<HTMLDivElement>(null);

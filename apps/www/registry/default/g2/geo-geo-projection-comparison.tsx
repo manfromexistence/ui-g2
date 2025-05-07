@@ -20,6 +20,18 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_geo_geo_projection_comparison() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://observablehq.com/@d3/projection-comparison
+   */
+  import { Chart, register } from '@antv/g2';
+  import { feature } from 'topojson';
+  import { geoPolyconic, geoRectangularPolyconic } from 'd3-geo-projection';
+  
+  register('data.feature', ({ name }) => {
+    return (data) => feature(data, data.objects[name]).features;
+  });
+  
   // Trailing helpers extracted from original:
   
   function worldMap(node, projection, color, opacity = 0.7) {

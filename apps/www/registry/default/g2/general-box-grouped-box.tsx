@@ -20,29 +20,83 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_box_grouped_box() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    {
+      Species: 'I. setosa',
+      type: 'SepalLength',
+      value: 5.1,
+      bin: [4.3, 4.8, 5, 5.2, 5.8],
+    },
+    {
+      Species: 'I. setosa',
+      type: 'SepalWidth',
+      value: 3.5,
+      bin: [2.3, 3.2, 3.4, 3.7, 4.4],
+    },
+    {
+      Species: 'I. setosa',
+      type: 'PetalLength',
+      value: 1.4,
+      bin: [1, 1.4, 1.5, 1.6, 1.9],
+    },
+    {
+      Species: 'I. setosa',
+      type: 'PetalWidth',
+      value: 0.2,
+      bin: [0.1, 0.2, 0.2, 0.3, 0.6],
+    },
+    {
+      Species: 'I. versicolor',
+      type: 'SepalLength',
+      value: 7,
+      bin: [4.9, 5.6, 5.9, 6.3, 7],
+    },
+    {
+      Species: 'I. versicolor',
+      type: 'SepalWidth',
+      value: 3.2,
+      bin: [2, 2.5, 2.8, 3, 3.4],
+    },
+    {
+      Species: 'I. versicolor',
+      type: 'PetalLength',
+      value: 4.7,
+      bin: [3, 4, 4.35, 4.6, 5.1],
+    },
+    {
+      Species: 'I. versicolor',
+      type: 'PetalWidth',
+      value: 1.4,
+      bin: [1, 1.2, 1.3, 1.5, 1.8],
+    },
+    {
+      Species: 'I. virginica',
+      type: 'SepalLength',
+      value: 6.3,
+      bin: [4.9, 6.2, 6.5, 6.9, 7.9],
+    },
+    {
+      Species: 'I. virginica',
+      type: 'SepalWidth',
+      value: 3.3,
+      bin: [2.2, 2.8, 3, 3.2, 3.8],
+    },
+    {
+      Species: 'I. virginica',
+      type: 'PetalLength',
+      value: 6,
+      bin: [4.5, 5.1, 5.55, 5.9, 6.9],
+    },
+    {
+      Species: 'I. virginica',
+      type: 'PetalWidth',
+      value: 2.5,
+      bin: [1.4, 1.8, 2, 2.3, 2.5],
+    },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

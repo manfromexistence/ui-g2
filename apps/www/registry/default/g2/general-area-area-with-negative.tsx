@@ -20,29 +20,31 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_area_area_with_negative() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    { year: '1996', north: 322, south: 162 },
+    { year: '1997', north: 324, south: 90 },
+    { year: '1998', north: 329, south: 50 },
+    { year: '1999', north: 342, south: 77 },
+    { year: '2000', north: 348, south: 35 },
+    { year: '2001', north: 334, south: -45 },
+    { year: '2002', north: 325, south: -88 },
+    { year: '2003', north: 316, south: -120 },
+    { year: '2004', north: 318, south: -156 },
+    { year: '2005', north: 330, south: -123 },
+    { year: '2006', north: 355, south: -88 },
+    { year: '2007', north: 366, south: -66 },
+    { year: '2008', north: 337, south: -45 },
+    { year: '2009', north: 352, south: -29 },
+    { year: '2010', north: 377, south: -45 },
+    { year: '2011', north: 383, south: -88 },
+    { year: '2012', north: 344, south: -132 },
+    { year: '2013', north: 366, south: -146 },
+    { year: '2014', north: 389, south: -169 },
+    { year: '2015', north: 334, south: -184 },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

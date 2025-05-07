@@ -20,7 +20,9 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_component_tooltip_tooltip_marker() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
     { item: 'Design', type: 'a', score: 70 },
     { item: 'Design', type: 'b', score: 30 },
@@ -43,6 +45,70 @@ export default function G2ChartComponent_component_tooltip_tooltip_marker() {
     { item: 'UX', type: 'a', score: 50 },
     { item: 'UX', type: 'b', score: 60 },
   ];
+  
+  const options = {
+    type: 'view',
+    coordinate: {
+      type: 'polar',
+    },
+    scale: {
+      x: { padding: 0.5, align: 0 },
+      y: { tickCount: 5, domainMax: 80 },
+    },
+    autoFit: true,
+    data,
+    interaction: {
+      legendFilter: false,
+      elementPointMove: true,
+      tooltip: {
+        crosshairs: true,
+        crosshairsStroke: 'red',
+        crosshairsLineDash: [4, 4],
+        markerType: 'hollow',
+      },
+    },
+    axis: {
+      x: {
+        grid: true,
+        gridStrokeWidth: 1,
+        tick: false,
+        gridLineDash: [0, 0],
+      },
+      y: {
+        zIndex: 1,
+        title: false,
+        gridConnect: 'line',
+        gridStrokeWidth: 1,
+        gridLineDash: [0, 0],
+      },
+    },
+    children: [
+      {
+        type: 'area',
+        encode: {
+          x: 'item',
+          y: 'score',
+          color: 'type',
+          key: 'type',
+        },
+        style: {
+          fillOpacity: 0.5,
+        },
+      },
+      {
+        type: 'line',
+        encode: {
+          x: 'item',
+          y: 'score',
+          color: 'type',
+          key: 'type',
+        },
+        style: {
+          lineWidth: 2,
+        },
+      },
+    ],
+  };
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

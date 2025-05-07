@@ -42,7 +42,17 @@ export default function G2ChartComponent_animation_group_interval() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
   
+  const fruits = [
+    { type: 'Apple', year: '2001', value: 260 },
+    { type: 'Orange', year: '2001', value: 100 },
+    { type: 'Banana', year: '2001', value: 90 },
+    { type: 'Apple', year: '2002', value: 210 },
+    { type: 'Orange', year: '2002', value: 150 },
+    { type: 'Banana', year: '2002', value: 30 },
+  ];
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -43,7 +43,9 @@ export default function G2ChartComponent_renderer_renderer_webgl() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  import { Renderer } from '@antv/g-webgl';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

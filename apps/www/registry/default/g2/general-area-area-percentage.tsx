@@ -20,29 +20,32 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_area_area_percentage() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
+    { country: 'Asia', year: '1750', value: 502 },
+    { country: 'Asia', year: '1800', value: 635 },
+    { country: 'Asia', year: '1850', value: 809 },
+    { country: 'Asia', year: '1900', value: 947 },
+    { country: 'Asia', year: '1950', value: 1402 },
+    { country: 'Asia', year: '1999', value: 3634 },
+    { country: 'Asia', year: '2050', value: 5268 },
+    { country: 'Africa', year: '1750', value: 106 },
+    { country: 'Africa', year: '1800', value: 107 },
+    { country: 'Africa', year: '1850', value: 111 },
+    { country: 'Africa', year: '1900', value: 133 },
+    { country: 'Africa', year: '1950', value: 221 },
+    { country: 'Africa', year: '1999', value: 767 },
+    { country: 'Africa', year: '2050', value: 1766 },
+    { country: 'Europe', year: '1750', value: 163 },
+    { country: 'Europe', year: '1800', value: 203 },
+    { country: 'Europe', year: '1850', value: 276 },
+    { country: 'Europe', year: '1900', value: 408 },
+    { country: 'Europe', year: '1950', value: 547 },
+    { country: 'Europe', year: '1999', value: 729 },
+    { country: 'Europe', year: '2050', value: 628 },
   ];
-  
-  
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

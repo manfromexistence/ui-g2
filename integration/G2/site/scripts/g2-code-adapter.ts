@@ -93,40 +93,32 @@ export function extractAndAdaptG2Code(
         initializationEndIndex = chartVarMatch.index + chartVarMatch[0].length;
     }
 
-    // 2. Attempt to extract helper functions and top-level const/let.
-    // These are items defined *before* the main chart initialization.
-    const potentialHelpers = [];
-    // Refined regex to better capture full bodies of multi-line helpers.
-    // It looks for the start of the next declaration or the end of the string.
+    // Process code occurring *before* the `new Chart()` call.
+    // Include all of it in helperCode to ensure no definitions are lost.
+    if (initializationStartIndex > 0) {
+        let preChartCode = originalG2SourceCode.substring(0, initializationStartIndex);
+        
+        // Perform adaptations on this block if necessary
+        if (originalChartVarName && originalChartVarName !== g2InstanceVarName) {
+            preChartCode = preChartCode.replace(new RegExp(`\\b${originalChartVarName}\\.(?!current\\b)`, "g"), `${g2InstanceVarName}.`);
+            preChartCode = preChartCode.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\\.|\\s*=\\s*new\\s+Chart)`, "g"), `${g2InstanceVarName}`);
+        }
+        if (originalChartVarName !== 'chart') { // Fallback for literal 'chart'
+             preChartCode = preChartCode.replace(/\bchart\.(?!current\\b)/g, `${g2InstanceVarName}.`);
+             preChartCode = preChartCode.replace(/\bchart\b(?!\\.|\\s*=\\s*new\\s+Chart)/g, `${g2InstanceVarName}`);
+        }
+
+        if (preChartCode.trim().length > 0) {
+            helperCode += "// Code from original script before chart initialization:\n";
+            helperCode += preChartCode.trim() + "\n\n";
+        }
+    }
+    // Note: The previous logic using `potentialHelpers` and `topLevelDeclarationRegex` for pre-chart code is now replaced by the above block.
+    // `topLevelDeclarationRegex` will still be used for processing post-chart-initialization code.
+
+    // Refined regex to better capture full bodies of multi-line helpers for post-chart code.
     const topLevelDeclarationRegex = /^(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+([a-zA-Z_]\w*)\s*[\s\S]*?(?=\n\s*^(?:(?:export\s+)?(?:async\s+)?(?:const|let|var|function(?:\s*\*)?|class)\s+[a-zA-Z_]\w*)|(?:const|let|var)\s+[a-zA-Z_]\w*\s*=\s*new\s+Chart\s*[(]|\Z)/gm;
     
-    const codeToSearchForHelpers = initializationStartIndex !== -1 
-        ? originalG2SourceCode.substring(0, initializationStartIndex) 
-        : originalG2SourceCode; // If no chart init found, search whole script.
-
-    let regexMatchForHelpers;
-    topLevelDeclarationRegex.lastIndex = 0; // Reset regex state
-
-    while((regexMatchForHelpers = topLevelDeclarationRegex.exec(codeToSearchForHelpers)) !== null) {
-        if (!regexMatchForHelpers[0].includes("new Chart(")) { // Should not be needed if searching before init
-            potentialHelpers.push(regexMatchForHelpers[0]);
-        }
-    }
-    
-    if (potentialHelpers.length > 0) {
-        helperCode = potentialHelpers.join("\n\n") + "\n";
-        
-        // More conservative replacement for helperCode to protect function signatures.
-        // Only replace `.` access. Standalone variables (potential parameters) are not replaced.
-        if (originalChartVarName && originalChartVarName !== g2InstanceVarName) {
-            helperCode = helperCode.replace(new RegExp(`\\b${originalChartVarName}\\.`, "g"), `${g2InstanceVarName}.`);
-        }
-        if ('chart' !== originalChartVarName && 'chart' !== g2InstanceVarName) {
-            helperCode = helperCode.replace(/\bchart\.(?!\s*current)/g, `${g2InstanceVarName}.`);
-        }
-        helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + helperCode;
-    }
-
     // Removed static palette registration from helperCode.
 
     // 3. Extract the G2 chart initialization logic and subsequent code

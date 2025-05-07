@@ -42,7 +42,27 @@ export default function G2ChartComponent_general_polygon_voronoi() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  import * as d3 from 'd3-voronoi';
   
+  const layout = (data) => {
+    return d3
+      .voronoi()
+      .x((d) => d.x)
+      .y((d) => d.y)
+      .extent([
+        [0, 0],
+        [800, 600],
+      ])
+      .polygons(data)
+      .map((p) =>
+        Object.assign({}, p, {
+          x: p.map((pi) => pi[0]),
+          y: p.map((pi) => pi[1]),
+        }),
+      );
+  };
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

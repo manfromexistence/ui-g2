@@ -20,7 +20,9 @@ const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"
 export default function G2ChartComponent_general_interval_bar_basic() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Helper code extracted from original (review and adapt if necessary):
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  
   const data = [
     { letter: 'A', frequency: 0.08167 },
     { letter: 'B', frequency: 0.01492 },
@@ -47,7 +49,8 @@ export default function G2ChartComponent_general_interval_bar_basic() {
     { letter: 'W', frequency: 0.0236 },
     { letter: 'X', frequency: 0.0015 },
     { letter: 'Y', frequency: 0.01974 },
-    { letter: '
+    { letter: 'Z', frequency: 0.00074 },
+  ];
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -42,7 +42,15 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
   
+  document.getElementById('container').innerHTML = `
+  <div id="g2ChartInstance.current" ></div>
+  <div id="context"></div>
+  `;
+  
+  // Render g2ChartInstance.current View.
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

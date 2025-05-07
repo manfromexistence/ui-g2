@@ -42,7 +42,12 @@ export default function G2ChartComponent_analysis_regression_quadratic_regressio
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://observablehq.com/@harrystevens/introducing-d3-regression#quadratic
+   */
+  import { Chart } from '@antv/g2';
+  import { regressionQuad } from 'd3-regression';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

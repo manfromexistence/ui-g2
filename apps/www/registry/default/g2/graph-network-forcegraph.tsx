@@ -42,7 +42,9 @@ export default function G2ChartComponent_graph_network_forcegraph() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
+  import { schemeTableau10 } from 'd3-scale-chromatic';
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);

@@ -42,10 +42,12 @@ export default function G2ChartComponent_interesting_interesting_messi() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Helper code extracted from original (review and adapt if necessary):
-  const FW = 600;
+  // Code from original script before chart initialization:
+  import { Chart } from '@antv/g2';
   
+  const FW = 600;
   const FH = 400;
+  const P = 50;
   
   // Trailing helpers extracted from original:
   

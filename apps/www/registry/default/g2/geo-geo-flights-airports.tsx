@@ -42,7 +42,26 @@ export default function G2ChartComponent_geo_geo_flights_airports() {
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
+  // Code from original script before chart initialization:
+  /**
+   * A recreation of this demo: https://vega.github.io/vega-lite/examples/geo_rule.html
+   */
+  import { Chart } from '@antv/g2';
+  import { feature } from 'topojson';
   
+  Promise.all([
+    fetch('https://assets.antv.antgroup.com/g2/us-10m.json').then((res) =>
+      res.json(),
+    ),
+    fetch('https://assets.antv.antgroup.com/g2/airports.json').then((res) =>
+      res.json(),
+    ),
+    fetch('https://assets.antv.antgroup.com/g2/flights-airport.json').then(
+      (res) => res.json(),
+    ),
+  ]).then((values) => {
+    const [us, airports, flights] = values;
+    const states = feature(us, us.objects.states).features;
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
