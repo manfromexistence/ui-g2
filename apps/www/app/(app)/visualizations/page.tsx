@@ -14,14 +14,18 @@ export default function ChartsPage() {
           className="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed inset-x-0 bottom-0 z-40 flex backdrop-blur lg:sticky lg:bottom-auto lg:top-20"
         />
         <div className="grid flex-1 gap-12">
-          <h2 className="sr-only">Examples</h2>
-          {/* Add all components from Charts */}
-          {Object.entries(Charts).map(([key, Component]) => (
-            <div key={key}>
-              <h3>{key}</h3>
-              <Component />
-            </div>
-          ))}
+          <div>
+            <h3>G2ChartComponent_general_pie_point_jitter_radial</h3>
+            <Charts.G2ChartComponent_general_pie_point_jitter_radial />
+          </div>
+          <div>
+            <h3>G2ChartComponent_general_polygon_treemap</h3>
+            <Charts.G2ChartComponent_general_polygon_treemap />
+          </div>
+          <div>
+            <h3>G2ChartComponent_style_graphic_radial_gradient</h3>
+            <Charts.G2ChartComponent_style_graphic_radial_gradient />
+          </div>
         </div>
       </div>
     </div>
