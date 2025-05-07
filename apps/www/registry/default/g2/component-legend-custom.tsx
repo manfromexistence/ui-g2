@@ -15,6 +15,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/legend/demo/custom.ts
 
+// Define a fallback color palette as a JSON string
+const FALLBACK_COLORS_JSON = JSON.stringify([
+  '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd' 
+]);
 
 
 export default function G2ChartComponent_component_legend_custom() {
@@ -71,11 +75,14 @@ export default function G2ChartComponent_component_legend_custom() {
           .encode('color', colorField)
           .legend(false); // Hide built-in legends.
         
+        // The renderCustomLegend function will be called with the chart instance
         g2ChartInstance.current.render().then(renderCustomLegend);
         
-        function renderCustomLegend(g2ChartInstance.current) {
-          // Get color scale.
-          const scale = g2ChartInstance.current.getScaleByChannel('color');
+        function renderCustomLegend(chartInstance) { // chartInstance is passed by .then()
+          if (!chartRef.current) return; // Guard against null chartRef
+
+          // Get color scale from the passed chart instance.
+          const scale = chartInstance.getScaleByChannel('color');
           const { domain, range } = scale.getOptions();
           const excludedValues = [];
         
@@ -107,9 +114,11 @@ export default function G2ChartComponent_component_legend_custom() {
           });
         
           // Mount legend items.
-          const container = document.getElementById('container');
+          // Use chartRef.current as the container.
+          const container = chartRef.current; 
           const canvas = container.getElementsByTagName('canvas')[0];
-          const legend = document.createElement('legend');
+          const legend = document.createElement('div'); // Using div for more flexibility
+          legend.className = 'custom-g2-legend'; // Add a class for cleanup
           container.insertBefore(legend, canvas);
           for (const item of items) legend.append(item);
         
@@ -119,19 +128,27 @@ export default function G2ChartComponent_component_legend_custom() {
             const selectedData = data.filter((d) =>
               selectedValues.includes(d[colorField]),
             );
-            g2ChartInstance.current.changeData(selectedData);
+            chartInstance.changeData(selectedData); // Use the passed chartInstance
           }
         }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/custom.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/legend/demo/custom.ts</div>;
+          // Use a plain string for innerHTML
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/component/legend/demo/custom.ts</div>';
         }
       }
     }
 
     return () => {
+      // Cleanup custom legend
+      if (chartRef.current) {
+        const customLegend = chartRef.current.querySelector('.custom-g2-legend');
+        if (customLegend) {
+          customLegend.remove();
+        }
+      }
       if (g2ChartInstance.current) {
         try {
           g2ChartInstance.current.destroy();
