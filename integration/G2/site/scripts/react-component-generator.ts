@@ -17,7 +17,7 @@ export function getReactComponentTemplate(originalG2FilePath: string, cardTitle:
     //     finalImports += `import { Chart } from "@antv/g2";\n`
     // }
 
-    let finalHelpers = g2Logic.helpers;
+    let finalHelpers = g2Logic.helpers || ""; // Ensure finalHelpers is a string
     const defaultDataString = `const data = [
   { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
   { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
