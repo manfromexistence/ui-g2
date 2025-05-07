@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_box_boxplot_1d() {
         });
         
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .boxplot()
@@ -44,9 +44,7 @@ export default function G2ChartComponent_general_box_boxplot_1d() {
           .style('boxFill', '#aaa')
           .style('pointStroke', '#000');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/box/demo/boxplot-1d.ts:", error);

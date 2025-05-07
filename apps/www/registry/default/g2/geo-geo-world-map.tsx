@@ -30,7 +30,7 @@ export default function G2ChartComponent_geo_geo_world_map() {
         });
         
         
-        const geoView = chart.geoView().coordinate({ type: 'orthographic' });
+        const geoView = g2ChartInstance.current.geoView().coordinate({ type: 'orthographic' });
         
         geoView
           .geoPath()
@@ -53,9 +53,7 @@ export default function G2ChartComponent_geo_geo_world_map() {
           .style('stroke', 'black')
           .style('fill', 'none');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/world-map.ts:", error);

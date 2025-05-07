@@ -68,13 +68,11 @@ export default function G2ChartComponent_general_area_area_stacked_basic() {
           .axis('x', { title: false })
           .axis('y', { title: false });
         
-        chart.area().style('fillOpacity', 0.3);
+        g2ChartInstance.current.area().style('fillOpacity', 0.3);
         
-        chart.line().style('strokeWidth', 2).tooltip(false);
+        g2ChartInstance.current.line().style('strokeWidth', 2).tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-stacked-basic.ts:", error);

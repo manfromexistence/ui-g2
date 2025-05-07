@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
           },
         ];
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .data(data)
@@ -108,11 +108,9 @@ export default function G2ChartComponent_general_bullet_bullet_datas() {
             items: [{ channel: 'y' }],
           });
         
-        chart.interaction('tooltip', { shared: true });
+        g2ChartInstance.current.interaction('tooltip', { shared: true });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/bullet/demo/bullet-datas.ts:", error);

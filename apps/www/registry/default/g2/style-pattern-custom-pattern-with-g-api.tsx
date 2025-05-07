@@ -86,8 +86,8 @@ export default function G2ChartComponent_style_pattern_custom_pattern_with_g_api
         let pattern1;
         let pattern2;
         let pattern3;
-        chart.on('beforerender', () => {
-          const { document } = chart.getContext().canvas;
+        g2ChartInstance.current.on('beforerender', () => {
+          const { document } = g2ChartInstance.current.getContext().canvas;
           pattern1 = createPattern(document, '#edaa53', '#44120c', true, true);
           pattern2 = createPattern(document, '#edaa53', '#44120c', true);
           pattern3 = createPattern(document, '#edaa53', '#fff');
@@ -120,9 +120,7 @@ export default function G2ChartComponent_style_pattern_custom_pattern_with_g_api
           })
           .animate('enter', { type: 'fadeIn' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/pattern/demo/custom-pattern-with-g-api.ts:", error);

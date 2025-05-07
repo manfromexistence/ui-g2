@@ -29,7 +29,7 @@ export default function G2ChartComponent_annotation_line_quadrant_scatter() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/bmw-prod/0b37279d-1674-42b4-b285-29683747ad9a.json',
@@ -38,8 +38,8 @@ export default function G2ChartComponent_annotation_line_quadrant_scatter() {
           ],
         });
         
-        chart.lineX().data([0]);
-        chart.lineY().data([0]);
+        g2ChartInstance.current.lineX().data([0]);
+        g2ChartInstance.current.lineY().data([0]);
         
         g2ChartInstance.current
           .range()
@@ -78,9 +78,7 @@ export default function G2ChartComponent_annotation_line_quadrant_scatter() {
             { channel: 'y', valueFormatter: '.1f' },
           ]);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/quadrant-scatter.ts:", error);

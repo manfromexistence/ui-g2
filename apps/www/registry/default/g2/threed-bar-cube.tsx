@@ -21,6 +21,10 @@ import {
 
 // Helper code extracted from original (review and adapt if necessary):
 const renderer = new WebGLRenderer();
+renderer.registerPlugin(new ThreeDPlugin());
+renderer.registerPlugin(new ControlPlugin());
+
+// Customize our own Chart with threedlib.
 
 const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
 
@@ -71,8 +75,8 @@ export default function G2ChartComponent_threed_bar_cube() {
           .axis('z', { gridLineWidth: 2 })
           .style('opacity', 0.7);
         
-        chart.render().then(() => {
-          const { canvas } = chart.getContext();
+        g2ChartInstance.current.render().then(() => {
+          const { canvas } = g2ChartInstance.current.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 5000, 45, 640 / 480);

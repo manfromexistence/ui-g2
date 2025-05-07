@@ -93,7 +93,7 @@ export default function G2ChartComponent_annotation_connector_interval_connector
           .tooltip({ channel: 'y', valueFormatter: '~s' })
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         // Process data.
         function linkData(data) {
@@ -119,8 +119,6 @@ export default function G2ChartComponent_annotation_connector_interval_connector
             },
           ];
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/connector/demo/interval-connector.ts:", error);

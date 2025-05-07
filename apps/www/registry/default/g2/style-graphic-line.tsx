@@ -27,7 +27,7 @@ export default function G2ChartComponent_style_graphic_line() {
         g2ChartInstance.current = new Chart({ container: chartRef.current, height: 350 });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'line',
           data: [
             { year: '1991', value: 3 },
@@ -56,9 +56,7 @@ export default function G2ChartComponent_style_graphic_line() {
           },
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/graphic/demo/line.ts:", error);

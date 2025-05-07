@@ -51,13 +51,11 @@ export default function G2ChartComponent_component_tooltip_tooltip_click_line() 
             mount: 'body',
           });
         
-        chart.on('plot:click', ({ offsetX, target }) => {
-          chart.emit('tooltip:show', { offsetX, offsetY: 20, target });
+        g2ChartInstance.current.on('plot:click', ({ offsetX, target }) => {
+          g2ChartInstance.current.emit('tooltip:show', { offsetX, offsetY: 20, target });
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-click-line.ts:", error);

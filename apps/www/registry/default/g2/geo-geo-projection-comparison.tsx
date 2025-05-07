@@ -35,7 +35,7 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
           .call(worldMap, geoPolyconic, '#f00')
           .call(worldMap, geoRectangularPolyconic, '#00f');
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         function worldMap(node, projection, color, opacity = 0.7) {
           const geoView = node.geoView().coordinate({
@@ -66,8 +66,6 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
             .style('stroke', color)
             .style('fill', 'none');
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/projection-comparison.ts:", error);

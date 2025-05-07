@@ -132,7 +132,7 @@ export default function G2ChartComponent_component_legend_category() {
           .legend({
             color: {
               itemMarker: (_, index) => () => {
-                const { document } = chart.getContext().canvas;
+                const { document } = g2ChartInstance.current.getContext().canvas;
                 const image = document.createElement('image', {
                   style: {
                     width: 20,
@@ -150,9 +150,7 @@ export default function G2ChartComponent_component_legend_category() {
           })
           .tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/category.ts:", error);

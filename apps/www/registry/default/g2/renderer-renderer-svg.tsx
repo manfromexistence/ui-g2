@@ -72,9 +72,7 @@ export default function G2ChartComponent_renderer_renderer_svg() {
           .encode('y', 'temp_max')
           .encode('shape', 'point');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/renderer/renderer/demo/svg.ts:", error);

@@ -46,7 +46,7 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           .interaction('tooltip', false)
           .interaction('brushXFilter', true);
         
-        focus.render();
+        g2ChartInstance.current.render();
         
         // Render context View.
         const context = new Chart({
@@ -103,11 +103,11 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
         }
         
         // Add event listeners  to communicate.
-        focus.on('brush:filter', (e) => {
+        g2ChartInstance.current.on('brush:filter', (e) => {
           const { nativeEvent } = e;
           if (!nativeEvent) return;
           const { selection } = e.data;
-          const { x: scaleX } = focus.getScale();
+          const { x: scaleX } = g2ChartInstance.current.getScale();
           const [[x1, x2]] = selection;
           const domainX = scaleX.getOptions().domain;
           if (x1 === domainX[0] && x2 === domainX[1]) {
@@ -121,7 +121,7 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           const { selection } = data;
-          focus.emit('brush:filter', { data: { selection } });
+          g2ChartInstance.current.emit('brush:filter', { data: { selection } });
         });
         
         context.on('brush:remove', (e) => {
@@ -129,10 +129,8 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           if (!nativeEvent) return;
           const { x: scaleX, y: scaleY } = context.getScale();
           const selection = [scaleX.getOptions().domain, scaleY.getOptions().domain];
-          focus.emit('brush:filter', { data: { selection } });
+          g2ChartInstance.current.emit('brush:filter', { data: { selection } });
         });
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/multi-view/demo/focus-context.ts:", error);

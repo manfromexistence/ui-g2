@@ -67,9 +67,7 @@ export default function G2ChartComponent_composition_repeat_matrix() {
         
         repeatMatrix.point().encode('color', 'species');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/repeat/demo/matrix.ts:", error);

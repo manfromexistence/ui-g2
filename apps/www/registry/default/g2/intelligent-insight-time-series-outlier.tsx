@@ -153,15 +153,13 @@ export default function G2ChartComponent_intelligent_insight_time_series_outlier
         });
         
         
-        chart.data(data).encode('x', 'date').encode('y', 'discount_price');
+        g2ChartInstance.current.data(data).encode('x', 'date').encode('y', 'discount_price');
         
-        chart.line();
+        g2ChartInstance.current.line();
         
-        chart.mark(TimeSeriesOutlier);
+        g2ChartInstance.current.mark(TimeSeriesOutlier);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/intelligent/insight/demo/time-series-outlier.ts:", error);

@@ -80,9 +80,7 @@ export default function G2ChartComponent_annotation_range_bar_range() {
             ],
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/range/demo/bar-range.ts:", error);

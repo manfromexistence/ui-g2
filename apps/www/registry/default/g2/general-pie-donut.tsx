@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_pie_donut() {
         });
         
         
-        chart.coordinate({ type: 'theta', innerRadius: 0.6 });
+        g2ChartInstance.current.coordinate({ type: 'theta', innerRadius: 0.6 });
         
         g2ChartInstance.current
           .interval()
@@ -58,9 +58,7 @@ export default function G2ChartComponent_general_pie_donut() {
           .animate('enter', { type: 'waveIn' })
           .legend(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/donut.ts:", error);

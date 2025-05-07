@@ -65,9 +65,7 @@ export default function G2ChartComponent_annotation_shape_line_badge() {
             markerFillOpacity: 0.55,
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/line-badge.ts:", error);

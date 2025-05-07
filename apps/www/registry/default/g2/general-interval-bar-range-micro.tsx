@@ -17,10 +17,20 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const floatTimestamp = (s) => +new Date(s) + +`0.${s.slice(s.length - 3)}`;
 
-
-
 const format = (n) => {
   const x = Math.floor(n);
+  const s = n + '';
+  const d = new Date(x);
+  const Y = d.getFullYear();
+  const M = d.getMonth() + 1;
+  const D = d.getDate();
+  const H = d.getHours();
+  const MN = d.getMinutes();
+  const S = d.getSeconds();
+  const MS = d.getMilliseconds();
+  const MCM = s.slice(s.length - 3);
+  return `${Y}-${M}-${D} ${H}:${MN}:${S}.${MS}${MCM}`;
+};
 
 export default function G2ChartComponent_general_interval_bar_range_micro() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -68,9 +78,7 @@ export default function G2ChartComponent_general_interval_bar_range_micro() {
           .tooltip({ channel: 'y', valueFormatter: format })
           .tooltip({ channel: 'y1', valueFormatter: format });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-range-micro.ts:", error);

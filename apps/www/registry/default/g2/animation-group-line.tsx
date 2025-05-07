@@ -30,7 +30,7 @@ export default function G2ChartComponent_animation_group_line() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/doughnut-purchases.json',
         });
@@ -68,9 +68,7 @@ export default function G2ChartComponent_animation_group_line() {
           .style('textAlign', 'center')
           .style('dy', -8);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/line.ts:", error);

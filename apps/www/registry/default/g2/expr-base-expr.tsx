@@ -127,11 +127,9 @@ export default function G2ChartComponent_expr_base_expr() {
           ],
         };
         
-        chart.options(spec);
+        g2ChartInstance.current.options(spec);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/expr/base/demo/expr.ts:", error);

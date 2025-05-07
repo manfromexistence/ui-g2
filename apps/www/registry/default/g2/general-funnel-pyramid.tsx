@@ -38,11 +38,11 @@ export default function G2ChartComponent_general_funnel_pyramid() {
         });
         
         
-        chart.coordinate({
+        g2ChartInstance.current.coordinate({
           transform: [{ type: 'transpose' }],
         });
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'inline',
           value: data,
           transform: [
@@ -74,9 +74,7 @@ export default function G2ChartComponent_general_funnel_pyramid() {
           .legend('color', { position: 'bottom' })
           .axis(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/funnel/demo/pyramid.ts:", error);

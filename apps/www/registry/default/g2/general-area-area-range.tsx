@@ -49,8 +49,6 @@ const data = [
   { time: 1248998400000, temperature: [10.8, 16.1] },
 ];
 
-
-
 const averages = [
   { time: 1246406400000, temperature: 21.5 },
   { time: 1246492800000, temperature: 22.1 },
@@ -151,9 +149,7 @@ export default function G2ChartComponent_general_area_area_range() {
           .encode('size', 4)
           .tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-range.ts:", error);

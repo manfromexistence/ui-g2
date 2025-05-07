@@ -41,7 +41,7 @@ export default function G2ChartComponent_general_rose_stacked_rose() {
           '#ff8c00',
         ];
         
-        chart.coordinate({ type: 'polar', innerRadius: 0.4 });
+        g2ChartInstance.current.coordinate({ type: 'polar', innerRadius: 0.4 });
         
         g2ChartInstance.current
           .interval()
@@ -81,9 +81,7 @@ export default function G2ChartComponent_general_rose_stacked_rose() {
           .axis('x', { position: 'inner' })
           .animate('enter', { type: 'waveIn' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/stacked-rose.ts:", error);

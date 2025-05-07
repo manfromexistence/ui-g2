@@ -52,10 +52,8 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
               .encode('groupKey', 'gender')
               .encode('shape', 'point');
         
-            chart.render();
+            g2ChartInstance.current.render();
           });
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/point-keyframe.ts:", error);

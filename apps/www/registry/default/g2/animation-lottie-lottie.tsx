@@ -46,10 +46,10 @@ export default function G2ChartComponent_animation_lottie_lottie() {
           .animate('enter', { type: 'fadeIn', duration: 1000 })
           .animate('exit', { type: 'fadeOut', duration: 2000 });
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         (async () => {
-          const { canvas } = chart.getContext();
+          const { canvas } = g2ChartInstance.current.getContext();
           await canvas.ready;
         
           const lottieJSON = await fetch(
@@ -60,8 +60,6 @@ export default function G2ChartComponent_animation_lottie_lottie() {
           wrapper.scale(0.5);
           wrapper.translate(160, 100);
         })();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/lottie/demo/lottie.ts:", error);

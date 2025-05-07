@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_interval_bar_diverging() {
         });
         
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .interval()
@@ -54,9 +54,7 @@ export default function G2ChartComponent_general_interval_bar_diverging() {
           .legend('color', { labelFormatter: (d) => (d === 1 ? 'Male' : 'Female') })
           .tooltip((d) => ({ value: d.people, name: d.sex === 1 ? 'Male' : 'Female' }));
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-diverging.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_area_difference() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/temperature-compare.json',
         });
@@ -62,9 +62,7 @@ export default function G2ChartComponent_general_area_area_difference() {
           .style('stroke', '#000')
           .tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-difference.ts:", error);

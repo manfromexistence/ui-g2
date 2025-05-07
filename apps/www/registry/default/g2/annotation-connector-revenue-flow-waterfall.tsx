@@ -23,6 +23,9 @@ const linkData = (data) =>
         x2: d.x,
         value: d.isTotal ? d.end : d.start,
       });
+    }
+    return r;
+  }, []);
 
 export default function G2ChartComponent_annotation_connector_revenue_flow_waterfall() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -91,9 +94,7 @@ export default function G2ChartComponent_annotation_connector_revenue_flow_water
           .tooltip({ channel: 'y', valueFormatter: '~s' })
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/connector/demo/revenue-flow-waterfall.ts:", error);

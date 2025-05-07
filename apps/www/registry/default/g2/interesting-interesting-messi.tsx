@@ -17,9 +17,7 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const FW = 600;
 
-
 const FH = 400;
-
 
 const P = 50;
 
@@ -40,7 +38,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
         
         
         // Draw football field.
-        chart.shape().style('x', '0%').style('y', '0%').style('render', football);
+        g2ChartInstance.current.shape().style('x', '0%').style('y', '0%').style('render', football);
         
         // Analysis messi's shoot data.
         g2ChartInstance.current
@@ -63,7 +61,7 @@ export default function G2ChartComponent_interesting_interesting_messi() {
           .axis(false)
           .legend(false);
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         /**
          * Draw a football field.
@@ -128,8 +126,6 @@ export default function G2ChartComponent_interesting_interesting_messi() {
         
           return g;
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/messi.ts:", error);

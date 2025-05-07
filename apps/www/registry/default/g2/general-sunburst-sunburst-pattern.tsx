@@ -19,8 +19,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const Chart = extend(Runtime, { ...corelib(), ...plotlib() });
 
-
-
 const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];
 
 export default function G2ChartComponent_general_sunburst_sunburst_pattern() {
@@ -60,9 +58,7 @@ export default function G2ChartComponent_general_sunburst_sunburst_pattern() {
             },
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/sunburst/demo/sunburst-pattern.ts:", error);

@@ -45,11 +45,9 @@ export default function G2ChartComponent_interaction_other_fisheye() {
           .style('fillOpacity', 0.3)
           .style('lineWidth', 1);
         
-        chart.interaction('fisheye');
+        g2ChartInstance.current.interaction('fisheye');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/other/demo/fisheye.ts:", error);

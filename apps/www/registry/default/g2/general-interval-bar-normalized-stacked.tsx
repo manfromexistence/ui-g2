@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_interval_bar_normalized_stacked
         });
         
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .interval()
@@ -50,9 +50,7 @@ export default function G2ChartComponent_general_interval_bar_normalized_stacked
           .axis('y', { labelFormatter: '.0%' })
           .tooltip({ channel: 'y0', valueFormatter: '.0%' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-normalized-stacked.ts:", error);

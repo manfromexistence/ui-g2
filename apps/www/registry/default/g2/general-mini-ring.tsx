@@ -32,7 +32,7 @@ export default function G2ChartComponent_general_mini_ring() {
         });
         
         
-        chart.coordinate({ type: 'theta', innerRadius: 0.7 });
+        g2ChartInstance.current.coordinate({ type: 'theta', innerRadius: 0.7 });
         
         g2ChartInstance.current
           .interval()
@@ -45,7 +45,7 @@ export default function G2ChartComponent_general_mini_ring() {
           .axis(false)
           .legend(false);
         
-        chart.text().style({
+        g2ChartInstance.current.text().style({
           text: `${progress * 100}%`,
           x: '50%',
           y: '50%',
@@ -54,11 +54,9 @@ export default function G2ChartComponent_general_mini_ring() {
           fontStyle: 'bold',
         });
         
-        chart.interaction('tooltip', false);
+        g2ChartInstance.current.interaction('tooltip', false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/ring.ts:", error);

@@ -30,7 +30,7 @@ export default function G2ChartComponent_animation_general_wave_in() {
         });
         
         
-        chart.coordinate({ type: 'theta' });
+        g2ChartInstance.current.coordinate({ type: 'theta' });
         
         g2ChartInstance.current
           .interval()
@@ -46,9 +46,7 @@ export default function G2ChartComponent_animation_general_wave_in() {
           .encode('y', 'sold')
           .animate('enter', { type: 'waveIn', duration: 1000 });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/wave-in.ts:", error);

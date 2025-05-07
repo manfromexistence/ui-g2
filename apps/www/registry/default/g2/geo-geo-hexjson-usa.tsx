@@ -17,6 +17,24 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 function processRow(row) {
   row.cx = row.x;
+  row.cy = row.y;
+  row.x = [];
+  row.y = [];
+  row.vertices.forEach((v) => {
+    row.x.push(v.x + row.cx);
+    row.y.push(v.y + row.cy);
+  });
+  return row;
+}
+
+register('data.hexbin', ({ width = 1, height = 1 }) => {
+  return (data) => renderHexJSON(data.value, width, height).map(processRow);
+});
+
+register('data.hexgird', ({ width = 1, height = 1 }) => {
+  return (data) =>
+    renderHexJSON(getGridForHexJSON(data.value), width, height).map(processRow);
+});
 
 export default function G2ChartComponent_geo_geo_hexjson_usa() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -78,9 +96,7 @@ export default function G2ChartComponent_geo_geo_hexjson_usa() {
           .state('inactive', { opacity: 0.5 })
           .interaction('elementHighlight', true);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/hexjson-usa.ts:", error);

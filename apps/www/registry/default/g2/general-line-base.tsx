@@ -53,7 +53,7 @@ export default function G2ChartComponent_general_line_base() {
             nice: true,
           });
         
-        chart.line().label({
+        g2ChartInstance.current.line().label({
           text: 'value',
           style: {
             dx: -10,
@@ -61,11 +61,9 @@ export default function G2ChartComponent_general_line_base() {
           },
         });
         
-        chart.point().style('fill', 'white').tooltip(false);
+        g2ChartInstance.current.point().style('fill', 'white').tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/base.ts:", error);

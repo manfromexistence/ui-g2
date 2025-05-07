@@ -50,7 +50,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
           ])
           .axis('y', { title: false });
         
-        chart.interval().encode('x', 'Day').encode('y', 'Value');
+        g2ChartInstance.current.interval().encode('x', 'Day').encode('y', 'Value');
         
         g2ChartInstance.current
           .range()
@@ -82,7 +82,7 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
             backgroundOpacity: 0.25,
           });
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         // Process data.
         function overThreshold(data, threshold) {
@@ -90,8 +90,6 @@ export default function G2ChartComponent_annotation_line_interval_threshold() {
             .filter((d) => d['Value'] >= threshold)
             .map(({ Day: x, Value: y }) => ({ x: [x, x], y: [threshold, y] }));
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/interval-threshold.ts:", error);

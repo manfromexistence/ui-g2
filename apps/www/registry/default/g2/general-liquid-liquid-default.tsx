@@ -30,15 +30,13 @@ export default function G2ChartComponent_general_liquid_liquid_default() {
         });
         
         
-        chart.liquid().data(0.3).style({
+        g2ChartInstance.current.liquid().data(0.3).style({
           outlineBorder: 4,
           outlineDistance: 8,
           waveLength: 128,
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/Liquid/demo/liquid-default.ts:", error);

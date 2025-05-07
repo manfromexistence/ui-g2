@@ -39,7 +39,7 @@ export default function G2ChartComponent_analysis_group_bar_stacked_diverging() 
         ];
         const colors = ['#c30d24', '#f3a583', '#cccccc', '#94c6da', '#1770ab'];
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .interval()
@@ -61,9 +61,7 @@ export default function G2ChartComponent_analysis_group_bar_stacked_diverging() 
           .scale('y', { nice: true })
           .scale('color', { domain: types, range: colors });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-stacked-diverging.ts:", error);

@@ -78,7 +78,7 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           },
         ];
         
-        chart.data(data);
+        g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
           .line()
@@ -114,11 +114,9 @@ export default function G2ChartComponent_interesting_interesting_timeline() {
           .style('stroke', '#000')
           .style('fill', '#fff');
         
-        chart.interaction('tooltip', false);
+        g2ChartInstance.current.interaction('tooltip', false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/timeline.ts:", error);

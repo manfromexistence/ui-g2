@@ -50,7 +50,7 @@ export default function G2ChartComponent_general_candlestick_k_and_area() {
             labelFormatter: (d) => new Date(d).toLocaleDateString(),
           });
         
-        chart.interaction('tooltip', {
+        g2ChartInstance.current.interaction('tooltip', {
           shared: true,
         });
         
@@ -90,11 +90,9 @@ export default function G2ChartComponent_general_candlestick_k_and_area() {
             type: 'waveIn',
           });
         
-        chart.line().encode('x', 'date').encode('y', 'mean').style('stroke', '#FACC14');
+        g2ChartInstance.current.line().encode('x', 'date').encode('y', 'mean').style('stroke', '#FACC14');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/candlestick/demo/k-and-area.ts:", error);

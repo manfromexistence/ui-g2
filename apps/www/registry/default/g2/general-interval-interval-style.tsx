@@ -27,7 +27,7 @@ export default function G2ChartComponent_general_interval_interval_style() {
         g2ChartInstance.current = new Chart({ container: chartRef.current, height: 350 });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'interval',
           data: [
             { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
@@ -71,9 +71,7 @@ export default function G2ChartComponent_general_interval_interval_style() {
           },
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/interval-style.ts:", error);

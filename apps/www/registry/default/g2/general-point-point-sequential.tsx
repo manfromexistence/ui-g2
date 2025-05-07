@@ -52,11 +52,9 @@ export default function G2ChartComponent_general_point_point_sequential() {
             { channel: 'y' },
           ]);
         
-        chart.lineY().data([0]).style('stroke', '#000').style('strokeOpacity', 0.2);
+        g2ChartInstance.current.lineY().data([0]).style('stroke', '#000').style('strokeOpacity', 0.2);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/point/demo/point-sequential.ts:", error);

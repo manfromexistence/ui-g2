@@ -32,7 +32,7 @@ export default function G2ChartComponent_interaction_brush_brush() {
         
         const [render, remove] = useTip({
           container: document.getElementById('container'),
-          onRemove: () => chart.emit('brush:remove', {}),
+          onRemove: () => g2ChartInstance.current.emit('brush:remove', {}),
         });
         
         g2ChartInstance.current
@@ -58,14 +58,14 @@ export default function G2ChartComponent_interaction_brush_brush() {
           })
           .interaction('brushHighlight', true);
         
-        chart.on('brush:start', onStart);
-        chart.on('brush:end', onUpdate);
-        chart.on('brush:remove', onRemove);
+        g2ChartInstance.current.on('brush:start', onStart);
+        g2ChartInstance.current.on('brush:end', onUpdate);
+        g2ChartInstance.current.on('brush:remove', onRemove);
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         function onStart() {
-          chart.emit('tooltip:disable');
+          g2ChartInstance.current.emit('tooltip:disable');
           remove();
         }
         
@@ -74,7 +74,7 @@ export default function G2ChartComponent_interaction_brush_brush() {
             'https://gw.alipayobjects.com/os/antvdemo/assets/data/scatter.json',
           ).then((res) => res.json());
         
-          const { canvas } = chart.getContext();
+          const { canvas } = g2ChartInstance.current.getContext();
           const [mask] = canvas.document.getElementsByClassName(MASK_CLASS_NAME);
           const bounds = mask.getBounds();
           const x = bounds.max[0];
@@ -91,7 +91,7 @@ export default function G2ChartComponent_interaction_brush_brush() {
         function onRemove(e) {
           const { nativeEvent } = e;
           if (nativeEvent) remove();
-          chart.emit('tooltip:enable');
+          g2ChartInstance.current.emit('tooltip:enable');
         }
         
         function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
@@ -123,8 +123,6 @@ export default function G2ChartComponent_interaction_brush_brush() {
         
           return [render, remove];
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/brush/demo/brush.ts:", error);

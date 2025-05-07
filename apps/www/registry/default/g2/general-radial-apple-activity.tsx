@@ -90,9 +90,7 @@ export default function G2ChartComponent_general_radial_apple_activity() {
           .encode('size', 12)
           .style('transform', 'translateX(10)');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radial/demo/apple-activity.ts:", error);

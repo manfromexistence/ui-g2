@@ -44,7 +44,7 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
         });
         
         
-        chart.data(data);
+        g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
           .interval()
@@ -53,11 +53,11 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
           .style('shape', 'column25d')
           .scale('x', { padding: 0.3 });
         
-        chart.legend('year', {
+        g2ChartInstance.current.legend('year', {
           width: 10,
         });
         
-        chart.render();
+        g2ChartInstance.current.render();
         
         /**
          * Draw 2.5d column shape.
@@ -117,8 +117,6 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
             return g;
           };
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/25d-column.ts:", error);

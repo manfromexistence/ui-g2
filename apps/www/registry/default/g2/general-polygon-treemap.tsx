@@ -17,9 +17,23 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const layout = (data) => {
   const root = d3.hierarchy(data);
+  root.count();
+  d3.treemap().size([1, 1])(root);
+  return root
+    .descendants()
+    .map((d) =>
+      Object.assign(d, {
+        x: [d.x0, d.x1, d.x1, d.x0],
+        y: [d.y0, d.y0, d.y1, d.y1],
+      }),
+    )
+    .filter((d) => d.height === 0);
+};
 
 const name = (d) => {
   const { name } = d.data;
+  return name.length > 5 ? name.slice(0, 4) + '...' : name;
+};
 
 export default function G2ChartComponent_general_polygon_treemap() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -81,9 +95,7 @@ export default function G2ChartComponent_general_polygon_treemap() {
           .style('textAlign', 'start')
           .style('fontSize', 12);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/polygon/demo/treemap.ts:", error);

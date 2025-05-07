@@ -36,7 +36,7 @@ export default function G2ChartComponent_general_text_paragraph() {
         });
         
         
-        chart.data(paragraph);
+        g2ChartInstance.current.data(paragraph);
         
         g2ChartInstance.current
           .text()
@@ -79,9 +79,7 @@ export default function G2ChartComponent_general_text_paragraph() {
           .axis(false)
           .legend(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/text/demo/paragraph.ts:", error);

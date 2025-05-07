@@ -47,10 +47,8 @@ export default function G2ChartComponent_general_histogram_histogram_stacked() {
                 inset: 0.5,
               });
         
-            chart.render();
+            g2ChartInstance.current.render();
           });
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/histogram/demo/histogram-stacked.ts:", error);

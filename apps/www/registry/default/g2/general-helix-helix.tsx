@@ -17,8 +17,26 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const data = [];
 
-
 const n = 31;
+for (let i = 0; i < 372; i++) {
+  const now = new Date();
+  const currentTime = new Date(now.getTime() + i * 1000 * 3600 * 24);
+  const formattedTime = `${currentTime.getFullYear()}.${String(
+    currentTime.getMonth() + 1,
+  ).padStart(2, '0')}.${String(currentTime.getDate()).padStart(2, '0')}`;
+
+  data[i] = {};
+  data[i].time = formattedTime;
+
+  const random = Math.floor(Math.random() * 10);
+  if ((i % n > 2 && i % n < 4) || (i % n >= 6 && i % n < 7)) {
+    data[i].value = 30 + random * 7;
+  } else if (i % n >= 4 && i % n < 6) {
+    data[i].value = 60 + random * 8;
+  } else {
+    data[i].value = 10 + random * 5;
+  }
+}
 
 export default function G2ChartComponent_general_helix_helix() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -35,11 +53,11 @@ export default function G2ChartComponent_general_helix_helix() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           value: data,
         });
         
-        chart.coordinate({
+        g2ChartInstance.current.coordinate({
           type: 'helix',
           startAngle: 0.5 * Math.PI,
           endAngle: 12.5 * Math.PI,
@@ -61,9 +79,7 @@ export default function G2ChartComponent_general_helix_helix() {
             type: 'fadeIn',
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/helix/demo/helix.ts:", error);

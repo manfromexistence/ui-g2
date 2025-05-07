@@ -17,10 +17,24 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
 
-
-
 function* insertionSort(arr) {
   const len = arr.length;
+  let preIndex, current;
+  for (let i = 1; i < len; i++) {
+    preIndex = i - 1;
+    current = arr[i];
+    while (preIndex >= 0 && arr[preIndex] > current) {
+      arr[preIndex + 1] = arr[preIndex];
+      preIndex--;
+    }
+    arr[preIndex + 1] = current;
+    yield arr.map((a, index) => ({
+      value: a,
+      swap: index === preIndex + 1 || index === i,
+    }));
+  }
+  return arr;
+}
 
 export default function G2ChartComponent_algorithm_sort_insertion_sort() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -35,7 +49,7 @@ export default function G2ChartComponent_algorithm_sort_insertion_sort() {
         });
         
         
-        const keyframe = chart.timingKeyframe();
+        const keyframe = g2ChartInstance.current.timingKeyframe();
         
         for (const frame of insertionSort(data)) {
           keyframe
@@ -47,9 +61,7 @@ export default function G2ChartComponent_algorithm_sort_insertion_sort() {
             .encode('color', 'swap');
         }
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/algorithm/sort/demo/insertion-sort.ts:", error);

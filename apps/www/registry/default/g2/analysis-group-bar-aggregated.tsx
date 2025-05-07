@@ -46,9 +46,7 @@ export default function G2ChartComponent_analysis_group_bar_aggregated() {
           .axis('y', { labelFormatter: '~s' })
           .tooltip({ channel: 'y', valueFormatter: '~s' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/group/demo/bar-aggregated.ts:", error);

@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_ema_ema_basic() {
         });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'view',
           children: [
             {
@@ -97,9 +97,7 @@ export default function G2ChartComponent_general_ema_ema_basic() {
           ],
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/ema/demo/ema-basic.ts:", error);

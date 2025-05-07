@@ -130,8 +130,6 @@ const data = [
   { direction: 'NNW', level: '> 10 m/s', value: 0.07 },
 ];
 
-
-
 const colors = [
   '#E3F4BF',
   '#BEF7C8',
@@ -158,7 +156,7 @@ export default function G2ChartComponent_general_rose_wind_rose() {
         });
         
         
-        chart.coordinate({ type: 'polar' });
+        g2ChartInstance.current.coordinate({ type: 'polar' });
         
         g2ChartInstance.current
           .interval()
@@ -194,9 +192,7 @@ export default function G2ChartComponent_general_rose_wind_rose() {
             gridLineWidth: 1,
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/wind-rose.ts:", error);

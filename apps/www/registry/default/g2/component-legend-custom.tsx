@@ -47,11 +47,11 @@ export default function G2ChartComponent_component_legend_custom() {
           .encode('color', colorField)
           .legend(false); // Hide built-in legends.
         
-        chart.render().then(renderCustomLegend);
+        g2ChartInstance.current.render().then(renderCustomLegend);
         
         function renderCustomLegend(g2ChartInstance.current) {
           // Get color scale.
-          const scale = chart.getScaleByChannel('color');
+          const scale = g2ChartInstance.current.getScaleByChannel('color');
           const { domain, range } = scale.getOptions();
           const excludedValues = [];
         
@@ -95,7 +95,7 @@ export default function G2ChartComponent_component_legend_custom() {
             const selectedData = data.filter((d) =>
               selectedValues.includes(d[colorField]),
             );
-            chart.changeData(selectedData);
+            g2ChartInstance.current.changeData(selectedData);
           }
         }
         

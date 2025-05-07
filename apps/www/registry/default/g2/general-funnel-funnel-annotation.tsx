@@ -17,8 +17,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const r = (start, end) => `${(((start - end) / start) * 100).toFixed(2)} %`;
 
-
-
 const data = [
   { text: 'A', value: 12000 },
   { text: 'B', value: 9800 },
@@ -26,9 +24,7 @@ const data = [
   { text: 'D', value: 4569 },
 ];
 
-
 const encodeX = 'text';
-
 
 const encodeY = 'value';
 
@@ -47,7 +43,7 @@ export default function G2ChartComponent_general_funnel_funnel_annotation() {
         });
         
         
-        chart.coordinate({
+        g2ChartInstance.current.coordinate({
           transform: [{ type: 'transpose' }],
         });
         
@@ -129,9 +125,7 @@ export default function G2ChartComponent_general_funnel_funnel_annotation() {
           .style('connectLength1', -12)
           .style('offset2', -20);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/funnel/demo/funnel-annotation.ts:", error);

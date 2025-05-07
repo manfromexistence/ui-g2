@@ -54,9 +54,7 @@ export default function G2ChartComponent_component_axis_axis_polar() {
           .style('gridLineWidth', 10)
           .style('gridStroke', 'red');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-polar.ts:", error);

@@ -40,7 +40,7 @@ export default function G2ChartComponent_general_box_polar_box() {
         });
         
         
-        chart.coordinate({ type: 'polar', innerRadius: 0.2 });
+        g2ChartInstance.current.coordinate({ type: 'polar', innerRadius: 0.2 });
         
         g2ChartInstance.current
           .box()
@@ -59,9 +59,7 @@ export default function G2ChartComponent_general_box_polar_box() {
           .tooltip({ channel: 'y4', name: 'max' })
           .legend(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/box/demo/polar-box.ts:", error);

@@ -17,17 +17,26 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const data = [];
 
-
 const groups = ['WT', 'KO'];
 
-
 const hours = 72;
-
 
 const baseValues = {
   WT: 2.0,
   KO: 2.3,
 };
+
+for (let i = 0; i < hours; i++) {
+  const time = `${i}h`;
+  groups.forEach((group) => {
+    const fluctuation = Math.random() * 0.4 - 0.2;
+    data.push({
+      time,
+      group,
+      logFPKM: baseValues[group] + Math.sin(i / 10) * 0.3 + fluctuation, // 模拟趋势变化
+    });
+  });
+}
 
 export default function G2ChartComponent_general_helix_helix_gene() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -45,9 +54,9 @@ export default function G2ChartComponent_general_helix_helix_gene() {
         });
         
         
-        chart.data(data);
+        g2ChartInstance.current.data(data);
         
-        chart.coordinate({
+        g2ChartInstance.current.coordinate({
           type: 'helix',
           startAngle: 0.2 * Math.PI,
           endAngle: 6.5 * Math.PI,
@@ -79,9 +88,7 @@ export default function G2ChartComponent_general_helix_helix_gene() {
             duration: 1000,
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/helix/demo/helix-gene.ts:", error);

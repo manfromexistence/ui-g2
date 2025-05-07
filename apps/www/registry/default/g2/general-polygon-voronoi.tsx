@@ -31,6 +31,7 @@ const layout = (data) => {
         y: p.map((pi) => pi[1]),
       }),
     );
+};
 
 export default function G2ChartComponent_general_polygon_voronoi() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -71,9 +72,7 @@ export default function G2ChartComponent_general_polygon_voronoi() {
           .style('stroke', '#fff')
           .style('fillOpacity', 0.65);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/polygon/demo/voronoi.ts:", error);

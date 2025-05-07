@@ -35,7 +35,7 @@ export default function G2ChartComponent_style_theme_layout_area() {
         });
         
         
-        chart.style({
+        g2ChartInstance.current.style({
           viewFill: '#4e79a7',
           plotFill: '#f28e2c',
           mainFill: '#e15759',
@@ -61,9 +61,7 @@ export default function G2ChartComponent_style_theme_layout_area() {
           .style('shape', 'point')
           .style('fill', '#59a14f');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/layout-area.ts:", error);

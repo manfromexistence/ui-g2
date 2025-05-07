@@ -52,7 +52,7 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
         });
         
         
-        chart.coordinate({ type: 'polar' });
+        g2ChartInstance.current.coordinate({ type: 'polar' });
         
         g2ChartInstance.current
           .data(data)
@@ -92,11 +92,9 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           .encode('key', 'type')
           .style('lineWidth', 2);
         
-        chart.interaction('tooltip', { crosshairsLineDash: [4, 4] });
+        g2ChartInstance.current.interaction('tooltip', { crosshairsLineDash: [4, 4] });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/line-element-point-move-polar.ts:", error);

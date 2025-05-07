@@ -45,7 +45,7 @@ export default function G2ChartComponent_general_rose_nightingale_rose() {
           width: 720,
         });
         
-        chart.coordinate({ type: 'polar' });
+        g2ChartInstance.current.coordinate({ type: 'polar' });
         
         g2ChartInstance.current
           .interval()
@@ -72,11 +72,9 @@ export default function G2ChartComponent_general_rose_nightingale_rose() {
           })
           .state('inactive', { opacity: 0.5, zIndex: 100 });
         
-        chart.interaction('elementHighlight', true);
+        g2ChartInstance.current.interaction('elementHighlight', true);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/nightingale-rose.ts:", error);

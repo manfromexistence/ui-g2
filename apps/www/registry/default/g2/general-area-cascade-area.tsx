@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_cascade_area() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/bmw-prod/f38a8ad0-6e1f-4bb3-894c-7db50781fdec.json',
@@ -58,11 +58,9 @@ export default function G2ChartComponent_general_area_cascade_area() {
           .style('stroke', 'white')
           .tooltip(false);
         
-        chart.interaction('tooltip', { filter: (d) => parseInt(d.value) > 0 });
+        g2ChartInstance.current.interaction('tooltip', { filter: (d) => parseInt(d.value) > 0 });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/cascade-area.ts:", error);

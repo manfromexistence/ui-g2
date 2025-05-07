@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_percentage_area() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/unemployment-by-industry.json',
         });
@@ -43,9 +43,7 @@ export default function G2ChartComponent_general_area_percentage_area() {
           .encode('color', 'industry')
           .tooltip({ channel: 'y0', valueFormatter: '.3f' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/percentage-area.ts:", error);

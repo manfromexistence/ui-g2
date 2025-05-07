@@ -40,9 +40,7 @@ export default function G2ChartComponent_general_line_line_basic() {
           .encode('x', 'date')
           .encode('y', 'close');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-basic.ts:", error);

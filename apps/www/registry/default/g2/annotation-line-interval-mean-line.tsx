@@ -30,7 +30,7 @@ export default function G2ChartComponent_annotation_line_interval_mean_line() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
         });
@@ -52,9 +52,7 @@ export default function G2ChartComponent_annotation_line_interval_mean_line() {
           .style('lineWidth', 2)
           .style('lineDash', [3, 3]);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/interval-mean-line.ts:", error);

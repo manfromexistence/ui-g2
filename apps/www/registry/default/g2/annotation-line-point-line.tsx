@@ -100,9 +100,7 @@ export default function G2ChartComponent_annotation_line_point_line() {
             backgroundFill: '#000',
             backgroundOpacity: 0.15,
           });
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/point-line.ts:", error);

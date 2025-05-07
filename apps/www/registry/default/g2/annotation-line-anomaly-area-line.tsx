@@ -557,7 +557,7 @@ export default function G2ChartComponent_annotation_line_anomaly_area_line() {
         });
         
         
-        chart.data(Data);
+        g2ChartInstance.current.data(Data);
         
         g2ChartInstance.current
           .area()
@@ -597,9 +597,7 @@ export default function G2ChartComponent_annotation_line_anomaly_area_line() {
           .style('lineWidth', 1)
           .style('stroke', '#FFF');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/anomaly-area-line.ts:", error);

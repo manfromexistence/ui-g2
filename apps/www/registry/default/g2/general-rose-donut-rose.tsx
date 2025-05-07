@@ -46,7 +46,7 @@ export default function G2ChartComponent_general_rose_donut_rose() {
         });
         
         
-        chart.coordinate({ type: 'polar', innerRadius: 0.2 });
+        g2ChartInstance.current.coordinate({ type: 'polar', innerRadius: 0.2 });
         
         g2ChartInstance.current
           .interval()
@@ -82,11 +82,9 @@ export default function G2ChartComponent_general_rose_donut_rose() {
             stroke: '#fff',
           });
         
-        chart.interaction('elementHighlight', true);
+        g2ChartInstance.current.interaction('elementHighlight', true);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/donut-rose.ts:", error);

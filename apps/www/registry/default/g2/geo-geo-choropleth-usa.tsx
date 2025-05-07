@@ -53,10 +53,8 @@ export default function G2ChartComponent_geo_geo_choropleth_usa() {
               .encode('color', 'rate')
               .legend({ color: { layout: { justifyContent: 'center' } } });
         
-            chart.render();
+            g2ChartInstance.current.render();
           });
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/choropleth-usa.ts:", error);

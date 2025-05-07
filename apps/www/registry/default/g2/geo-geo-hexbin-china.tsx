@@ -67,9 +67,7 @@ export default function G2ChartComponent_geo_geo_hexbin_china() {
           .state('inactive', { opacity: 0.8 })
           .interaction('elementHighlight', true);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/hexbin-china.ts:", error);

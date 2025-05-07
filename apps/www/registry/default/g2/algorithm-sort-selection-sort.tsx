@@ -17,11 +17,22 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
 
-
-
 function* selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
     let lowest = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[lowest]) lowest = j;
+    }
+    if (lowest !== i) {
+      [arr[i], arr[lowest]] = [arr[lowest], arr[i]];
+    }
+    yield arr.map((a, index) => ({
+      value: a,
+      swap: index === lowest || index === i,
+    }));
+  }
+  return arr;
+}
 
 export default function G2ChartComponent_algorithm_sort_selection_sort() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -36,7 +47,7 @@ export default function G2ChartComponent_algorithm_sort_selection_sort() {
         });
         
         
-        const keyframe = chart.timingKeyframe();
+        const keyframe = g2ChartInstance.current.timingKeyframe();
         
         for (const frame of selectionSort(data)) {
           keyframe
@@ -48,9 +59,7 @@ export default function G2ChartComponent_algorithm_sort_selection_sort() {
             .encode('color', 'swap');
         }
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/algorithm/sort/demo/selection-sort.ts:", error);

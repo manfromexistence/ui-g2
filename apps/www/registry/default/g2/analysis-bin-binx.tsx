@@ -40,9 +40,7 @@ export default function G2ChartComponent_analysis_bin_binx() {
           .transform({ type: 'binX', y: 'count' })
           .style('inset', 0.5);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/bin/demo/binx.ts:", error);

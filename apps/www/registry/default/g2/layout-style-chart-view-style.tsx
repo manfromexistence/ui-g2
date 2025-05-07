@@ -27,7 +27,7 @@ export default function G2ChartComponent_layout_style_chart_view_style() {
         g2ChartInstance.current = new Chart({ container: chartRef.current });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           viewStyle: {
             // 配置图表的视图区域的样式
             viewFill: '#DCEEFE',
@@ -72,9 +72,7 @@ export default function G2ChartComponent_layout_style_chart_view_style() {
           legend: false,
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/layout/style/demo/chart-view-style.ts:", error);

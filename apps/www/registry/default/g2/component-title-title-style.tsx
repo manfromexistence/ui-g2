@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_title_title_style() {
         });
         
         
-        chart.title({
+        g2ChartInstance.current.title({
           align: 'right',
           title: 'Sold by genre, sorted by sold',
           titleFontSize: 15,
@@ -56,9 +56,7 @@ export default function G2ChartComponent_component_title_title_style() {
           .encode('color', 'genre')
           .style('minHeight', 50);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/title/demo/title-style.ts:", error);

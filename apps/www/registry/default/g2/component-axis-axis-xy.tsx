@@ -41,7 +41,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
             range: [0, 1],
           });
         
-        chart.axisX().attr('title', 'AxisX');
+        g2ChartInstance.current.axisX().attr('title', 'AxisX');
         
         g2ChartInstance.current
           .axisY()
@@ -51,9 +51,7 @@ export default function G2ChartComponent_component_axis_axis_xy() {
           .style('gridLineWidth', 10)
           .style('gridStroke', 'red');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis-xy.ts:", error);

@@ -44,7 +44,7 @@ export default function G2ChartComponent_general_radar_parallel_radar() {
         });
         
         
-        chart.coordinate({ type: 'radar' });
+        g2ChartInstance.current.coordinate({ type: 'radar' });
         
         g2ChartInstance.current
           .line()
@@ -85,11 +85,9 @@ export default function G2ChartComponent_general_radar_parallel_radar() {
           .axis('position6', axis)
           .axis('position7', axis);
         
-        chart.interaction('tooltip', { series: false });
+        g2ChartInstance.current.interaction('tooltip', { series: false });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/parallel-radar.ts:", error);

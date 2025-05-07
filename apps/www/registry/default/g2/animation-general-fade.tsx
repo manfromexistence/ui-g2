@@ -45,9 +45,7 @@ export default function G2ChartComponent_animation_general_fade() {
           .animate('enter', { type: 'fadeIn', duration: 1000 })
           .animate('exit', { type: 'fadeOut', duration: 2000 });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/fade.ts:", error);

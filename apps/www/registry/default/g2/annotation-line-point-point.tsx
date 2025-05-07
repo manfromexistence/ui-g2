@@ -30,7 +30,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/penguins.json',
           transform: [
@@ -66,9 +66,7 @@ export default function G2ChartComponent_annotation_line_point_point() {
           .style('stroke', 'red')
           .tooltip({ channel: 'x' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/point-point.ts:", error);

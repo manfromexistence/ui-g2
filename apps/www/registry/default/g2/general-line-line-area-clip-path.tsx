@@ -508,10 +508,22 @@ const data = [
   },
 ];
 
-
-
 function clip(g2ChartInstance.current) {
-  const { canvas } = chart.getContext();
+  const { canvas } = g2ChartInstance.current.getContext();
+  const document = canvas.document;
+  const [cloned] = document.getElementsByClassName('cloned-line');
+  if (cloned) cloned.remove();
+  const elements = document.getElementsByClassName('element');
+  const line = elements.find((d) => d.markType === 'line');
+  const area = elements.find((d) => d.markType === 'area');
+  const clonedLine = line.cloneNode(true);
+  clonedLine.__data__ = line.__data__;
+  clonedLine.style.stroke = 'orange';
+  clonedLine.style.clipPath = null;
+  clonedLine.className = 'cloned-line';
+  line.parentNode.insertBefore(clonedLine, line);
+  line.style.clipPath = area;
+}
 
 export default function G2ChartComponent_general_line_line_area_clip_path() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -527,7 +539,7 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
         });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'view',
           data,
           encode: { x: 'timestamp' },
@@ -553,11 +565,9 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
           ],
         });
         
-        chart.on('afterrender', () => clip(g2ChartInstance.current));
+        g2ChartInstance.current.on('afterrender', () => clip(g2ChartInstance.current));
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-area-clip-path.ts:", error);

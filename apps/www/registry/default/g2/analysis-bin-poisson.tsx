@@ -43,9 +43,7 @@ export default function G2ChartComponent_analysis_bin_poisson() {
             }),
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/analysis/bin/demo/poisson.ts:", error);

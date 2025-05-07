@@ -17,6 +17,18 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 function syncTicksOfDomainsFromZero(scales) {
   scales.forEach((scale) => scale.update({ nice: true }));
+  const normalize = (d) => d / Math.pow(10, Math.ceil(Math.log(d) / Math.LN10));
+  const maxes = scales.map((scale) => scale.getOptions().domain[1]);
+  const normalized = maxes.map(normalize);
+  const normalizedMax = Math.max(...normalized);
+  for (let i = 0; i < scales.length; i++) {
+    const scale = scales[i];
+    const domain = scale.getOptions().domain;
+    const t = maxes[i] / normalized[i];
+    const newDomainMax = normalizedMax * t;
+    scale.update({ domain: [domain[0], newDomainMax] });
+  }
+}
 
 const data = [
   {
@@ -107,7 +119,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
         });
         
         
-        chart.data(data);
+        g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
           .line()
@@ -153,9 +165,7 @@ export default function G2ChartComponent_general_dual_multi_line_sync() {
             titleFill: '#91CC75',
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/multi-line-sync.ts:", error);

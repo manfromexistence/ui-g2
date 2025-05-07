@@ -71,9 +71,7 @@ export default function G2ChartComponent_style_theme_dark() {
           .animate('enter', { type: 'waveIn', duration: 1000 })
           .legend(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/theme/demo/dark.ts:", error);

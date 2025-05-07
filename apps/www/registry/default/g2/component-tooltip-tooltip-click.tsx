@@ -23,6 +23,7 @@ function css(...styles) {
         .join(';'),
     )
     .join(';');
+}
 
 export default function G2ChartComponent_component_tooltip_tooltip_click() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -122,18 +123,16 @@ export default function G2ChartComponent_component_tooltip_tooltip_click() {
             },
           });
         
-        chart.on('element:click', ({ data }) =>
-          chart.emit('tooltip:show', {
+        g2ChartInstance.current.on('element:click', ({ data }) =>
+          g2ChartInstance.current.emit('tooltip:show', {
             data,
             offsetY: 0,
           }),
         );
         
-        chart.on('plot:click', () => chart.emit('tooltip:hide'));
+        g2ChartInstance.current.on('plot:click', () => g2ChartInstance.current.emit('tooltip:hide'));
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/tooltip/demo/tooltip-click.ts:", error);

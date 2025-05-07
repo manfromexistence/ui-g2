@@ -22,10 +22,30 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const size = 100;
 
-
 const points: { x: number; y: number; z: number }[] = [];
+for (let i = 0; i <= 2 * size; ++i) {
+  const theta = (Math.PI * (i - size)) / size;
+  for (let j = 0; j <= 2 * size; ++j) {
+    const phi = (Math.PI * (j - size)) / size;
+
+    const x = (10.0 + Math.cos(theta)) * Math.cos(phi);
+    const y = (10.0 + Math.cos(theta)) * Math.sin(phi);
+
+    points.push({
+      x: i,
+      y: j,
+      z: Math.sin(theta) * x * y,
+    });
+  }
+}
+
+// Create a WebGL renderer.
 
 const renderer = new WebGLRenderer();
+renderer.registerPlugin(new ThreeDPlugin());
+renderer.registerPlugin(new ControlPlugin());
+
+// Customize our own Chart with threedlib.
 
 const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
 
@@ -61,8 +81,8 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
           .axis('y', { gridLineWidth: 1, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 1 });
         
-        chart.render().then(() => {
-          const { canvas } = chart.getContext();
+        g2ChartInstance.current.render().then(() => {
+          const { canvas } = g2ChartInstance.current.getContext();
           const camera = canvas.getCamera();
           // Use perspective projection mode.
           camera.setPerspective(0.1, 2000, 45, 600 / 600);

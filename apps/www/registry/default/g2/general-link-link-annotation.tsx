@@ -312,8 +312,6 @@ const income = [
   },
 ];
 
-
-
 const incdomain = (() => {
   const elements = []
     .concat(
@@ -321,6 +319,9 @@ const incdomain = (() => {
       income.map((v) => v.f),
     )
     .filter((v) => typeof v === 'number');
+
+  return [Math.min(...elements), Math.max(...elements)];
+})();
 
 export default function G2ChartComponent_general_link_link_annotation() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -377,9 +378,7 @@ export default function G2ChartComponent_general_link_link_annotation() {
           .encode('shape', 'hollow')
           .style('stroke', '#000');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/link/demo/link-annotation.ts:", error);

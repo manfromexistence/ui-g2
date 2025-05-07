@@ -27,7 +27,7 @@ export default function G2ChartComponent_storytelling_storytelling_stocks_keyfra
         g2ChartInstance.current = new Chart({ container: chartRef.current });
         
         
-            chart.options({
+            g2ChartInstance.current.options({
               type: 'timingKeyframe',
               width: 800,
               children: keyframes.map((plot) => {
@@ -45,7 +45,7 @@ export default function G2ChartComponent_storytelling_storytelling_stocks_keyfra
               }),
             });
         
-            chart.render();
+            g2ChartInstance.current.render();
           });
         
         function facetLine(data) {
@@ -296,8 +296,6 @@ export default function G2ChartComponent_storytelling_storytelling_stocks_keyfra
             axis: { y: false },
           };
         }
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/stocks-keyframe.ts:", error);

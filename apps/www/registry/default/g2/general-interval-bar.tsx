@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_interval_bar() {
         });
         
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .interval()
@@ -52,9 +52,7 @@ export default function G2ChartComponent_general_interval_bar() {
             dx: (d) => (+d.frequency > 0.008 ? -5 : 5),
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar.ts:", error);

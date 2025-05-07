@@ -68,9 +68,7 @@ export default function G2ChartComponent_general_area_range_spline_area() {
           .encode('color', '#FF6B3B')
           .encode('shape', 'smooth');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/range-spline-area.ts:", error);

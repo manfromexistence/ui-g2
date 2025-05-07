@@ -63,9 +63,27 @@ const Avatars = [
   'https://gw.alipayobjects.com/mdn/rms_04a9e5/afts/img/A*1O_3R4Wcwy0AAAAAAAAAAAAAARQnAQ',
 ];
 
+// Code from https://juejin.cn/post/6995818748191981604
 
 function getLovePoints() {
   let angle = 0;
+  let x = 0;
+  let y = 0;
+  const a = 6;
+  const points = [];
+  for (let i = 0; i < 20; i += 0.2) {
+    angle = i / Math.PI;
+    x = a * (16 * Math.sin(angle) ** 3);
+    y =
+      a *
+      (13 * Math.cos(angle) -
+        5 * Math.cos(2 * angle) -
+        2 * Math.cos(3 * angle) -
+        Math.cos(4 * angle));
+    points.push({ x, y });
+  }
+  return points;
+}
 
 export default function G2ChartComponent_general_image_contributor() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -82,7 +100,7 @@ export default function G2ChartComponent_general_image_contributor() {
         });
         
         
-        chart.data(getLovePoints());
+        g2ChartInstance.current.data(getLovePoints());
         
         g2ChartInstance.current
           .image()
@@ -99,9 +117,7 @@ export default function G2ChartComponent_general_image_contributor() {
           .axis(false)
           .tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/image/demo/contributor.ts:", error);

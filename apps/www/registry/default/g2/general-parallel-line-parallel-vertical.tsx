@@ -47,7 +47,7 @@ export default function G2ChartComponent_general_parallel_line_parallel_vertical
         });
         
         
-        chart.coordinate({ type: 'parallel' });
+        g2ChartInstance.current.coordinate({ type: 'parallel' });
         
         g2ChartInstance.current
           .line()
@@ -83,11 +83,9 @@ export default function G2ChartComponent_general_parallel_line_parallel_vertical
           .axis('position6', axis)
           .axis('position7', axis);
         
-        chart.interaction('tooltip', { series: false });
+        g2ChartInstance.current.interaction('tooltip', { series: false });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/parallel/demo/line-parallel-vertical.ts:", error);

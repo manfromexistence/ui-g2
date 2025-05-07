@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_radar_square_radar() {
         });
         
         
-        chart.coordinate({
+        g2ChartInstance.current.coordinate({
           type: 'polar',
           startAngle: (-Math.PI * 3) / 4,
           endAngle: (Math.PI * 5) / 4,
@@ -74,9 +74,7 @@ export default function G2ChartComponent_general_radar_square_radar() {
             gridAreaFill: 'rgba(0, 0, 0, 0.04)',
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/square-radar.ts:", error);

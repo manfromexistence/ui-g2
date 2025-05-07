@@ -31,9 +31,9 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
         });
         
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
-        chart.data([
+        g2ChartInstance.current.data([
           { x: 'Jan', tick: 9.3, value: 11.5 },
           { x: 'Feb', tick: 10.5, value: 12 },
           { x: 'Mar', tick: 11.2, value: 11.7 },
@@ -73,9 +73,7 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
           .style('stroke', 'red')
           .tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/interval-point.ts:", error);

@@ -69,15 +69,15 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           .encode('key', 'type')
           .encode('color', 'type');
         
-        chart.render().then(() => {
-          chart.on('element-point:select', (v) => {
+        g2ChartInstance.current.render().then(() => {
+          g2ChartInstance.current.on('element-point:select', (v) => {
             const {
               data: { selection },
             } = v;
             console.log(selection, 'selection');
           });
         
-          chart.on('element-point:moved', (v) => {
+          g2ChartInstance.current.on('element-point:moved', (v) => {
             const {
               data: { changeData, data },
             } = v;
@@ -86,14 +86,14 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
           });
         });
         
-        chart.on('afterrender', () => {
-          chart.emit('element-point:select', {
+        g2ChartInstance.current.on('afterrender', () => {
+          g2ChartInstance.current.emit('element-point:select', {
             data: {
               selection: [1, 2],
             },
           });
           // Clear select.
-          // chart.emit('element-point:unselect');
+          // g2ChartInstance.current.emit('element-point:unselect');
         });
         
         // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.

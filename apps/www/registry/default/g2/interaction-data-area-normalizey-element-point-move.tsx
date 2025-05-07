@@ -72,9 +72,7 @@ export default function G2ChartComponent_interaction_data_area_normalizey_elemen
           .encode('key', 'type')
           .encode('color', 'type');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/area-normalizeY-element-point-move.ts:", error);

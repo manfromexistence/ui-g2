@@ -80,8 +80,8 @@ export default function G2ChartComponent_general_interval_bar_stacked_diverging_
           .style('stroke', '#e25c3b')
           .style('strokeOpacity', 1);
         
-        chart.call(titleLeft, '75%', 'lost', '#61cdbb');
-        chart.call(titleLeft, '20%', 'gain', '#e25c3b');
+        g2ChartInstance.current.call(titleLeft, '75%', 'lost', '#61cdbb');
+        g2ChartInstance.current.call(titleLeft, '20%', 'gain', '#e25c3b');
         
         function titleLeft(node, y, text, fill) {
           node
@@ -95,9 +95,7 @@ export default function G2ChartComponent_general_interval_bar_stacked_diverging_
             .style('fill', fill);
         }
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-stacked-diverging-rounded.ts:", error);

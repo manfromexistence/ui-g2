@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_liquid_liquid_content() {
         });
         
         
-        chart.liquid().data(0.581).style({
+        g2ChartInstance.current.liquid().data(0.581).style({
           contentFill: '#000',
           contentText: 'center text',
           contentStroke: '#fff',
@@ -40,9 +40,7 @@ export default function G2ChartComponent_general_liquid_liquid_content() {
           waveLength: 128,
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/Liquid/demo/liquid-content.ts:", error);

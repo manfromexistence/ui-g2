@@ -58,9 +58,7 @@ export default function G2ChartComponent_general_box_box() {
             { name: 'max', channel: 'y4' },
           ]);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/box/demo/box.ts:", error);

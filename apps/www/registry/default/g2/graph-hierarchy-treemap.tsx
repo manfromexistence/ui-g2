@@ -56,9 +56,7 @@ export default function G2ChartComponent_graph_hierarchy_treemap() {
           .style('labelPosition', 'top-left')
           .style('fillOpacity', 0.5);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/graph/hierarchy/demo/treemap.ts:", error);

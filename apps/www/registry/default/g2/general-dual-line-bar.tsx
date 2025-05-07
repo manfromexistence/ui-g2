@@ -39,7 +39,7 @@ export default function G2ChartComponent_general_dual_line_bar() {
         });
         
         
-        chart.data(data);
+        g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
           .interval()
@@ -62,9 +62,7 @@ export default function G2ChartComponent_general_dual_line_bar() {
             titleFill: '#fdae6b',
           });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/dual/demo/line-bar.ts:", error);

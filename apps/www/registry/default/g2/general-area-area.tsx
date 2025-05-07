@@ -30,7 +30,7 @@ export default function G2ChartComponent_general_area_area() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/aapl.json',
         });
@@ -40,9 +40,7 @@ export default function G2ChartComponent_general_area_area() {
           .encode('x', (d) => new Date(d.date))
           .encode('y', 'close');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area.ts:", error);

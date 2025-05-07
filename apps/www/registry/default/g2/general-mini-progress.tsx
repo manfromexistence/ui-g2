@@ -32,7 +32,7 @@ export default function G2ChartComponent_general_mini_progress() {
         });
         
         
-        chart.coordinate({
+        g2ChartInstance.current.coordinate({
           transform: [{ type: 'transpose' }],
         });
         
@@ -46,7 +46,7 @@ export default function G2ChartComponent_general_mini_progress() {
           .legend(false)
           .axis(false);
         
-        chart.text().style({
+        g2ChartInstance.current.text().style({
           text: `${progress * 100}%`,
           x: '50%',
           y: '50%',
@@ -55,11 +55,9 @@ export default function G2ChartComponent_general_mini_progress() {
           fontStyle: 'bold',
         });
         
-        chart.interaction('tooltip', false);
+        g2ChartInstance.current.interaction('tooltip', false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/mini/demo/progress.ts:", error);

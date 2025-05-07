@@ -17,10 +17,21 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
 
-
-
 function* bubbleSort(arr) {
   const n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j <= n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+      yield arr.map((a, i) => ({
+        value: a,
+        swap: i === j || i === j + 1,
+      }));
+    }
+  }
+  return arr;
+}
 
 export default function G2ChartComponent_algorithm_sort_bubble_sort() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -35,7 +46,7 @@ export default function G2ChartComponent_algorithm_sort_bubble_sort() {
         });
         
         
-        const keyframe = chart.timingKeyframe();
+        const keyframe = g2ChartInstance.current.timingKeyframe();
         
         for (const frame of bubbleSort(data)) {
           keyframe
@@ -47,9 +58,7 @@ export default function G2ChartComponent_algorithm_sort_bubble_sort() {
             .encode('color', 'swap');
         }
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/algorithm/sort/demo/bubble-sort.ts:", error);

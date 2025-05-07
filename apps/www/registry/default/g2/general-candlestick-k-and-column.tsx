@@ -32,7 +32,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
         });
         
         
-        KChart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/antvdemo/assets/data/candle-sticks.json',
@@ -50,7 +50,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
             range: ['#4daf4a', '#999999', '#e41a1c'],
           });
         
-        KChart.link()
+        g2ChartInstance.current.link()
           .encode('y', ['min', 'max'])
           .tooltip({
             title: 'time',
@@ -62,7 +62,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
             ],
           });
         
-        KChart.interval()
+        g2ChartInstance.current.interval()
           .encode('y', ['start', 'end'])
           .style('fillOpacity', 1)
           .style('stroke', (d) => {
@@ -118,22 +118,20 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
             title: false,
           });
         
-        KChart.on('legend:filter', (e) => {
+        g2ChartInstance.current.on('legend:filter', (e) => {
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           ColumnChart.emit('legend:filter', { data });
         });
         
-        KChart.on('legend:reset', (e) => {
+        g2ChartInstance.current.on('legend:reset', (e) => {
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           ColumnChart.emit('legend:reset', { data });
         });
         
-        KChart.render();
+        g2ChartInstance.current.render();
         ColumnChart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/candlestick/demo/k-and-column.ts:", error);

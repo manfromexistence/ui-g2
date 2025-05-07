@@ -31,7 +31,7 @@ export default function G2ChartComponent_general_rose_rose_label() {
         });
         
         
-        chart.coordinate({ type: 'polar', outerRadius: 0.85 });
+        g2ChartInstance.current.coordinate({ type: 'polar', outerRadius: 0.85 });
         
         g2ChartInstance.current
           .interval()
@@ -57,9 +57,7 @@ export default function G2ChartComponent_general_rose_rose_label() {
           .animate('enter', { type: 'waveIn' })
           .tooltip({ channel: 'y', valueFormatter: '~s' });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/rose/demo/rose-label.ts:", error);

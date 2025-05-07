@@ -41,7 +41,7 @@ export default function G2ChartComponent_general_area_area_basic() {
         });
         
         
-        chart.data(data);
+        g2ChartInstance.current.data(data);
         
         g2ChartInstance.current
           .area()
@@ -51,11 +51,9 @@ export default function G2ChartComponent_general_area_area_basic() {
           .style('opacity', 0.2)
           .axis('y', { labelFormatter: '~s', title: false });
         
-        chart.line().encode('x', 'year').encode('y', 'value').encode('shape', 'line'); // 'line', 'smooth', 'vh', 'hv', 'hvh'
+        g2ChartInstance.current.line().encode('x', 'year').encode('y', 'value').encode('shape', 'line'); // 'line', 'smooth', 'vh', 'hv', 'hvh'
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-basic.ts:", error);

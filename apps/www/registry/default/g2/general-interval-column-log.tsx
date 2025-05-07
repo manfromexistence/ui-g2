@@ -44,9 +44,7 @@ export default function G2ChartComponent_general_interval_column_log() {
           .scale('y', { type: 'log' })
           .axis('y', { labelFormatter: (d) => (d === EPSILON ? 0 : d) });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/column-log.ts:", error);

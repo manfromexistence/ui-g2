@@ -30,14 +30,14 @@ export default function G2ChartComponent_general_heatmap_heatmap_density() {
         });
         
         
-        chart.data({
+        g2ChartInstance.current.data({
           type: 'fetch',
           value: 'https://assets.antv.antgroup.com/g2/diamond.json',
         });
         
-        chart.scale('x', { nice: true, domainMin: -0.5 });
-        chart.scale('y', { nice: true, domainMin: -2000 });
-        chart.scale('color', { nice: true });
+        g2ChartInstance.current.scale('x', { nice: true, domainMin: -0.5 });
+        g2ChartInstance.current.scale('y', { nice: true, domainMin: -2000 });
+        g2ChartInstance.current.scale('color', { nice: true });
         
         g2ChartInstance.current
           .heatmap()
@@ -72,11 +72,9 @@ export default function G2ChartComponent_general_heatmap_heatmap_density() {
             ],
           });
         
-        chart.point().encode('x', 'carat').encode('y', 'price');
+        g2ChartInstance.current.point().encode('x', 'carat').encode('y', 'price');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/heatmap/demo/heatmap-density.ts:", error);

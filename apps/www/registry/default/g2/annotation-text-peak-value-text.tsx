@@ -27,7 +27,7 @@ export default function G2ChartComponent_annotation_text_peak_value_text() {
         g2ChartInstance.current = new Chart({ container: chartRef.current });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'view',
           autoFit: true,
           data: [
@@ -97,9 +97,7 @@ export default function G2ChartComponent_annotation_text_peak_value_text() {
           ],
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/text/demo/peak-value-text.ts:", error);

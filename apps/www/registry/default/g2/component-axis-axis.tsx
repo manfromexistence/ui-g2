@@ -30,7 +30,7 @@ export default function G2ChartComponent_component_axis_axis() {
         });
         
         
-        chart.data([
+        g2ChartInstance.current.data([
           {
             pos: 1,
             no: 1,
@@ -80,7 +80,7 @@ export default function G2ChartComponent_component_axis_axis() {
         
         function medal(ranking) {
           if (ranking > 2) return `第${ranking + 1}名`;
-          const { document } = chart.getContext().canvas!;
+          const { document } = g2ChartInstance.current.getContext().canvas!;
           const group = document.createElement('g', {});
           const size = ranking === 0 ? 20 : 15;
           const icon = document.createElement('image', {
@@ -132,9 +132,7 @@ export default function G2ChartComponent_component_axis_axis() {
           .tooltip({ title: 'car' })
           .legend(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/axis/demo/axis.ts:", error);

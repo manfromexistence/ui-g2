@@ -45,9 +45,7 @@ export default function G2ChartComponent_animation_general_scale_y() {
           .animate('enter', { type: 'scaleInY', duration: 1000 })
           .animate('exit', { type: 'scaleOutY', duration: 2000 });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/general/demo/scale-y.ts:", error);

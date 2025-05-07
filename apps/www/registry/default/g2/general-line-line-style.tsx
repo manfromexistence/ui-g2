@@ -27,7 +27,7 @@ export default function G2ChartComponent_general_line_line_style() {
         g2ChartInstance.current = new Chart({ container: chartRef.current, height: 350 });
         
         
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'line',
           data: {
             type: 'fetch',
@@ -68,9 +68,7 @@ export default function G2ChartComponent_general_line_line_style() {
           ],
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-style.ts:", error);

@@ -58,11 +58,9 @@ export default function G2ChartComponent_general_interval_bar_basic() {
         });
         
         
-        chart.interval().data(data).encode('x', 'letter').encode('y', 'frequency');
+        g2ChartInstance.current.interval().data(data).encode('x', 'letter').encode('y', 'frequency');
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-basic.ts:", error);

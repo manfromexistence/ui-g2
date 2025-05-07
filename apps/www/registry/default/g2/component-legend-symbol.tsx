@@ -19,6 +19,27 @@ const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
   (x, y, r) => {
     const radius = r / 2;
 
+    return [
+      ['M', x + radius, y - r],
+      ['L', x - radius, y - r],
+      ['A', radius, radius, 0, 0, 0, x - r, y - radius],
+      ['L', x - r, y + radius],
+      ['A', radius, radius, 0, 0, 0, x - radius, y + r],
+      ['L', x + radius, y + r],
+      ['A', radius, radius, 0, 0, 0, x + r, y + radius],
+      ['L', x + r, y - radius],
+      ['A', radius, radius, 0, 0, 0, x + radius, y - r],
+      ['Z'],
+    ];
+  },
+  {
+    // 空心请设置为 ['stroke', 'lineWidth']
+    style: ['fill']
+  },
+);
+
+register('symbol.customSquare', customSquare);
+
 export default function G2ChartComponent_component_legend_symbol() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -54,10 +75,7 @@ export default function G2ChartComponent_component_legend_symbol() {
             },
           });
         
-        chart.render();
-        
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/symbol.ts:", error);

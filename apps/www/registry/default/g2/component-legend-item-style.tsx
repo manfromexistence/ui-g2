@@ -34,7 +34,7 @@ export default function G2ChartComponent_component_legend_item_style() {
           { genre: 'Shooter', sold: 350 },
           { genre: 'Other', sold: 150 },
         ];
-        chart.options({
+        g2ChartInstance.current.options({
           type: 'interval',
           data,
           encode: { x: 'genre', y: 'sold', color: 'genre' },
@@ -55,9 +55,7 @@ export default function G2ChartComponent_component_legend_item_style() {
           },
         });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/item-style.ts:", error);

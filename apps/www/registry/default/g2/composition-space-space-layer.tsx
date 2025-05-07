@@ -35,7 +35,7 @@ export default function G2ChartComponent_composition_space_space_layer() {
             offset: (t) => t * 0.8 + 0.1,
           });
         
-        const layer = chart.spaceLayer().data({
+        const layer = g2ChartInstance.current.spaceLayer().data({
           type: 'fetch',
           value:
             'https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
@@ -67,9 +67,7 @@ export default function G2ChartComponent_composition_space_space_layer() {
           .encode('color', 'letter')
           .call(scaleColor);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/composition/space/demo/space-layer.ts:", error);

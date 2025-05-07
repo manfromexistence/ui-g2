@@ -69,13 +69,11 @@ export default function G2ChartComponent_general_line_curved() {
           })
           .axis('y', { labelFormatter: (d) => d + '°C' });
         
-        chart.line().encode('shape', 'smooth');
+        g2ChartInstance.current.line().encode('shape', 'smooth');
         
-        chart.point().encode('shape', 'point').tooltip(false);
+        g2ChartInstance.current.point().encode('shape', 'point').tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/curved.ts:", error);

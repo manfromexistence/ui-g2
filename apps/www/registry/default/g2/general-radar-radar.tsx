@@ -52,7 +52,7 @@ export default function G2ChartComponent_general_radar_radar() {
         });
         
         
-        chart.coordinate({ type: 'polar' });
+        g2ChartInstance.current.coordinate({ type: 'polar' });
         
         g2ChartInstance.current
           .data(data)
@@ -78,11 +78,9 @@ export default function G2ChartComponent_general_radar_radar() {
           .encode('shape', 'smooth')
           .style('lineWidth', 2);
         
-        chart.interaction('tooltip', { crosshairsLineDash: [4, 4] });
+        g2ChartInstance.current.interaction('tooltip', { crosshairsLineDash: [4, 4] });
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/radar/demo/radar.ts:", error);

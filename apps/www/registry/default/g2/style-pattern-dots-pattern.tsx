@@ -32,7 +32,7 @@ export default function G2ChartComponent_style_pattern_dots_pattern() {
         });
         
         
-        chart.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
+        g2ChartInstance.current.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
         
         const colors = ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'];
         
@@ -71,9 +71,7 @@ export default function G2ChartComponent_style_pattern_dots_pattern() {
           })
           .legend(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/pattern/demo/dots-pattern.ts:", error);

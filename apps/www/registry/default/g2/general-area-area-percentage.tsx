@@ -67,11 +67,9 @@ export default function G2ChartComponent_general_area_area_percentage() {
           .tooltip({ channel: 'y0', valueFormatter: '.0%' })
           .style('fillOpacity', 0.3);
         
-        chart.line().tooltip(false);
+        g2ChartInstance.current.line().tooltip(false);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/area/demo/area-percentage.ts:", error);

@@ -86,9 +86,7 @@ export default function G2ChartComponent_general_pie_pie_base_facet() {
           .style('y', '50%')
           .style('dy', 20);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/pie/demo/pie-base-facet.ts:", error);

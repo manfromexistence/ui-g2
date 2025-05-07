@@ -17,7 +17,6 @@ import {
 // Helper code extracted from original (review and adapt if necessary):
 const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
 
-
 const left = (d) => d.end > -1500 && d.start > -3000;
 
 export default function G2ChartComponent_general_interval_bar_dual_axes() {
@@ -35,7 +34,7 @@ export default function G2ChartComponent_general_interval_bar_dual_axes() {
         });
         
         
-        chart.coordinate({ transform: [{ type: 'transpose' }] });
+        g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });
         
         g2ChartInstance.current
           .interval()
@@ -75,9 +74,7 @@ export default function G2ChartComponent_general_interval_bar_dual_axes() {
             { name: 'end', field: 'end', valueFormatter: labelFormatter },
           ]);
         
-        chart.render();
-        
-        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        g2ChartInstance.current.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/interval/demo/bar-dual-axes.ts:", error);
