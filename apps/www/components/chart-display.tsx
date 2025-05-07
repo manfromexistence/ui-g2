@@ -34,7 +34,7 @@ export async function ChartDisplay({
     >
       <ChartToolbar
         chart={{ ...chart, highlightedCode }}
-        className="relative z-20 flex justify-end border-b bg-card px-3 py-2.5 text-card-foreground"
+        className="bg-card text-card-foreground relative z-20 flex justify-end border-b px-3 py-2.5"
       >
         {children}
       </ChartToolbar>

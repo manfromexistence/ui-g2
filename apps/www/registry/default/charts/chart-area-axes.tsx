@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/default/ui/card"
+} from "visuablizationscard"
 import {
   ChartConfig,
   ChartContainer,
