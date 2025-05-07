@@ -46,9 +46,37 @@ export default function G2ChartComponent_threed_surface_dirichlet() {
           height: 600,
           depth: 300, // Define the depth of chart.
         });
-        // TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.
-        // The chart has been initialized to 'g2ChartInstance.current'.
-        // Original G2 script operations after 'new Chart(...)' (for reference):
+        
+        
+        chart
+          .surface3D()
+          .data(points)
+          .encode('x', 'x')
+          .encode('y', 'y')
+          .encode('z', 'z')
+          .coordinate({ type: 'cartesian3D' })
+          .scale('x', { nice: true })
+          .scale('y', { nice: true })
+          .scale('z', { nice: true })
+          .legend(false)
+          .axis('x', { gridLineWidth: 1 })
+          .axis('y', { gridLineWidth: 1, titleBillboardRotation: -Math.PI / 2 })
+          .axis('z', { gridLineWidth: 1 });
+        
+        g2ChartInstance.current.render().then(() => {
+          const { canvas } = g2ChartInstance.current.getContext();
+          const camera = canvas.getCamera();
+          // Use perspective projection mode.
+          camera.setPerspective(0.1, 3000, 45, 600 / 600);
+          camera.rotate(30, 30, 0);
+          camera.dolly(60);
+          camera.setType(CameraType.ORBITING);
+        });
+        
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
+        // Review original script and adapt necessary logic, including the render call.
+        // Original script content after initialization (partial for reference):
         // chart
         //   .surface3D()
         //   .data(points)
@@ -67,14 +95,8 @@ export default function G2ChartComponent_threed_surface_dirichlet() {
         // chart.render().then(() => {
         //   const { canvas } = chart.getContext();
         //   const camera = canvas.getCamera();
-        //   // Use perspective projection mode.
-        //   camera.setPerspective(0.1, 3000, 45, 600 / 600);
-        //   camera.rotate(30, 30, 0);
-        //   camera.dolly(60);
-        //   camera.setType(CameraType.ORBITING);
-        // });
-        // 
-        // Ensure you call g2ChartInstance.current.render(); appropriately.
+        //   // U
+        // // ... (code truncated)
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/surface/demo/dirichlet.ts:", error);

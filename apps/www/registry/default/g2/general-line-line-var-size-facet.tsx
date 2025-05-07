@@ -49,6 +49,7 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
               .interaction('tooltip', { series: false });
         
             g2ChartInstance.current.render();
+          });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-var-size-facet.ts:", error);

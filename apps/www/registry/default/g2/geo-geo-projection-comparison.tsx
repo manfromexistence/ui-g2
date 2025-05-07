@@ -43,6 +43,36 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
           .call(worldMap, geoRectangularPolyconic, '#00f');
         
         g2ChartInstance.current.render();
+        
+        function worldMap(node, projection, color, opacity = 0.7) {
+          const geoView = node.geoView().coordinate({
+            type: projection,
+            size: 'fitWidth',
+          });
+        
+          geoView
+            .geoPath()
+            .data({
+              type: 'fetch',
+              value: 'https://assets.antv.antgroup.com/g2/countries-50m.json',
+              transform: [{ type: 'feature', name: 'land' }],
+            })
+            .style('fill', color)
+            .style('opacity', opacity);
+        
+          geoView
+            .geoPath()
+            .data({ type: 'graticule10' })
+            .style('stroke', color)
+            .style('strokeOpacity', 0.3)
+            .style('fill', 'none');
+        
+          geoView
+            .geoPath()
+            .data({ type: 'sphere' })
+            .style('stroke', color)
+            .style('fill', 'none');
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/projection-comparison.ts:", error);

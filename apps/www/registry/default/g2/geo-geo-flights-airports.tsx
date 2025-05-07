@@ -77,6 +77,7 @@ export default function G2ChartComponent_geo_geo_flights_airports() {
             .style('stroke', 'black');
         
           g2ChartInstance.current.render();
+        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/flights-airports.ts:", error);

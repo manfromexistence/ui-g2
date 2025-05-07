@@ -39,9 +39,43 @@ export default function G2ChartComponent_threed_scatter_circle_shape() {
           renderer,
           depth: 400, // Define the depth of chart.
         });
-        // TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.
-        // The chart has been initialized to 'g2ChartInstance.current'.
-        // Original G2 script operations after 'new Chart(...)' (for reference):
+        
+        
+        chart
+          .point3D()
+          .data({
+            type: 'fetch',
+            value:
+              'https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv',
+          })
+          .encode('x', 'Horsepower')
+          .encode('y', 'Miles_per_Gallon')
+          .encode('z', 'Weight_in_lbs')
+          .encode('color', 'Origin')
+          .encode('size', 'Cylinders')
+          .encode('shape', 'point')
+          .coordinate({ type: 'cartesian3D' })
+          .scale('x', { nice: true })
+          .scale('y', { nice: true })
+          .scale('z', { nice: true })
+          .legend(false)
+          .axis('x', { gridLineWidth: 2 })
+          .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
+          .axis('z', { gridLineWidth: 2 })
+          .style('lineWidth', 2)
+          .style('fillOpacity', 0.6);
+        
+        g2ChartInstance.current.render().then(() => {
+          const { canvas } = g2ChartInstance.current.getContext();
+          const camera = canvas.getCamera();
+          camera.setPerspective(0.1, 5000, 45, 640 / 480);
+          camera.setType(CameraType.ORBITING);
+        });
+        
+        // TODO: Ensure 'g2ChartInstance.current.render()' is called appropriately.
+        // Original G2 script operations after 'new Chart(...)' did not appear to include a render call for 'chart'.
+        // Review original script and adapt necessary logic, including the render call.
+        // Original script content after initialization (partial for reference):
         // chart
         //   .point3D()
         //   .data({
@@ -60,20 +94,8 @@ export default function G2ChartComponent_threed_scatter_circle_shape() {
         //   .scale('y', { nice: true })
         //   .scale('z', { nice: true })
         //   .legend(false)
-        //   .axis('x', { gridLineWidth: 2 })
-        //   .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
-        //   .axis('z', { gridLineWidth: 2 })
-        //   .style('lineWidth', 2)
-        //   .style('fillOpacity', 0.6);
-        // 
-        // chart.render().then(() => {
-        //   const { canvas } = chart.getContext();
-        //   const camera = canvas.getCamera();
-        //   camera.setPerspective(0.1, 5000, 45, 640 / 480);
-        //   camera.setType(CameraType.ORBITING);
-        // });
-        // 
-        // Ensure you call g2ChartInstance.current.render(); appropriately.
+        //   .axis('x', { 
+        // // ... (code truncated)
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/scatter/demo/circle-shape.ts:", error);

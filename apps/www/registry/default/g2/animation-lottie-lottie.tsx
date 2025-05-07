@@ -47,6 +47,19 @@ export default function G2ChartComponent_animation_lottie_lottie() {
           .animate('exit', { type: 'fadeOut', duration: 2000 });
         
         g2ChartInstance.current.render();
+        
+        (async () => {
+          const { canvas } = g2ChartInstance.current.getContext();
+          await canvas.ready;
+        
+          const lottieJSON = await fetch(
+            'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/file/A*C9f6TaadHikAAAAAAAAAAAAADmJ7AQ',
+          ).then((res) => res.json());
+          const animation = loadAnimation(lottieJSON, { loop: true, autoplay: true });
+          const wrapper = animation.render(canvas);
+          wrapper.scale(0.5);
+          wrapper.translate(160, 100);
+        })();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/animation/lottie/demo/lottie.ts:", error);

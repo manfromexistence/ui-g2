@@ -63,6 +63,52 @@ export default function G2ChartComponent_annotation_shape_watermark() {
         g2ChartInstance.current.shape().style('x', '80%').style('y', '70%').style('render', watermark);
         
         g2ChartInstance.current.render();
+        
+        function watermark({ x, y }, context) {
+          const { document } = context;
+        
+          const g = document.createElement('g', {});
+          const c1 = document.createElement('circle', {
+            style: {
+              cx: x,
+              cy: y,
+              lineWidth: 4,
+              r: 65,
+              stroke: 'red',
+              opacity: 0.3,
+            },
+          });
+          const c2 = document.createElement('circle', {
+            style: {
+              cx: x,
+              cy: y,
+              lineWidth: 2,
+              r: 50,
+              stroke: 'red',
+              opacity: 0.3,
+            },
+          });
+        
+          const text = document.createElement('text', {
+            style: {
+              x,
+              y,
+              text: '数据保密',
+              transformOrigin: 'center',
+              transform: 'rotate(30)',
+              fontSize: 20,
+              fill: 'red',
+              textAlign: 'center',
+              textBaseline: 'middle',
+              fillOpacity: 0.3,
+            },
+          });
+        
+          g.appendChild(c1);
+          g.appendChild(c2);
+          g.appendChild(text);
+          return g;
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/shape/demo/watermark.ts:", error);

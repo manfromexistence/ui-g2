@@ -58,6 +58,35 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
           .animate(false);
         
         g2ChartInstance.current.render();
+        
+        g2ChartInstance.current.on(
+          'plot:pointermove',
+          throttle((e) => {
+            const { x, y } = e;
+        
+            const kx = Math.floor(x - (x % 8));
+            const ky = Math.floor(y - (y % 8));
+        
+            if (!data[kx]) data[kx] = {};
+            if (!data[kx][ky]) data[kx][ky] = 0;
+        
+            data[kx][ky] += 1;
+        
+            const d = transform(data);
+        
+            g2ChartInstance.current.changeData(d);
+          }),
+        );
+        
+        function transform(dataMap) {
+          const arr = [];
+          Object.keys(dataMap).forEach((x) => {
+            Object.keys(dataMap[x]).forEach((y) => {
+              arr.push({ x, y, v: dataMap[x][y] });
+            });
+          });
+          return arr;
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts:", error);

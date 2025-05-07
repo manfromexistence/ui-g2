@@ -113,6 +113,31 @@ export default function G2ChartComponent_annotation_connector_interval_connector
           .tooltip({ channel: 'y1', valueFormatter: '~s' });
         
         g2ChartInstance.current.render();
+        
+        // Process data.
+        function linkData(data) {
+          return data.reduce((r, d, idx) => {
+            if (idx > 0) {
+              return r.concat({
+                x1: data[idx - 1].x,
+                x2: d.x,
+                value: d.isTotal ? d.end : d.start,
+              });
+            }
+            return r;
+          }, []);
+        }
+        
+        function connectorData(data) {
+          return [
+            {
+              x1: data[0].x,
+              y1: data[0].end,
+              x2: data[data.length - 1].x,
+              y2: data[data.length - 1].end,
+            },
+          ];
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/connector/demo/interval-connector.ts:", error);

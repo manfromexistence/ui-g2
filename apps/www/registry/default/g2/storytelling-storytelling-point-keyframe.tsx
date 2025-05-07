@@ -53,6 +53,7 @@ export default function G2ChartComponent_storytelling_storytelling_point_keyfram
               .encode('shape', 'point');
         
             g2ChartInstance.current.render();
+          });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/storytelling/storytelling/demo/point-keyframe.ts:", error);

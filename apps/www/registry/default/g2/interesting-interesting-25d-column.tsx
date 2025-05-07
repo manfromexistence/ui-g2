@@ -65,6 +65,65 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
         });
         
         g2ChartInstance.current.render();
+        
+        /**
+         * Draw 2.5d column shape.
+         */
+        function myColumn({ fill, stroke }, context) {
+          return (points) => {
+            const x3 = points[1][0] - points[0][0];
+            const x4 = x3 / 2 + points[0][0];
+            const { document } = context;
+            const g = document.createElement('g', {});
+        
+            const r = document.createElement('polygon', {
+              style: {
+                points: [
+                  [points[0][0], points[0][1]],
+                  [x4, points[1][1] + 8],
+                  [x4, points[3][1] + 8],
+                  [points[3][0], points[3][1]],
+                ],
+                fill: 'rgba(114, 177, 207, 0.5)',
+                stroke: 'rgba(0,0,0,0.1)',
+                strokeOpacity: 0.1,
+                inset: 30,
+              },
+            });
+        
+            const p = document.createElement('polygon', {
+              style: {
+                points: [
+                  [x4, points[1][1] + 8],
+                  [points[1][0], points[1][1]],
+                  [points[2][0], points[2][1]],
+                  [x4, points[2][1] + 8],
+                ],
+                fill: 'rgba(126, 212, 236, 0.5)',
+                stroke: 'rgba(0,0,0,0.3)',
+                strokeOpacity: 0.1,
+              },
+            });
+        
+            const t = document.createElement('polygon', {
+              style: {
+                points: [
+                  [points[0][0], points[0][1]],
+                  [x4, points[1][1] - 8],
+                  [points[1][0], points[1][1]],
+                  [x4, points[1][1] + 8],
+                ],
+                fill: 'rgba(173, 240, 255, 0.65)',
+              },
+            });
+        
+            g.appendChild(r);
+            g.appendChild(p);
+            g.appendChild(t);
+        
+            return g;
+          };
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interesting/interesting/demo/25d-column.ts:", error);

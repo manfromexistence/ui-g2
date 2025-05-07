@@ -64,6 +64,8 @@ export default function G2ChartComponent_style_rough_line() {
               .style('roughness', 2);
         
             g2ChartInstance.current.render();
+          },
+        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/style/rough/demo/line.ts:", error);

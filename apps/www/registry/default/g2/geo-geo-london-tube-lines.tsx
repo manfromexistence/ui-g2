@@ -85,6 +85,7 @@ export default function G2ChartComponent_geo_geo_london_tube_lines() {
             });
         
           g2ChartInstance.current.render();
+        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/geo/geo/demo/london-tube-lines.ts:", error);

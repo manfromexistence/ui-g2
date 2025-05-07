@@ -131,6 +131,7 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
         });
         
         g2ChartInstance.current.render();
+        ColumnChart.render();
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/candlestick/demo/k-and-column.ts:", error);
