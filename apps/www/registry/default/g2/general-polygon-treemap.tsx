@@ -3,6 +3,7 @@
 
 import React, { useEffect, useRef } from "react"
 import { Chart, register } from "@antv/g2"
+import * as d3 from "d3" // Import the d3 library
 
 import { useShadcnChartColors } from "@/hooks/use-shadcn-chart-colors"
 // Import the hook

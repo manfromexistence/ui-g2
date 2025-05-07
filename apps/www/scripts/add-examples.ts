@@ -3,11 +3,11 @@ import path from "path"
 
 const indexFilePath = path.resolve(
   __dirname,
-  "../registry/default/g2/index.ts"
+  "../registry/default/g2/index.ts" // Corrected path
 )
 const pageFilePath = path.resolve(
   __dirname,
-  "../app/(app)/visualizations/page.tsx"
+  "../app/(app)/visualizations/page.tsx" // Corrected path
 )
 
 function generateComponentsCode() {
@@ -24,7 +24,7 @@ function generateComponentsCode() {
   const componentsCode = components
     .map(
       (component) => `
-        <div>
+        <div key="${component}">
           <h3>${component}</h3>
           <Charts.${component} />
         </div>
@@ -63,4 +63,10 @@ function updatePageFile() {
 }
 
 // Run the script
-updatePageFile()
+try {
+  console.log("Updating page.tsx with components...")
+  updatePageFile()
+  console.log("Update complete.")
+} catch (error) {
+  console.error("An error occurred:", error)
+}
