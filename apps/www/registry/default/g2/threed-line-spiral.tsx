@@ -33,16 +33,6 @@ export default function G2ChartComponent_threed_line_spiral() {
   
   // Customize our own Chart with threedlib.
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
-  
-  // Trailing helpers extracted from original:
-    const { canvas } = g2ChartInstance.current.getContext();
-    const camera = canvas.getCamera();
-    // Use perspective projection mode.
-    camera.setPerspective(0.1, 5000, 45, 640 / 480);
-    camera.rotate(30, 30, 0);
-    camera.dolly(30);
-    camera.setType(CameraType.ORBITING);
-  });
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -52,27 +42,20 @@ export default function G2ChartComponent_threed_line_spiral() {
     // Palette registration must happen before G2 chart initialization attempts to use it.
     // It also needs to happen after shadcnColors are resolved.
     // And chartRef.current must exist for getComputedStyle to work in the hook.
-    
-    // Register the palette once colors are resolved (or with fallback).
-    // Check if shadcnColors are not the initial fallback to ensure hook has run or CSS vars are applied.
-    // The hook itself returns FALLBACK_COLORS initially or if resolution fails.
     if (shadcnColors && shadcnColors.length === 5) {
-        try {
-            register('palette.shadcnPalette', () => shadcnColors);
-        } catch (e) {
-            console.error("Error registering shadcnPalette, G2 'register' might not be available or shadcnColors are invalid:", e, shadcnColors);
-            // Fallback registration if the above fails for any reason
-            register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
-        }
-    } else {
-        // Fallback if shadcnColors is not yet ready or invalid
-        console.warn("Shadcn colors not ready or invalid, using fallback palette for G2 chart.");
+      try {
+        register('palette.shadcnPalette', () => shadcnColors);
+      } catch (e) {
+        console.error("Error registering shadcnPalette, G2 'register' might not be available or shadcnColors are invalid:", e, shadcnColors);
         register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
+      }
+    } else {
+      console.warn("Shadcn colors not ready or invalid, using fallback palette for G2 chart.");
+      register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
     }
 
     if (chartRef.current && !g2ChartInstance.current) {
       try {
-        // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({
           container: chartRef.current,
           renderer,
@@ -86,7 +69,6 @@ export default function G2ChartComponent_threed_line_spiral() {
         const pointCount = 500;
         let r;
         const data = [];
-        
         for (let i = 0; i < pointCount; i++) {
           r = i * (pointCount - i);
           data.push({
@@ -95,7 +77,6 @@ export default function G2ChartComponent_threed_line_spiral() {
             z: i,
           });
         }
-        
         g2ChartInstance.current
           .line3D()
           .data(data)
@@ -111,9 +92,15 @@ export default function G2ChartComponent_threed_line_spiral() {
           .axis('x', { gridLineWidth: 2 })
           .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 2 });
-        
         g2ChartInstance.current.render().then(() => {
-        // --- G2 Chart Logic End ---
+          // Camera setup after render
+          const { canvas } = g2ChartInstance.current.getContext();
+          const camera = canvas.getCamera();
+          camera.setPerspective(0.1, 5000, 45, 640 / 480);
+          camera.rotate(30, 30, 0);
+          camera.dolly(30);
+          camera.setType(CameraType.ORBITING);
+        });
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/line/demo/spiral.ts:", error);
         if (chartRef.current) {
@@ -150,3 +137,4 @@ export default function G2ChartComponent_threed_line_spiral() {
     </Card>
   );
 }
+

@@ -21,8 +21,6 @@ export default function G2ChartComponent_component_legend_custom() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Trailing helpers extracted from original:
-    }
-  }
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -77,9 +75,9 @@ export default function G2ChartComponent_component_legend_custom() {
         
         g2ChartInstance.current.render().then(renderCustomLegend);
         
-        function renderCustomLegend(g2ChartInstance.current) {
+        function renderCustomLegend(g2ChartInstance) {
           // Get color scale.
-          const scale = g2ChartInstance.current.getScaleByChannel('color');
+          const scale = g2ChartInstance.getScaleByChannel('color');
           const { domain, range } = scale.getOptions();
           const excludedValues = [];
         
@@ -123,7 +121,9 @@ export default function G2ChartComponent_component_legend_custom() {
             const selectedData = data.filter((d) =>
               selectedValues.includes(d[colorField]),
             );
-            g2ChartInstance.current.changeData(selectedData);
+            g2ChartInstance.changeData(selectedData);
+          }
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/custom.ts:", error);
@@ -161,3 +161,4 @@ export default function G2ChartComponent_component_legend_custom() {
     </Card>
   );
 }
+

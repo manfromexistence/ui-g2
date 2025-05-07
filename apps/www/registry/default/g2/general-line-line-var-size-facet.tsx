@@ -18,48 +18,6 @@ import {
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
 export default function G2ChartComponent_general_line_line_var_size_facet() {
-  // Helper functions and data extracted from the original G2 example.
-  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
-  const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-  ];
-  
-  // Code from original script before chart initialization:
-  /**
-   * A recreation of this demo: https://vega.github.io/vega-lite/examples/trail_comet.html
-   */
-  
-  fetch('https://assets.antv.antgroup.com/g2/barley.json')
-    .then((res) => res.json())
-    .then((data) => {
-      const key = (d) => `${d.site},${d.variety}`;
-      const keyDelta = rollup(
-        data,
-        ([a, b]) => {
-          if (b.year < a.year) [a, b] = [b, a];
-          return b.yield - a.yield;
-        },
-        key,
-      );
-
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
@@ -91,28 +49,24 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
         // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({
               container: chartRef.current,
-              paddingLeft: 150,
-              paddingBottom: 30,
+              autoFit: true,
             });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        const facet = g2ChartInstance.current.facetRect().data(data).encode('x', 'site');
-        
-            facet
+        fetch('https://assets.antv.antgroup.com/g2/barley.json')
+          .then((res) => res.json())
+          .then((data) => {
+            g2ChartInstance.current
+              .facetRect()
+              .data(data)
+              .encode('y', 'site')
               .line()
-              .encode('x', (d) => `${d.year}`)
-              .encode('y', 'variety')
-              .encode('series', 'variety')
-              .encode('color', (d) => keyDelta.get(key(d)))
+              .encode('x', 'year')
+              .encode('y', 'yield')
+              .encode('color', 'variety')
               .encode('size', 'yield')
-              .tooltip({ title: '', items: [{ field: 'year' }, { field: 'yield' }] })
-              .scale('size', { range: [0, 12] })
-              .scale('color', { palette: 'rdBu' })
-              .style('shape', 'trail')
-              .legend('color', { title: 'yield delta' })
-              .attr('frame', false)
-              .interaction('tooltip', { series: false });
-        
+              .scale('size', { range: [1, 4] });
             g2ChartInstance.current.render();
+          });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/line/demo/line-var-size-facet.ts:", error);
@@ -137,7 +91,7 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Trail</CardTitle>
+        <CardTitle>Line Var Size Facet</CardTitle>
         <CardDescription>
           G2 Chart. Original example: general/line/demo/line-var-size-facet.ts
         </CardDescription>
@@ -150,3 +104,4 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
     </Card>
   );
 }
+

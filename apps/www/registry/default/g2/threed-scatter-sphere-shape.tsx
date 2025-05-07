@@ -56,23 +56,6 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
   // Customize our own Chart with threedlib.
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
   
-  // Trailing helpers extracted from original:
-    const { canvas } = g2ChartInstance.current.getContext();
-    const camera = canvas.getCamera();
-    camera.setPerspective(0.1, 5000, 45, 640 / 480);
-    camera.setType(CameraType.ORBITING);
-  
-    // Add a directional light into scene.
-    const light = new DirectionalLight({
-      style: {
-        intensity: 3,
-        fill: 'white',
-        direction: [-1, 0, 1],
-      },
-    });
-    canvas.appendChild(light);
-  });
-
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
@@ -131,7 +114,8 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
           .axis('z', { gridLineWidth: 2 });
         
         g2ChartInstance.current.render().then(() => {
-        // --- G2 Chart Logic End ---
+          // --- G2 Chart Logic End ---
+        });
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/scatter/demo/sphere-shape.ts:", error);
         if (chartRef.current) {
@@ -168,3 +152,4 @@ export default function G2ChartComponent_threed_scatter_sphere_shape() {
     </Card>
   );
 }
+

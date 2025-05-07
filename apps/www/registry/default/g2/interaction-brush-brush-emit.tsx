@@ -21,7 +21,6 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
   // Helper functions and data extracted from the original G2 example.
   // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
   // Trailing helpers extracted from original:
-  }
   
   function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
     let div;
@@ -87,7 +86,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         const [render, remove] = useTip({
-          container: document.getElementById('container'),
+          container: chartRef.current,
           onRemove: () => g2ChartInstance.current.emit('brush:remove', {}),
         });
         
@@ -140,6 +139,7 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
           const { nativeEvent } = e;
           if (nativeEvent) remove();
           g2ChartInstance.current.emit('tooltip:enable');
+        }
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/brush/demo/brush-emit.ts:", error);
@@ -177,3 +177,4 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
     </Card>
   );
 }
+

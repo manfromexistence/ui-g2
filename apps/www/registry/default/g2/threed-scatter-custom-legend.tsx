@@ -46,18 +46,15 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
     { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
-  
-  // Code from original script before chart initialization:
-  // 添加图例
-  function legendColor(g2ChartInstance.current) {
-    // 创建 Legend 并且挂在图例
-    const node = g2ChartInstance.current.getContainer();
+
+  // Helper function for legend, now accepts the chart instance as parameter
+  function legendColor(chart) {
+    const node = chart.getContainer();
     const legend = document.createElement('div');
     legend.style.display = 'flex';
     node.insertBefore(legend, node.childNodes[0]);
-  
-    // 创建并挂载 Items
-    const { color: scale } = g2ChartInstance.current.getScale();
+
+    const { color: scale } = chart.getScale();
     const { domain } = scale.getOptions();
     const items = domain.map((value) => {
       const item = document.createElement('div');
@@ -75,10 +72,9 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
       return item;
     });
     items.forEach((d) => legend.append(d));
-  
-    // 监听事件
+
     const selectedValues = [...domain];
-    const options = g2ChartInstance.current.options();
+    const options = chart.options();
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const value = domain[i];
@@ -95,47 +91,26 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
         changeColor(selectedValues);
       };
     }
-  
-    // 重新渲染视图
+
     function changeColor(value) {
       const { transform = [] } = options;
       const newTransform = [{ type: 'filter', color: { value } }, ...transform];
-      g2ChartInstance.current.options({
+      chart.options({
         ...options,
         transform: newTransform, // 指定新的 transform
         scale: { color: { domain } },
       });
-      g2ChartInstance.current.render(); // 重新渲染图表
+      chart.render(); // 重新渲染图表
     }
   }
-  
+
   // Create a WebGL renderer.
   const renderer = new WebGLRenderer();
   renderer.registerPlugin(new ThreeDPlugin());
   renderer.registerPlugin(new ControlPlugin());
-  
+
   // Customize our own Chart with threedlib.
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
-  
-  // Trailing helpers extracted from original:
-    legendColor(g2ChartInstance.current);
-  
-    const { canvas } = g2ChartInstance.current.getContext();
-    const camera = canvas.getCamera();
-    // Use perspective projection mode.
-    camera.setPerspective(0.1, 5000, 45, 640 / 480);
-    camera.setType(CameraType.ORBITING);
-  
-    // Add a directional light into scene.
-    const light = new DirectionalLight({
-      style: {
-        intensity: 3,
-        fill: 'white',
-        direction: [-1, 0, 1],
-      },
-    });
-    canvas.appendChild(light);
-  });
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -145,7 +120,7 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
     // Palette registration must happen before G2 chart initialization attempts to use it.
     // It also needs to happen after shadcnColors are resolved.
     // And chartRef.current must exist for getComputedStyle to work in the hook.
-    
+
     // Register the palette once colors are resolved (or with fallback).
     // Check if shadcnColors are not the initial fallback to ensure hook has run or CSS vars are applied.
     // The hook itself returns FALLBACK_COLORS initially or if resolution fails.
@@ -191,8 +166,21 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
           .axis('x', { gridLineWidth: 2 })
           .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 2 });
-        
         g2ChartInstance.current.render().then(() => {
+          legendColor(g2ChartInstance.current);
+          const { canvas } = g2ChartInstance.current.getContext();
+          const camera = canvas.getCamera();
+          camera.setPerspective(0.1, 5000, 45, 640 / 480);
+          camera.setType(CameraType.ORBITING);
+          const light = new DirectionalLight({
+            style: {
+              intensity: 3,
+              fill: 'white',
+              direction: [-1, 0, 1],
+            },
+          });
+          canvas.appendChild(light);
+        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/scatter/demo/custom-legend.ts:", error);
@@ -230,3 +218,4 @@ export default function G2ChartComponent_threed_scatter_custom_legend() {
     </Card>
   );
 }
+

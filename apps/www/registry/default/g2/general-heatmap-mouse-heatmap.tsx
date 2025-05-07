@@ -24,9 +24,6 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
   const data = {};
   
   // Trailing helpers extracted from original:
-    }),
-  );
-  
   function transform(dataMap) {
     const arr = [];
     Object.keys(dataMap).forEach((x) => {
@@ -109,6 +106,8 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
             const d = transform(data);
         
             g2ChartInstance.current.changeData(d);
+          })
+        );
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts:", error);
@@ -146,3 +145,4 @@ export default function G2ChartComponent_general_heatmap_mouse_heatmap() {
     </Card>
   );
 }
+

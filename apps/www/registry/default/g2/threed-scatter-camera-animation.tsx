@@ -46,22 +46,22 @@ export default function G2ChartComponent_threed_scatter_camera_animation() {
     { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
-  
-  // Code from original script before chart initialization:
-  function cameraButton(g2ChartInstance.current) {
-    const node = g2ChartInstance.current.getContainer();
+
+  // Helper functions for camera and legend, now accept the chart instance as parameter
+  function cameraButton(chart) {
+    const node = chart.getContainer();
     const button = document.createElement('button');
     button.textContent = 'Reset camera to default';
     node.insertBefore(button, node.childNodes[0]);
-  
-    const { canvas } = g2ChartInstance.current.getContext();
+
+    const { canvas } = chart.getContext();
     const camera = canvas.getCamera();
     camera.createLandmark('default', {
       position: [320, 240, 500],
       focalPoint: [320, 240, 0],
       zoom: 1,
     });
-  
+
     button.onclick = () => {
       camera.gotoLandmark('default', {
         duration: 300,
@@ -69,17 +69,14 @@ export default function G2ChartComponent_threed_scatter_camera_animation() {
       });
     };
   }
-  
-  // 添加图例
-  function legendColor(g2ChartInstance.current) {
-    // 创建 Legend 并且挂在图例
-    const node = g2ChartInstance.current.getContainer();
+
+  function legendColor(chart) {
+    const node = chart.getContainer();
     const legend = document.createElement('div');
     legend.style.display = 'flex';
     node.insertBefore(legend, node.childNodes[0]);
-  
-    // 创建并挂载 Items
-    const { color: scale } = g2ChartInstance.current.getScale();
+
+    const { color: scale } = chart.getScale();
     const { domain } = scale.getOptions();
     const items = domain.map((value) => {
       const item = document.createElement('div');
@@ -97,10 +94,9 @@ export default function G2ChartComponent_threed_scatter_camera_animation() {
       return item;
     });
     items.forEach((d) => legend.append(d));
-  
-    // 监听事件
+
     const selectedValues = [...domain];
-    const options = g2ChartInstance.current.options();
+    const options = chart.options();
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const value = domain[i];
@@ -117,48 +113,26 @@ export default function G2ChartComponent_threed_scatter_camera_animation() {
         changeColor(selectedValues);
       };
     }
-  
-    // 重新渲染视图
+
     function changeColor(value) {
       const { transform = [] } = options;
       const newTransform = [{ type: 'filter', color: { value } }, ...transform];
-      g2ChartInstance.current.options({
+      chart.options({
         ...options,
-        transform: newTransform, // 指定新的 transform
+        transform: newTransform,
         scale: { color: { domain } },
       });
-      g2ChartInstance.current.render(); // 重新渲染图表
+      chart.render();
     }
   }
-  
+
   // Create a WebGL renderer.
   const renderer = new WebGLRenderer();
   renderer.registerPlugin(new ThreeDPlugin());
   renderer.registerPlugin(new ControlPlugin());
-  
+
   // Customize our own Chart with threedlib.
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
-  
-  // Trailing helpers extracted from original:
-    legendColor(g2ChartInstance.current);
-    cameraButton(g2ChartInstance.current);
-  
-    const { canvas } = g2ChartInstance.current.getContext();
-    const camera = canvas.getCamera();
-    // Use perspective projection mode.
-    camera.setPerspective(0.1, 5000, 45, 640 / 480);
-    camera.setType(CameraType.ORBITING);
-  
-    // Add a directional light into scene.
-    const light = new DirectionalLight({
-      style: {
-        intensity: 3,
-        fill: 'white',
-        direction: [-1, 0, 1],
-      },
-    });
-    canvas.appendChild(light);
-  });
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -216,6 +190,21 @@ export default function G2ChartComponent_threed_scatter_camera_animation() {
           .axis('z', { gridLineWidth: 2 });
         
         g2ChartInstance.current.render().then(() => {
+          legendColor(g2ChartInstance.current);
+          cameraButton(g2ChartInstance.current);
+          const { canvas } = g2ChartInstance.current.getContext();
+          const camera = canvas.getCamera();
+          camera.setPerspective(0.1, 5000, 45, 640 / 480);
+          camera.setType(CameraType.ORBITING);
+          const light = new DirectionalLight({
+            style: {
+              intensity: 3,
+              fill: 'white',
+              direction: [-1, 0, 1],
+            },
+          });
+          canvas.appendChild(light);
+        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/scatter/demo/camera-animation.ts:", error);
@@ -253,3 +242,4 @@ export default function G2ChartComponent_threed_scatter_camera_animation() {
     </Card>
   );
 }
+

@@ -56,62 +56,29 @@ export default function G2ChartComponent_threed_bar_cube() {
   // Customize our own Chart with threedlib.
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
   
-  // Trailing helpers extracted from original:
-    const { canvas } = g2ChartInstance.current.getContext();
-    const camera = canvas.getCamera();
-    // Use perspective projection mode.
-    camera.setPerspective(0.1, 5000, 45, 640 / 480);
-    camera.rotate(-40, 30, 0);
-    camera.dolly(70);
-    camera.setType(CameraType.ORBITING);
-  
-    // Add a directional light into scene.
-    const light = new DirectionalLight({
-      style: {
-        intensity: 2.5,
-        fill: 'white',
-        direction: [-1, 0, 1],
-      },
-    });
-    canvas.appendChild(light);
-  });
-
   const chartRef = useRef<HTMLDivElement>(null);
-  const g2ChartInstance = useRef<Chart | null>(null);
-  const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
+  const g2ChartInstance = useRef<ReturnType<typeof Chart> | null>(null);
+  const shadcnColors = useShadcnChartColors(chartRef);
 
   useEffect(() => {
-    // Palette registration must happen before G2 chart initialization attempts to use it.
-    // It also needs to happen after shadcnColors are resolved.
-    // And chartRef.current must exist for getComputedStyle to work in the hook.
-    
-    // Register the palette once colors are resolved (or with fallback).
-    // Check if shadcnColors are not the initial fallback to ensure hook has run or CSS vars are applied.
-    // The hook itself returns FALLBACK_COLORS initially or if resolution fails.
     if (shadcnColors && shadcnColors.length === 5) {
-        try {
-            register('palette.shadcnPalette', () => shadcnColors);
-        } catch (e) {
-            console.error("Error registering shadcnPalette, G2 'register' might not be available or shadcnColors are invalid:", e, shadcnColors);
-            // Fallback registration if the above fails for any reason
-            register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
-        }
-    } else {
-        // Fallback if shadcnColors is not yet ready or invalid
-        console.warn("Shadcn colors not ready or invalid, using fallback palette for G2 chart.");
+      try {
+        register('palette.shadcnPalette', () => shadcnColors);
+      } catch (e) {
         register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
+      }
+    } else {
+      register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
     }
-
     if (chartRef.current && !g2ChartInstance.current) {
       try {
-        // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({
           container: chartRef.current,
           renderer,
-          depth: 400, // Define the depth of chart.
+          depth: 400,
         });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        const data: { x: string; z: string; y: number; color: number }[] = [];
+        const data = [];
         for (let x = 0; x < 5; ++x) {
           for (let z = 0; z < 5; ++z) {
             data.push({
@@ -122,13 +89,9 @@ export default function G2ChartComponent_threed_bar_cube() {
             });
           }
         }
-        
         g2ChartInstance.current
           .interval3D()
-          .data({
-            type: 'inline',
-            value: data,
-          })
+          .data({ type: 'inline', value: data })
           .encode('x', 'x')
           .encode('y', 'y')
           .encode('z', 'z')
@@ -143,29 +106,35 @@ export default function G2ChartComponent_threed_bar_cube() {
           .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
           .axis('z', { gridLineWidth: 2 })
           .style('opacity', 0.7);
-        
         g2ChartInstance.current.render().then(() => {
-        // --- G2 Chart Logic End ---
+          const { canvas } = g2ChartInstance.current.getContext();
+          const camera = canvas.getCamera();
+          camera.setPerspective(0.1, 5000, 45, 640 / 480);
+          camera.rotate(-40, 30, 0);
+          camera.dolly(70);
+          camera.setType(CameraType.ORBITING);
+          const light = new DirectionalLight({
+            style: {
+              intensity: 2.5,
+              fill: 'white',
+              direction: [-1, 0, 1],
+            },
+          });
+          canvas.appendChild(light);
+        });
       } catch (error) {
-        console.error("Error initializing G2 chart from integration/G2/site/examples/threed/bar/demo/cube.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/threed/bar/demo/cube.ts</div>';
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart.</div>';
         }
       }
     }
-
     return () => {
       if (g2ChartInstance.current) {
-        try {
-          g2ChartInstance.current.destroy();
-        } catch (e) {
-          console.error("Error destroying G2 chart from integration/G2/site/examples/threed/bar/demo/cube.ts:", e);
-        }
+        try { g2ChartInstance.current.destroy(); } catch {}
         g2ChartInstance.current = null;
       }
     };
   }, [shadcnColors]);
-
   return (
     <Card className="w-full">
       <CardHeader>
@@ -175,10 +144,9 @@ export default function G2ChartComponent_threed_bar_cube() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }}>
-          {/* G2 Chart will be rendered here by the useEffect hook */}
-        </div>
+        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }} />
       </CardContent>
     </Card>
   );
 }
+

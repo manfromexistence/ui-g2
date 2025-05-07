@@ -2,7 +2,7 @@ import { THEMES } from "@/lib/themes"
 import { ChartDisplay } from "@/components/chart-display"
 import { ThemesSwitcher } from "@/components/themes-selector"
 import { ThemesStyle } from "@/components/themes-styles"
-import * as Charts from "@/app/(app)/g2/g2"
+import * as Charts from "@/registry/default/g2"
 
 export default function ChartsPage() {
   return (

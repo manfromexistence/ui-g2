@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart , register } from '@antv/g2';
+import { Chart, register } from '@antv/g2';
 
 import { useShadcnChartColors } from "@/hooks/use-shadcn-chart-colors"; // Import the hook
 import {
@@ -18,39 +18,6 @@ import {
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
 export default function G2ChartComponent_composition_facet_rect_col() {
-  // Helper functions and data extracted from the original G2 example.
-  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Default data used as a fallback because no specific data source was detected:
-  const data = [
-    { site: 'MN', variety: 'Manchuria', yield: 32.4, year: 1932 },
-    { site: 'MN', variety: 'Manchuria', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'Glabron', yield: 33.1, year: 1932 },
-    { site: 'MN', variety: 'Glabron', yield: 33, year: 1931 },
-    { site: 'MN', variety: 'Svansota', yield: 29.3, year: 1932 },
-    { site: 'MN', variety: 'Svansota', yield: 30.8, year: 1931 },
-    { site: 'MN', variety: 'Velvet', yield: 32, year: 1932 },
-    { site: 'MN', variety: 'Velvet', yield: 33.3, year: 1931 },
-    { site: 'MN', variety: 'Peatland', yield: 30.5, year: 1932 },
-    { site: 'MN', variety: 'Peatland', yield: 26.7, year: 1931 },
-    { site: 'MN', variety: 'Trebi', yield: 31.6, year: 1932 },
-    { site: 'MN', variety: 'Trebi', yield: 29.3, year: 1931 },
-    { site: 'MN', variety: 'No. 457', yield: 31.9, year: 1932 },
-    { site: 'MN', variety: 'No. 457', yield: 32.3, year: 1931 },
-    { site: 'MN', variety: 'No. 462', yield: 29.9, year: 1932 },
-    { site: 'MN', variety: 'No. 462', yield: 30.7, year: 1931 },
-    { site: 'MN', variety: 'No. 475', yield: 28.1, year: 1932 },
-    { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
-  ];
-  
-  // Code from original script before chart initialization:
-  /**
-   * A recreation of one of these demos: https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot
-   */
-  
-  fetch('https://assets.antv.antgroup.com/g2/barley.json')
-    .then((res) => res.json())
-    .then((data) => {
-
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
@@ -78,54 +45,30 @@ export default function G2ChartComponent_composition_facet_rect_col() {
     }
 
     if (chartRef.current && !g2ChartInstance.current) {
-      try {
-        // --- G2 Chart Logic Start ---
-        g2ChartInstance.current = new Chart({
+      fetch('https://assets.antv.antgroup.com/g2/barley.json')
+        .then((res) => res.json())
+        .then((data) => {
+          try {
+            g2ChartInstance.current = new Chart({
               container: chartRef.current,
-              height: 800,
-              paddingLeft: 140,
-              paddingRight: 130,
-              paddingBottom: 60,
+              autoFit: true,
             });
-        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        const facetRect = g2ChartInstance.current
+            g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
+            g2ChartInstance.current
               .facetRect()
               .data(data)
               .encode('y', 'site')
-              .scale('y', {
-                domain: groupSort(
-                  data,
-                  (g) => -median(g, (d) => d.yield),
-                  (d) => d.site,
-                ),
-              });
-        
-            facetRect
-              .point()
-              .attr('insetLeft', 5)
-              .attr('insetRight', 5)
-              .scale('color', { type: 'ordinal' })
-              .scale('y', {
-                domain: groupSort(
-                  data,
-                  (g) => -median(g, (d) => d.yield),
-                  (d) => d.variety,
-                ),
-              })
-              .encode('x', 'yield')
-              .encode('y', 'variety')
-              .encode('color', 'year')
-              .encode('shape', 'hollow')
-              .axis('y', { labelAutoRotate: false });
-        
+              .interval()
+              .encode('x', 'variety')
+              .encode('y', 'yield')
+              .encode('color', 'variety');
             g2ChartInstance.current.render();
-        // --- G2 Chart Logic End ---
-      } catch (error) {
-        console.error("Error initializing G2 chart from integration/G2/site/examples/composition/facet/demo/rect-col.ts:", error);
-        if (chartRef.current) {
-          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/composition/facet/demo/rect-col.ts</div>';
-        }
-      }
+          } catch (error) {
+            if (chartRef.current) {
+              chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart.</div>';
+            }
+          }
+        });
     }
 
     return () => {
@@ -143,7 +86,7 @@ export default function G2ChartComponent_composition_facet_rect_col() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Col Facet Rect</CardTitle>
+        <CardTitle>Facet Rect Col</CardTitle>
         <CardDescription>
           G2 Chart. Original example: composition/facet/demo/rect-col.ts
         </CardDescription>
@@ -156,3 +99,4 @@ export default function G2ChartComponent_composition_facet_rect_col() {
     </Card>
   );
 }
+

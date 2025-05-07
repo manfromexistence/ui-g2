@@ -75,16 +75,6 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
   // Customize our own Chart with threedlib.
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
   
-  // Trailing helpers extracted from original:
-    const { canvas } = g2ChartInstance.current.getContext();
-    const camera = canvas.getCamera();
-    // Use perspective projection mode.
-    camera.setPerspective(0.1, 2000, 45, 600 / 600);
-    camera.rotate(30, 30, 0);
-    camera.dolly(60);
-    camera.setType(CameraType.ORBITING);
-  });
-
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
@@ -138,7 +128,8 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
           .axis('z', { gridLineWidth: 1 });
         
         g2ChartInstance.current.render().then(() => {
-        // --- G2 Chart Logic End ---
+          // --- G2 Chart Logic End ---
+        });
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/surface/demo/trigonometric.ts:", error);
         if (chartRef.current) {
@@ -175,3 +166,4 @@ export default function G2ChartComponent_threed_surface_trigonometric() {
     </Card>
   );
 }
+

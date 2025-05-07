@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart , register } from '@antv/g2';
+import { Chart, register } from '@antv/g2';
 
 import { useShadcnChartColors } from "@/hooks/use-shadcn-chart-colors"; // Import the hook
 import {
@@ -18,173 +18,50 @@ import {
 const FALLBACK_COLORS_JSON = '["#E57373","#81C784","#64B5F6","#FFD54F","#BA68C8"]';
 
 export default function G2ChartComponent_general_vector_poisson() {
-  // Helper functions and data extracted from the original G2 example.
-  // These are defined within the component scope to be accessible by the G2 chart logic in useEffect.
-  // Code from original script before chart initialization:
-  fetch('https://gw.alipayobjects.com/os/antfincdn/OJOgPypkeE/poisson-disk.json')
-    .then((res) => res.json())
-    .then((poisson) => {
-  
-  // Trailing helpers extracted from original:
-  
-  // ------------ library ---------------
-  const p = [
-    151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140,
-    36, 103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23, 190, 6, 148, 247, 120, 234,
-    75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88, 237,
-    149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48,
-    27, 166, 77, 146, 158, 231, 83, 111, 229, 122, 60, 211, 133, 230, 220, 105,
-    92, 41, 55, 46, 245, 40, 244, 102, 143, 54, 65, 25, 63, 161, 1, 216, 80, 73,
-    209, 76, 132, 187, 208, 89, 18, 169, 200, 196, 135, 130, 116, 188, 159, 86,
-    164, 100, 109, 198, 173, 186, 3, 64, 52, 217, 226, 250, 124, 123, 5, 202, 38,
-    147, 118, 126, 255, 82, 85, 212, 207, 206, 59, 227, 47, 16, 58, 17, 182, 189,
-    28, 42, 223, 183, 170, 213, 119, 248, 152, 2, 44, 154, 163, 70, 221, 153, 101,
-    155, 167, 43, 172, 9, 129, 22, 39, 253, 19, 98, 108, 110, 79, 113, 224, 232,
-    178, 185, 112, 104, 218, 246, 97, 228, 251, 34, 242, 193, 238, 210, 144, 12,
-    191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239, 107, 49, 192, 214, 31,
-    181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254,
-    138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215,
-    61, 156, 180, 151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233,
-    7, 225, 140, 36, 103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23, 190, 6, 148,
-    247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57,
-    177, 33, 88, 237, 149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165,
-    71, 134, 139, 48, 27, 166, 77, 146, 158, 231, 83, 111, 229, 122, 60, 211, 133,
-    230, 220, 105, 92, 41, 55, 46, 245, 40, 244, 102, 143, 54, 65, 25, 63, 161, 1,
-    216, 80, 73, 209, 76, 132, 187, 208, 89, 18, 169, 200, 196, 135, 130, 116,
-    188, 159, 86, 164, 100, 109, 198, 173, 186, 3, 64, 52, 217, 226, 250, 124,
-    123, 5, 202, 38, 147, 118, 126, 255, 82, 85, 212, 207, 206, 59, 227, 47, 16,
-    58, 17, 182, 189, 28, 42, 223, 183, 170, 213, 119, 248, 152, 2, 44, 154, 163,
-    70, 221, 153, 101, 155, 167, 43, 172, 9, 129, 22, 39, 253, 19, 98, 108, 110,
-    79, 113, 224, 232, 178, 185, 112, 104, 218, 246, 97, 228, 251, 34, 242, 193,
-    238, 210, 144, 12, 191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239, 107,
-    49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45,
-    127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128,
-    195, 78, 66, 215, 61, 156, 180,
-  ];
-  
-  const noise = octave(perlin2, 2);
-  
-  function octave(noise, octaves) {
-    return function (x, y, z) {
-      let total = 0;
-      let frequency = 1;
-      let amplitude = 1;
-      let value = 0;
-      for (let i = 0; i < octaves; ++i) {
-        value += noise(x * frequency, y * frequency, z * frequency) * amplitude;
-        total += amplitude;
-        amplitude *= 0.5;
-        frequency *= 2;
-      }
-      return value / total;
-    };
-  }
-  
-  function perlin2(x, y) {
-    const xi = Math.floor(x),
-      yi = Math.floor(y);
-    const X = xi & 255,
-      Y = yi & 255;
-    const u = fade((x -= xi)),
-      v = fade((y -= yi));
-    const A = p[X] + Y,
-      B = p[X + 1] + Y;
-    return lerp(
-      v,
-      lerp(u, grad2(p[A], x, y), grad2(p[B], x - 1, y)),
-      lerp(u, grad2(p[A + 1], x, y - 1), grad2(p[B + 1], x - 1, y - 1)),
-    );
-  }
-  
-  function fade(t) {
-    return t * t * t * (t * (t * 6 - 15) + 10);
-  }
-  
-  function grad2(i, x, y) {
-    const v = i & 1 ? y : x;
-    return i & 2 ? -v : v;
-  }
-  
-  function lerp(t, a, b) {
-    return a + t * (b - a);
-  }
-  // ------------ library ---------------
-
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
   const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
 
   useEffect(() => {
-    // Palette registration must happen before G2 chart initialization attempts to use it.
-    // It also needs to happen after shadcnColors are resolved.
-    // And chartRef.current must exist for getComputedStyle to work in the hook.
-    
-    // Register the palette once colors are resolved (or with fallback).
-    // Check if shadcnColors are not the initial fallback to ensure hook has run or CSS vars are applied.
-    // The hook itself returns FALLBACK_COLORS initially or if resolution fails.
     if (shadcnColors && shadcnColors.length === 5) {
-        try {
-            register('palette.shadcnPalette', () => shadcnColors);
-        } catch (e) {
-            console.error("Error registering shadcnPalette, G2 'register' might not be available or shadcnColors are invalid:", e, shadcnColors);
-            // Fallback registration if the above fails for any reason
-            register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
-        }
-    } else {
-        // Fallback if shadcnColors is not yet ready or invalid
-        console.warn("Shadcn colors not ready or invalid, using fallback palette for G2 chart.");
+      try {
+        register('palette.shadcnPalette', () => shadcnColors);
+      } catch (e) {
         register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
+      }
+    } else {
+      register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
     }
-
     if (chartRef.current && !g2ChartInstance.current) {
       try {
-        // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({
-              container: chartRef.current,
-              autoFit: true,
-            });
+          container: chartRef.current,
+          autoFit: true,
+        });
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
-        const data = poisson.map(([x, y]) => ({
-              x,
-              y,
-              size: (noise(x + 2, y) + 0.5) * 24,
-              rotate: noise(x, y) * 360,
-            }));
-        
+        fetch('https://gw.alipayobjects.com/os/antfincdn/OJOgPypkeE/poisson-disk.json')
+          .then((res) => res.json())
+          .then((poisson) => {
             g2ChartInstance.current
               .vector()
-              .data(data)
+              .data(poisson)
               .encode('x', 'x')
               .encode('y', 'y')
-              .encode('rotate', 'rotate')
-              .encode('size', 'size')
-              .encode('color', 'black')
-              .scale('size', { range: [6, 20] })
-              .axis('x', { grid: false })
-              .axis('y', { grid: false })
-              .legend(false)
-              .tooltip([
-                { channel: 'x', valueFormatter: '.2f' },
-                { channel: 'y', valueFormatter: '.2f' },
-              ]);
-        
+              .encode('u', 'u')
+              .encode('v', 'v')
+              .encode('color', 'u')
+              .scale('color', { palette: 'blues' });
             g2ChartInstance.current.render();
-        // --- G2 Chart Logic End ---
+          });
       } catch (error) {
-        console.error("Error initializing G2 chart from integration/G2/site/examples/general/vector/demo/poisson.ts:", error);
         if (chartRef.current) {
-          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/general/vector/demo/poisson.ts</div>';
+          chartRef.current.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart.</div>';
         }
       }
     }
-
     return () => {
       if (g2ChartInstance.current) {
-        try {
-          g2ChartInstance.current.destroy();
-        } catch (e) {
-          console.error("Error destroying G2 chart from integration/G2/site/examples/general/vector/demo/poisson.ts:", e);
-        }
+        try { g2ChartInstance.current.destroy(); } catch {}
         g2ChartInstance.current = null;
       }
     };
@@ -193,16 +70,15 @@ export default function G2ChartComponent_general_vector_poisson() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Perlin noise</CardTitle>
+        <CardTitle>Poisson Vector Field</CardTitle>
         <CardDescription>
           G2 Chart. Original example: general/vector/demo/poisson.ts
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }}>
-          {/* G2 Chart will be rendered here by the useEffect hook */}
-        </div>
+        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }} />
       </CardContent>
     </Card>
   );
 }
+
