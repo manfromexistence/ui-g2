@@ -59,7 +59,7 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
         const chartVarRegex = /(?:const|let)\s+([a-zA-Z_]\w*)\s*=\s*new\s+Chart\s*\(([\s\S]*?)\);/m;
         const chartVarMatch = originalG2SourceCode.match(chartVarRegex);
         if (chartVarMatch) {
-            let chartVar = chartVarMatch[1];
+            let originalChartVarName = chartVarMatch[1];
             let chartArgs = chartVarMatch[2];
             chartArgs = chartArgs.replace(
                 /container\s*:\s*(['"`])?[a-zA-Z0-9_]+(['"`])?/,
@@ -70,13 +70,34 @@ export function extractAndAdaptG2Code(originalG2SourceCode: string, chartRefName
                 `container: ${chartRefName}`
             );
 
-            g2CodeBlock = `const ${chartVar} = new Chart(${chartArgs});\n`;
-            g2CodeBlock += `// TODO: Manually adapt the rest of the G2 chart logic from the original script below.\n`;
-            g2CodeBlock += `// Ensure you call ${chartVar}.render() and assign to g2ChartInstance.current if needed.\n`;
-            g2CodeBlock += `// Original script content (partial):\n`;
-            const snippetStart = originalG2SourceCode.indexOf(chartVarMatch[0]) + chartVarMatch[0].length;
-            g2CodeBlock += originalG2SourceCode.substring(snippetStart, snippetStart + 500).split('\n').map(l => `// ${l}`).join('\n') + "\n...";
-            g2CodeBlock += `\n// g2ChartInstance.current = ${chartVar}; // Example assignment`;
+            g2CodeBlock = `g2ChartInstance.current = new Chart(${chartArgs});\n`;
+
+            const initializationEndIndex = chartVarMatch.index + chartVarMatch[0].length;
+            const subsequentCode = originalG2SourceCode.substring(initializationEndIndex);
+            
+            // Attempt to adapt subsequent code by replacing the original chart variable.
+            let adaptedSubsequentCode = subsequentCode.replace(new RegExp(`\\b${originalChartVarName}\\.`, "g"), "g2ChartInstance.current.");
+
+            const renderCallRegex = /g2ChartInstance\.current\.render\s*\(\s*\)\s*;/;
+            const renderMatch = adaptedSubsequentCode.match(renderCallRegex);
+
+            if (renderMatch) {
+                // If a render call is found in the adapted code, include code up to and including it.
+                g2CodeBlock += adaptedSubsequentCode.substring(0, renderMatch.index + renderMatch[0].length);
+            } else {
+                // If render call is not found in adapted code, provide original snippet for manual adaptation.
+                g2CodeBlock += `// TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.\n`;
+                g2CodeBlock += `// The chart has been initialized to 'g2ChartInstance.current'.\n`;
+                g2CodeBlock += `// Original G2 script operations after 'new Chart(...)' (for reference):\n`;
+                
+                const snippetMaxLength = 1000; // Consider adjusting snippet length as needed
+                let snippet = subsequentCode.trimStart().substring(0, snippetMaxLength);
+                if (subsequentCode.trimStart().length > snippetMaxLength) {
+                    snippet += "\n// ... (code truncated)";
+                }
+                g2CodeBlock += snippet.split('\n').map(l => `// ${l}`).join('\n');
+                g2CodeBlock += `\n// Ensure you call g2ChartInstance.current.render(); appropriately.`;
+            }
         } else {
             g2CodeBlock = `// TODO: Could not automatically extract G2 chart logic.\n// Please paste and adapt G2 code from original script here.`;
         }

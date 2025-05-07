@@ -24,15 +24,13 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        const chart = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           autoFit: true,
         });
-        // TODO: Manually adapt the rest of the G2 chart logic from the original script below.
-        // Ensure you call chart.render() and assign to g2ChartInstance.current if needed.
-        // Original script content (partial):
-        // 
-        // 
+        // TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.
+        // The chart has been initialized to 'g2ChartInstance.current'.
+        // Original G2 script operations after 'new Chart(...)' (for reference):
         // chart
         //   .line()
         //   .data([
@@ -45,9 +43,24 @@ export default function G2ChartComponent_interaction_data_line_element_point_mov
         //     { year: '1997', value: 7, type: 'type1' },
         //     { year: '1998', value: 11, type: 'type1' },
         //     { year: '1999', value: 13, type: 'type1' },
-        //     { year: '1991', value: 6, type: 'type2'
-        ...
-        // g2ChartInstance.current = chart; // Example assignment
+        //     { year: '1991', value: 6, type: 'type2' },
+        //     { year: '1992', value: 1, type: 'type2' },
+        //     { year: '1993', value: 4, type: 'type2' },
+        //     { year: '1994', value: 9, type: 'type2' },
+        //     { year: '1995', value: 1.9, type: 'type2' },
+        //     { year: '1996', value: 5, type: 'type2' },
+        //     { year: '1997', value: 4, type: 'type2' },
+        //     { year: '1998', value: 6, type: 'type2' },
+        //     { year: '1999', value: 15, type: 'type2' },
+        //   ])
+        //   .interaction({
+        //     legendFilter: false,
+        //     elementPointMove: {
+        //       pointR: 8,
+        //       pointStrokeWidth: 2,
+        //     
+        // // ... (code truncated)
+        // Ensure you call g2ChartInstance.current.render(); appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/data/demo/line-element-point-move.ts:", error);

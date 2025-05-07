@@ -34,16 +34,14 @@ export default function G2ChartComponent_threed_scatter_triangle_shape() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        const chart = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           renderer,
           depth: 400, // Define the depth of chart.
         });
-        // TODO: Manually adapt the rest of the G2 chart logic from the original script below.
-        // Ensure you call chart.render() and assign to g2ChartInstance.current if needed.
-        // Original script content (partial):
-        // 
-        // 
+        // TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.
+        // The chart has been initialized to 'g2ChartInstance.current'.
+        // Original G2 script operations after 'new Chart(...)' (for reference):
         // chart
         //   .point3D()
         //   .data({
@@ -62,9 +60,20 @@ export default function G2ChartComponent_threed_scatter_triangle_shape() {
         //   .scale('y', { nice: true })
         //   .scale('z', { nice: true })
         //   .legend(false)
-        //   .axis('x
-        ...
-        // g2ChartInstance.current = chart; // Example assignment
+        //   .axis('x', { gridLineWidth: 2 })
+        //   .axis('y', { gridLineWidth: 2, titleBillboardRotation: -Math.PI / 2 })
+        //   .axis('z', { gridLineWidth: 2 })
+        //   .style('lineWidth', 2)
+        //   .style('fillOpacity', 0.6);
+        // 
+        // chart.render().then(() => {
+        //   const { canvas } = chart.getContext();
+        //   const camera = canvas.getCamera();
+        //   camera.setPerspective(0.1, 5000, 45, 640 / 480);
+        //   camera.setType(CameraType.ORBITING);
+        // });
+        // 
+        // Ensure you call g2ChartInstance.current.render(); appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/scatter/demo/triangle-shape.ts:", error);

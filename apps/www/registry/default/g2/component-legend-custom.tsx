@@ -41,14 +41,12 @@ export default function G2ChartComponent_component_legend_custom() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        const chart = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
-        // TODO: Manually adapt the rest of the G2 chart logic from the original script below.
-        // Ensure you call chart.render() and assign to g2ChartInstance.current if needed.
-        // Original script content (partial):
-        // 
-        // 
+        // TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.
+        // The chart has been initialized to 'g2ChartInstance.current'.
+        // Original G2 script operations after 'new Chart(...)' (for reference):
         // const data = [
         //   { genre: 'Sports', sold: 275 },
         //   { genre: 'Strategy', sold: 115 },
@@ -71,9 +69,26 @@ export default function G2ChartComponent_component_legend_custom() {
         // 
         // function renderCustomLegend(chart) {
         //   // Get color scale.
-        //   const scale = char
-        ...
-        // g2ChartInstance.current = chart; // Example assignment
+        //   const scale = chart.getScaleByChannel('color');
+        //   const { domain, range } = scale.getOptions();
+        //   const excludedValues = [];
+        // 
+        //   // Create items from scale domain.
+        //   const items = domain.map((text, i) => {
+        //     const span = document.createElement('span');
+        //     const color = range[i];
+        // 
+        //     // Items' style.
+        //     span.innerText = text;
+        //     span.style.display = 'inline-block';
+        //     span.style.padding = '0.5em';
+        //     span.style.color = color;
+        //     span.style.cursor = 'pointer';
+        // 
+        //     span.onclick = () => {
+        //       const index = e
+        // // ... (code truncated)
+        // Ensure you call g2ChartInstance.current.render(); appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/component/legend/demo/custom.ts:", error);

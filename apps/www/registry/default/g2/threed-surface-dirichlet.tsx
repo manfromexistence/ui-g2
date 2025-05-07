@@ -39,18 +39,16 @@ export default function G2ChartComponent_threed_surface_dirichlet() {
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
-        const chart = new Chart({
+        g2ChartInstance.current = new Chart({
           container: chartRef.current,
           renderer,
           width: 600,
           height: 600,
           depth: 300, // Define the depth of chart.
         });
-        // TODO: Manually adapt the rest of the G2 chart logic from the original script below.
-        // Ensure you call chart.render() and assign to g2ChartInstance.current if needed.
-        // Original script content (partial):
-        // 
-        // 
+        // TODO: Manually adapt the G2 chart logic using 'g2ChartInstance.current'.
+        // The chart has been initialized to 'g2ChartInstance.current'.
+        // Original G2 script operations after 'new Chart(...)' (for reference):
         // chart
         //   .surface3D()
         //   .data(points)
@@ -69,9 +67,14 @@ export default function G2ChartComponent_threed_surface_dirichlet() {
         // chart.render().then(() => {
         //   const { canvas } = chart.getContext();
         //   const camera = canvas.getCamera();
-        //   //
-        ...
-        // g2ChartInstance.current = chart; // Example assignment
+        //   // Use perspective projection mode.
+        //   camera.setPerspective(0.1, 3000, 45, 600 / 600);
+        //   camera.rotate(30, 30, 0);
+        //   camera.dolly(60);
+        //   camera.setType(CameraType.ORBITING);
+        // });
+        // 
+        // Ensure you call g2ChartInstance.current.render(); appropriately.
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/threed/surface/demo/dirichlet.ts:", error);
