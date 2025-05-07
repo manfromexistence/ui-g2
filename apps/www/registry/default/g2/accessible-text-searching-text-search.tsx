@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
 import { Plugin } from '@antv/g-plugin-a11y';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -36,6 +36,8 @@ export default function G2ChartComponent_accessible_text_searching_text_search()
           height: 1000,
           plugins: [plugin],
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });

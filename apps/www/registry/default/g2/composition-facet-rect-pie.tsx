@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -28,6 +28,8 @@ export default function G2ChartComponent_composition_facet_rect_pie() {
           container: chartRef.current,
           width: 800,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         const days = ['Sun.', 'Mon.', 'Tues.', 'Wed.', 'Thur.', 'Fri.', 'Sat.'];

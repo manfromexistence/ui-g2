@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
 import { Renderer } from '@antv/g-svg';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -30,6 +30,8 @@ export default function G2ChartComponent_renderer_renderer_svg() {
           autoFit: true,
           renderer: new Renderer(),
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         const flex = g2ChartInstance.current

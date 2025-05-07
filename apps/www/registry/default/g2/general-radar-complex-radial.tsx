@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -391,6 +391,8 @@ export default function G2ChartComponent_general_radar_complex_radial() {
           container: chartRef.current,
           autoFit: true,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         const keyframe = g2ChartInstance.current.timingKeyframe({
           direction: 'alternate',

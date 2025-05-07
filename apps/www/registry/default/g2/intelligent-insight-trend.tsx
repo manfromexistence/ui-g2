@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
-import { Trend } from '@antv/g2-extension-ava';
+import { Chart , register } from '@antv/g2';
+import { Trend , register } from '@antv/g2-extension-ava';
 
 import {
   Card,
@@ -29,6 +29,8 @@ export default function G2ChartComponent_intelligent_insight_trend() {
           container: chartRef.current,
           autoFit: true,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current

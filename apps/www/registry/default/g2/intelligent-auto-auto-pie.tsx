@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
-import { Auto } from '@antv/g2-extension-ava';
+import { Chart , register } from '@antv/g2';
+import { Auto , register } from '@antv/g2-extension-ava';
 
 import {
   Card,
@@ -28,6 +28,8 @@ export default function G2ChartComponent_intelligent_auto_auto_pie() {
         g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.mark(Auto).data([

@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -30,6 +30,8 @@ export default function G2ChartComponent_style_pattern_custom_pattern_with_canva
           height: 500,
           paddingBottom: 80,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         function applyStyle(ctx, style) {

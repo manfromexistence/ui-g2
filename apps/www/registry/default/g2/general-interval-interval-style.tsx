@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -25,6 +25,8 @@ export default function G2ChartComponent_general_interval_interval_style() {
       try {
         // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({ container: chartRef.current, height: 350 });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.options({

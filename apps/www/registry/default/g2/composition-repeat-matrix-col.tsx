@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -31,6 +31,8 @@ export default function G2ChartComponent_composition_repeat_matrix_col() {
           paddingLeft: 60,
           paddingBottom: 60,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         const repeatMatrix = g2ChartInstance.current

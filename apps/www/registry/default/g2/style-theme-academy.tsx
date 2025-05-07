@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -32,6 +32,7 @@ export default function G2ChartComponent_style_theme_academy() {
         
         // Apply academy theme.
         g2ChartInstance.current.theme({ type: 'academy' });
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         g2ChartInstance.current
           .interval()

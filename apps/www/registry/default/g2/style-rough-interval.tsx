@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
 import { Plugin } from '@antv/g-plugin-rough-canvas-renderer';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -31,6 +31,8 @@ export default function G2ChartComponent_style_rough_interval() {
               paddingLeft: 60,
               plugins: [new Plugin()],
             });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
             g2ChartInstance.current

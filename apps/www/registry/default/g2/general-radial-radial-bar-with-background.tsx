@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -38,6 +38,8 @@ export default function G2ChartComponent_general_radial_radial_bar_with_backgrou
           autoFit: true,
           theme: 'dark',
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.data(data).coordinate({ type: 'radial', innerRadius: 0.35 });

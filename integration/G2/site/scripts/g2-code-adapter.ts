@@ -15,8 +15,38 @@ export function extractAndAdaptG2Code(
         imports.add(importMatch[0]);
     }
      // Add default G2 import if Chart is used but no specific import was found
+    // Ensure 'register' is included if used for palettes.
+    // The react-component-generator.ts will be responsible for importing and using the hook,
+    // and then using G2's `register` with the resolved colors.
     if (originalG2SourceCode.includes("new Chart(") && !Array.from(imports).some((imp: string) => imp.includes("@antv/g2"))) {
-        imports.add('import { Chart } from "@antv/g2";');
+        imports.add('import { Chart, register } from "@antv/g2";');
+    } else {
+        let g2ImportFound = false;
+        let registerImported = false;
+        imports.forEach(imp => {
+            if (imp.includes("@antv/g2")) {
+                g2ImportFound = true;
+                if (imp.includes("register")) {
+                    registerImported = true;
+                }
+            }
+        });
+
+        if (g2ImportFound && !registerImported) {
+            imports.forEach(imp => {
+                if (imp.includes("@antv/g2") && !imp.includes("register")) {
+                    imports.delete(imp);
+                    if (imp.includes("{") && imp.includes("}")) {
+                         imports.add(imp.replace('}', ', register }'));
+                    } else { // Fallback if import style is unusual, e.g. import * as G2 from '@antv/g2'
+                         imports.add('import { register } from "@antv/g2";'); // Add separately
+                    }
+                }
+            });
+        } else if (!g2ImportFound && originalG2SourceCode.includes("new Chart(")) {
+             // This case should be covered by the first if, but as a safeguard:
+             imports.add('import { Chart, register } from "@antv/g2";');
+        }
     }
 
     let originalChartVarName = null;
@@ -68,6 +98,9 @@ export function extractAndAdaptG2Code(
         }
     }
 
+    // Removed static palette registration from helperCode.
+    // The React component will use the hook to get colors and register the palette.
+
     // 3. Extract the G2 chart initialization logic and subsequent code
     if (chartVarMatch) { 
         let chartArgs = chartVarMatch[2];
@@ -83,7 +116,7 @@ export function extractAndAdaptG2Code(
         );
 
         // Use g2InstanceVarName for assigning the new Chart instance
-        g2CodeBlock = `${g2InstanceVarName} = new Chart(${chartArgs});\n`;
+        let chartInitializationCode = `${g2InstanceVarName} = new Chart(${chartArgs});\n`;
 
         const postInitializationCode = originalG2SourceCode.substring(initializationEndIndex);
         
@@ -112,8 +145,36 @@ export function extractAndAdaptG2Code(
                 `${g2InstanceVarName}`
             );
         }
+        
+        // Code to apply the shadcnPalette theme.
+        // The palette 'shadcnPalette' is expected to be registered by the React component
+        // using the useShadcnChartColors hook before this code runs.
+        const themeOverrideCode = `${g2InstanceVarName}.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });`;
+        
+        let finalAdaptedCode = chartInitializationCode; // Start with the chart init
 
-        g2CodeBlock += adaptedPostInitializationCode;
+        let tempPostInitOps = adaptedPostInitializationCode;
+        
+        // Find the last existing .theme() call to append our specific palette theme after it
+        let lastThemeCallEnd = -1;
+        // Regex to find .theme() calls for the specific g2InstanceVarName
+        const themeCallEndRegex = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.theme\\s*\\([^)]*\\)(\\.then\\s*\\([^)]*\\))?;?`, 'g');
+
+        let match;
+        while ((match = themeCallEndRegex.exec(tempPostInitOps)) !== null) {
+            lastThemeCallEnd = match.index + match[0].length;
+        }
+
+        if (lastThemeCallEnd !== -1) {
+            // Insert after the last existing theme call in the post-initialization code
+            tempPostInitOps = tempPostInitOps.substring(0, lastThemeCallEnd) + "\n" + themeOverrideCode + tempPostInitOps.substring(lastThemeCallEnd);
+        } else {
+            // No existing theme call in post-init code, prepend the theme override to post-init operations
+            tempPostInitOps = "\n" + themeOverrideCode + "\n" + tempPostInitOps;
+        }
+        
+        finalAdaptedCode += tempPostInitOps;
+        g2CodeBlock = finalAdaptedCode;
 
         const renderCallPatternInAdapted = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;`);
         if (!renderCallPatternInAdapted.test(adaptedPostInitializationCode)) {
@@ -140,6 +201,10 @@ export function extractAndAdaptG2Code(
         // Fallback if no `new Chart(...)` was found by the regex
         g2CodeBlock = `// TODO: Could not automatically find 'new Chart(...)' initialization.\n`;
         g2CodeBlock += `// Please review the original script and adapt the G2 logic, ensuring to use '${g2InstanceVarName}' for the chart instance and '${domContainerVarName}' for the container.\n`;
+        
+        // Suggest applying the theme, assuming palette is registered by the component
+        g2CodeBlock += `\n// Remember to register 'shadcnPalette' with resolved colors and apply the theme: \n// register('palette.shadcnPalette', () => resolvedShadcnColors); \n// ${g2InstanceVarName}.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });\n`;
+
         if (helperCode.trim().length > 0) {
              g2CodeBlock += `// Some top-level declarations might have been extracted into 'helpers' above.\n`;
         }

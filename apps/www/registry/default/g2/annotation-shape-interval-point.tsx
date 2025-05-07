@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -29,6 +29,8 @@ export default function G2ChartComponent_annotation_shape_interval_point() {
           autoFit: true,
           paddingRight: 30,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });

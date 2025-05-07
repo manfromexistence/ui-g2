@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart, MASK_CLASS_NAME } from '@antv/g2';
+import { Chart, MASK_CLASS_NAME , register } from '@antv/g2';
 
 import {
   Card,
@@ -27,6 +27,8 @@ export default function G2ChartComponent_interaction_brush_brush_emit() {
         g2ChartInstance.current = new Chart({
           container: chartRef.current,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         const [render, remove] = useTip({

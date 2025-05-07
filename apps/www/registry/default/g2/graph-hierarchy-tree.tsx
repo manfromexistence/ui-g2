@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -31,6 +31,8 @@ export default function G2ChartComponent_graph_hierarchy_tree() {
           insetRight: 80,
           insetLeft: 15,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.coordinate({ transform: [{ type: 'transpose' }] });

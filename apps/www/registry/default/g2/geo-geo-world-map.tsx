@@ -29,6 +29,8 @@ export default function G2ChartComponent_geo_geo_world_map() {
           autoFit: true,
         });
         
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
+        
         
         const geoView = g2ChartInstance.current.geoView().coordinate({ type: 'orthographic' });
         

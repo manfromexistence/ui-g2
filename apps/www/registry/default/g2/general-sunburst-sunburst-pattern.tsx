@@ -3,8 +3,8 @@
 
 import React, { useEffect, useRef } from "react";
 import { lines } from '@antv/g-pattern';
-import { plotlib } from '@antv/g2-extension-plot';
-import { Runtime, corelib, extend } from '@antv/g2';
+import { plotlib , register } from '@antv/g2-extension-plot';
+import { Runtime, corelib, extend , register } from '@antv/g2';
 
 import {
   Card,
@@ -33,6 +33,8 @@ export default function G2ChartComponent_general_sunburst_sunburst_pattern() {
           container: chartRef.current,
           autoFit: true,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current

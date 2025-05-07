@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -29,6 +29,8 @@ export default function G2ChartComponent_general_point_point_dot() {
           width: 800,
           height: 1200,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         const xy = (node) => node.encode('x', 'state').encode('y', 'population');

@@ -43,6 +43,8 @@ export default function G2ChartComponent_interesting_interesting_25d_column() {
           autoFit: true,
         });
         
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
+        
         
         g2ChartInstance.current.data(data);
         

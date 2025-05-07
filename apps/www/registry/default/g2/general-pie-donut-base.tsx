@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -35,6 +35,8 @@ export default function G2ChartComponent_general_pie_donut_base() {
           container: chartRef.current,
           autoFit: true,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.coordinate({ type: 'theta', outerRadius: 0.8, innerRadius: 0.5 });

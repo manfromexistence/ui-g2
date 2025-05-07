@@ -6,8 +6,8 @@ import { CameraType } from '@antv/g';
 import { Renderer as WebGLRenderer } from '@antv/g-webgl';
 import { Plugin as ThreeDPlugin, DirectionalLight } from '@antv/g-plugin-3d';
 import { Plugin as ControlPlugin } from '@antv/g-plugin-control';
-import { Runtime, corelib, extend } from '@antv/g2';
-import { threedlib } from '@antv/g2-extension-3d';
+import { Runtime, corelib, extend , register } from '@antv/g2';
+import { threedlib , register } from '@antv/g2-extension-3d';
 
 import {
   Card,
@@ -41,6 +41,8 @@ export default function G2ChartComponent_threed_bar_cylinder() {
           renderer,
           depth: 400, // Define the depth of chart.
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         const data: { x: string; z: string; y: number; color: number }[] = [];
         for (let x = 0; x < 5; ++x) {

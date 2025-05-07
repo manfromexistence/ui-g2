@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
-import { CategoryOutlier } from '@antv/g2-extension-ava';
+import { Chart , register } from '@antv/g2';
+import { CategoryOutlier , register } from '@antv/g2-extension-ava';
 
 import {
   Card,
@@ -115,6 +115,8 @@ export default function G2ChartComponent_intelligent_insight_category_outlier() 
           container: chartRef.current,
           autoFit: true,
         });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
         g2ChartInstance.current.data(data).encode('x', 'date').encode('y', 'fertility');

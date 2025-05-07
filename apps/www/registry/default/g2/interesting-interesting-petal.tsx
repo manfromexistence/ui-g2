@@ -29,6 +29,8 @@ export default function G2ChartComponent_interesting_interesting_petal() {
           autoFit: true,
         });
         
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
+        
         
         g2ChartInstance.current.coordinate({ type: 'theta' });
         

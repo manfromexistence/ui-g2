@@ -52,6 +52,8 @@ export default function G2ChartComponent_component_legend_symbol() {
           container: chartRef.current,
         });
         
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
+        
         
         const data = [
           { genre: 'Sports', sold: 275 },

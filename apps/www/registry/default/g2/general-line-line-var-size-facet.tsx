@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Chart } from '@antv/g2';
+import { Chart , register } from '@antv/g2';
 
 import {
   Card,
@@ -29,6 +29,8 @@ export default function G2ChartComponent_general_line_line_var_size_facet() {
               paddingLeft: 150,
               paddingBottom: 30,
             });
+        
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
             const facet = g2ChartInstance.current.facetRect().data(data).encode('x', 'site');

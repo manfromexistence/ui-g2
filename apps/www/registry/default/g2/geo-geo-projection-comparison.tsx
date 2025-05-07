@@ -29,6 +29,8 @@ export default function G2ChartComponent_geo_geo_projection_comparison() {
           autoFit: true,
         });
         
+        g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
+        
         
         g2ChartInstance.current
           .spaceLayer()
