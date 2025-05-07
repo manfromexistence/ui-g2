@@ -15,8 +15,13 @@ export default function ChartsPage() {
         />
         <div className="grid flex-1 gap-12">
           <h2 className="sr-only">Examples</h2>
-
-
+          {/* Add all components from Charts */}
+          {Object.entries(Charts).map(([key, Component]) => (
+            <div key={key}>
+              <h3>{key}</h3>
+              <Component />
+            </div>
+          ))}
         </div>
       </div>
     </div>
