@@ -1,0 +1,118 @@
+// @ts-nocheck
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { Chart } from '@antv/g2';
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/registry/default/ui/card";
+
+// Original G2 example path: integration/G2/site/examples/annotation/line/demo/quadrant-scatter.ts
+
+
+
+export default function G2ChartComponent_annotation_line_quadrant_scatter() {
+  const chartRef = useRef<HTMLDivElement>(null);
+  const g2ChartInstance = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (chartRef.current && !g2ChartInstance.current) {
+      try {
+        // --- G2 Chart Logic Start ---
+        g2ChartInstance.current = new Chart({
+          container: chartRef.current,
+        });
+        
+        
+        g2ChartInstance.current.data({
+          type: 'fetch',
+          value:
+            'https://gw.alipayobjects.com/os/bmw-prod/0b37279d-1674-42b4-b285-29683747ad9a.json',
+          transform: [
+            { type: 'filter', callback: (d) => d['change in male rate'] !== 'NA' },
+          ],
+        });
+        
+        g2ChartInstance.current.lineX().data([0]);
+        g2ChartInstance.current.lineY().data([0]);
+        
+        chart
+          .range()
+          .data([
+            { x: [-25, 0], y: [-30, 0], region: '1' },
+            { x: [-25, 0], y: [0, 20], region: '2' },
+            { x: [0, 5], y: [-30, 0], region: '2' },
+            { x: [0, 5], y: [0, 20], region: '1' },
+          ])
+          .encode('x', 'x')
+          .encode('y', 'y')
+          .style('fill', (d) => (d.region === '1' ? '#d8d0c0' : '#a3dda1'))
+          .style('fillOpacity', 0.2)
+          .animate('enter', { type: 'fadeIn' });
+        
+        chart
+          .point()
+          .encode('x', 'change in female rate')
+          .encode('y', 'change in male rate')
+          .encode('size', 'pop')
+          .encode('color', 'continent')
+          .encode('shape', 'point')
+          .scale('color', {
+            range: ['#ffd500', '#82cab2', '#193442', '#d18768', '#7e827a'],
+          })
+          .scale('size', { range: [4, 30] })
+          .style('stroke', '#bbb')
+          .style('fillOpacity', 0.8)
+          .axis('x', { title: 'Female' })
+          .axis('y', { title: 'Male' })
+          .legend('size', false)
+          .slider('x', { labelFormatter: (d) => d.toFixed(1) })
+          .slider('y', { labelFormatter: (d) => d.toFixed(1) })
+          .tooltip([
+            { channel: 'x', valueFormatter: '.1f' },
+            { channel: 'y', valueFormatter: '.1f' },
+          ]);
+        
+        g2ChartInstance.current.render();
+        // --- G2 Chart Logic End ---
+      } catch (error) {
+        console.error("Error initializing G2 chart from integration/G2/site/examples/annotation/line/demo/quadrant-scatter.ts:", error);
+        if (chartRef.current) {
+          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/annotation/line/demo/quadrant-scatter.ts</div>;
+        }
+      }
+    }
+
+    return () => {
+      if (g2ChartInstance.current) {
+        try {
+          g2ChartInstance.current.destroy();
+        } catch (e) {
+          console.error("Error destroying G2 chart from integration/G2/site/examples/annotation/line/demo/quadrant-scatter.ts:", e);
+        }
+        g2ChartInstance.current = null;
+      }
+    };
+  }, []);
+
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Quadrant Scatter, Range Annotation</CardTitle>
+        <CardDescription>
+          G2 Chart. Original example: annotation/line/demo/quadrant-scatter.ts
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }}>
+          {/* G2 Chart will be rendered here by the useEffect hook */}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

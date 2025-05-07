@@ -1,0 +1,119 @@
+// @ts-nocheck
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { Chart } from '@antv/g2';
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/registry/default/ui/card";
+
+// Original G2 example path: integration/G2/site/examples/animation/group/demo/point.ts
+
+
+
+export default function G2ChartComponent_animation_group_point() {
+  const chartRef = useRef<HTMLDivElement>(null);
+  const g2ChartInstance = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (chartRef.current && !g2ChartInstance.current) {
+      try {
+        // --- G2 Chart Logic Start ---
+        g2ChartInstance.current = new Chart({
+          container: chartRef.current,
+          autoFit: true,
+        });
+        
+        
+        g2ChartInstance.current.style('plotFill', '#000');
+        
+        chart
+          .point()
+          .data({
+            type: 'fetch',
+            value: 'https://assets.antv.antgroup.com/g2/polio.json',
+          })
+          .encode('x', 'x')
+          .encode('y', 'y')
+          .encode('color', 'Polio Cases')
+          .encode('shape', 'point')
+          .transform({
+            type: 'stackEnter',
+            groupBy: ['x', 'y'],
+            orderBy: 'color',
+            duration: 2000,
+          })
+          .legend('color', false)
+          .scale('y', { range: [0, 1] })
+          .scale('color', {
+            type: 'sqrt',
+            range: ['hsl(152,80%,80%)', 'hsl(228,30%,40%)'],
+            interpolate: interpolateHcl,
+          })
+          .attr('padding', 0)
+          .axis(false);
+        
+        chart
+          .text()
+          .style('text', 'Polio incidence rates')
+          .style('x', '50%')
+          .style('y', '50%')
+          .style('textAlign', 'center')
+          .style('fontSize', 24)
+          .style('fill', '#666')
+          .animate('enter', { delay: 2000 });
+        
+        chart
+          .text()
+          .style('text', 'United States, 1950s')
+          .style('x', '50%')
+          .style('y', '50%')
+          .style('textAlign', 'center')
+          .style('fontSize', 18)
+          .style('fill', '#666')
+          .style('dy', '30')
+          .animate('enter', { delay: 2400 });
+        
+        g2ChartInstance.current.render();
+        // --- G2 Chart Logic End ---
+      } catch (error) {
+        console.error("Error initializing G2 chart from integration/G2/site/examples/animation/group/demo/point.ts:", error);
+        if (chartRef.current) {
+          chartRef.current.innerHTML = <div style="color: red; text-align: center; padding: 20px;">Failed to render G2 chart. Check console for errors. Source: integration/G2/site/examples/animation/group/demo/point.ts</div>;
+        }
+      }
+    }
+
+    return () => {
+      if (g2ChartInstance.current) {
+        try {
+          g2ChartInstance.current.destroy();
+        } catch (e) {
+          console.error("Error destroying G2 chart from integration/G2/site/examples/animation/group/demo/point.ts:", e);
+        }
+        g2ChartInstance.current = null;
+      }
+    };
+  }, []);
+
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle> Point with Animation</CardTitle>
+        <CardDescription>
+          G2 Chart. Original example: animation/group/demo/point.ts
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }}>
+          {/* G2 Chart will be rendered here by the useEffect hook */}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
