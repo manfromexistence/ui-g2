@@ -496,12 +496,12 @@ export default function ChartsPage() {
             <ChartDisplay name="general-histogram-histogram" title="General Histogram Histogram">
               <Charts.G2ChartComponent_general_histogram_histogram />
             </ChartDisplay>
-            {/* <ChartDisplay name="general-histogram-histogram-binwidth" title="General Histogram Histogram Binwidth">
+            <ChartDisplay name="general-histogram-histogram-binwidth" title="General Histogram Histogram Binwidth">
               <Charts.G2ChartComponent_general_histogram_histogram_binwidth />
             </ChartDisplay>
             <ChartDisplay name="general-histogram-histogram-stacked" title="General Histogram Histogram Stacked">
               <Charts.G2ChartComponent_general_histogram_histogram_stacked />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="general-image-contributor" title="General Image Contributor">
               <Charts.G2ChartComponent_general_image_contributor />
             </ChartDisplay>
@@ -877,21 +877,21 @@ export default function ChartsPage() {
             <ChartDisplay name="general-violin-violin-polar" title="General Violin Violin Polar">
               <Charts.G2ChartComponent_general_violin_violin_polar />
             </ChartDisplay>
-            {/* <ChartDisplay name="geo-geo-choropleth-usa" title="Geo Geo Choropleth Usa">
+            <ChartDisplay name="geo-geo-choropleth-usa" title="Geo Geo Choropleth Usa">
               <Charts.G2ChartComponent_geo_geo_choropleth_usa />
             </ChartDisplay>
             <ChartDisplay name="geo-geo-flights-airports" title="Geo Geo Flights Airports">
               <Charts.G2ChartComponent_geo_geo_flights_airports />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="geo-geo-hexbin-china" title="Geo Geo Hexbin China">
               <Charts.G2ChartComponent_geo_geo_hexbin_china />
             </ChartDisplay>
             <ChartDisplay name="geo-geo-hexjson-usa" title="Geo Geo Hexjson Usa">
               <Charts.G2ChartComponent_geo_geo_hexjson_usa />
             </ChartDisplay>
-            {/* <ChartDisplay name="geo-geo-london-tube-lines" title="Geo Geo London Tube Lines">
+            <ChartDisplay name="geo-geo-london-tube-lines" title="Geo Geo London Tube Lines">
               <Charts.G2ChartComponent_geo_geo_london_tube_lines />
-            </ChartDisplay> */}
+            </ChartDisplay>
             <ChartDisplay name="geo-geo-projection-comparison" title="Geo Geo Projection Comparison">
               <Charts.G2ChartComponent_geo_geo_projection_comparison />
             </ChartDisplay>
