@@ -44,20 +44,22 @@ export default function G2ChartComponent_general_candlestick_k_and_column() {
     { site: "MN", variety: "No. 475", yield: 29.1, year: 1931 },
   ]
 
-  // Code from original script before chart initialization:
-  document.getElementById("container").innerHTML = `
-    <div id="kChart" ></div>
-    <div id="columnChart"></div>
-  `
-
-  // Trailing helpers extracted from original:
-  ColumnChart.render()
-
   const chartRef = useRef<HTMLDivElement>(null)
   const g2ChartInstance = useRef<Chart | null>(null)
   const shadcnColors = useShadcnChartColors(chartRef) // Use the hook
 
   useEffect(() => {
+    // Ensure the container element exists before setting innerHTML
+    const container = document.getElementById("container");
+    if (container) {
+      container.innerHTML = `
+        <div id="kChart"></div>
+        <div id="columnChart"></div>
+      `;
+    } else {
+      console.warn("Container element with id 'container' not found.");
+    }
+
     // Palette registration must happen before G2 chart initialization attempts to use it.
     // It also needs to happen after shadcnColors are resolved.
     // And chartRef.current must exist for getComputedStyle to work in the hook.
