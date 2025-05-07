@@ -196,31 +196,46 @@ export function extractAndAdaptG2Code(
             currentTrailingHelperLines = linesFromAdaptedPostInit.slice(lastG2OpLineActualIndex + 1);
         } else {
             // No G2 ops found after chart initialization in adaptedPostInitializationCode.
-            // Determine if adaptedPostInitializationCode is primarily helpers or should be chart ops.
-            let firstNonEmptyLineIsDeclaration = false;
-            let allHelpersOrEmpty = true;
-            for (const line of linesFromAdaptedPostInit) {
-                const trimmed = line.trim();
-                if (trimmed === '') continue;
-                if (declarationPattern.test(trimmed) || commentOrEmptyPattern.test(trimmed)) {
-                    if (!commentOrEmptyPattern.test(trimmed) && !firstNonEmptyLineIsDeclaration) {
-                        // Check only the first actual code line
-                         firstNonEmptyLineIsDeclaration = declarationPattern.test(trimmed);
-                    }
-                } else {
-                    allHelpersOrEmpty = false; // Found a line that's not a declaration, comment, or empty
-                    break;
+            // Re-parse this segment to separate declarations (helpers) from other code.
+            const postInitContent = linesFromAdaptedPostInit.join('\n');
+            const tempPostInitHelpers = [];
+            const tempPostInitOpsSegments = []; // Store segments of non-helper code
+
+            let lastRegexIndex = 0;
+            topLevelDeclarationRegex.lastIndex = 0; // Reset regex state before reuse
+            let match;
+
+            while((match = topLevelDeclarationRegex.exec(postInitContent)) !== null) {
+                // Content before the current match is considered non-helper (ops/misc)
+                if (match.index > lastRegexIndex) {
+                    tempPostInitOpsSegments.push(postInitContent.substring(lastRegexIndex, match.index));
                 }
+                // The matched content is a declaration (helper)
+                tempPostInitHelpers.push(match[0]);
+                lastRegexIndex = match.index + match[0].length;
+            }
+            // Any remaining content after the last declaration match is non-helper
+            if (lastRegexIndex < postInitContent.length) {
+                tempPostInitOpsSegments.push(postInitContent.substring(lastRegexIndex));
             }
 
-            if (allHelpersOrEmpty) { // If all lines are declarations, comments, or empty
-                 currentChartOpLines = [];
-                 currentTrailingHelperLines = linesFromAdaptedPostInit;
+            if (tempPostInitHelpers.length > 0) {
+                 // Join helper declarations with double newlines, then split back into lines
+                currentTrailingHelperLines = tempPostInitHelpers.join("\n\n").split('\n');
             } else {
-                 // Contains non-G2 ops and non-declarations/comments, treat as chart ops.
-                 currentChartOpLines = linesFromAdaptedPostInit;
-                 currentTrailingHelperLines = [];
+                currentTrailingHelperLines = [];
             }
+           
+            if (tempPostInitOpsSegments.length > 0) {
+                // Join ops segments (which might preserve original newlines), then split
+                currentChartOpLines = tempPostInitOpsSegments.join('').split('\n');
+            } else {
+                currentChartOpLines = [];
+            }
+
+            // Filter out any potential empty lines from split operations
+            currentTrailingHelperLines = currentTrailingHelperLines.filter(line => line.trim() !== '' || line === ''); // Keep intentionally blank lines within helpers
+            currentChartOpLines = currentChartOpLines.filter(line => line.trim() !== '' || line === ''); // Keep intentionally blank lines within ops
         }
         
         // Filter out a leading stray '});' from the start of currentTrailingHelperLines
