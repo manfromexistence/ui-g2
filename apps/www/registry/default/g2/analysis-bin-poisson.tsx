@@ -44,6 +44,20 @@ export default function G2ChartComponent_analysis_bin_poisson() {
     { site: "MN", variety: "No. 475", yield: 29.1, year: 1931 },
   ]
 
+  // Define the randomPoisson function
+  function randomPoisson(lambda) {
+    return function () {
+      let L = Math.exp(-lambda)
+      let k = 0
+      let p = 1
+      do {
+        k++
+        p *= Math.random()
+      } while (p > L)
+      return k - 1
+    }
+  }
+
   // Code from original script before chart initialization:
   const random = randomPoisson(Math.pow(10, 2.6))
 
