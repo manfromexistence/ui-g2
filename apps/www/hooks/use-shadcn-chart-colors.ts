@@ -8,32 +8,40 @@ export function useShadcnChartColors(chartRef: RefObject<HTMLElement | null>): s
   const [resolvedColors, setResolvedColors] = useState<string[]>(FALLBACK_COLORS);
 
   useEffect(() => {
-    if (chartRef.current && typeof getComputedStyle === 'function') {
+    const currentChartRef = chartRef.current; // Capture current value for the effect closure
+    if (currentChartRef && typeof getComputedStyle === 'function') {
       try {
-        const computedStyles = getComputedStyle(chartRef.current);
+        const computedStyles = getComputedStyle(currentChartRef);
+        let allVarsResolved = true;
         const colors = CHART_COLOR_VARIABLES.map(cssVar => {
           const hslRaw = computedStyles.getPropertyValue(cssVar.trim()).trim();
           if (hslRaw) {
-            // CSS variables for HSL might be in the format "H S% L%" (e.g., "12 76% 61%")
-            // G2/CSS expect "hsl(H, S%, L%)"
             const parts = hslRaw.split(' ').map(p => p.trim());
             if (parts.length === 3) {
               const h = parts[0];
-              // Ensure saturation and lightness have '%'
               const s = parts[1].endsWith('%') ? parts[1] : parts[1] + '%';
               const l = parts[2].endsWith('%') ? parts[2] : parts[2] + '%';
               return `hsl(${h}, ${s}, ${l})`;
             }
-            return hslRaw; // Return as is if not in the expected "H S% L%" format (e.g., already a valid color string)
+            return hslRaw; 
           }
-          // Fallback for a single unresolved variable to avoid breaking the array structure
+          allVarsResolved = false;
           console.warn(`CSS variable ${cssVar} not found. Using fallback for this color.`);
-          return '#CCCCCC'; 
+          return '#CCCCCC'; // Individual fallback
         });
         
-        // Only update if the resolved colors are different from the current state to avoid infinite loops
-        if (JSON.stringify(colors) !== JSON.stringify(resolvedColors)) {
+        // Only update if all variables were resolved and colors actually changed,
+        // or if we are moving from initial fallback to resolved colors.
+        if (allVarsResolved && JSON.stringify(colors) !== JSON.stringify(resolvedColors)) {
           setResolvedColors(colors);
+        } else if (!allVarsResolved && JSON.stringify(resolvedColors) !== JSON.stringify(FALLBACK_COLORS)) {
+          // If some vars are not resolved, and we are not already on full fallback, revert to full fallback.
+          // This handles cases where styles might temporarily be unavailable.
+          // setResolvedColors(FALLBACK_COLORS); // Or keep individual fallbacks as per current logic.
+          // For now, let's stick to individual fallbacks and only update if the array content differs.
+           if (JSON.stringify(colors) !== JSON.stringify(resolvedColors)) {
+            setResolvedColors(colors);
+           }
         }
 
       } catch (error) {
@@ -42,10 +50,13 @@ export function useShadcnChartColors(chartRef: RefObject<HTMLElement | null>): s
           setResolvedColors(FALLBACK_COLORS);
         }
       }
+    } else if (JSON.stringify(resolvedColors) !== JSON.stringify(FALLBACK_COLORS)) {
+        // If chartRef is null (e.g., unmounted) and we are not on fallbacks, reset to fallbacks.
+        // This might be too aggressive, consider if needed. For now, mostly handles initial state.
     }
-    // Not including resolvedColors in dependency array to prevent potential loops if stringify check fails.
-    // Effect should re-run when chartRef becomes available or if its underlying element changes in a way that affects styles (less common).
-  }, [chartRef, chartRef.current]); 
+    // Dependency: chartRef.current to re-run when the ref element is available/changes.
+    // resolvedColors is not added to avoid loops; the internal check `JSON.stringify(colors) !== JSON.stringify(resolvedColors)` handles this.
+  }, [chartRef.current]); 
 
   return resolvedColors;
 }

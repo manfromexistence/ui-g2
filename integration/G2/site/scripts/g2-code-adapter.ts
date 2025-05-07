@@ -5,47 +5,78 @@ export function extractAndAdaptG2Code(
     domContainerVarName = "chartRef.current"
 ) {
     let g2CodeBlock = "";
-    const imports = new Set<string>();
+    const originalImports = new Set<string>();
     let helperCode = "";
 
     // 1. Extract imports from @antv packages
     const importRegex = /import\s+{[^}]*}?\s*from\s+['"](@antv\/[a-zA-Z0-9_-]+[^'"]*)['"];?/g;
     let importMatch;
     while ((importMatch = importRegex.exec(originalG2SourceCode)) !== null) {
-        imports.add(importMatch[0]);
+        originalImports.add(importMatch[0]);
     }
-     // Add default G2 import if Chart is used but no specific import was found
-    // Ensure 'register' is included if used for palettes.
-    // The react-component-generator.ts will be responsible for importing and using the hook,
-    // and then using G2's `register` with the resolved colors.
-    if (originalG2SourceCode.includes("new Chart(") && !Array.from(imports).some((imp: string) => imp.includes("@antv/g2"))) {
-        imports.add('import { Chart, register } from "@antv/g2";');
-    } else {
-        let g2ImportFound = false;
-        let registerImported = false;
-        imports.forEach(imp => {
-            if (imp.includes("@antv/g2")) {
-                g2ImportFound = true;
-                if (imp.includes("register")) {
-                    registerImported = true;
-                }
-            }
-        });
 
-        if (g2ImportFound && !registerImported) {
-            imports.forEach(imp => {
-                if (imp.includes("@antv/g2") && !imp.includes("register")) {
-                    imports.delete(imp);
-                    if (imp.includes("{") && imp.includes("}")) {
-                         imports.add(imp.replace('}', ', register }'));
-                    } else { // Fallback if import style is unusual, e.g. import * as G2 from '@antv/g2'
-                         imports.add('import { register } from "@antv/g2";'); // Add separately
-                    }
+    // Consolidate 'register' imports, prioritizing @antv/g2
+    const finalImports = new Set<string>();
+    let g2CoreRegisterImported = false;
+
+    originalImports.forEach(imp => {
+        if (imp.includes("@antv/g2") && imp.includes("register")) {
+            g2CoreRegisterImported = true;
+        }
+    });
+
+    if (originalG2SourceCode.includes("new Chart(") && !g2CoreRegisterImported) {
+        let g2ImportLine = Array.from(originalImports).find(line => line.includes("@antv/g2") && !line.includes("register"));
+        if (g2ImportLine) {
+            originalImports.delete(g2ImportLine);
+            if (g2ImportLine.includes("{") && g2ImportLine.includes("}")) {
+                 g2ImportLine = g2ImportLine.replace('}', ', register }');
+            } else { 
+                 g2ImportLine += `\nimport { register } from "@antv/g2";`; 
+            }
+            originalImports.add(g2ImportLine);
+            g2CoreRegisterImported = true;
+        } else if (!Array.from(originalImports).some(line => line.includes("@antv/g2"))) {
+            originalImports.add('import { Chart, register } from "@antv/g2";');
+            g2CoreRegisterImported = true;
+        }
+    }
+    
+    originalImports.forEach(imp => {
+        if (g2CoreRegisterImported && imp.includes("register") && !imp.includes("@antv/g2") && imp.startsWith("import") && imp.includes("@antv")) {
+            let modifiedImp = imp.replace(/{\s*register\s*,?\s*/, '{ ').replace(/,\s*register\s*}/, ' }').replace(/{\s*register\s*}/, '{ }');
+            if (modifiedImp.includes("{ } from")) { // Only register was imported
+                // Skip adding this line
+            } else if (modifiedImp.trim() === "import { } from" || modifiedImp.trim() === "import {} from") {
+                // Skip if it becomes an empty import
+            } else if (modifiedImp !== imp && modifiedImp.includes("{") && !modifiedImp.match(/{[^}]*\w/)) {
+                // If it became `import { } from '...'` but originally had other imports, this logic is flawed.
+                // For now, if it results in an empty curly brace but wasn't just `import {register}`, keep original.
+                // This case is complex; the goal is to remove *only* register if other named imports exist.
+                // A simple check: if `modifiedImp` still has other named imports, add it.
+                // If `modifiedImp` is `import { , foo }` or `import { foo, }`, it needs cleanup.
+                // Let's refine:
+                modifiedImp = modifiedImp.replace(/{\s*,/, '{').replace(/,\s*}/, '}'); // Clean up dangling commas
+                if (modifiedImp.includes("{ }")) { // If it truly became empty
+                    // don't add
+                } else {
+                    finalImports.add(modifiedImp);
                 }
-            });
-        } else if (!g2ImportFound && originalG2SourceCode.includes("new Chart(")) {
-             // This case should be covered by the first if, but as a safeguard:
-             imports.add('import { Chart, register } from "@antv/g2";');
+            } else {
+                 finalImports.add(modifiedImp);
+            }
+        } else {
+            finalImports.add(imp);
+        }
+    });
+     // Ensure Chart from @antv/g2 is imported if new Chart() is used and not already handled
+    if (originalG2SourceCode.includes("new Chart(") && !Array.from(finalImports).some(imp => imp.includes("Chart") && imp.includes("@antv/g2"))) {
+        let g2ImportLine = Array.from(finalImports).find(line => line.includes("@antv/g2"));
+        if (g2ImportLine && g2ImportLine.includes("register") && !g2ImportLine.includes("Chart")) {
+            finalImports.delete(g2ImportLine);
+            finalImports.add(g2ImportLine.replace('{', '{ Chart, '));
+        } else if (!g2ImportLine) {
+            finalImports.add('import { Chart, register } from "@antv/g2";');
         }
     }
 
@@ -83,23 +114,20 @@ export function extractAndAdaptG2Code(
     }
     
     if (potentialHelpers.length > 0) {
-        helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + potentialHelpers.join("\n\n") + "\n";
+        helperCode = potentialHelpers.join("\n\n") + "\n";
         
-        // Handle originalChartVarName first if it exists
-        if (originalChartVarName) {
+        // More conservative replacement for helperCode to protect function signatures.
+        // Only replace `.` access. Standalone variables (potential parameters) are not replaced.
+        if (originalChartVarName && originalChartVarName !== g2InstanceVarName) {
             helperCode = helperCode.replace(new RegExp(`\\b${originalChartVarName}\\.`, "g"), `${g2InstanceVarName}.`);
-            helperCode = helperCode.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\\.)`, "g"), `${g2InstanceVarName}`);
         }
-
-        // Fallback for literal 'chart' if originalChartVarName was not 'chart' or was null
-        if (originalChartVarName !== 'chart') {
-            helperCode = helperCode.replace(/\bchart\./g, `${g2InstanceVarName}.`);
-            helperCode = helperCode.replace(/\bchart\b(?!\.)/g, `${g2InstanceVarName}`);
+        if ('chart' !== originalChartVarName && 'chart' !== g2InstanceVarName) {
+            helperCode = helperCode.replace(/\bchart\.(?!\s*current)/g, `${g2InstanceVarName}.`);
         }
+        helperCode = "// Helper code extracted from original (review and adapt if necessary):\n" + helperCode;
     }
 
     // Removed static palette registration from helperCode.
-    // The React component will use the hook to get colors and register the palette.
 
     // 3. Extract the G2 chart initialization logic and subsequent code
     if (chartVarMatch) { 
@@ -146,56 +174,37 @@ export function extractAndAdaptG2Code(
             );
         }
         
-        // Code to apply the shadcnPalette theme.
-        // The palette 'shadcnPalette' is expected to be registered by the React component
-        // using the useShadcnChartColors hook before this code runs.
-        const themeOverrideCode = `${g2InstanceVarName}.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });`;
-        
-        let finalAdaptedCode = chartInitializationCode; // Start with the chart init
+        let finalAdaptedCode = chartInitializationCode; 
 
         let tempPostInitOps = adaptedPostInitializationCode;
         
-        // Find the last existing .theme() call to append our specific palette theme after it
-        let lastThemeCallEnd = -1;
-        // Regex to find .theme() calls for the specific g2InstanceVarName
-        const themeCallEndRegex = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.theme\\s*\\([^)]*\\)(\\.then\\s*\\([^)]*\\))?;?`, 'g');
-
-        let match;
-        while ((match = themeCallEndRegex.exec(tempPostInitOps)) !== null) {
-            lastThemeCallEnd = match.index + match[0].length;
-        }
-
-        if (lastThemeCallEnd !== -1) {
-            // Insert after the last existing theme call in the post-initialization code
-            tempPostInitOps = tempPostInitOps.substring(0, lastThemeCallEnd) + "\n" + themeOverrideCode + tempPostInitOps.substring(lastThemeCallEnd);
+        const themeOverrideCode = `${g2InstanceVarName}.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });`;
+        
+        let themeCallFoundInPostInit = false;
+        const themeCallRegexForPostInit = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.theme\\s*\\([^)]*\\)`);
+        if (themeCallRegexForPostInit.test(tempPostInitOps)) {
+            themeCallFoundInPostInit = true;
+            // If a theme call exists, we assume it's handled or shadcnPalette is added correctly.
+            // For simplicity, we will ensure our theme is applied. We can prepend it if complex logic arises.
+            // Or, more robustly, find the first top-level statement and insert before/after.
+            // For now, let's ensure it's present. If the original already sets defaultCategory10, this might override.
+            // This part might need more sophisticated logic if originals have complex theme setups.
+             tempPostInitOps = themeOverrideCode + "\n" + tempPostInitOps; // Prepend to be safe
         } else {
-            // No existing theme call in post-init code, prepend the theme override to post-init operations
-            tempPostInitOps = "\n" + themeOverrideCode + "\n" + tempPostInitOps;
+            tempPostInitOps = themeOverrideCode + "\n" + tempPostInitOps;
         }
         
         finalAdaptedCode += tempPostInitOps;
         g2CodeBlock = finalAdaptedCode;
 
-        const renderCallPatternInAdapted = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;`);
-        if (!renderCallPatternInAdapted.test(adaptedPostInitializationCode)) {
-            g2CodeBlock += `\n// TODO: Ensure '${g2InstanceVarName}.render()' is called appropriately.`;
-            
-            if (originalChartVarName) {
-                const originalRenderRegex = new RegExp(`\\b${originalChartVarName}\\.render\\s*\\(\\s*\\)\\s*;`);
-                if (!postInitializationCode.match(originalRenderRegex)) {
-                     g2CodeBlock += `\n// Original G2 script operations after 'new Chart(...)' did not appear to include a render call for '${originalChartVarName}'.`;
-                     g2CodeBlock += `\n// Review original script and adapt necessary logic, including the render call.`;
-                     g2CodeBlock += `\n// Original script content after initialization (partial for reference):\n`;
-                     const snippetMaxLength = 500; 
-                     let snippet = postInitializationCode.trimStart().substring(0, snippetMaxLength);
-                     if (postInitializationCode.trimStart().length > snippetMaxLength) {
-                         snippet += "\n// ... (code truncated)";
-                     }
-                     g2CodeBlock += snippet.split('\n').map(l => `// ${l}`).join('\n');
-                }
-            } else {
-                 g2CodeBlock += `\n// Could not identify original chart variable name to check for its render call.`;
+        const renderCallPatternInAdapted = new RegExp(`\\b${g2InstanceVarName.replace('.', '\\.')}\\.render\\s*\\(\\s*\\)\\s*;?`);
+        if (!renderCallPatternInAdapted.test(g2CodeBlock)) { // Test the whole g2CodeBlock
+            // If render is not found, append it. This is crucial for async data loading.
+            // Ensure it's appended as a new statement.
+            if (!g2CodeBlock.trim().endsWith(';') && !g2CodeBlock.trim().endsWith('}')) {
+                 g2CodeBlock += ';';
             }
+            g2CodeBlock += `\n${g2InstanceVarName}.render();`;
         }
     } else {
         // Fallback if no `new Chart(...)` was found by the regex
@@ -219,7 +228,7 @@ export function extractAndAdaptG2Code(
         // Basic adaptation attempt for the snippet
         if (originalChartVarName && originalChartVarName !== 'chart') {
             displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\.`, "g"), `${g2InstanceVarName}.`);
-            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\\.)`, "g"), `${g2InstanceVarName}`);
+            displaySnippet = displaySnippet.replace(new RegExp(`\\b${originalChartVarName}\\b(?!\.)`, "g"), `${g2InstanceVarName}`);
         }
         // Always try to adapt literal 'chart' in snippet as it's a common case / fallback
         displaySnippet = displaySnippet.replace(/\bchart\./g, `${g2InstanceVarName}.`);
@@ -231,7 +240,7 @@ export function extractAndAdaptG2Code(
     }
 
     return {
-        imports: Array.from(imports).join("\n"),
+        imports: Array.from(finalImports).join("\n"),
         g2Code: g2CodeBlock.trim(), 
         helpers: helperCode.trim() 
     };

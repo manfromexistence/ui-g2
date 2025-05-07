@@ -77,17 +77,17 @@ export default function Component() {
             <Area
               dataKey="mobile"
               type="natural"
-              fill="var(--color-mobile)"
+              fill={chartConfig.mobile.color}
               fillOpacity={0.4}
-              stroke="var(--color-mobile)"
+              stroke={chartConfig.mobile.color}
               stackId="a"
             />
             <Area
               dataKey="desktop"
               type="natural"
-              fill="var(--color-desktop)"
+              fill={chartConfig.desktop.color}
               fillOpacity={0.4}
-              stroke="var(--color-desktop)"
+              stroke={chartConfig.desktop.color}
               stackId="a"
             />
           </AreaChart>

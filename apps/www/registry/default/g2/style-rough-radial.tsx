@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 import { Plugin } from '@antv/g-plugin-rough-canvas-renderer';
 import { Chart , register } from '@antv/g2';
 
+import { useShadcnChartColors } from "@/hooks/use-shadcn-chart-colors"; // Import the hook
 import {
   Card,
   CardContent,
@@ -20,8 +21,30 @@ import {
 export default function G2ChartComponent_style_rough_radial() {
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
+  const shadcnColors = useShadcnChartColors(chartRef); // Use the hook
 
   useEffect(() => {
+    // Palette registration must happen before G2 chart initialization attempts to use it.
+    // It also needs to happen after shadcnColors are resolved.
+    // And chartRef.current must exist for getComputedStyle to work in the hook.
+    
+    // Register the palette once colors are resolved (or with fallback).
+    // Check if shadcnColors are not the initial fallback to ensure hook has run or CSS vars are applied.
+    // The hook itself returns FALLBACK_COLORS initially or if resolution fails.
+    if (shadcnColors && shadcnColors.length === 5) {
+        try {
+            register('palette.shadcnPalette', () => shadcnColors);
+        } catch (e) {
+            console.error("Error registering shadcnPalette, G2 'register' might not be available or shadcnColors are invalid:", e, shadcnColors);
+            // Fallback registration if the above fails for any reason
+            register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
+        }
+    } else {
+        // Fallback if shadcnColors is not yet ready or invalid
+        console.warn("Shadcn colors not ready or invalid, using fallback palette for G2 chart.");
+        register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
+    }
+
     if (chartRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
@@ -30,7 +53,6 @@ export default function G2ChartComponent_style_rough_radial() {
               height: 480,
               plugins: [new Plugin()],
             });
-        
         g2ChartInstance.current.theme({ defaultCategory10: 'shadcnPalette', defaultCategory20: 'shadcnPalette' });
         
         
@@ -103,7 +125,7 @@ export default function G2ChartComponent_style_rough_radial() {
         g2ChartInstance.current = null;
       }
     };
-  }, []);
+  }, [shadcnColors]);
 
   return (
     <Card className="w-full">
