@@ -1,11 +1,12 @@
 "use client"
 
 import { THEMES } from "@/lib/themes"
-import { ChartDisplay } from "@/components/chart-display"
+// import { ChartDisplay } from "@/components/chart-display" // Original static import
 import { ThemesSwitcher } from "@/components/themes-selector"
 import { ThemesStyle } from "@/components/themes-styles"
 import { Separator } from "@/registry/new-york/ui/separator"
 import * as G2Charts from "@/registry/default/g2" // Imports from the new index.ts
+import dynamic from 'next/dynamic' // Import dynamic
 
 // Helper to generate a display name from the component key
 function generateDisplayName(key: string): string {
@@ -14,6 +15,21 @@ function generateDisplayName(key: string): string {
   }
   return key.replace(/_/g, " ").replace(/-/g, " ");
 }
+
+// Dynamically import ChartDisplay with SSR turned off.
+// Ensure the path and export name ('ChartDisplay') match the original.
+const DynamicChartDisplay = dynamic(
+  () => import('@/components/chart-display').then((mod) => mod.ChartDisplay),
+  {
+    ssr: false,
+    // Optional: Provide a loading component that matches ChartDisplay's structure
+    loading: () => (
+      <div className="flex items-center justify-center rounded-lg border bg-card text-card-foreground shadow-sm w-full min-h-[400px] md:min-h-[450px] lg:min-h-[500px]">
+        <p>Loading chart...</p>
+      </div>
+    ),
+  }
+)
 
 export default function G2ChartsPage() {
   const chartComponents = Object.entries(G2Charts);
@@ -47,9 +63,10 @@ export default function G2ChartsPage() {
                 const ComponentToRender = ChartComponent as React.ComponentType;
 
                 return (
-                  <ChartDisplay key={name} name={chartNameForDisplay} title={displayName}>
+                  // Use the dynamically imported ChartDisplay component
+                  <DynamicChartDisplay key={name} name={chartNameForDisplay} title={displayName}>
                     <ComponentToRender />
-                  </ChartDisplay>
+                  </DynamicChartDisplay>
                 );
               })}
             </div>
