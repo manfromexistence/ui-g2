@@ -42,13 +42,13 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
     { site: 'MN', variety: 'No. 475', yield: 29.1, year: 1931 },
   ];
   
-  // Code from original script before chart initialization:
-  document.getElementById('container').innerHTML = `
-  <div id="g2ChartInstance.current" ></div>
-  <div id="context"></div>
-  `;
-  
-  // Render g2ChartInstance.current View.
+  // Remove invalid DOM manipulation and fix context chart rendering
+  // Remove:
+  // document.getElementById('container').innerHTML = ...
+  // Instead, render both charts in React-managed divs.
+
+  // Add a ref for the context chart
+  const contextRef = useRef<HTMLDivElement>(null);
 
   const chartRef = useRef<HTMLDivElement>(null);
   const g2ChartInstance = useRef<Chart | null>(null);
@@ -76,7 +76,7 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
         register('palette.shadcnPalette', () => JSON.parse(FALLBACK_COLORS_JSON));
     }
 
-    if (chartRef.current && !g2ChartInstance.current) {
+    if (chartRef.current && contextRef.current && !g2ChartInstance.current) {
       try {
         // --- G2 Chart Logic Start ---
         g2ChartInstance.current = new Chart({
@@ -99,18 +99,16 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
           .axis('y', { grid: false, tickCount: 5 })
           .interaction('tooltip', false)
           .interaction('brushXFilter', true);
-        
         g2ChartInstance.current.render();
-        
-        // Render context View.
+
+        // Render context View in contextRef
         const context = new Chart({
-          container: 'context',
+          container: contextRef.current,
           paddingTop: 0,
           paddingBottom: 0,
           height: 90,
           paddingLeft: 60,
         });
-        
         context
           .area()
           .data({
@@ -138,9 +136,8 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
             maskHandleEFill: '#D3D8E0',
             maskHandleWFill: '#D3D8E0',
           });
-        
         context.render();
-        
+
         function createPathRender(compute) {
           return (group, options, document) => {
             if (!group.handle) {
@@ -155,8 +152,8 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
             return handle;
           };
         }
-        
-        // Add event listeners  to communicate.
+
+        // Add event listeners to communicate.
         g2ChartInstance.current.on('brush:filter', (e) => {
           const { nativeEvent } = e;
           if (!nativeEvent) return;
@@ -170,20 +167,21 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
             context.emit('brush:highlight', { data: { selection } });
           }
         });
-        
+
         context.on('brush:highlight', (e) => {
           const { nativeEvent, data } = e;
           if (!nativeEvent) return;
           const { selection } = data;
           g2ChartInstance.current.emit('brush:filter', { data: { selection } });
         });
-        
+
         context.on('brush:remove', (e) => {
           const { nativeEvent } = e;
           if (!nativeEvent) return;
           const { x: scaleX, y: scaleY } = context.getScale();
           const selection = [scaleX.getOptions().domain, scaleY.getOptions().domain];
-          g2ChartInstance.current.emit('brush:filter', { data: { selection } }
+          g2ChartInstance.current.emit('brush:filter', { data: { selection } });
+        });
         // --- G2 Chart Logic End ---
       } catch (error) {
         console.error("Error initializing G2 chart from integration/G2/site/examples/interaction/multi-view/demo/focus-context.ts:", error);
@@ -214,9 +212,8 @@ export default function G2ChartComponent_interaction_multi_view_focus_context() 
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }}>
-          {/* G2 Chart will be rendered here by the useEffect hook */}
-        </div>
+        <div ref={chartRef} style={{ width: '100%', minHeight: '400px' }} />
+        <div ref={contextRef} style={{ width: '100%', minHeight: '100px', marginTop: 8 }} />
       </CardContent>
     </Card>
   );
