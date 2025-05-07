@@ -14,6 +14,21 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/radial/demo/radial-line.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { term: 'Zombieland', count: 9 },
+  { term: 'Wieners', count: 8 },
+  { term: 'Toy Story', count: 8 },
+  { term: 'trashkannon', count: 7 },
+  { term: 'the GROWLERS', count: 6 },
+  { term: 'mudweiser', count: 6 },
+  { term: 'ThunderCats', count: 4 },
+  { term: 'The Taqwacores - Motion Picture', count: 4 },
+  { term: 'The Shawshank Redemption', count: 2 },
+  { term: 'The Olivia Experiment', count: 1 },
+];
+
+
 
 
 export default function G2ChartComponent_general_radial_radial_line() {

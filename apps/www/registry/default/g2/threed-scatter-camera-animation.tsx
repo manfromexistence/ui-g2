@@ -19,6 +19,18 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/scatter/demo/camera-animation.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function cameraButton(chart) {
+  const node = chart.getContainer();
+
+function legendColor(chart) {
+  // 创建 Legend 并且挂在图例
+  const node = chart.getContainer();
+
+const renderer = new WebGLRenderer();
+
+const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+
 
 
 export default function G2ChartComponent_threed_scatter_camera_animation() {

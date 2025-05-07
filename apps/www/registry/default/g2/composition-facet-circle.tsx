@@ -14,6 +14,38 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/facet/demo/circle.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const M = [
+  'Jan.',
+  'Feb.',
+  'Mar.',
+  'Apr.',
+  'May',
+  'Jun.',
+  'Jul.',
+  'Aug.',
+  'Sept.',
+  'Oct.',
+  'Nov.',
+  'Dec.',
+];
+
+
+const N = ['A', 'B', 'C', 'D'];
+
+
+const data = M.flatMap((month) =>
+  N.map((name) => ({
+    month,
+    name,
+    value: Math.random(),
+  })),
+);
+
+
+
+const facetCircle = chart.facetCircle().data(data).encode('position', 'month');
+
 
 
 export default function G2ChartComponent_composition_facet_circle() {

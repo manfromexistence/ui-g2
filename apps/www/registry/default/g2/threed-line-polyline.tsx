@@ -19,6 +19,20 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/line/demo/polyline.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const renderer = new WebGLRenderer();
+
+const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+
+
+const pointCount = 31;
+
+
+let r;
+
+
+const data = [];
+
 
 
 export default function G2ChartComponent_threed_line_polyline() {

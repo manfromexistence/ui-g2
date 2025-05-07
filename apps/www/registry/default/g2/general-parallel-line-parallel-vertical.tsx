@@ -14,6 +14,26 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/parallel/demo/line-parallel-vertical.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const axis = {
+  zIndex: 1,
+  titlePosition: 'right',
+  line: true,
+  labelStroke: '#fff',
+  labelLineWidth: 5,
+  labelFontSize: 10,
+  labelStrokeLineJoin: 'round',
+  titleStroke: '#fff',
+  titleFontSize: 10,
+  titleLineWidth: 5,
+  titleStrokeLineJoin: 'round',
+  titleTransform: 'translate(-50%, 0) rotate(-90)',
+  lineStroke: 'black',
+  tickStroke: 'black',
+  lineLineWidth: 1,
+};
+
+
 
 
 export default function G2ChartComponent_general_parallel_line_parallel_vertical() {

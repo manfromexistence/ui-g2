@@ -14,6 +14,23 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/polygon/demo/voronoi.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const layout = (data) => {
+  return d3
+    .voronoi()
+    .x((d) => d.x)
+    .y((d) => d.y)
+    .extent([
+      [0, 0],
+      [800, 600],
+    ])
+    .polygons(data)
+    .map((p) =>
+      Object.assign({}, p, {
+        x: p.map((pi) => pi[0]),
+        y: p.map((pi) => pi[1]),
+      }),
+    );
 
 
 export default function G2ChartComponent_general_polygon_voronoi() {

@@ -19,6 +19,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/bar/demo/cone.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const renderer = new WebGLRenderer();
+
+const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+
+
+const data: { x: string; z: string; y: number; color: number }[] = [];
 
 
 export default function G2ChartComponent_threed_bar_cone() {

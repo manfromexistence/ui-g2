@@ -14,6 +14,29 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/annotation/range/demo/bar-range.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { city: '北京', 职业: '教师', 平均年收入: 12 },
+  { city: '北京', 职业: '医生', 平均年收入: 30 },
+  { city: '北京', 职业: '销售', 平均年收入: 18 },
+  { city: '北京', 职业: '公务员', 平均年收入: 15 },
+  { city: '北京', 职业: '律师', 平均年收入: 40 },
+  { city: '北京', 职业: '程序员', 平均年收入: 35 },
+  { city: '上海', 职业: '教师', 平均年收入: 13 },
+  { city: '上海', 职业: '医生', 平均年收入: 29 },
+  { city: '上海', 职业: '销售', 平均年收入: 19 },
+  { city: '上海', 职业: '公务员', 平均年收入: 16 },
+  { city: '上海', 职业: '律师', 平均年收入: 42 },
+  { city: '上海', 职业: '程序员', 平均年收入: 36 },
+  { city: '杭州', 职业: '教师', 平均年收入: 11 },
+  { city: '杭州', 职业: '医生', 平均年收入: 25 },
+  { city: '杭州', 职业: '销售', 平均年收入: 16 },
+  { city: '杭州', 职业: '公务员', 平均年收入: 14 },
+  { city: '杭州', 职业: '律师', 平均年收入: 35 },
+  { city: '杭州', 职业: '程序员', 平均年收入: 28 },
+];
+
+
 
 
 export default function G2ChartComponent_annotation_range_bar_range() {

@@ -19,6 +19,16 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/surface/demo/dirichlet.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const size = 100;
+
+
+const points: { x: number; y: number; z: number }[] = [];
+
+const renderer = new WebGLRenderer();
+
+const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+
 
 
 export default function G2ChartComponent_threed_surface_dirichlet() {

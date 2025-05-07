@@ -14,6 +14,33 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/bullet/demo/bullet-datas.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const colors = {
+  ranges: ['#bfeec8', '#FFe0b0', '#FFbcb8'],
+  measures: ['#61DDAA', '#5B8FF9'],
+  target: '#39a3f4',
+};
+
+
+
+const data = [
+  {
+    title: '满意度',
+    ranges: 100,
+    measures: 60,
+    target: 90,
+  },
+  {
+    title: '满意度',
+    ranges: 80,
+    measures: 10,
+  },
+  {
+    title: '满意度',
+    ranges: 30,
+  },
+];
+
 
 
 export default function G2ChartComponent_general_bullet_bullet_datas() {

@@ -14,6 +14,24 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interesting/interesting/demo/national.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const SIZE = 256;
+
+
+
+const FLAG_TEMPLATE = [
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*FpxcQI7WEusAAAAAAAAAAAAADmJ7AQ/original',
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*rx6ST7V6cA0AAAAAAAAAAAAADmJ7AQ/original',
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7rKcTJiP1rMAAAAAAAAAAAAADmJ7AQ/original',
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*_GUISa64kgYAAAAAAAAAAAAADmJ7AQ/original',
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Wwy8TJAoCeUAAAAAAAAAAAAADmJ7AQ/original',
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*DphFRIpOYWQAAAAAAAAAAAAADmJ7AQ/original',
+];
+
+
+const MY_PHOTO =
+  'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*vYY6RrxEWKwAAAAAAAAAAAAADmJ7AQ/original';
+
 
 
 export default function G2ChartComponent_interesting_interesting_national() {

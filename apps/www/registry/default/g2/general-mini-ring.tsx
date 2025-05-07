@@ -14,6 +14,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/mini/demo/ring.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const progress = 0.7;
+
+
 
 
 export default function G2ChartComponent_general_mini_ring() {

@@ -14,6 +14,16 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/funnel/demo/pyramid.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { action: '浏览网站', pv: 50000 },
+  { action: '放入购物车', pv: 35000 },
+  { action: '生成订单', pv: 25000 },
+  { action: '支付订单', pv: 15000 },
+  { action: '完成交易', pv: 8000 },
+];
+
+
 
 
 export default function G2ChartComponent_general_funnel_pyramid() {

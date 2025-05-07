@@ -14,6 +14,12 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/analysis/regression/demo/logarithmic-regression.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const logRegression = regressionLog()
+  .x((d) => d.x)
+  .y((d) => d.y)
+  .domain([0.81, 35]);
+
 
 
 export default function G2ChartComponent_analysis_regression_logarithmic_regression() {

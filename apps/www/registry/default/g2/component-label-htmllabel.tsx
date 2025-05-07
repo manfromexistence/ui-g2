@@ -14,6 +14,17 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/label/demo/htmlLabel.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { repo: 'G', star: 918 },
+  { repo: 'G2', star: 11688 },
+  { repo: 'G6', star: 10045 },
+  { repo: 'L7', star: 3125 },
+  { repo: 'F2', star: 7820 },
+  { repo: 'S2', star: 1231 },
+  { repo: 'X6', star: 4755 },
+];
+
 
 
 export default function G2ChartComponent_component_label_htmllabel() {

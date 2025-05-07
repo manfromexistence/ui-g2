@@ -14,6 +14,22 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interaction/brush/demo/brush.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function onStart() {
+  chart.emit('tooltip:disable');
+
+async function onUpdate(e) {
+  const data = await fetch(
+    'https://gw.alipayobjects.com/os/antvdemo/assets/data/scatter.json',
+  ).then((res) => res.json());
+
+
+function onRemove(e) {
+  const { nativeEvent } = e;
+
+function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
+  let div;
+
 
 
 export default function G2ChartComponent_interaction_brush_brush() {

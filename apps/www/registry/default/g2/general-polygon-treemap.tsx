@@ -14,6 +14,12 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/polygon/demo/treemap.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const layout = (data) => {
+  const root = d3.hierarchy(data);
+
+const name = (d) => {
+  const { name } = d.data;
 
 
 export default function G2ChartComponent_general_polygon_treemap() {

@@ -14,6 +14,25 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/funnel/demo/funnel-annotation.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const r = (start, end) => `${(((start - end) / start) * 100).toFixed(2)} %`;
+
+
+
+const data = [
+  { text: 'A', value: 12000 },
+  { text: 'B', value: 9800 },
+  { text: 'C', value: 6789 },
+  { text: 'D', value: 4569 },
+];
+
+
+const encodeX = 'text';
+
+
+const encodeY = 'value';
+
+
 
 
 export default function G2ChartComponent_general_funnel_funnel_annotation() {

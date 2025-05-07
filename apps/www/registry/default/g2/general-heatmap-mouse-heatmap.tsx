@@ -14,6 +14,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/heatmap/demo/mouse-heatmap.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = {};
+
+
+
+function transform(dataMap) {
+  const arr = [];
 
 
 export default function G2ChartComponent_general_heatmap_mouse_heatmap() {

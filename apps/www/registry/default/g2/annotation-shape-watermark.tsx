@@ -14,6 +14,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/annotation/shape/demo/watermark.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function watermark({ x, y }, context) {
+  const { document } = context;
+
 
 
 export default function G2ChartComponent_annotation_shape_watermark() {

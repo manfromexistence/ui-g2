@@ -15,6 +15,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/sunburst/demo/sunburst-label.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const Chart = extend(Runtime, { ...corelib(), ...plotlib() });
+
+
 
 
 export default function G2ChartComponent_general_sunburst_sunburst_label() {

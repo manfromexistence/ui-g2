@@ -14,6 +14,24 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/legend/demo/symbol.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const customSquare = Object.assign<SymbolFactor, Partial<SymbolFactor>>(
+  (x, y, r) => {
+    const radius = r / 2;
+
+
+const data = [
+  { genre: 'Sports', sold: 275 },
+  { genre: 'Strategy', sold: 115 },
+  { genre: 'Action', sold: 120 },
+  { genre: 'Shooter', sold: 350 },
+  { genre: 'Other', sold: 150 },
+];
+
+
+
+const colorField = 'genre';
+
 
 
 export default function G2ChartComponent_component_legend_symbol() {

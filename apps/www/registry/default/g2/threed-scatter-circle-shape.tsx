@@ -19,6 +19,11 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/threed/scatter/demo/circle-shape.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const renderer = new WebGLRenderer();
+
+const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
+
 
 
 export default function G2ChartComponent_threed_scatter_circle_shape() {

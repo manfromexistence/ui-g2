@@ -14,6 +14,11 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/helix/demo/helix.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [];
+
+
+const n = 31;
 
 
 export default function G2ChartComponent_general_helix_helix() {

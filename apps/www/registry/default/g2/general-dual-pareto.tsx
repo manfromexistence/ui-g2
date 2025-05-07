@@ -14,6 +14,18 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/dual/demo/pareto.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { x: 'Parking Difficult', value: 95 },
+  { x: 'Sales Rep was Rude', value: 60 },
+  { x: 'Poor Lighting', value: 45 },
+  { x: 'Layout Confusing', value: 37 },
+  { x: 'Sizes Limited', value: 30 },
+  { x: 'Clothing Faded', value: 27 },
+  { x: 'Clothing Shrank', value: 18 },
+];
+
+
 
 
 export default function G2ChartComponent_general_dual_pareto() {

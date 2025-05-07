@@ -14,6 +14,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/interval/demo/bar-range-micro.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const floatTimestamp = (s) => +new Date(s) + +`0.${s.slice(s.length - 3)}`;
+
+
+
+const format = (n) => {
+  const x = Math.floor(n);
 
 
 export default function G2ChartComponent_general_interval_bar_range_micro() {

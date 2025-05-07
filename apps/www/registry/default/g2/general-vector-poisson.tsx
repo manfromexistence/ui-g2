@@ -49,52 +49,28 @@ const p = [
   195, 78, 66, 215, 61, 156, 180,
 ];
 
+
+
 const noise = octave(perlin2, 2);
+
+
 
 function octave(noise, octaves) {
   return function (x, y, z) {
     let total = 0;
-    let frequency = 1;
-    let amplitude = 1;
-    let value = 0;
-    for (let i = 0; i < octaves; ++i) {
-      value += noise(x * frequency, y * frequency, z * frequency) * amplitude;
-      total += amplitude;
-      amplitude *= 0.5;
-      frequency *= 2;
-    }
-    return value / total;
-  };
-}
 
 function perlin2(x, y) {
   const xi = Math.floor(x),
     yi = Math.floor(y);
-  const X = xi & 255,
-    Y = yi & 255;
-  const u = fade((x -= xi)),
-    v = fade((y -= yi));
-  const A = p[X] + Y,
-    B = p[X + 1] + Y;
-  return lerp(
-    v,
-    lerp(u, grad2(p[A], x, y), grad2(p[B], x - 1, y)),
-    lerp(u, grad2(p[A + 1], x, y - 1), grad2(p[B + 1], x - 1, y - 1)),
-  );
-}
 
 function fade(t) {
   return t * t * t * (t * (t * 6 - 15) + 10);
-}
 
 function grad2(i, x, y) {
   const v = i & 1 ? y : x;
-  return i & 2 ? -v : v;
-}
 
 function lerp(t, a, b) {
   return a + t * (b - a);
-}
 
 
 export default function G2ChartComponent_general_vector_poisson() {

@@ -14,6 +14,23 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/renderer/renderer/demo/canvas.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const flex = chart
+  .spaceFlex()
+  .data({
+    type: 'fetch',
+    value: 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
+  })
+  .attr('direction', 'col')
+  .attr('ratio', [1, 1]);
+
+
+
+const flex1 = flex.spaceFlex().attr('direction', 'row').attr('ratio', [1, 1]);
+
+
+const flex2 = flex.spaceFlex().attr('direction', 'row').attr('ratio', [1, 1]);
+
 
 
 export default function G2ChartComponent_renderer_renderer_canvas() {

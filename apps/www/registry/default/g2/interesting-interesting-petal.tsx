@@ -14,6 +14,27 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interesting/interesting/demo/petal.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function getPoint(p0, p1, ratio) {
+  return [p0[0] + (p1[0] - p0[0]) * ratio, p0[1] + (p1[1] - p0[1]) * ratio];
+
+function sub(p1, p2) {
+  const [x1, y1] = p1;
+
+function dist(p0, p1) {
+  const [x0, y0] = p0;
+
+function getAngle(p) {
+  const [x, y] = p;
+
+function getXY(angle, center, radius) {
+  return [
+    Math.cos(angle) * radius + center[0],
+    Math.sin(angle) * radius + center[1],
+  ];
+
+function petal({ offset = 1, ratio = 0.5 }, context) {
+  const { coordinate } = context;
 
 
 export default function G2ChartComponent_interesting_interesting_petal() {

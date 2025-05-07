@@ -14,6 +14,17 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/storytelling/storytelling/demo/interval-keyframe.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const sex = [
+  { city: 'A', sex: '男', value: 52 },
+  { city: 'A', sex: '女', value: 48 },
+  { city: 'B', sex: '男', value: 130 },
+  { city: 'B', sex: '女', value: 70 },
+];
+
+
+const keyframe = chart.timingKeyframe();
+
 
 
 export default function G2ChartComponent_storytelling_storytelling_interval_keyframe() {

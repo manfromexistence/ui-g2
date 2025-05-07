@@ -14,6 +14,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/algorithm/sort/demo/bubble-sort.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [43, 2, 5, 24, 53, 78, 82, 63, 49, 6];
+
+
+
+const keyframe = chart.timingKeyframe();
+
 
 
 export default function G2ChartComponent_algorithm_sort_bubble_sort() {

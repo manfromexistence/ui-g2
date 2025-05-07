@@ -14,6 +14,34 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/bullet/demo/bullets.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  {
+    title: '5🌟',
+    ranges: 100,
+    measures: 40,
+    target: 85,
+  },
+  {
+    title: '4🌟',
+    ranges: 100,
+    measures: 80,
+    target: 40,
+  },
+  {
+    title: '3🌟',
+    ranges: 100,
+    measures: 20,
+    target: 22,
+  },
+  {
+    title: '0-2🌟',
+    ranges: 100,
+    measures: 30,
+    target: 10,
+  },
+];
+
 
 
 export default function G2ChartComponent_general_bullet_bullets() {

@@ -14,6 +14,23 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/style/pattern/demo/custom-pattern-with-g-api.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const createPattern = (
+  document,
+  color,
+  stroke,
+  cross = false,
+  density = false,
+) => {
+  const spacing = density ? 3 : 5;
+
+let pattern1;
+
+
+let pattern2;
+
+
+let pattern3;
 
 
 export default function G2ChartComponent_style_pattern_custom_pattern_with_g_api() {

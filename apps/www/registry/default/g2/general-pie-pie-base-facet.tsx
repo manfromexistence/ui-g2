@@ -14,6 +14,24 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/pie/demo/pie-base-facet.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { type: '男性', percent: 56.4, color: '#0a9afe' },
+  { type: '女性', percent: 43.6, color: '#f0657d' },
+];
+
+
+
+const facetRect = chart
+  .facetRect()
+  .data(data)
+  .encode('x', 'type')
+  .axis(false)
+  .legend(false)
+  .view()
+  .attr('frame', false)
+  .coordinate({ type: 'theta', innerRadius: 0.5, outerRadius: 0.8 });
+
 
 
 export default function G2ChartComponent_general_pie_pie_base_facet() {

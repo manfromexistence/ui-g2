@@ -14,6 +14,19 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/interval/demo/bar-basic-transposed.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { year: '1951 年', sales: 38 },
+  { year: '1952 年', sales: 52 },
+  { year: '1956 年', sales: 61 },
+  { year: '1957 年', sales: 145 },
+  { year: '1958 年', sales: 48 },
+  { year: '1959 年', sales: 38 },
+  { year: '1960 年', sales: 38 },
+  { year: '1962 年', sales: 38 },
+];
+
+
 
 
 export default function G2ChartComponent_general_interval_bar_basic_transposed() {

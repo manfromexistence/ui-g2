@@ -6,7 +6,7 @@ import { extractAndAdaptG2Code } from './g2-code-adapter.ts';
 import { getReactComponentTemplate } from './react-component-generator.ts';
 import { generateTitleFromPath } from './title-generator.ts';
 
-const baseWorkspaceDir = '/workspaces/ui';
+const baseWorkspaceDir = '/workspaces/ui-g2/';
 const sourceBaseDir = path.join(baseWorkspaceDir, 'integration/G2/site/examples');
 const targetBaseDir = path.join(baseWorkspaceDir, 'apps/www/registry/default/g2');
 

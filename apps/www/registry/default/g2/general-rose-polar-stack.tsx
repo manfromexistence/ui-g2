@@ -14,6 +14,25 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/rose/demo/polar-stack.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { year: '2000', '类型 A': 21.0, '类型 B': 16, '类型 C': 8 },
+  { year: '2001', '类型 A': 25.0, '类型 B': 16, '类型 C': 8 },
+  { year: '2002', '类型 A': 25.0, '类型 B': 15, '类型 C': 8 },
+  { year: '2003', '类型 A': 25.0, '类型 B': 14, '类型 C': 7 },
+  { year: '2004', '类型 A': 25.0, '类型 B': 14, '类型 C': 7 },
+  { year: '2005', '类型 A': 24.0, '类型 B': 13, '类型 C': 8 },
+  { year: '2006', '类型 A': 24.0, '类型 B': 14, '类型 C': 7 },
+  { year: '2007', '类型 A': 26.0, '类型 B': 16, '类型 C': 7 },
+  { year: '2008', '类型 A': 26.0, '类型 B': 15.2, '类型 C': 8 },
+  { year: '2009', '类型 A': 27.1, '类型 B': 15.2, '类型 C': 10 },
+  { year: '2010', '类型 A': 27.5, '类型 B': 15.4, '类型 C': 8 },
+  { year: '2011', '类型 A': 26.4, '类型 B': 15.2, '类型 C': 9 },
+  { year: '2012', '类型 A': 28.8, '类型 B': 15.4, '类型 C': 9 },
+  { year: '2013', '类型 A': 33.3, '类型 B': 16.7, '类型 C': 12 },
+  { year: '2014', '类型 A': 38.2, '类型 B': 19.5, '类型 C': 18 },
+];
+
 
 
 export default function G2ChartComponent_general_rose_polar_stack() {

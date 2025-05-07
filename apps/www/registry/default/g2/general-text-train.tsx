@@ -14,6 +14,12 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/text/demo/train.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const X = new Array(21).fill(0).map((_, idx) => idx + 4);
+
+
+const Y = [-3, -2, -1, 0, 1, 2, 3];
+
 
 
 export default function G2ChartComponent_general_text_train() {

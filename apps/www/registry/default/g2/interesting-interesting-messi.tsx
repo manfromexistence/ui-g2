@@ -14,6 +14,20 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interesting/interesting/demo/messi.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const FW = 600;
+
+
+const FH = 400;
+
+
+const P = 50;
+
+
+
+function football(_, context) {
+  const { document } = context;
+
 
 
 export default function G2ChartComponent_interesting_interesting_messi() {

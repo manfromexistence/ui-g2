@@ -15,6 +15,17 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/accessible/text-searching/demo/text-search.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const plugin = new Plugin({ enableExtractingText: true });
+
+
+
+const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
+
+
+const left = (d) => d.end > -1500 && d.start > -3000;
+
+
 
 
 export default function G2ChartComponent_accessible_text_searching_text_search() {

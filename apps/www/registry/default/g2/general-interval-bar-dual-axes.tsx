@@ -14,6 +14,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/interval/demo/bar-dual-axes.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const labelFormatter = (d) => Math.abs(d) + (d < 0 ? 'BC' : d > 0 ? 'AC' : '');
+
+
+const left = (d) => d.end > -1500 && d.start > -3000;
+
+
 
 
 export default function G2ChartComponent_general_interval_bar_dual_axes() {

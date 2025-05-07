@@ -14,6 +14,17 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/interval/demo/bar-stacked-diverging-rounded.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function titleLeft(node, y, text, fill) {
+  node
+    .text()
+    .style('x', -10)
+    .style('y', y)
+    .style('text', text)
+    .style('fontWeight', 'bold')
+    .style('dy', -10)
+    .style('transform', 'rotate(-90)')
+    .style('fill', fill);
 
 
 export default function G2ChartComponent_general_interval_bar_stacked_diverging_rounded() {

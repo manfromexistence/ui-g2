@@ -14,6 +14,30 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/style/pattern/demo/custom-pattern-with-canvas.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function applyStyle(ctx, style) {
+  return Object.entries(style).forEach(([k, v]) => (ctx[k] = v));
+
+function createCanvas(w, h) {
+  const canvas = document.createElement('canvas');
+
+function drawRect(ctx, w, h, fill) {
+  applyStyle(ctx, { fillStyle: fill });
+
+function drawLinePattern(ctx, color, width, height, cross = false) {
+  applyStyle(ctx, { globalAlpha: 1, strokeStyle: color, strokeOpacity: 0.9 });
+
+const createPattern = (color, stroke, cross = false, density = false) => {
+  const spacing = density ? 3 : 5;
+
+const pattern1 = createPattern('#edaa53', '#44120c', true, true);
+
+
+const pattern2 = createPattern('#edaa53', '#44120c', true);
+
+
+const pattern3 = createPattern('#edaa53', '#fff');
+
 
 
 export default function G2ChartComponent_style_pattern_custom_pattern_with_canvas() {

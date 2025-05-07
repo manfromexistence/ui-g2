@@ -14,6 +14,33 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interaction/brush/demo/brush-emit.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { date: '2007-04-23', close: 93.24 },
+  { date: '2007-04-24', close: 95.35 },
+  { date: '2007-04-25', close: 98.84 },
+  { date: '2007-04-26', close: 99.92 },
+  { date: '2007-04-29', close: 99.8 },
+  { date: '2007-05-01', close: 99.47 },
+  { date: '2007-05-02', close: 100.39 },
+  { date: '2007-05-03', close: 100.4 },
+  { date: '2007-05-04', close: 100.81 },
+  { date: '2007-05-07', close: 103.92 },
+];
+
+
+function onStart() {
+  chart.emit('tooltip:disable');
+
+function onUpdate(e) {
+  const { canvas } = chart.getContext();
+
+function onRemove(e) {
+  const { nativeEvent } = e;
+
+function useTip({ container, onRemove = () => {}, offsetX = 20, offsetY = 0 }) {
+  let div;
+
 
 
 export default function G2ChartComponent_interaction_brush_brush_emit() {

@@ -14,6 +14,27 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interesting/interesting/demo/25d-column.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { year: '1951 年', sales: 38 },
+  { year: '1952 年', sales: 52 },
+  { year: '1956 年', sales: 61 },
+  { year: '1957 年', sales: 145 },
+  { year: '1958 年', sales: 48 },
+  { year: '1959 年', sales: 38 },
+  { year: '1960 年', sales: 38 },
+  { year: '1962 年', sales: 38 },
+  { year: '1963 年', sales: 65 },
+  { year: '1964 年', sales: 122 },
+  { year: '1967 年', sales: 132 },
+  { year: '1968 年', sales: 144 },
+];
+
+
+
+function myColumn({ fill, stroke }, context) {
+  return (points) => {
+    const x3 = points[1][0] - points[0][0];
 
 
 export default function G2ChartComponent_interesting_interesting_25d_column() {

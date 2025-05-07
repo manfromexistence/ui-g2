@@ -14,6 +14,11 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/annotation/line/demo/interval-threshold.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function overThreshold(data, threshold) {
+  return data
+    .filter((d) => d['Value'] >= threshold)
+    .map(({ Day: x, Value: y }) => ({ x: [x, x], y: [threshold, y] }));
 
 
 export default function G2ChartComponent_annotation_line_interval_threshold() {

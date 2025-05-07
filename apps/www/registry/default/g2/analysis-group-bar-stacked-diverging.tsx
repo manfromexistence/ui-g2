@@ -14,6 +14,18 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/analysis/group/demo/bar-stacked-diverging.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const types = [
+  'Strongly disagree',
+  'Disagree',
+  'Neither agree nor disagree',
+  'Agree',
+  'Strongly agree',
+];
+
+
+const colors = ['#c30d24', '#f3a583', '#cccccc', '#94c6da', '#1770ab'];
+
 
 
 export default function G2ChartComponent_analysis_group_bar_stacked_diverging() {

@@ -14,6 +14,15 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/component/tooltip/demo/tooltip-click.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+function css(...styles) {
+  return styles
+    .map((obj) =>
+      Object.entries(obj)
+        .map(([k, v]) => k + ':' + v)
+        .join(';'),
+    )
+    .join(';');
 
 
 export default function G2ChartComponent_component_tooltip_tooltip_click() {

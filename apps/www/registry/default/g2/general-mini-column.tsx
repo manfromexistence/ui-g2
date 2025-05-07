@@ -14,6 +14,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/mini/demo/column.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513,
+  546, 983, 340, 539, 243, 226, 192,
+];
+
+
 
 
 export default function G2ChartComponent_general_mini_column() {

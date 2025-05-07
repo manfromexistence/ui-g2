@@ -14,6 +14,9 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/point/demo/point-dot.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const xy = (node) => node.encode('x', 'state').encode('y', 'population');
+
 
 
 export default function G2ChartComponent_general_point_point_dot() {

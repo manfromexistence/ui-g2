@@ -14,6 +14,10 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/interval/demo/column-log.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const EPSILON = 1e-6;
+
+
 
 
 export default function G2ChartComponent_general_interval_column_log() {

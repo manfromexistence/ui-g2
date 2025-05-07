@@ -14,6 +14,21 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/helix/demo/helix-gene.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [];
+
+
+const groups = ['WT', 'KO'];
+
+
+const hours = 72;
+
+
+const baseValues = {
+  WT: 2.0,
+  KO: 2.3,
+};
+
 
 
 export default function G2ChartComponent_general_helix_helix_gene() {

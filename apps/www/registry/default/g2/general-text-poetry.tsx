@@ -14,6 +14,13 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/general/text/demo/poetry.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const words =
+  `This Is Just To Say\nWilliam Carlos Williams, 1934\n\nI have eaten\nthe plums\nthat were in\nthe icebox\n\nand which\nyou were probably\nsaving\nfor breakfast\n\nForgive me\nthey were delicious\nso sweet\nand so cold`
+    .split('\n')
+    .map((d) => ({ text: d }));
+
+
 
 
 export default function G2ChartComponent_general_text_poetry() {

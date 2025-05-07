@@ -14,6 +14,16 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interaction/data/demo/pie-element-point-move.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  { item: '事例一', count: 40, percent: 0.4 },
+  { item: '事例二', count: 21, percent: 0.21 },
+  { item: '事例三', count: 17, percent: 0.17 },
+  { item: '事例四', count: 13, percent: 0.13 },
+  { item: '事例五', count: 9, percent: 0.09 },
+];
+
+
 
 
 export default function G2ChartComponent_interaction_data_pie_element_point_move() {

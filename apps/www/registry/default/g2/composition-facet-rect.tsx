@@ -14,6 +14,30 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/composition/facet/demo/rect.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const facetRect = chart
+  .facetRect()
+  .data({
+    type: 'fetch',
+    value: 'https://assets.antv.antgroup.com/g2/penguins.json',
+    transform: [
+      {
+        type: 'map',
+        callback: ({
+          culmen_depth_mm: depth,
+          culmen_length_mm: length,
+          ...d
+        }) => ({
+          ...d,
+          culmen_depth_mm: depth === 'NaN' ? NaN : depth,
+          culmen_length_mm: length === 'NaN' ? NaN : length,
+        }),
+      },
+    ],
+  })
+  .encode('x', 'sex')
+  .encode('y', 'species');
+
 
 
 export default function G2ChartComponent_composition_facet_rect() {

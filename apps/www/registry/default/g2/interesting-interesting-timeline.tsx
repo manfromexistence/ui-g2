@@ -14,6 +14,52 @@ import {
 
 // Original G2 example path: integration/G2/site/examples/interesting/interesting/demo/timeline.ts
 
+// Helper code extracted from original (review and adapt if necessary):
+const data = [
+  {
+    year: 1788,
+    composition: 'Symphony No. 41 "Jupiter"',
+    composer: 'Wolfgang Amadeus Mozart',
+    link: 'https://en.wikipedia.org/wiki/Symphony_No._41_(Mozart)',
+  },
+  {
+    year: 1894,
+    composition: 'Prelude to the Afternoon of a Faun',
+    composer: 'Claude Debussy',
+    link: 'https://en.wikipedia.org/wiki/Pr%C3%A9lude_%C3%A0_l%27apr%C3%A8s-midi_d%27un_faune',
+  },
+  {
+    year: 1805,
+    composition: 'Symphony No. 3 "Eroica"',
+    composer: 'Ludwig van Beethoven',
+    link: 'https://en.wikipedia.org/wiki/Symphony_No._3_(Beethoven)',
+  },
+  {
+    year: 1913,
+    composition: 'Rite of Spring',
+    composer: 'Igor Stravinsky',
+    link: 'https://en.wikipedia.org/wiki/The_Rite_of_Spring',
+  },
+  {
+    year: 1741,
+    composition: 'Goldberg Variations',
+    composer: 'Johann Sebastian Bach',
+    link: 'https://en.wikipedia.org/wiki/Goldberg_Variations',
+  },
+  {
+    year: 1881,
+    composition: 'Piano Concerto No. 2',
+    composer: 'Johannes Brahms',
+    link: 'https://en.wikipedia.org/wiki/Piano_Concerto_No._2_(Brahms)',
+  },
+  {
+    year: 1826,
+    composition: 'A Midsummer Night\'s Dream "Overture"',
+    composer: 'Felix Mendelssohn',
+    link: 'https://en.wikipedia.org/wiki/A_Midsummer_Night%27s_Dream_(Mendelssohn)',
+  },
+];
+
 
 
 export default function G2ChartComponent_interesting_interesting_timeline() {
