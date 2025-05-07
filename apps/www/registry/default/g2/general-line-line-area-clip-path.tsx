@@ -514,14 +514,15 @@ export default function G2ChartComponent_general_line_line_area_clip_path() {
     },
   ];
   
-  function clip(g2ChartInstance.current) {
-    const { canvas } = g2ChartInstance.current.getContext();
+  function clip(chartInstance) {
+    const { canvas } = chartInstance.getContext();
     const document = canvas.document;
     const [cloned] = document.getElementsByClassName('cloned-line');
     if (cloned) cloned.remove();
-    const elements = document.getElementsByClassName('element');
+    const elements = Array.from(document.getElementsByClassName('element'));
     const line = elements.find((d) => d.markType === 'line');
     const area = elements.find((d) => d.markType === 'area');
+    if (!line || !area) return;
     const clonedLine = line.cloneNode(true);
     clonedLine.__data__ = line.__data__;
     clonedLine.style.stroke = 'orange';
