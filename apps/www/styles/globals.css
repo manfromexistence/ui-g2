@@ -75,6 +75,41 @@
   }
 }
 
+.glassmorphism {
+  --background: oklch(from var(--background) l c h / 0.05);
+  --foreground: oklch(from var(--foreground) l c h / 0.075);
+  --card: oklch(from var(--card) l c h / 0.85);
+  --card-foreground: oklch(from var(--card-foreground) l c h / 0.85);
+  --popover: oklch(from var(--popover) l c h / 0.85);
+  --popover-foreground: oklch(from var(--popover-foreground) l c h / 0.85);
+  --primary: oklch(from var(--primary) l c h / 0.85);
+  --primary-foreground: oklch(from var(--primary-foreground) l c h / 0.85);
+  --secondary: oklch(from var(--secondary) l c h / 0.85);
+  --secondary-foreground: oklch(from var(--secondary-foreground) l c h / 0.85);
+  --muted: oklch(from var(--muted) l c h / 0.85);
+  --muted-foreground: oklch(from var(--muted-foreground) l c h / 0.85);
+  --accent: oklch(from var(--accent) l c h / 0.85);
+  --accent-foreground: oklch(from var(--accent-foreground) l c h / 0.85);
+  --destructive: oklch(from var(--destructive) l c h / 0.85);
+  --sidebar: oklch(from var(--sidebar) l c h / 0.85);
+  --sidebar-foreground: oklch(from var(--sidebar-foreground) l c h / 0.85);
+  --sidebar-primary: oklch(from var(--sidebar-primary) l c h / 0.85);
+  --sidebar-primary-foreground: oklch(from var(--sidebar-primary-foreground) l c h / 0.85);
+  --sidebar-accent: oklch(from var(--sidebar-accent) l c h / 0.85);
+  --sidebar-accent-foreground: oklch(from var(--sidebar-accent-foreground) l c h / 0.85);
+  --background-blur: 5px;
+  --card-blur: 8px;
+  --popover-blur: 12px;
+  --primary-blur: 10px;
+  --secondary-blur: 9px;
+  --muted-blur: 7px;
+  --accent-blur: 9px;
+  --destructive-blur: 15px;
+  --sidebar-blur: 6px;
+  --sidebar-primary-blur: 11px;
+  --sidebar-accent-blur: 10px;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -118,6 +153,18 @@
 }
 
 @layer utilities {
+  .glassmorphism .bg-background { backdrop-filter: var(--background-blur); -webkit-backdrop-filter: var(--background-blur); background-color: var(--background); }
+  .glassmorphism .bg-card { backdrop-filter: var(--card-blur); -webkit-backdrop-filter: var(--card-blur); background-color: var(--card); }
+  .glassmorphism .bg-popover { backdrop-filter: var(--popover-blur); -webkit-backdrop-filter: var(--popover-blur); background-color: var(--popover); }
+  .glassmorphism .bg-primary { backdrop-filter: var(--primary-blur); -webkit-backdrop-filter: var(--primary-blur); background-color: var(--primary); }
+  .glassmorphism .bg-secondary { backdrop-filter: var(--secondary-blur); -webkit-backdrop-filter: var(--secondary-blur); background-color: var(--secondary); }
+  .glassmorphism .bg-muted { backdrop-filter: var(--muted-blur); -webkit-backdrop-filter: var(--muted-blur); background-color: var(--muted); }
+  .glassmorphism .bg-accent { backdrop-filter: var(--accent-blur); -webkit-backdrop-filter: var(--accent-blur); background-color: var(--accent); }
+  .glassmorphism .bg-destructive { backdrop-filter: var(--destructive-blur); -webkit-backdrop-filter: var(--destructive-blur); background-color: var(--destructive); }
+  .glassmorphism .bg-sidebar { backdrop-filter: var(--sidebar-blur); -webkit-backdrop-filter: var(--sidebar-blur); background-color: var(--sidebar); }
+  .glassmorphism .bg-sidebar-primary { backdrop-filter: var(--sidebar-primary-blur); -webkit-backdrop-filter: var(--sidebar-primary-blur); background-color: var(--sidebar-primary); }
+  .glassmorphism .bg-sidebar-accent { backdrop-filter: var(--sidebar-accent-blur); -webkit-backdrop-filter: var(--sidebar-accent-blur); background-color: var(--sidebar-accent); }
+
   .step {
     counter-increment: step;
   }
