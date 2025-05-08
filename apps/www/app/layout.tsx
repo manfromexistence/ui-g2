@@ -12,6 +12,7 @@ import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 import { BackgroundDisplay } from "@/components/layout/background-display"; // Added import
+import { BackgroundThemeManager } from "@/components/layout/background-theme-manager"; // Added import
 
 export const metadata: Metadata = {
   title: {
@@ -92,7 +93,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </head>
         <body
           className={cn(
-            "min-h-svh font-sans antialiased", // Removed bg-background
+            "min-h-svh font-sans antialiased",
             fontSans.variable,
             fontMono.variable
           )}
@@ -104,9 +105,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
             enableColorScheme
+            themes={["light", "dark", "system", "glassmorphism"]}
           >
+            <BackgroundThemeManager />
             <div vaul-drawer-wrapper="">
-              <div className="relative flex min-h-svh flex-col"> {/* This div provides the content background */}
+              <div className="relative flex min-h-svh flex-col bg-background"> {/* Added bg-background */}
                 {children}
               </div>
             </div>

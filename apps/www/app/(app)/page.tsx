@@ -41,6 +41,10 @@ export default function IndexPage() {
           </div>
         )}
       </div>
+
+      <div className="h-64 w-64 bg-background rounded-md border">
+
+      </div>
     </div>
   )
 }

@@ -67,7 +67,7 @@
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
@@ -77,26 +77,27 @@
 
 .glassmorphism {
   --background: oklch(from var(--background) l c h / 0.05);
-  --foreground: oklch(from var(--foreground) l c h / 0.075);
+  --foreground: 0 0% 98%; /* Updated for white text */
   --card: oklch(from var(--card) l c h / 0.85);
-  --card-foreground: oklch(from var(--card-foreground) l c h / 0.85);
+  --card-foreground: 0 0% 98%; /* Updated for white text */
   --popover: oklch(from var(--popover) l c h / 0.85);
-  --popover-foreground: oklch(from var(--popover-foreground) l c h / 0.85);
+  --popover-foreground: 0 0% 98%; /* Updated for white text */
   --primary: oklch(from var(--primary) l c h / 0.85);
-  --primary-foreground: oklch(from var(--primary-foreground) l c h / 0.85);
+  --primary-foreground: 0 0% 98%; /* Updated for white text */
   --secondary: oklch(from var(--secondary) l c h / 0.85);
-  --secondary-foreground: oklch(from var(--secondary-foreground) l c h / 0.85);
+  --secondary-foreground: 0 0% 98%; /* Updated for white text */
   --muted: oklch(from var(--muted) l c h / 0.85);
-  --muted-foreground: oklch(from var(--muted-foreground) l c h / 0.85);
+  --muted-foreground: 0 0% 98%; /* Updated for white text */
   --accent: oklch(from var(--accent) l c h / 0.85);
-  --accent-foreground: oklch(from var(--accent-foreground) l c h / 0.85);
+  --accent-foreground: 0 0% 98%; /* Updated for white text */
   --destructive: oklch(from var(--destructive) l c h / 0.85);
+  --destructive-foreground: 0 0% 98%; /* Added/Updated for white text */
   --sidebar: oklch(from var(--sidebar) l c h / 0.85);
-  --sidebar-foreground: oklch(from var(--sidebar-foreground) l c h / 0.85);
+  --sidebar-foreground: 0 0% 98%; /* Updated for white text */
   --sidebar-primary: oklch(from var(--sidebar-primary) l c h / 0.85);
-  --sidebar-primary-foreground: oklch(from var(--sidebar-primary-foreground) l c h / 0.85);
+  --sidebar-primary-foreground: 0 0% 98%; /* Updated for white text */
   --sidebar-accent: oklch(from var(--sidebar-accent) l c h / 0.85);
-  --sidebar-accent-foreground: oklch(from var(--sidebar-accent-foreground) l c h / 0.85);
+  --sidebar-accent-foreground: 0 0% 98%; /* Updated for white text */
   --background-blur: 5px;
   --card-blur: 8px;
   --popover-blur: 12px;
@@ -132,8 +133,9 @@
     }
   }
 
+
   /* Custom scrollbar styling. Thanks @pranathiperii. */
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 5px;
   }
 
@@ -149,10 +151,13 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--border)) transparent;
-  }
+  } */
 }
 
 @layer utilities {
+  .glassmorphism *{
+    @apply text-white;
+  }
   .glassmorphism .bg-background { backdrop-filter: var(--background-blur); -webkit-backdrop-filter: var(--background-blur); background-color: var(--background); }
   .glassmorphism .bg-card { backdrop-filter: var(--card-blur); -webkit-backdrop-filter: var(--card-blur); background-color: var(--card); }
   .glassmorphism .bg-popover { backdrop-filter: var(--popover-blur); -webkit-backdrop-filter: var(--popover-blur); background-color: var(--popover); }
@@ -184,18 +189,14 @@
     @apply absolute -inset-4 shadow-xl rounded-xl border;
   }
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
+  /* .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
-  }
+  } */
 
   .border-grid {
     @apply border-border/50 dark:border-border border-dashed;
