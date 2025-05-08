@@ -180,3 +180,4 @@
   .glassmorphism .bg-sidebar-primary { backdrop-filter: var(--sidebar-primary-blur); -webkit-backdrop-filter: var(--sidebar-primary-blur); background-color: var(--sidebar-primary); }
   .glassmorphism .bg-sidebar-accent { backdrop-filter: var(--sidebar-accent-blur); -webkit-backdrop-filter: var(--sidebar-accent-blur); background-color: var(--sidebar-accent); }
 }
+
