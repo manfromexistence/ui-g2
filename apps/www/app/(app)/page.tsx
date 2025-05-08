@@ -1,103 +1,47 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import Link from "next/link"
+'use client'
 
-import { Announcement } from "@/components/announcement"
-import { CardsDemo } from "@/components/cards"
-import { ExamplesNav } from "@/components/examples-nav"
-import {
-  PageActions,
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from "@/components/page-header"
-import { Button } from "@/registry/new-york/ui/button"
-import G2ChartComponent_accessible_text_searching_text_search from "@/registry/default/g2/accessible-text-searching-text-search"
-import G2ChartComponent_algorithm_sort_insertion_sort from "@/registry/default/g2/algorithm-sort-insertion-sort"
-
-const title = "Build your component library"
-const description =
-  "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code."
-
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
-      },
-    ],
-  },
-}
+import React from 'react'
+import { Input } from '@/registry/default/ui/input' // Assuming shadcn Input is here
+import { useBackgroundStore } from '@/lib/backgroundStore' // Adjusted path
 
 export default function IndexPage() {
+  const { setFile, isLoading, backgroundSrc, fileType, clearBackground } = useBackgroundStore()
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      setFile(file)
+    } else {
+      setFile(null) // Clear if no file is selected or selection is cancelled
+    }
+  }
+
   return (
-    <>
-      <PageHeader>
-        <Announcement />
-        <G2ChartComponent_accessible_text_searching_text_search />
-        <G2ChartComponent_algorithm_sort_insertion_sort />
-        <PageHeaderHeading>{title}</PageHeaderHeading>
-        <PageHeaderDescription>{description}</PageHeaderDescription>
-        <PageActions>
-          <Button asChild size="sm" className="rounded-md">
-            <Link href="/docs/installation">Get Started</Link>
-          </Button>
-          <Button asChild size="sm" variant="ghost" className="rounded-md">
-            <Link href="/blocks">Browse Blocks</Link>
-          </Button>
-        </PageActions>
-      </PageHeader>
-      <div className="border-grid border-b">
-        <div className="container-wrapper">
-          <div className="container py-4">
-            <ExamplesNav className="[&>a:first-child]:text-primary" />
+    <div className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4 bg-pind-500">
+      <div className="w-full max-w-md space-y-4">
+        <h1 className="text-center text-2xl font-bold">Set Page Background</h1>
+        <Input
+          type="file"
+          accept="image/*,video/*"
+          onChange={handleFileChange}
+          disabled={isLoading}
+          className="w-full"
+        />
+        {isLoading && <p className="text-center text-sm text-muted-foreground">Loading...</p>}
+        {backgroundSrc && (
+          <div className="mt-4 text-center">
+            <p className="text-sm">Current background: {fileType}</p>
+            <button
+              onClick={clearBackground}
+              className="mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+              disabled={isLoading}
+            >
+              Clear Background
+            </button>
           </div>
-        </div>
+        )}
       </div>
-      <div className="container-wrapper">
-        <div className="container py-6">
-          <section className="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl">
-            <Image
-              src="/examples/cards-light.png"
-              width={1280}
-              height={1214}
-              alt="Cards"
-              className="block dark:hidden"
-            />
-            <Image
-              src="/examples/cards-dark.png"
-              width={1280}
-              height={1214}
-              alt="Cards"
-              className="hidden dark:block"
-            />
-          </section>
-          <section
-            className="hidden md:block [&>div]:p-0"
-            style={
-              {
-                "--radius": "0.75rem",
-              } as React.CSSProperties
-            }
-          >
-            <CardsDemo />
-          </section>
-        </div>
-      </div>
-    </>
+    </div>
   )
 }
+
