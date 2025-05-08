@@ -4,6 +4,8 @@ import { ThemesSwitcher } from "@/components/themes-selector"
 import { ThemesStyle } from "@/components/themes-styles"
 import * as Charts from "@/registry/default/g2"
 
+          {/* <Charts.G2ChartComponent_general_sunburst_sunburst_default /> */}
+
 export default function ChartsPage() {
   return (
     <div className="grid gap-4">
@@ -26,13 +28,27 @@ export default function ChartsPage() {
             <h3>G2ChartComponent_style_graphic_radial_gradient</h3>
             <Charts.G2ChartComponent_style_graphic_radial_gradient />
           </div>
+
+          <Charts.G2ChartComponent_general_point_point_style />
+          <Charts.G2ChartComponent_general_area_cascade_area />
           <Charts.G2ChartComponent_general_pie_point_jitter_radial />
           <Charts.G2ChartComponent_general_polygon_treemap />
           <Charts.G2ChartComponent_style_graphic_radial_gradient />
           <Charts.G2ChartComponent_general_point_point_style />
           <Charts.G2ChartComponent_general_area_cascade_area />
-          <Charts.G2ChartComponent_general_sunburst_sunburst_default />
           <Charts.G2ChartComponent_annotation_line_anomaly_area_line />
+          <Charts.G2ChartComponent_algorithm_sort_insertion_sort />
+          <Charts.G2ChartComponent_analysis_group_bar_stacked_diverging />
+          <Charts.G2ChartComponent_unit_unit_basic />
+          <Charts.G2ChartComponent_general_pie_donut />
+          <Charts.G2ChartComponent_intelligent_insight_change_point />
+          <Charts.G2ChartComponent_general_pie_point_jitter_radial />
+          <Charts.G2ChartComponent_general_polygon_treemap />
+          <Charts.G2ChartComponent_style_graphic_radial_gradient />
+          <Charts.G2ChartComponent_general_point_point_style />
+          <Charts.G2ChartComponent_general_area_cascade_area />
+          
+          {/* <Charts.G2ChartComponent_annotation_line_anomaly_area_line />
           <Charts.G2ChartComponent_algorithm_sort_insertion_sort />
           <Charts.G2ChartComponent_analysis_group_bar_stacked_diverging />
           <Charts.G2ChartComponent_unit_unit_basic />
@@ -137,8 +153,8 @@ export default function ChartsPage() {
           <Charts.G2ChartComponent_interaction_element_select />
           <Charts.G2ChartComponent_storytelling_storytelling_interval_keyframe />
           <Charts.G2ChartComponent_composition_facet_rect_frame />
-          <Charts.G2ChartComponent_general_image_logo />
-          <Charts.G2ChartComponent_style_rough_point />
+          <Charts.G2ChartComponent_general_image_logo /> */}
+          {/* <Charts.G2ChartComponent_style_rough_point />
           <Charts.G2ChartComponent_component_label_overlaphide />
           <Charts.G2ChartComponent_general_radar_square_radar />
           <Charts.G2ChartComponent_style_pattern_squares_pattern />
@@ -408,7 +424,7 @@ export default function ChartsPage() {
           <Charts.G2ChartComponent_animation_general_wave_in />
           <Charts.G2ChartComponent_interaction_brush_brush_emit />
           <Charts.G2ChartComponent_general_liquid_liquid_pin />
-          <Charts.G2ChartComponent_style_graphic_gauge />
+          <Charts.G2ChartComponent_style_graphic_gauge /> */}
         </div>
       </div>
     </div>

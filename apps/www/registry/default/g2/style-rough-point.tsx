@@ -4,7 +4,7 @@
 import React, { useEffect, useRef } from "react"
 import { Chart, register } from "@antv/g2"
 import { Plugin } from "@antv/g-plugin-rough-canvas-renderer"
-
+import WebFont from 'webfontloader';
 import { useShadcnChartColors } from "@/hooks/use-shadcn-chart-colors"
 // Import the hook
 import {
