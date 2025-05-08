@@ -42,8 +42,8 @@ export default function IndexPage() {
         )}
       </div>
 
-      <div className="h-64 w-64 bg-background rounded-md border">
-
+      <div className="h-64 w-64 bg-background rounded-md border mt-4 flex items-center justify-center text-center p-4">
+        Background is not having any blur effects
       </div>
     </div>
   )
