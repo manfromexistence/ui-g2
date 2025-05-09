@@ -109,7 +109,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           >
             <BackgroundThemeManager />
             <div vaul-drawer-wrapper="">
-              <div className="relative flex min-h-svh flex-col bg-background"> {/* Added bg-background */}
+              <div className="relative flex min-h-svh flex-col"> {/* Added bg-background */}
                 {children}
               </div>
             </div>

@@ -103,17 +103,17 @@
   --border: 0 0% 98% / 0.4; /* Weaker white for borders */
   --ring: 0 0% 98% / 0.3;   /* Weaker white for rings */
 
-  --background-blur: 5px;
-  --card-blur: 8px;
-  --popover-blur: 12px;
-  --primary-blur: 10px;
-  --secondary-blur: 9px;
+  --background-blur: 10px;
+  --card-blur: 13px;
+  --popover-blur: 13px;
+  --primary-blur: 15px;
+  --secondary-blur: 17px;
   --muted-blur: 7px;
   --accent-blur: 9px;
   --destructive-blur: 15px;
-  --sidebar-blur: 6px;
+  --sidebar-blur: 12px;
   --sidebar-primary-blur: 11px;
-  --sidebar-accent-blur: 10px;
+  --sidebar-accent-blur: 8px;
 }
 
 @layer base {
